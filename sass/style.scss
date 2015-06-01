@@ -13,6 +13,10 @@ body {
         margin: 0;
         padding: 30px;
         text-align: center;
+
+        img {
+            @include diff(width, 304px, 304px, 304px, 250px);
+        }
     }
 
     section.title {
@@ -45,7 +49,7 @@ body {
             margin-left: 160px;
 
             @include diff(max-width, 589px, 589px, 589px, 300px);
-            @include diff(margin-left, 160px, 160px, 160px, 82px);
+            @include diff(margin-left, 160px, 160px, 160px, 50px);
         }
     }
 

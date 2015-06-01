@@ -5865,6 +5865,19 @@ body {
     margin: 0;
     padding: 30px;
     text-align: center; }
+    body header img {
+      width: 304px;
+      /* tablet */
+      /* mobile phone */ }
+      @media all and (max-width: 1199px) {
+        body header img {
+          width: 304px; } }
+      @media all and (max-width: 991px) {
+        body header img {
+          width: 304px; } }
+      @media all and (max-width: 767px) {
+        body header img {
+          width: 250px; } }
   body section.title {
     margin: 0;
     padding: 30px;
@@ -5909,7 +5922,7 @@ body {
           margin-left: 160px; } }
       @media all and (max-width: 767px) {
         body section.book img {
-          margin-left: 82px; } }
+          margin-left: 50px; } }
   body section.subscribe {
     color: #FFC153;
     padding: 30px; }
