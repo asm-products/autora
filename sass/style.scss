@@ -77,7 +77,6 @@ body {
                 padding: 10px 20px;
                 margin-right: 10px;
                 outline: none;
-                margin-bottom: 20px;
 
                 &::-webkit-input-placeholder { /* WebKit browsers */
                     color: $color2;
@@ -103,10 +102,10 @@ body {
                 display: inline-block;
                 padding: 12px 0;
                 text-transform: uppercase;
-                margin-bottom: 20px;
                 cursor: pointer;
 
                 @include diff(max-width, 100%, 100%, 100%, 156px);
+                @include diff(margin-top, 0, 0, 0, 20px);
 
                 &:hover {
                     background-color: $color1;

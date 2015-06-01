@@ -5943,8 +5943,7 @@ body {
         vertical-align: bottom;
         padding: 10px 20px;
         margin-right: 10px;
-        outline: none;
-        margin-bottom: 20px; }
+        outline: none; }
         body section.subscribe .form input.email::-webkit-input-placeholder {
           /* WebKit browsers */
           color: #FFC153; }
@@ -5967,9 +5966,11 @@ body {
         display: inline-block;
         padding: 12px 0;
         text-transform: uppercase;
-        margin-bottom: 20px;
         cursor: pointer;
         max-width: 100%;
+        /* tablet */
+        /* mobile phone */
+        margin-top: 0;
         /* tablet */
         /* mobile phone */ }
         @media all and (max-width: 1199px) {
@@ -5981,6 +5982,15 @@ body {
         @media all and (max-width: 767px) {
           body section.subscribe .form .submit {
             max-width: 156px; } }
+        @media all and (max-width: 1199px) {
+          body section.subscribe .form .submit {
+            margin-top: 0; } }
+        @media all and (max-width: 991px) {
+          body section.subscribe .form .submit {
+            margin-top: 0; } }
+        @media all and (max-width: 767px) {
+          body section.subscribe .form .submit {
+            margin-top: 20px; } }
         body section.subscribe .form .submit:hover {
           background-color: #5F495F; }
   body footer {
