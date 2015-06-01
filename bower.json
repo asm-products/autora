@@ -1,0 +1,22 @@
+{
+  "name": "autora",
+  "version": "0.0.0",
+  "homepage": "https://github.com/asm-products/autora",
+  "authors": [
+    "justtal"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "boostrap-sass": "~3.3.4"
+  }
+}
