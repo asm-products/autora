@@ -6068,3 +6068,5 @@ body {
       body footer a:visited {
         color: #ffffff;
         text-decoration: none; }
+  body .subscribers_page {
+    color: #000000; }

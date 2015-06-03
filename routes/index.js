@@ -7,6 +7,16 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'Autora | Writing just got collective.' });
 });
 
+router.get('/subscribers', function(req, res, next) {
+    Subscriber.find(function (err, subscribers) {
+        res.render('subscribers', { subscribers: subscribers });
+        //res.send(JSON.stringify(subscribers));
+    });
+    //console.log(subscribers);
+    //res.send(JSON.stringify(subscribers.toJson()));
+    //res.render('index', { title: 'Autora | Writing just got collective.' });
+});
+
 router.post('/api/subscribe', function(req, res) {
     var newSubscriber = new Subscriber({
         email: req.body.email
