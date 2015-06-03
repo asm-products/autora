@@ -35,7 +35,8 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  mongoose.connect('mongodb://localhost:27017/autora_lp');
+  //mongoose.connect('mongodb://localhost:27017/autora_lp');
+  mongoose.connect('mongodb://autora:autora111111@ds043012.mongolab.com:43012/heroku_app35869958');
 
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
