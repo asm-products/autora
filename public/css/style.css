@@ -5925,7 +5925,9 @@ body {
           margin-left: 50px; } }
   body section.subscribe {
     color: #FFC153;
-    padding: 30px; }
+    padding: 30px;
+    -webkit-transition: max-height 0.5s;
+    max-height: 500px; }
     body section.subscribe h3 {
       margin: 0;
       text-align: center; }
@@ -5934,9 +5936,10 @@ body {
       text-align: center;
       margin: 20px auto 0 auto;
       max-width: 560px;
-      max-width: 560px;
       /* tablet */
-      /* mobile phone */ }
+      /* mobile phone */
+      max-height: 500px;
+      -webkit-transition: max-height 0.5s; }
       @media all and (max-width: 1199px) {
         body section.subscribe .form {
           max-width: 560px; } }
@@ -5946,6 +5949,48 @@ body {
       @media all and (max-width: 767px) {
         body section.subscribe .form {
           max-width: 300px; } }
+      body section.subscribe .form h4 {
+        color: #FFC153; }
+      body section.subscribe .form.shake {
+        animation: shake 0.5s linear;
+        -webkit-animation: shake 0.5s linear;
+        -moz-animation: shake 0.5s linear; }
+
+@keyframes shake {
+  8%, 41% {
+    transform: translateX(-10px); }
+  25%, 58% {
+    transform: translateX(10px); }
+  75% {
+    transform: translateX(-5px); }
+  92% {
+    transform: translateX(5px); }
+  0%, 100% {
+    transform: translateX(0); } }
+
+@-webkit-keyframes shake {
+  8%, 41% {
+    -webkit-transform: translateX(-10px); }
+  25%, 58% {
+    -webkit-transform: translateX(10px); }
+  75% {
+    -webkit-transform: translateX(-5px); }
+  92% {
+    -webkit-transform: translateX(5px); }
+  0%, 100% {
+    -webkit-transform: translateX(0); } }
+
+@-moz-keyframes shake {
+  8%, 41% {
+    -moz-transform: translateX(-10px); }
+  25%, 58% {
+    -moz-transform: translateX(10px); }
+  75% {
+    -moz-transform: translateX(-5px); }
+  92% {
+    -moz-transform: translateX(5px); }
+  0%, 100% {
+    -moz-transform: translateX(0); } }
       body section.subscribe .form input.email {
         border: 3px solid #FFC153;
         border-radius: 30px;
@@ -5980,6 +6025,8 @@ body {
         padding: 12px 0;
         text-transform: uppercase;
         cursor: pointer;
+        border: none;
+        outline: none;
         max-width: 100%;
         /* tablet */
         /* mobile phone */
@@ -6013,3 +6060,8 @@ body {
     background-color: #5F495F;
     text-align: center;
     padding: 30px; }
+    body footer a {
+      color: #ffffff; }
+      body footer a:hover {
+        color: #ffffff;
+        text-decoration: none; }
