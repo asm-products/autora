@@ -1,0 +1,14 @@
+@mixin diff($attr, $valueDesktop, $valueSmallDesktop, $valueTablet, $valueMobile) {
+   #{$attr}: $valueDesktop;
+   @media all and (max-width: $screen-md-max) {
+       #{$attr}: $valueSmallDesktop;
+   }
+   /* tablet */
+   @media all and (max-width: $screen-sm-max) {
+       #{$attr}: $valueTablet;
+   }
+   /* mobile phone */
+   @media all and (max-width: $screen-xs-max) {
+       #{$attr}: $valueMobile;
+   }
+}
