@@ -1,0 +1,22 @@
+<div class="subscribers_page">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><b>Autora Subscribers</b></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Email</th>
+            <th>Created At</th>
+        </tr>
+        </thead>
+        {{#each subscribers}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.created_at}}</td>
+            </tr>
+        {{/each}}
+    </table>
+    </div>
+</div>
