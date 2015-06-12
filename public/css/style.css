@@ -6053,6 +6053,34 @@ body {
             margin-top: 20px; } }
         body section.subscribe .form .submit:hover {
           background-color: #5F495F; }
+  body section.flow {
+    text-align: center;
+    margin: 30px 0 60px 0;
+    display: block;
+    /* tablet */
+    /* mobile phone */ }
+    @media all and (max-width: 1199px) {
+      body section.flow {
+        display: block; } }
+    @media all and (max-width: 991px) {
+      body section.flow {
+        display: block; } }
+    @media all and (max-width: 767px) {
+      body section.flow {
+        display: none; } }
+    body section.flow img {
+      max-width: 700px;
+      /* tablet */
+      /* mobile phone */ }
+      @media all and (max-width: 1199px) {
+        body section.flow img {
+          max-width: 700px; } }
+      @media all and (max-width: 991px) {
+        body section.flow img {
+          max-width: 600px; } }
+      @media all and (max-width: 767px) {
+        body section.flow img {
+          max-width: 300px; } }
   body footer {
     font-size: 15px;
     letter-spacing: 1px;
