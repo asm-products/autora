@@ -6068,6 +6068,9 @@ body {
     @media all and (max-width: 767px) {
       body section.flow {
         display: none; } }
+    body section.flow h3 {
+      color: #FFC153;
+      margin-bottom: 20px; }
     body section.flow img {
       max-width: 700px;
       /* tablet */

@@ -193,6 +193,11 @@ body {
         margin: 30px 0 60px 0;
         @include diff(display, block, block, block, none);
 
+        h3 {
+            color: $color2;
+            margin-bottom: 20px;
+        }
+
         img {
             @include diff(max-width, 700px, 700px, 600px, 300px);
         }
