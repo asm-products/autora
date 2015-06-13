@@ -37,7 +37,7 @@ router.post('/api/subscribe', function(req, res) {
             message: {
                 to: [{email: subscriberEmail, name: 'Subscriber'}],
                 from_email: 'autora@autora.ink',
-                subject: "Thanks for subscribibg Autora.ink",
+                subject: "Welcome to Autora!",
                 html: html
             }
         }, function(error, response) {
