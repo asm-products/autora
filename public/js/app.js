@@ -34,7 +34,7 @@ var auLandingPage = {
         });
 
         $('.subscribe h3').fadeOut(500, function () {
-            $('.subscribe h3').html('Thanks for subscribing! We will be in touch when Autora is ready.').fadeIn(500);
+            $('.subscribe h3').html('Thanks for subscribing! We will keep you updated on Autora.').fadeIn(500);
         });
     },
 
