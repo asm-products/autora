@@ -45,7 +45,7 @@ body {
             margin: 20px auto 0 auto;
         }
 
-        @media only screen and (min-width:1263px){
+        @media only screen and (min-width:1163px){
             
             background-color: $color2;
             display: inline-block;
@@ -85,7 +85,7 @@ body {
             @include diff(margin-left, 160px, 160px, 160px, 50px);
         }
 
-        @media only screen and (min-width:1263px){
+        @media only screen and (min-width:1163px){
             display: inline-block;
             min-width: 590px;
             // width: 50%;
@@ -95,6 +95,7 @@ body {
 
             img {
                 max-width:100%;
+                margin-left:60px;
             }
         }
        

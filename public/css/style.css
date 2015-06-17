@@ -6098,7 +6098,7 @@ body {
       font-weight: 300;
       max-width: 660px;
       margin: 20px auto 0 auto; }
-    @media only screen and (min-width: 1263px) {
+    @media only screen and (min-width: 1163px) {
       body section.title {
         background-color: #FFC153;
         display: inline-block;
@@ -6144,7 +6144,7 @@ body {
       @media all and (max-width: 767px) {
         body section.book img {
           margin-left: 50px; } }
-    @media only screen and (min-width: 1263px) {
+    @media only screen and (min-width: 1163px) {
       body section.book {
         display: inline-block;
         min-width: 590px;
@@ -6152,7 +6152,8 @@ body {
         height: 446px;
         text-align: left; }
         body section.book img {
-          max-width: 100%; } }
+          max-width: 100%;
+          margin-left: 60px; } }
   body section.subscribe {
     color: #FFC153;
     padding: 30px;
