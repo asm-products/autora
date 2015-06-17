@@ -19,6 +19,11 @@ body {
         }
     }
 
+    .sections-wrapper {
+        background: $color2;
+        text-align: center;
+    }
+
     section.title {
         margin: 0;
         padding: 30px;
@@ -39,11 +44,39 @@ body {
             max-width: 660px;
             margin: 20px auto 0 auto;
         }
+
+        @media only screen and (min-width:1263px){
+            
+            background-color: $color2;
+            display: inline-block;
+            // width: 50%;
+            height: 446px;
+            margin-right: -5px;
+
+            h1 {
+            text-align: left;
+            max-width: 440px;
+            margin-top: 37px;
+
+                span {
+                    display: block;
+                    position: relative;
+                    left: 4px;
+                }
+            }
+
+            h2 {
+                max-width:440px;
+                text-align:justify;
+            }
+        }
     }
 
     section.book {
         text-align: center;
         background-color: $color2;
+
+
 
         img {
             margin-left: 160px;
@@ -51,6 +84,20 @@ body {
             @include diff(max-width, 589px, 589px, 589px, 300px);
             @include diff(margin-left, 160px, 160px, 160px, 50px);
         }
+
+        @media only screen and (min-width:1263px){
+            display: inline-block;
+            min-width: 590px;
+            // width: 50%;
+            vertical-align: top;
+            height: 446px;
+            text-align: left;
+
+            img {
+                max-width:100%;
+            }
+        }
+       
     }
 
     section.subscribe {
