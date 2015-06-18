@@ -6334,5 +6334,10 @@ body {
       body footer a:visited {
         color: #ffffff;
         text-decoration: none; }
+    @media only screen and (min-height: 1250px) {
+      body footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%; } }
   body .subscribers_page {
     color: #000000; }
