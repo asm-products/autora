@@ -4,6 +4,7 @@
 
 $color1: #5F495F;
 $color2: #FFC153;
+$large-breakpoint: 1112px;
 
 body {
     background-color: ffffff;
@@ -17,6 +18,11 @@ body {
         img {
             @include diff(width, 304px, 304px, 304px, 250px);
         }
+    }
+
+    .sections-wrapper {
+        background: $color2;
+        text-align: center;
     }
 
     section.title {
@@ -39,11 +45,42 @@ body {
             max-width: 660px;
             margin: 20px auto 0 auto;
         }
+
+        @media only screen and (min-width:$large-breakpoint){
+            
+            background-color: $color2;
+            display: inline-block;
+            // width: 50%;
+            height: 446px;
+            margin-right: -5px;
+
+            position: relative;
+            left: 80px;
+
+            h1 {
+            text-align: left;
+            max-width: 390px;
+            margin-top: 37px;
+
+                span {
+                    display: block;
+                    position: relative;
+                    left: 4px;
+                }
+            }
+
+            h2 {
+                max-width:390px;
+                text-align:justify;
+            }
+        }
     }
 
     section.book {
         text-align: center;
         background-color: $color2;
+
+
 
         img {
             margin-left: 160px;
@@ -51,6 +88,24 @@ body {
             @include diff(max-width, 589px, 589px, 589px, 300px);
             @include diff(margin-left, 160px, 160px, 160px, 50px);
         }
+
+        @media only screen and (min-width: $large-breakpoint){
+            display: inline-block;
+            min-width: 590px;
+            // width: 50%;
+            vertical-align: top;
+            height: 446px;
+            text-align: left;
+
+            position: relative;
+            left: 80px;
+
+            img {
+                max-width:100%;
+                margin-left:60px;
+            }
+        }
+       
     }
 
     section.subscribe {
