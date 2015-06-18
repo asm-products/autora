@@ -6098,22 +6098,24 @@ body {
       font-weight: 300;
       max-width: 660px;
       margin: 20px auto 0 auto; }
-    @media only screen and (min-width: 1163px) {
+    @media only screen and (min-width: 1112px) {
       body section.title {
         background-color: #FFC153;
         display: inline-block;
         height: 446px;
-        margin-right: -5px; }
+        margin-right: -5px;
+        position: relative;
+        left: 80px; }
         body section.title h1 {
           text-align: left;
-          max-width: 440px;
+          max-width: 390px;
           margin-top: 37px; }
           body section.title h1 span {
             display: block;
             position: relative;
             left: 4px; }
         body section.title h2 {
-          max-width: 440px;
+          max-width: 390px;
           text-align: justify; } }
   body section.book {
     text-align: center;
@@ -6144,13 +6146,15 @@ body {
       @media all and (max-width: 767px) {
         body section.book img {
           margin-left: 50px; } }
-    @media only screen and (min-width: 1163px) {
+    @media only screen and (min-width: 1112px) {
       body section.book {
         display: inline-block;
         min-width: 590px;
         vertical-align: top;
         height: 446px;
-        text-align: left; }
+        text-align: left;
+        position: relative;
+        left: 80px; }
         body section.book img {
           max-width: 100%;
           margin-left: 60px; } }

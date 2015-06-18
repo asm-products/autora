@@ -4,6 +4,7 @@
 
 $color1: #5F495F;
 $color2: #FFC153;
+$large-breakpoint: 1112px;
 
 body {
     background-color: ffffff;
@@ -45,7 +46,7 @@ body {
             margin: 20px auto 0 auto;
         }
 
-        @media only screen and (min-width:1163px){
+        @media only screen and (min-width:$large-breakpoint){
             
             background-color: $color2;
             display: inline-block;
@@ -53,9 +54,12 @@ body {
             height: 446px;
             margin-right: -5px;
 
+            position: relative;
+            left: 80px;
+
             h1 {
             text-align: left;
-            max-width: 440px;
+            max-width: 390px;
             margin-top: 37px;
 
                 span {
@@ -66,7 +70,7 @@ body {
             }
 
             h2 {
-                max-width:440px;
+                max-width:390px;
                 text-align:justify;
             }
         }
@@ -85,13 +89,16 @@ body {
             @include diff(margin-left, 160px, 160px, 160px, 50px);
         }
 
-        @media only screen and (min-width:1163px){
+        @media only screen and (min-width: $large-breakpoint){
             display: inline-block;
             min-width: 590px;
             // width: 50%;
             vertical-align: top;
             height: 446px;
             text-align: left;
+
+            position: relative;
+            left: 80px;
 
             img {
                 max-width:100%;
