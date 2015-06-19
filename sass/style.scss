@@ -79,8 +79,7 @@ body {
     section.book {
         text-align: center;
         background-color: $color2;
-
-
+        overflow-x: hidden;
 
         img {
             margin-left: 160px;
@@ -99,6 +98,8 @@ body {
 
             position: relative;
             left: 80px;
+
+            overflow-x:visible;
 
             img {
                 max-width:100%;
