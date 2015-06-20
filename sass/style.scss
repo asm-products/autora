@@ -23,6 +23,7 @@ body {
     .sections-wrapper {
         background: $color2;
         text-align: center;
+        overflow-x:hidden;
     }
 
     section.title {
@@ -79,8 +80,6 @@ body {
     section.book {
         text-align: center;
         background-color: $color2;
-
-
 
         img {
             margin-left: 160px;

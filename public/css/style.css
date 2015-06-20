@@ -6081,7 +6081,8 @@ body {
           width: 250px; } }
   body .sections-wrapper {
     background: #FFC153;
-    text-align: center; }
+    text-align: center;
+    overflow-x: hidden; }
   body section.title {
     margin: 0;
     padding: 30px;
