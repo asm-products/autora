@@ -6081,7 +6081,8 @@ body {
           width: 250px; } }
   body .sections-wrapper {
     background: #FFC153;
-    text-align: center; }
+    text-align: center;
+    overflow-x: hidden; }
   body section.title {
     margin: 0;
     padding: 30px;
@@ -6119,8 +6120,7 @@ body {
           text-align: justify; } }
   body section.book {
     text-align: center;
-    background-color: #FFC153;
-    overflow-x: hidden; }
+    background-color: #FFC153; }
     body section.book img {
       margin-left: 160px;
       max-width: 589px;
@@ -6155,8 +6155,7 @@ body {
         height: 446px;
         text-align: left;
         position: relative;
-        left: 80px;
-        overflow-x: visible; }
+        left: 80px; }
         body section.book img {
           max-width: 100%;
           margin-left: 60px; } }
