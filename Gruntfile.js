@@ -18,14 +18,21 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'public/css/style.min.css' : ['public/css/style.css']
+          'public/css/style.min.css' : ['public/css/style.purified.css']
         }
       }
+    },
+    purifycss: {
+      target: {
+        src: ['views/*.hbs'],
+        css: ['public/css/style.css'],
+        dest: 'public/css/style.purified.css'
+      },
     },
     watch: {
       source: {
         files: ['sass/**/*.scss', 'views/**/*.hbs', 'js/**/*.js'],
-        tasks: ['sass','uglify','cssmin'],
+        tasks: ['sass','uglify','purifycss','cssmin'],
         options: {
           livereload: true
         }
@@ -37,5 +44,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-purifycss');
+  /*grunt.registerTask('purifycss', ['purifycss']);*/
   grunt.registerTask('default', ['sass']);
 };
