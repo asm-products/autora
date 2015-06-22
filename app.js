@@ -10,6 +10,16 @@ var routes = require('./routes/index');
 
 var app = express();
 
+var hbs = require('hbs');
+hbs.registerHelper('isLocal', function(options){
+  if(app.get('env') === 'development'){
+    return options.fn(this);
+  }
+});
+
+var compression = require('compression');
+app.use(compression());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
