@@ -3,35 +3,35 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'public/css/style.css': 'sass/style.scss'
+          'landing-page/public/css/style.css': 'landing-page/sass/style.scss'
         }
       }
     },
     uglify: {
       my_target: {
         files: {
-          /*'public/css/style.min.css' : ['public/css/style.css'], -- need cssmin for that*/ 
-          'public/js/app.min.js' : ['public/js/app.js'],
+          /*'public/css/style.min.css' : ['public/css/style.css'], -- need cssmin for that*/
+          'landing-page/public/js/app.min.js' : ['public/js/app.js'],
         }
       }
     },
     cssmin: {
       target: {
         files: {
-          'public/css/style.min.css' : ['public/css/style.purified.css']
+          'landing-page/public/css/style.min.css' : ['public/css/style.purified.css']
         }
       }
     },
     purifycss: {
       target: {
-        src: ['views/*.hbs'],
-        css: ['public/css/style.css'],
-        dest: 'public/css/style.purified.css'
+        src: ['landing-page/views/*.hbs'],
+        css: ['landing-page/public/css/style.css'],
+        dest: 'landing-page/public/css/style.purified.css'
       },
     },
     watch: {
       source: {
-        files: ['sass/**/*.scss', 'views/**/*.hbs', 'js/**/*.js'],
+        files: ['landing-page/sass/**/*.scss', 'landing-page/views/**/*.hbs', 'landing-page/js/**/*.js'],
         tasks: ['sass','uglify','purifycss','cssmin'],
         options: {
           livereload: true

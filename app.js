@@ -1,3 +1,4 @@
+var subdomain = require('express-subdomain');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -6,7 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var routes = require('./routes/index');
+var landingPageRoutes = require('./landing-page/routes/index');
+var webappRoutes = require('./webapp/server/routes/index');
 
 var app = express();
 
@@ -21,17 +23,18 @@ var compression = require('compression');
 app.use(compression());
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'landing-page/views'));
 app.set('view engine', 'hbs');
 
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/landing-page/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'landing-page/public')));
 
-app.use('/', routes);
+app.use(subdomain('app', webappRoutes));
+app.use('/', landingPageRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,6 +73,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;

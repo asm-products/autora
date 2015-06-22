@@ -1,4 +1,4 @@
-@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "bootstrap_override";
 @import "mixins";
 
@@ -48,7 +48,7 @@ body {
         }
 
         @media only screen and (min-width:$large-breakpoint){
-            
+
             background-color: $color2;
             display: inline-block;
             // width: 50%;
@@ -104,7 +104,7 @@ body {
                 margin-left:60px;
             }
         }
-       
+
     }
 
     section.subscribe {
