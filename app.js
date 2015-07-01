@@ -32,6 +32,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'landing-page/public')));
+app.use(express.static(path.join(__dirname, 'webapp/client/dist')));
 
 app.use(subdomain('app', webappRoutes));
 app.use('/', landingPageRoutes);
