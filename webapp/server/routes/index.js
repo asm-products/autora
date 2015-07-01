@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
     if (app.get('env') === 'development') {
         res.sendfile('./webapp/client/dist/index.html');
     } else {
-        res.sendfile('./webapp/client/dist/index.html');
+        res.sendfile('/webapp/client/dist/index.html');
     }
 });
 
