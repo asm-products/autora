@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var app = express();
+var path = require('path');
 
 router.get('/', function(req, res, next) {
     if (app.get('env') === 'development') {
         res.sendfile('./webapp/client/dist/index.html');
     } else {
         var correctPath = path.join(__dirname, '../..','/client/dist/index.html');
-        res.sendfile(daPath);
+        res.sendfile(correctPath);
         //res.sendfile('index.html', { root: __dirname + '/../../client/dist' });
         //res.sendfile('./webapp/client/dist/index.html');
     }
