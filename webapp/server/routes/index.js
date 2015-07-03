@@ -3,6 +3,10 @@ var router = express.Router();
 var app = express();
 var path = require('path');
 
+router.get('/*', function(req, res, next) {
+    res.sendfile('./webapp/client/dist'+req.path);
+});
+
 router.get('/', function(req, res, next) {
     if (app.get('env') === 'development') {
         res.sendfile('./webapp/client/dist/index.html');
@@ -16,20 +20,17 @@ router.get('/', function(req, res, next) {
     }
 });
 
-router.get('/assets/client.css', function(req, res, next) {
-    res.sendfile('./webapp/client/dist/assets/client.css');
-});
 
-router.get('/assets/client.js', function(req, res, next) {
-    res.sendfile('./webapp/client/dist/assets/client.js');
-});
+// router.get('/assets/client.js', function(req, res, next) {
+//     res.sendfile('./webapp/client/dist/assets/client.js');
+// });
 
-router.get('/assets/vendor.js', function(req, res, next) {
-    res.sendfile('./webapp/client/dist/assets/vendor.js');
-});
+// router.get('/assets/vendor.js', function(req, res, next) {
+//     res.sendfile('./webapp/client/dist/assets/vendor.js');
+// });
 
-router.get('/assets/vendor.css', function(req, res, next) {
-    res.sendfile('./webapp/client/dist/assets/vendor.css');
-});
+// router.get('/assets/vendor.css', function(req, res, next) {
+//     res.sendfile('./webapp/client/dist/assets/vendor.css');
+// });
 
 module.exports = router;
