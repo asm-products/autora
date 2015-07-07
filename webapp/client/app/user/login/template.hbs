@@ -1,1 +1,14 @@
+
+{{#if alert}}
+<hr>
+<div class="alert alert-danger">{{alert}}</div>
+{{/if}}
+<hr>
+<form class="form-inline" {{action "login" on="submit" }}>
+	<label>Your email:</label>
+	{{input class="form-control" value=email}}
+	<label>Password:</label>
+	{{input type="password" class="form-control" value=password}}
+	<input type="submit" value="Login">
+</form>
 {{outlet}}
