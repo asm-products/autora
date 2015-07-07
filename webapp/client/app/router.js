@@ -22,6 +22,7 @@ Router.map(function() {
     this.route('index',{path: '/:user_id'}, function() {
       this.route('settings');
     });
+    this.route('logout');
   });
   this.route('entry',{path: '/:entry_id'}, function() {});
   this.route('dashboard', function() {});

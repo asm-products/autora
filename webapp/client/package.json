@@ -31,9 +31,12 @@
     "ember-cli-qunit": "0.3.13",
     "ember-cli-sass": "^4.0.1",
     "ember-cli-sass-pods": "^1.0.9",
+    "ember-cli-simple-auth": "0.8.0",
+    "ember-cli-simple-auth-firebase": "1.0.5",
     "ember-cli-uglify": "^1.0.1",
     "ember-data": "1.0.0-beta.18",
     "ember-disable-proxy-controllers": "^1.0.0",
-    "ember-export-application-global": "^1.0.2"
+    "ember-export-application-global": "^1.0.2",
+    "emberfire": "1.4.7"
   }
 }

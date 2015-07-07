@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'client',
     environment: environment,
+    contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
     firebase: 'https://autora.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
@@ -19,6 +20,9 @@ module.exports = function(environment) {
       // when it is created
     }
   };
+  // ENV['simple-auth'] = {
+  //     authorizer: 'simple-auth-authorizer:firebase'
+  //   };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
