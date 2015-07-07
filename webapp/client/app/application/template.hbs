@@ -1,2 +1,14 @@
-Autora WebApp
-{{outlet}}
+<div class="container">
+	<h1>Routing/Navigation test:</h1>
+</div>
+<nav class="nav navbar-default">
+	<div class="container">
+	{{#link-to 'project.list' class="navbar-brand"}} Autora {{/link-to}}
+	<ul class="nav navbar-nav navbar-right">
+		<li>{{#link-to 'project.index' 4}} Project 4 {{/link-to}}</li>
+		<li>{{#link-to 'user.index' 4}} User 4 {{/link-to}}</li>
+		<li>{{#link-to 'user.index.settings' 4}} User 4 settings {{/link-to}}</li>
+	</ul>
+	</div>
+</nav>
+<div class="container">{{outlet}}</div>
