@@ -6059,4 +6059,55 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+/* COLORS */
+.button-flat {
+  border-radius: 10px;
+  padding: 8px 16px;
+  background-color: #FFC153;
+  color: #ffffff; }
+
+#app .app-content {
+  min-height: 612px; }
+
+header.app-header {
+  padding: 0 160px;
+  border-bottom: 1px solid #cccccc;
+  overflow: hidden;
+  font-family: Roboto;
+  font-weight: 500;
+  letter-spacing: 1px; }
+  header.app-header img.logo {
+    height: 40px; }
+  header.app-header .navbar-left {
+    padding: 10px 0; }
+  header.app-header nav.navbar-right {
+    height: 47px;
+    padding: 20px 0; }
+    header.app-header nav.navbar-right a {
+      text-transform: uppercase;
+      color: #5F495F;
+      font-size: 12px;
+      margin-left: 20px; }
+      header.app-header nav.navbar-right a.button-flat {
+        color: #ffffff; }
+      header.app-header nav.navbar-right a.profile-circle {
+        overflow: hidden;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: -7px;
+        border: 1px solid #cccccc; }
+        header.app-header nav.navbar-right a.profile-circle img {
+          width: 35px; }
+
+footer.app-footer {
+  font-family: Roboto;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-align: center;
+  background-color: #5F495F;
+  padding: 20px 0;
+  color: #ffffff;
+  font-size: 11px; }
+
 /*# sourceMappingURL=client.css.map */

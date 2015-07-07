@@ -1,0 +1,45 @@
+header.app-header {
+    padding: 0 $site-padding;
+    border-bottom: 1px solid $border-color;
+    overflow: hidden;
+    font-family: Roboto;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+    img.logo {
+        height: 40px;
+    }
+
+    .navbar-left {
+        padding: 10px 0;
+    }
+
+    nav.navbar-right {
+        height: 47px;
+        padding: 20px 0;
+
+        a {
+            text-transform: uppercase;
+            color: $color2;
+            font-size: 12px;
+            margin-left: 20px;
+
+            &.button-flat {
+                color: #ffffff;
+            }
+
+            &.profile-circle {
+                overflow: hidden;
+                border-radius: 50%;
+                display: inline-block;
+                vertical-align: top;
+                margin-top: -7px;
+                border: 1px solid #cccccc;
+
+                img {
+                    width: 35px;
+                }
+            }
+        }
+    }
+}

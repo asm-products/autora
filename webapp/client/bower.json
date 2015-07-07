@@ -13,7 +13,8 @@
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.17.1",
     "ember-simple-auth": "0.8.0",
-    "firebase": "^2.1.0"
+    "firebase": "^2.1.0",
+    "JavaScript-MD5": "~1.1.0"
   },
   "devDependencies": {
     "bootstrap-sass": "~3.3.5",

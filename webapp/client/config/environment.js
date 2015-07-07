@@ -8,6 +8,15 @@ module.exports = function(environment) {
     firebase: 'https://autora.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
+    googleFonts: [
+      'Roboto:100,300,400,500,600,700'
+    ],
+
+    // Set or update content security policies
+    contentSecurityPolicy: {
+      'font-src': "'self' fonts.gstatic.com",
+      'style-src': "'self' fonts.googleapis.com"
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
