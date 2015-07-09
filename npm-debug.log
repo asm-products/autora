@@ -76,8 +76,8 @@
 35 info postinstall autora@0.0.0
 36 verbose unsafe-perm in lifecycle true
 37 info autora@0.0.0 Failed to exec postinstall script
-38 verbose stack Error: autora@0.0.0 postinstall: `bower install && sh scripts/webapp-install.sh`
-38 verbose stack Exit status 1
+38 verbose stack Error: autora@0.0.0 postinstall: `bower install && scripts/webapp-install.sh`
+38 verbose stack Exit status 126
 38 verbose stack     at EventEmitter.<anonymous> (/Users/talmagen/.nvm/v0.12.0/lib/node_modules/npm/lib/utils/lifecycle.js:213:16)
 38 verbose stack     at EventEmitter.emit (events.js:110:17)
 38 verbose stack     at ChildProcess.<anonymous> (/Users/talmagen/.nvm/v0.12.0/lib/node_modules/npm/lib/utils/spawn.js:14:12)
@@ -91,13 +91,13 @@
 43 error node v0.12.0
 44 error npm  v2.5.1
 45 error code ELIFECYCLE
-46 error autora@0.0.0 postinstall: `bower install && sh scripts/webapp-install.sh`
-46 error Exit status 1
-47 error Failed at the autora@0.0.0 postinstall script 'bower install && sh scripts/webapp-install.sh'.
+46 error autora@0.0.0 postinstall: `bower install && scripts/webapp-install.sh`
+46 error Exit status 126
+47 error Failed at the autora@0.0.0 postinstall script 'bower install && scripts/webapp-install.sh'.
 47 error This is most likely a problem with the autora package,
 47 error not with npm itself.
 47 error Tell the author that this fails on your system:
-47 error     bower install && sh scripts/webapp-install.sh
+47 error     bower install && scripts/webapp-install.sh
 47 error You can get their info via:
 47 error     npm owner ls autora
 47 error There is likely additional logging output above.

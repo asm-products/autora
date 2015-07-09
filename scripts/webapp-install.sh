@@ -1,6 +1,5 @@
 #!/bin/bash
 
-cd webapp/client
-bower install
-npm install
-ember build --environment=production
+(cd webapp/client; bower install)
+(cd webapp/client; npm install)
+(cd webapp/client; ember build --environment=production)
