@@ -1,4 +1,12 @@
-{{#competing-entry}}
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus optio vero in pariatur numquam aliquam cum debitis esse qui, illo, voluptatum laboriosam? Quisquam voluptate perferendis nemo porro, dignissimos doloribus ducimus.</p>
-{{/competing-entry}}
+{{#link-to 'project.index.new-entry' class="btn btn-primary"}}New entry{{/link-to}}
+
+
+
+{{!-- {{log model}} --}}
+
+<h2>Listing entries in pile {{pile.id}}</h2>
+
+{{#each pile.competingEntries key="id" as |entry|}}
+	{{competing-entry model=entry}}
+{{/each}}
 {{outlet}}

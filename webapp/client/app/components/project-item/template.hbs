@@ -1,1 +1,8 @@
+<div class="col-sm-4 col-md-3">
+	<div class="well">
+		<h3>{{attrs.model.name}}</h3>
+		<p>{{attrs.model.description}}</p>
+		{{#link-to 'project.index.entries' attrs.model.id}} Open project {{/link-to}}
+	</div>
+</div>
 {{yield}}

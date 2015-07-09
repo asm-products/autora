@@ -8,6 +8,15 @@ module.exports = function(environment) {
     firebase: 'https://autora.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
+    googleFonts: [
+      'Roboto:100,300,400,500,600,700'
+    ],
+
+    // Set or update content security policies
+    contentSecurityPolicy: {
+      'font-src': "'self' fonts.gstatic.com",
+      'style-src': "'self' fonts.googleapis.com"
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -33,10 +42,10 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy = {
       'default-src': "'none'",
       'script-src': "'self'",
-      'font-src': "'self'",
+      'font-src': "'self' fonts.gstatic.com",
       'connect-src': "'self' *",
       'img-src': "'self'",
-      'style-src': "'self' 'unsafe-inline'", //for chrome extension stuff
+      'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
       'media-src': "'self'"
     };
 
