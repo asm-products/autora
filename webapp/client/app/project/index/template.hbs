@@ -1,5 +1,11 @@
-<h2>Main site for project with id {{model}}</h2>
-{{#successful-entry}}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet, nulla ut vero, aut consectetur inventore, ipsam dolorem nesciunt labore dolorum blanditiis. Alias ad tenetur consequatur minima maiores velit repellendus.
-{{/successful-entry}}
+<h2>{{model.name}}</h2>
+<p>{{model.description}}</p>
+
+{{#each model.entries key="id" as |entry|}}
+	{{successful-entry model=entry}}
+{{/each}}
+
+<hr>
+<div {{action "createPile"}} class="btn btn-primary">Create pile</div>
+<hr>
 {{outlet}}

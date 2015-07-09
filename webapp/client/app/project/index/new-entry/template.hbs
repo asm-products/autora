@@ -1,1 +1,6 @@
+{{log model}}
 {{outlet}}
+<form {{action "createEntry" on="submit"}}>
+	{{textarea value=newEntry.content}} <br>
+	<input type="submit" value="Add entry" class="btn btn-primary">
+</form>

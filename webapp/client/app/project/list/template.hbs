@@ -1,1 +1,6 @@
+<br>
+{{#link-to 'project.create' class="btn btn-primary"}}Create project{{/link-to}}
+{{#each projects key="id" as |project|}}
+	{{project-item model=project}}
+{{/each}}
 {{outlet}}

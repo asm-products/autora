@@ -40,5 +40,9 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "emberfire": "1.4.7"
+  },
+  "dependencies": {
+    "ember-data": "^1.13.5",
+    "emberfire": "git+https://git@github.com/firebase/emberfire.git#master"
   }
 }
