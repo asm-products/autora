@@ -21,6 +21,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+  },
+  "dependencies": {
     "broccoli-asset-rev": "^2.0.2",
     "ember-cli": "1.13.1",
     "ember-cli-app-version": "0.3.3",
@@ -41,9 +43,7 @@
     "ember-data": "1.0.0-beta.18",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
-    "emberfire": "1.4.7"
-  },
-  "dependencies": {
+    "emberfire": "1.4.7",
     "bower": "^1.4.1",
     "ember-data": "^1.13.5",
     "emberfire": "git+https://git@github.com/firebase/emberfire.git#master",

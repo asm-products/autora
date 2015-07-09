@@ -14,9 +14,7 @@
     "ember-simple-auth": "0.8.0",
     "firebase": "^2.1.0",
     "JavaScript-MD5": "~1.1.0",
-    "ember-data": "~1.13.5"
-  },
-  "devDependencies": {
+    "ember-data": "~1.13.5",
     "bootstrap-sass": "~3.3.5",
     "emberfire": "~1.4.7"
   },
