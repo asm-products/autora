@@ -1,0 +1,104 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/talmagen/.nvm/v0.12.0/bin/node',
+1 verbose cli   '/Users/talmagen/.nvm/v0.12.0/bin/npm',
+1 verbose cli   'install' ]
+2 info using npm@2.5.1
+3 info using node@v0.12.0
+4 verbose install where, deps [ '/Users/talmagen/Documents/My/code/autora',
+4 verbose install   [ 'body-parser',
+4 verbose install     'bower',
+4 verbose install     'compression',
+4 verbose install     'cookie-parser',
+4 verbose install     'debug',
+4 verbose install     'express',
+4 verbose install     'express-subdomain',
+4 verbose install     'grunt',
+4 verbose install     'grunt-sass',
+4 verbose install     'hbs',
+4 verbose install     'mongoose',
+4 verbose install     'morgan',
+4 verbose install     'node-mandrill',
+4 verbose install     'node-sass',
+4 verbose install     'serve-favicon',
+4 verbose install     'grunt-contrib-cssmin',
+4 verbose install     'grunt-contrib-uglify',
+4 verbose install     'grunt-contrib-watch',
+4 verbose install     'grunt-purifycss' ] ]
+5 verbose install where, peers [ '/Users/talmagen/Documents/My/code/autora', [] ]
+6 info preinstall autora@0.0.0
+7 verbose already installed skipping express-subdomain@^1.0.3 /Users/talmagen/Documents/My/code/autora
+8 verbose already installed skipping grunt@^0.4.5 /Users/talmagen/Documents/My/code/autora
+9 verbose already installed skipping grunt-sass@^1.0.0 /Users/talmagen/Documents/My/code/autora
+10 verbose already installed skipping hbs@~2.9.0 /Users/talmagen/Documents/My/code/autora
+11 verbose already installed skipping mongoose@^4.0.4 /Users/talmagen/Documents/My/code/autora
+12 verbose already installed skipping morgan@~1.5.3 /Users/talmagen/Documents/My/code/autora
+13 verbose already installed skipping node-mandrill@^1.0.1 /Users/talmagen/Documents/My/code/autora
+14 verbose already installed skipping node-sass@^3.1.2 /Users/talmagen/Documents/My/code/autora
+15 verbose already installed skipping serve-favicon@~2.2.1 /Users/talmagen/Documents/My/code/autora
+16 verbose already installed skipping grunt-contrib-cssmin@^0.12.3 /Users/talmagen/Documents/My/code/autora
+17 verbose already installed skipping grunt-contrib-uglify@^0.9.1 /Users/talmagen/Documents/My/code/autora
+18 verbose already installed skipping grunt-contrib-watch@^0.6.1 /Users/talmagen/Documents/My/code/autora
+19 verbose already installed skipping grunt-purifycss@^0.1.0 /Users/talmagen/Documents/My/code/autora
+20 verbose already installed skipping body-parser@~1.12.4 /Users/talmagen/Documents/My/code/autora
+21 verbose already installed skipping bower@^1.4.1 /Users/talmagen/Documents/My/code/autora
+22 verbose already installed skipping compression@^1.5.0 /Users/talmagen/Documents/My/code/autora
+23 verbose already installed skipping cookie-parser@~1.3.5 /Users/talmagen/Documents/My/code/autora
+24 verbose already installed skipping debug@~2.2.0 /Users/talmagen/Documents/My/code/autora
+25 verbose already installed skipping express@~4.12.4 /Users/talmagen/Documents/My/code/autora
+26 silly install resolved []
+27 info build /Users/talmagen/Documents/My/code/autora
+28 verbose linkStuff [ false, false, false, '/Users/talmagen/Documents/My/code' ]
+29 info linkStuff autora@0.0.0
+30 verbose linkBins autora@0.0.0
+31 verbose linkMans autora@0.0.0
+32 verbose rebuildBundles autora@0.0.0
+33 verbose rebuildBundles [ '.bin',
+33 verbose rebuildBundles   'body-parser',
+33 verbose rebuildBundles   'bower',
+33 verbose rebuildBundles   'compression',
+33 verbose rebuildBundles   'cookie-parser',
+33 verbose rebuildBundles   'debug',
+33 verbose rebuildBundles   'express',
+33 verbose rebuildBundles   'express-subdomain',
+33 verbose rebuildBundles   'grunt',
+33 verbose rebuildBundles   'grunt-contrib-cssmin',
+33 verbose rebuildBundles   'grunt-contrib-uglify',
+33 verbose rebuildBundles   'grunt-contrib-watch',
+33 verbose rebuildBundles   'grunt-purifycss',
+33 verbose rebuildBundles   'grunt-sass',
+33 verbose rebuildBundles   'hbs',
+33 verbose rebuildBundles   'mongoose',
+33 verbose rebuildBundles   'morgan',
+33 verbose rebuildBundles   'node-mandrill',
+33 verbose rebuildBundles   'node-sass',
+33 verbose rebuildBundles   'serve-favicon' ]
+34 info install autora@0.0.0
+35 info postinstall autora@0.0.0
+36 verbose unsafe-perm in lifecycle true
+37 info autora@0.0.0 Failed to exec postinstall script
+38 verbose stack Error: autora@0.0.0 postinstall: `bower install && scripts/webapp-install.sh`
+38 verbose stack Exit status 126
+38 verbose stack     at EventEmitter.<anonymous> (/Users/talmagen/.nvm/v0.12.0/lib/node_modules/npm/lib/utils/lifecycle.js:213:16)
+38 verbose stack     at EventEmitter.emit (events.js:110:17)
+38 verbose stack     at ChildProcess.<anonymous> (/Users/talmagen/.nvm/v0.12.0/lib/node_modules/npm/lib/utils/spawn.js:14:12)
+38 verbose stack     at ChildProcess.emit (events.js:110:17)
+38 verbose stack     at maybeClose (child_process.js:1008:16)
+38 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1080:5)
+39 verbose pkgid autora@0.0.0
+40 verbose cwd /Users/talmagen/Documents/My/code/autora
+41 error Darwin 14.3.0
+42 error argv "/Users/talmagen/.nvm/v0.12.0/bin/node" "/Users/talmagen/.nvm/v0.12.0/bin/npm" "install"
+43 error node v0.12.0
+44 error npm  v2.5.1
+45 error code ELIFECYCLE
+46 error autora@0.0.0 postinstall: `bower install && scripts/webapp-install.sh`
+46 error Exit status 126
+47 error Failed at the autora@0.0.0 postinstall script 'bower install && scripts/webapp-install.sh'.
+47 error This is most likely a problem with the autora package,
+47 error not with npm itself.
+47 error Tell the author that this fails on your system:
+47 error     bower install && scripts/webapp-install.sh
+47 error You can get their info via:
+47 error     npm owner ls autora
+47 error There is likely additional logging output above.
+48 verbose exit [ 1, true ]

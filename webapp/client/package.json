@@ -10,7 +10,9 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "ember test"
+    "test": "ember test",
+    "preinstall": "bower install",
+    "postinstall": "ember build --environment=production"
   },
   "repository": "",
   "engines": {
@@ -19,8 +21,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+  },
+  "dependencies": {
     "broccoli-asset-rev": "^2.0.2",
-    "ember-cli": "0.2.7",
+    "ember-cli": "1.13.1",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-babel": "^5.0.0",
     "ember-cli-content-security-policy": "0.4.0",
@@ -39,10 +43,10 @@
     "ember-data": "1.0.0-beta.18",
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
-    "emberfire": "1.4.7"
-  },
-  "dependencies": {
+    "emberfire": "1.4.7",
+    "bower": "^1.4.1",
     "ember-data": "^1.13.5",
-    "emberfire": "git+https://git@github.com/firebase/emberfire.git#master"
+    "emberfire": "git+https://git@github.com/firebase/emberfire.git#master",
+    "ember-export-application-global": "^1.0.2"
   }
 }
