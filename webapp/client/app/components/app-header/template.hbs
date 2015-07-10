@@ -6,15 +6,15 @@
 <div class="col-sm-8">
     <nav class="nav navbar-nav navbar-right">
         {{#if isLoggedIn}}
-            {{#link-to 'application'}}Create{{/link-to}}
+            {{#link-to 'project.create'}}Create{{/link-to}}
             {{#link-to 'application'}}Contribute{{/link-to}}
-            {{#link-to 'application'}}Read{{/link-to}}
+            {{#link-to 'project.list'}}Read{{/link-to}}
             {{#link-to 'user.logout'}}Logout{{/link-to}}
             <a class="profile-circle">{{gravatar-image email=userEmail}}</a>
         {{else}}
-            {{#link-to 'project.list'}}Home{{/link-to}}
-            {{#link-to 'application'}}About{{/link-to}}
-            {{#link-to 'application'}}How It Works{{/link-to}}
+            {{#link-to 'index'}}Home{{/link-to}}
+            {{#link-to 'index.about'}}About{{/link-to}}
+            {{#link-to 'index.how-it-works'}}How It Works{{/link-to}}
             {{#link-to 'user.login'}}Login{{/link-to}}
             {{#link-to 'user.signup' class="button-flat"}}Sign Up{{/link-to}}
         {{/if}}
