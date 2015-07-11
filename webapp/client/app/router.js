@@ -6,22 +6,27 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('project', {path: '/'}, function() {
+  this.route('index', {path: '/'}, function(){
+    this.route('about');
+    this.route('how-it-works');
+  });
+  this.route('project', function() {
     this.route('create');
-    this.route('list', {path: '/'});
+    this.route('list');
 
     this.route('index',{path: '/:project_id'}, function() {
       this.route('new-entry');
       this.route('entries');
     });
   });
-  this.route('index', {path: '/unused'});
   this.route('user', function() {
     this.route('signup');
     this.route('login');
     this.route('welcome');
     this.route('index',{path: '/:user_id'}, function() {
       this.route('settings');
+      this.route('about');
+      this.route('how-it-works');
     });
     this.route('logout');
   });
