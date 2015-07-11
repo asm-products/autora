@@ -6,10 +6,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('index', {path: '/'}, function(){
-    this.route('about');
-    this.route('how-it-works');
-  });
+  this.route('home', {path: '/'});
+  this.route('about');
+  this.route('how-it-works');
+
   this.route('project', function() {
     this.route('create');
     this.route('list');
@@ -17,8 +17,10 @@ Router.map(function() {
     this.route('index',{path: '/:project_id'}, function() {
       this.route('new-entry');
       this.route('entries');
+      this.route('entry',{path: '/:entry_id'}, function() {});
     });
   });
+
   this.route('user', function() {
     this.route('signup');
     this.route('login');
@@ -30,7 +32,7 @@ Router.map(function() {
     });
     this.route('logout');
   });
-  this.route('entry',{path: '/:entry_id'}, function() {});
+
   this.route('dashboard', function() {});
 });
 

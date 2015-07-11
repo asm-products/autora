@@ -12,9 +12,9 @@
             {{#link-to 'user.logout'}}Logout{{/link-to}}
             <a class="profile-circle">{{gravatar-image email=userEmail}}</a>
         {{else}}
-            {{#link-to 'index'}}Home{{/link-to}}
-            {{#link-to 'index.about'}}About{{/link-to}}
-            {{#link-to 'index.how-it-works'}}How It Works{{/link-to}}
+            {{#link-to 'home'}}Home{{/link-to}}
+            {{#link-to 'about'}}About{{/link-to}}
+            {{#link-to 'how-it-works'}}How It Works{{/link-to}}
             {{#link-to 'user.login'}}Login{{/link-to}}
             {{#link-to 'user.signup' class="button-flat"}}Sign Up{{/link-to}}
         {{/if}}
