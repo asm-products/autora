@@ -1,0 +1,54 @@
+<div {{action 'transitionToProjectList'}} class="close-modal">
+	<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+	 <g>
+	  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
+	  <line id="svg_2" y2="90" x2="10" y1="10" x1="90" stroke-width="20" fill="none"/>
+	 </g>
+	</svg>
+</div>
+<div class="head">
+	<h2 class="heading">Create new project</h2>
+</div>
+<form {{action "createProject" on="submit"}}>
+		<div class="body">
+			(currently does not send data to server)
+			
+			{{input-with-counter maxlength=40 value=newProject.name placeholder="Your project name"}}
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="photo-upload">
+						Photo upload not implemented yet.
+					</div>
+				</div>
+				<div class="col-sm-8">
+					{{textarea-with-counter maxlength=140 value=newProject.description placeholder="Description"}}
+				</div>
+			</div>
+			{{input value=newProject.tags placeholder="Tags"}}
+			<div class="row">
+				<div class="col-sm-7">
+					<label>Select poetic form</label>
+				</div>
+				<div class="col-sm-5">
+				{{log languageForms}}
+					{{select-2 searchEnabled=false optionValuePath="id" value=newProject.languageForm content=languageForms}}
+				
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4 entry-length">
+					<label>Set entry length</label>
+				</div>
+				<div class="col-sm-3">
+					{{input type="number" value=newProject.inputLength}}
+				</div>
+				<div class="col-sm-5">
+					{{select-2 searchEnabled=false optionValuePath="id" value=newProject.inputType content=inputTypes}}
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+				<input type="submit" class="big rounded orange bordered button" value="Create project">
+		</div>
+</form>
+{{yield}}

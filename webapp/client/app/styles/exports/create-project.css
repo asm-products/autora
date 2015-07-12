@@ -1,0 +1,89 @@
+CREATE NEW PROJECT - CSS ATTIBUTES
+
+/* White cover background effect: */
+opacity: 0.85;
+background: #FFFFFF;
+
+/* X Shape: */
+background: #777777;
+
+/* Create new project: */
+font-family: Roboto-Medium;
+font-size: 20px;
+color: #777777;
+line-height: 26px;
+
+/* Your project name rectangle 448x40px */
+border: 1px solid #E3E1E1;
+border-radius: 5px;
+
+/* Your project name text */
+font-family: Roboto-Regular;
+font-size: 14px;
+color: #777777;
+line-height: 19px;
+
+/* Upload a photo rectangle 100x104px */
+border: 1px solid #E3E1E1;
+border-radius: 5px;
+
+/* Upload a photo text */
+font-family: Roboto-Regular;
+font-size: 12px;
+color: #777777;
+line-height: 16px;
+
+/* Description rectangle 322x104px */
+background: #FFFFFF;
+box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+
+/* Description text */
+font-family: Roboto-Regular;
+font-size: 14px;
+color: #777777;
+line-height: 19px;
+
+/* Tags Rectangle 448x40px */
+border: 1px solid #E3E1E1;
+border-radius: 5px;
+
+/* Tags text */
+font-family: Roboto-Regular;
+font-size: 14px;
+color: #777777;
+line-height: 19px;
+
+/* Select poetic form  text */
+font-family: Roboto-Medium;
+font-size: 14px;
+color: #777777;
+line-height: 19px;
+
+/* Prose/ Prose  dropdown: */
+font-family: Roboto-Regular;
+font-size: 14px;  
+color: #777777;
+line-height: 19px;
+
+/* Set entry length: */
+font-family: Roboto-Medium;
+font-size: 14px;
+color: #777777;
+line-height: 19px;
+
+/* Sentence/ word dropdown */
+font-family: Roboto-Regular;
+font-size: 14px;
+color: #777777;
+line-height: 19px;
+
+
+/* Create Project Button */
+border: 2px solid #FFC153;
+border-radius: 15px;
+
+/* Create Project text */
+font-family: Roboto-Regular;
+font-size: 18px;
+color: #5F495F;
+line-height: 19px;

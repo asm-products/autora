@@ -1,10 +1,4 @@
-<br>
-
-<form {{action "createProject" on="submit"}}>
-(currently does not send data to server)
-	<div class="form-group">{{input value=newProject.name class="form-control" placeholder="Project name"}} <br>
-		{{textarea value=newProject.description class="form-control" placeholder="Project description"}}</div>
-	<input type="submit" class="btn btn-primary" value="Add project">
-</form>
-<br>
-{{outlet}}
+{{#create-project-modal languageForms=languageForms}}
+{{partial 'components/create-project-modal'}}
+{{/create-project-modal}}
+{{!-- {{outlet}} --}}

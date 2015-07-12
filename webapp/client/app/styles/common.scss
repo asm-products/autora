@@ -1,6 +1,13 @@
-.button-flat {
-    border-radius: 10px;
-    padding: 8px 16px;
-    background-color: $color1;
-    color: #ffffff;
+body {
+	font-family: 'Roboto';
+}
+
+
+.app-content {
+	padding-top: 4%;
+	position: relative;
+}
+
+.ember-modal-overlay.translucent {
+	background: #fff;
 }
