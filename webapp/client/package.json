@@ -46,6 +46,7 @@
     "ember-disable-proxy-controllers": "^1.0.0",
     "ember-export-application-global": "^1.0.2",
     "emberfire": "git+https://git@github.com/firebase/emberfire.git#master",
-    "bower": "^1.4.1"
+    "bower": "^1.4.1",
+    "ember-export-application-global": "^1.0.2"
   }
 }
