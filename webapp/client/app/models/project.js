@@ -5,7 +5,8 @@ export default DS.Model.extend({
   type: DS.attr('string'),
   inputLength: DS.attr('number'),
   inputType: DS.attr('string'), //paragraph, word..
-  tags: DS.attr(),
+  languageForm: DS.attr('string'),
+  // tags: DS.attr(),
   name: DS.attr('string'),
   entries: DS.hasMany('entry'),
   

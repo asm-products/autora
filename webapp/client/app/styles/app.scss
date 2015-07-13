@@ -1,5 +1,12 @@
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+
 @import "bootstrap_vars";
 @import "bootstrap";
 @import "settings";
 @import "common";
+
+@import "components/buttons";
+@import "components/forms";
+
 @import "pods";

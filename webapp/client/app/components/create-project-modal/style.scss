@@ -1,0 +1,95 @@
+@keyframes modal-appear {
+	0% {
+		opacity: 0;
+		transform: scale(0.93,0.93);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1,1);
+	}
+}
+.create-project-modal {
+	max-width:560px;
+	width: 100%;
+	border-radius:0;
+	padding: 50px;
+	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+	animation: 0.6s modal-appear forwards;
+	
+	position: absolute;
+	top: 150px;
+	right: 0;
+	left: 0;
+	margin: 0 auto; 
+
+	.heading {
+		font-size: 20px;
+		color: $heading-color;
+		line-height: 26px;
+		margin: 0;
+		padding-top: 0;
+	}
+
+	.body {
+		margin: 35px 0;
+	}
+
+	textarea {
+		height: 100px;
+	}
+
+	.photo-upload {
+		border: 1px solid $border-color2;
+		margin-top: $vertical-input-margin;
+		border-radius: $input-border-radius;
+		height: 100px;
+		text-align: center;
+		padding: 10px;
+	}
+
+	.close-modal {
+		position: absolute;
+		top: 22px;
+		right: 22px;
+		cursor: pointer;
+
+		svg {
+			stroke: $placeholder-color;
+			transition: 0.2s stroke;
+
+			&:hover {
+				stroke: darken($placeholder-color, 25%);
+			}
+		}
+	}
+
+	.footer {
+		text-align: right;
+	}
+
+	label {
+		margin-top: $vertical-input-margin;
+		height: 38px;
+		line-height: 38px;
+		vertical-align: middle;
+	}
+
+	.tag {
+		margin: $vertical-input-margin 0;
+		display: inline-block;
+
+		svg {
+			stroke: lighten($color2,10%);
+			cursor: pointer;
+		}
+	}
+}
+
+@keyframes whiten {
+	0% { background:transparent; }
+	100% { background:#fff; }
+}
+.ember-modal-overlay.translucent {
+	background:#fff;
+	animation: 1.2s whiten forwards;
+}

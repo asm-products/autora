@@ -1,0 +1,77 @@
+.button-flat {
+    border-radius: 10px;
+    padding: 8px 16px;
+    background-color: $color1;
+    color: #ffffff;
+}
+
+.button {
+	padding: 0.6em 0.9em;
+	cursor: pointer;
+	display: inline-block;
+
+	/*---STYLES---*/
+	/*Bordered*/
+	&.bordered {
+		color: $color2;
+		border-width:1px;
+		border-style: solid;
+		background: transparent;
+
+		&.orange {
+			border-color: $color1;
+		}
+
+		&.purple {
+			border-color: $color2;
+		}
+	}
+	/*Filled*/
+	&.filled {
+		color: white;
+
+		&.orange {
+			background: $color1;
+		}
+
+		&.purple {
+			background: $color2;
+		}
+	}
+	/* SIZES */
+	/*Big*/
+	&.big {
+
+		font-size: 18px;
+
+		&.rounded {
+			border-radius: 15px;
+		}
+
+		&.bordered {
+			border-width:2px;
+		}		
+	}
+
+	/*Small*/
+	&.small {
+		font-size:12px;
+
+		&.rounded {
+			border-radius: 10px;
+		}
+	}
+
+	&.medium {
+		font-size: 14px;
+
+		&.rounded {
+			border-radius: 12px;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+}

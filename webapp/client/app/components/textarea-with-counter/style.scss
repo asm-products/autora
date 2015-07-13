@@ -1,0 +1,10 @@
+.textarea-with-counter {
+	position: relative;
+
+	.characters-left {
+		position: absolute;
+		right: $horizontal-input-padding;
+		color: $placeholder-color;
+		bottom: $vertical-input-padding + $vertical-input-margin + 2; // +2 for border strength
+	}
+}

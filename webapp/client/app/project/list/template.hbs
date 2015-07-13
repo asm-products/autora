@@ -1,6 +1,6 @@
-<br>
-{{#link-to 'project.create' class="btn btn-primary"}}Create project{{/link-to}}
-{{#each projects key="id" as |project|}}
+{{project-header heading="WELCOME" projectController=project}}
+<hr>
+{{#each model key="id" as |project|}}
 	{{project-item model=project}}
 {{/each}}
 {{outlet}}

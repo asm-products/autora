@@ -1,0 +1,57 @@
+input:not([type=submit]),textarea {
+	width: 100%;
+	padding: $vertical-input-padding $horizontal-input-padding;
+	border: 1px solid $border-color2;
+	border-radius: $small-border-radius;
+	font-size:14px;
+	line-height: 19px;
+	margin: $vertical-input-margin $horizontal-input-margin;
+}
+
+.select2-container {
+	border: 0;
+	padding: 0;
+	box-shadow:0;
+	margin: $vertical-input-margin $horizontal-input-margin;
+
+	.select2-choice {
+		height: 35px;
+		padding: $vertical-input-padding $horizontal-input-padding;
+		line-height: initial;
+		border: 1px solid $border-color2;
+		box-shadow: none;
+
+	}
+
+	.select2-arrow {
+		background: transparent !important;
+		border-left: none !important;
+		right: 10px !important;
+	}
+}
+
+.select2-drop-active {
+	border: 1px solid $border-color2;
+}
+
+.input-alert {
+	width: 100%;
+	padding: $vertical-input-padding $horizontal-input-padding;
+	border:1px solid $border-color2;
+	border-radius: $small-border-radius;
+
+
+	&.danger {
+		background: lighten(red, 30%);
+		color: darken(red, 30%);
+	}
+
+	&.top {
+		margin-bottom: -$vertical-input-margin + 5;
+		margin-top: $vertical-input-margin;
+	}
+	&.bottom {
+		margin-top: -$vertical-input-margin + 5;
+		margin-bottom: $vertical-input-margin;
+	}
+}

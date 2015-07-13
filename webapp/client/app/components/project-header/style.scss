@@ -1,0 +1,30 @@
+$height: 100px;
+
+.project-header {
+	background: $color2;
+	color: #fff;
+	position: relative;
+	height: $height;
+
+	.heading {
+		font-size: 20px;
+		font-weight: bold;
+		display: inline-block;
+		height: $height;
+		line-height: $height;
+		vertical-align: middle;
+		text-transform: uppercase;
+	}
+
+	.right-menu {
+		width: 180px;
+		display: inline-block;
+		float: right;
+		height: 75px;
+		padding-top: 25px;
+	}
+
+	.button {
+		color: $color1;
+	}
+}

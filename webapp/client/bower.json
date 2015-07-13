@@ -16,7 +16,8 @@
     "JavaScript-MD5": "~1.1.0",
     "ember-data": "~1.13.5",
     "bootstrap-sass": "~3.3.5",
-    "emberfire": "~1.4.7"
+    "emberfire": "~1.4.7",
+    "select2": "3.5.2"
   },
   "resolutions": {
     "ember": "2.0.0-beta.1"
