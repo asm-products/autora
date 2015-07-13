@@ -6,7 +6,6 @@
 	100% {
 		opacity: 1;
 		transform: scale(1,1);
-		top: 0;
 	}
 }
 .create-project-modal {
@@ -16,7 +15,12 @@
 	padding: 50px;
 	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
 	animation: 0.6s modal-appear forwards;
-	position: relative;
+	
+	position: absolute;
+	top: 150px;
+	right: 0;
+	left: 0;
+	margin: 0 auto; 
 
 	.heading {
 		font-size: 20px;
@@ -70,15 +74,22 @@
 		vertical-align: middle;
 	}
 
-	.entry-length {
-		label,input {
-			// display: inline-block;
-			// width: 50%;
-			// margin-left: 0;
-		}
+	.tag {
+		margin: $vertical-input-margin 0;
+		display: inline-block;
 
-		input {
-			margin-left: -4px; 
+		svg {
+			stroke: lighten($color2,10%);
+			cursor: pointer;
 		}
 	}
+}
+
+@keyframes whiten {
+	0% { background:transparent; }
+	100% { background:#fff; }
+}
+.ember-modal-overlay.translucent {
+	background:#fff;
+	animation: 1.2s whiten forwards;
 }

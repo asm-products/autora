@@ -1,0 +1,16 @@
+{{#each tags as |tag|}}
+	<span class="small purple rounded bordered button tag">
+		<span {{action 'deleteTag' tag}} class="close-tag">
+			<svg viewBox="0 0 100 100" width="8" height="8" xmlns="http://www.w3.org/2000/svg">
+			 <g>
+			  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
+			  <line id="svg_2" y2="90" x2="10" y1="10" x1="90" stroke-width="20" fill="none"/>
+			 </g>
+			</svg>
+		</span>
+		{{tag}}
+	</span>
+{{/each}}
+{{input value=newTag placeholder="#Tags - press space to submit tag"}}
+{{newTagAdd}}
+{{yield}}

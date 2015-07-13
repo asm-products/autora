@@ -1,4 +1,4 @@
-<div {{action 'transitionToProjectList'}} class="close-modal">
+<div {{action 'toggleCreateProjectModal'}} class="close-modal">
 	<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
 	 <g>
 	  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
@@ -11,9 +11,19 @@
 </div>
 <form {{action "createProject" on="submit"}}>
 		<div class="body">
-			(currently does not send data to server)
+			{{#if serverAlert.message}}
+
+			<div class="danger input-alert">
+				{{serverAlert.message}}
+			</div>
 			
+			{{/if}}
 			{{input-with-counter maxlength=40 value=newProject.name placeholder="Your project name"}}
+			{{#if projectNameAlert.message}}
+				<div class="{{projectNameAlert.type}} bottom input-alert">
+					{{projectNameAlert.message}}
+				</div>
+			{{/if}}
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="photo-upload">
@@ -21,10 +31,15 @@
 					</div>
 				</div>
 				<div class="col-sm-8">
+				{{#if descriptionAlert.message}}
+					<div class="{{descriptionAlert.type}} top input-alert">
+						{{descriptionAlert.message}}
+					</div>
+				{{/if}}
 					{{textarea-with-counter maxlength=140 value=newProject.description placeholder="Description"}}
 				</div>
 			</div>
-			{{input value=newProject.tags placeholder="Tags"}}
+			{{tag-manager tags=newProject.tags}}
 			<div class="row">
 				<div class="col-sm-7">
 					<label>Select poetic form</label>
@@ -40,7 +55,7 @@
 					<label>Set entry length</label>
 				</div>
 				<div class="col-sm-3">
-					{{input type="number" value=newProject.inputLength}}
+					{{input type="number" min="1" value=newProject.inputLength}}
 				</div>
 				<div class="col-sm-5">
 					{{select-2 searchEnabled=false optionValuePath="id" value=newProject.inputType content=inputTypes}}

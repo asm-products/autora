@@ -3,11 +3,19 @@ body {
 }
 
 
-.app-content {
-	padding-top: 4%;
-	position: relative;
-}
+// .app-content {
+// 	padding-top: 4%;
+// 	position: relative;
+// }
 
 .ember-modal-overlay.translucent {
 	background: #fff;
+}
+
+table{
+	width: 100%;
+	&,td {
+		padding: 0 !important;
+		margin: 0;
+	}
 }

@@ -33,3 +33,25 @@ input:not([type=submit]),textarea {
 .select2-drop-active {
 	border: 1px solid $border-color2;
 }
+
+.input-alert {
+	width: 100%;
+	padding: $vertical-input-padding $horizontal-input-padding;
+	border:1px solid $border-color2;
+	border-radius: $small-border-radius;
+
+
+	&.danger {
+		background: lighten(red, 30%);
+		color: darken(red, 30%);
+	}
+
+	&.top {
+		margin-bottom: -$vertical-input-margin + 5;
+		margin-top: $vertical-input-margin;
+	}
+	&.bottom {
+		margin-top: -$vertical-input-margin + 5;
+		margin-bottom: $vertical-input-margin;
+	}
+}
