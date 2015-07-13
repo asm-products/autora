@@ -57,7 +57,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV['exportApplicationGlobal'] = true;
   }
 
   return ENV;
