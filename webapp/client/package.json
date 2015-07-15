@@ -21,10 +21,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "ember-modal-dialog": "0.7.5",
-    "ember-select-2": "1.3.0"
   },
   "dependencies": {
+    "ember-modal-dialog": "0.7.5",
+    "ember-select-2": "1.3.0",
     "broccoli-asset-rev": "^2.0.2",
     "ember-cli": "1.13.1",
     "ember-cli-app-version": "0.3.3",

@@ -29,6 +29,7 @@ module.exports = function(environment) {
       // when it is created
     }
   };
+  ENV['exportApplicationGlobal'] = true;
   // ENV['simple-auth'] = {
   //     authorizer: 'simple-auth-authorizer:firebase'
   //   };
@@ -57,7 +58,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV['exportApplicationGlobal'] = true;
   }
 
   return ENV;
