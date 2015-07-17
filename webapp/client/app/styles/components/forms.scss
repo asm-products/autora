@@ -1,4 +1,8 @@
-input:not([type=submit]),textarea {
+input {
+	outline: 0 !important;
+}
+
+input:not([type=submit]):not([type=checkbox]),textarea {
 	width: 100%;
 	padding: $vertical-input-padding $horizontal-input-padding;
 	border: 1px solid $border-color2;
@@ -54,4 +58,13 @@ input:not([type=submit]),textarea {
 		margin-top: -$vertical-input-margin + 5;
 		margin-bottom: $vertical-input-margin;
 	}
+}
+
+input[type=checkbox] {
+	vertical-align: middle;
+	margin-top: 0;
+}
+
+.checkbox-label {
+	vertical-align: middle;
 }

@@ -2,15 +2,19 @@ body {
 	font-family: 'Roboto';
 }
 
+a {
+	color: darken($color1,10%);
+
+	&:hover {
+		color: darken($color1,10%);
+	}
+}
+
 
 // .app-content {
 // 	padding-top: 4%;
 // 	position: relative;
 // }
-
-.ember-modal-overlay.translucent {
-	background: #fff;
-}
 
 table{
 	width: 100%;
@@ -18,4 +22,8 @@ table{
 		padding: 0 !important;
 		margin: 0;
 	}
+}
+
+.inline-block {
+	display: inline-block;
 }

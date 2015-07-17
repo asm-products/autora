@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 
 	newProjectDefaults: {
 		languageForm: 'prose',
-		inputType: 'sentence',
+		inputType: 'word',
 		inputLength: 1,
 		tags: [],
 		name: '',
@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
 	},
 
 	showErrors: false,
+	isLoading: false,
 
 	serverAlert: {},
 
@@ -74,27 +75,59 @@ export default Ember.Controller.extend({
 		return JSON.parse(JSON.stringify(this.get('newProjectDefaults')));
 	}.property(),
 
+
 	languageForms: [{id: 'prose', text: 'Prose'},{id: 'poetry', text: 'Poetry'}],
-	inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
+
+	inputTypes: Ember.computed('newProject.languageForm', function(){
+
+		var languageForm = this.get('newProject.languageForm');
+		var inputType = this.get('newProject.inputType');
+		var isPoetry = languageForm === 'poetry';
+
+		if(isPoetry) {
+			return [{id: 'word', text: 'Words'},{id: 'line', text: 'Lines'}];
+		} else {
+			return [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}];
+		}
+	}),
+
+	inputObserver: Ember.observer('newProject.inputType', 'newProject.languageForm', function(){
+
+		var languageForm = this.get('newProject.languageForm');
+		var inputType = this.get('newProject.inputType');
+		var isPoetry = languageForm === 'poetry';
+
+		if(isPoetry && (inputType === 'sentence' || inputType === 'paragraph')) this.set('newProject.inputType', 'word');
+		if(!isPoetry && (inputType === 'line')) this.set('newProject.inputType', 'word');
+	}),
+	// inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
 	
 	actions: {
 			createProject: function(){				
 				console.log(this.get('newProject'));
 				this.set('showErrors', true);
 				if(this.get('isReadyToSend')){
+
+					this.set('isLoading', true);
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
 					var self = this;
 					
 					newProjectRecord.save()
 					.then(function(response){
+
 						self.toggleProperty('create');
 						self.set('newProject', '');
 						console.log(self.get('newProjectDefaults'));
 						self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
-						self.transitionToRoute('project.index', newProjectRecord)
+						self.transitionToRoute('project.index', newProjectRecord);
+						self.set('isLoading', false);
+
 					},function(error){
+						
 						console.log(error);
 						self.set('serverAlert.message', error);
+						self.set('isLoading', false);
+
 					});
 					
 				}

@@ -29,11 +29,16 @@ export default Ember.Controller.extend({
 			    });
 			  } else {
 			    console.log("Successfully created user account with uid:", userData.uid);
-			    self.set('alert', {
-			    	type: 'success',
-			    	message: 'You have a profile now! Congratz!'
-			    });
 			    //ToDO: Create new profile and save it
+			    var newUserData = self.getProperties('email', 'password', 'name');
+			    newUserData.id = userData.uid;
+			    self.store.createRecord('user',newUserData).save().then(function(){
+				    self.set('alert', {
+				    	type: 'success',
+				    	message: 'You have a profile now! Congratz!'
+				    });
+			    });
+			    // store.createRecord({});
 			  }
 			});
 		}
