@@ -1,14 +1,54 @@
-
+{{#create-project-modal containerClassNames="login-modal" close="transitionBack"}}
+<img src="images/logo.png" alt="">
+<h2>Welcome back!</h2>
+<h3>Log in to your account here!</h3>
 {{#if alert}}
-<hr>
-<div class="alert alert-danger">{{alert}}</div>
+	<div class="alert alert-{{alert.type}}">{{alert.message}}</div>
 {{/if}}
-<hr>
-<form class="form-inline" {{action "login" on="submit" }}>
-	<label>Your email:</label>
-	{{input class="form-control" value=email}}
-	<label>Password:</label>
-	{{input type="password" class="form-control" value=password}}
-	<input type="submit" value="Login">
+<form {{action "login" on="submit" }} class="login-form {{if isLoading 'loading'}}">
+	<div class="email">{{input type="email" placeholder="Email address" value=email}}
+		
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="14px" viewBox="0 0 21 14" version="1.1" data-ember-extension="1" >
+
+			<g id="Welcome"  fill="none" fill-rule="evenodd">
+			<g id="Sign-Up" class="icon" fill="#FFC153">
+			<g id="ios7-email-outline">
+			<path d="M0,0 L0,13.3333333 L20,13.3333333 L20,0 L0,0 L0,0 Z M10,7.28645833 L1.52083333,0.833333333 L18.4791667,0.833333333 L10,7.28645833 L10,7.28645833 Z M0.833333333,12.5 L0.833333333,1.359375 L6.828125,5.921875 L3.28125,9.94791667 L3.38541667,10.0520833 L7.49479167,6.42708333 L10,8.33333333 L12.5052083,6.42708333 L16.6145833,10.0520833 L16.71875,9.94791667 L13.171875,5.91666667 L19.1666667,1.359375 L19.1666667,12.5 L0.833333333,12.5 L0.833333333,12.5 Z" id="Shape"/> </g>
+			</g>
+			</g>
+		</svg>
+
+	</div>
+	<div class="password">{{input type="password" placeholder="Password" value=password}}
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="24px"  viewBox="0 0 18 24" version="1.1" data-ember-extension="1">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+
+    <g id="Welcome"  fill="none" fill-rule="evenodd">
+        <g id="Sign-Up" fill="#FFC153">
+            <g id="ios7-locked-outline-copy">
+                <g id="Group">
+                    <path d="M14.85,10.1538462 L14.85,6 C14.85,2.68846154 12.22875,0 9,0 C5.765625,0 3.15,2.68846154 3.15,6 L3.15,10.1538462 L0,10.1538462 L0,24 L18,24 L18,10.1538462 L14.85,10.1538462 L14.85,10.1538462 Z M4.05,6 C4.05,3.20192308 6.271875,0.923076923 9,0.923076923 C11.728125,0.923076923 13.95,3.20192308 13.95,6 L13.95,10.1538462 L4.05,10.1538462 L4.05,6 L4.05,6 Z M17.1,23.0769231 L0.9,23.0769231 L0.9,11.0769231 L17.1,11.0769231 L17.1,23.0769231 L17.1,23.0769231 Z" id="Shape"/>
+                    <path d="M10.6,15.8461538 C10.6,14.825 9.795625,14 8.8,14 C7.804375,14 7,14.825 7,15.8461538 C7,16.7057692 7.57375,17.4269231 8.35,17.6346154 L8.35,20 C8.35,20.2538462 8.5525,20.4615385 8.8,20.4615385 C9.0475,20.4615385 9.25,20.2538462 9.25,20 L9.25,17.6346154 C10.02625,17.4269231 10.6,16.7057692 10.6,15.8461538 L10.6,15.8461538 Z M8.8,16.7692308 C8.305,16.7692308 7.9,16.3538462 7.9,15.8461538 C7.9,15.3384615 8.305,14.9230769 8.8,14.9230769 C9.295,14.9230769 9.7,15.3384615 9.7,15.8461538 C9.7,16.3538462 9.295,16.7692308 8.8,16.7692308 L8.8,16.7692308 Z" id="Shape2"/>
+                </g>
+            </g>
+        </g>
+    </g>
+    </svg>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="text-left">{{input type="checkbox" checked=shouldRemember}} Remember me</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="text-right">
+				<a href="#">Forgot password?</a>
+			</div>
+		</div>
+	</div>
+	<input class="big orange bordered rounded button" type="submit" value="Login">
+	Don't have an account? {{#link-to 'user.signup'}}Sign up{{/link-to}}
 </form>
+{{/create-project-modal}}
+
+
 {{outlet}}

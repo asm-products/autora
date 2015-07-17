@@ -21,6 +21,8 @@ Router.map(function() {
     });
   });
 
+  this.route('index'); // ember simple auth needs this for some reason
+
   this.route('user', function() {
     this.route('signup');
     this.route('login');

@@ -6,6 +6,8 @@ export default DS.Model.extend({
   photo: DS.attr('string'),
   username: DS.attr('string'),
   
+  uid: DS.attr('string'),
+  
   createdAt: DS.attr('string'),
   updatedAt: DS.attr('string')
 });

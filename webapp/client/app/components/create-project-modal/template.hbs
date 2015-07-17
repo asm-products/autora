@@ -9,7 +9,7 @@
 <div class="head">
 	<h2 class="heading">Create new project</h2>
 </div>
-<form {{action "createProject" on="submit"}}>
+<form {{action "createProject" on="submit"}} class="{{if isLoading 'loading'}}">
 		<div class="body">
 			{{#if serverAlert.message}}
 

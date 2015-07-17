@@ -1,0 +1,38 @@
+//Semantic UI spinner
+
+@keyframes form-spin{
+	from{transform:rotate(0)}
+	to{transform:rotate(360deg)}
+}
+
+.loading {
+	&:before {
+		 position: absolute;
+		 content: '';
+		 top: 0;
+		 left: 0;
+		 background: rgba(255,255,255,.8);
+		 width: 100%;
+		 height: 100%;
+		 z-index: 100;
+	}
+
+	&:after {
+	 position: absolute;
+	 content: '';
+	 top: 50%;
+	 left: 50%;
+	 margin: -1.5em 0 0 -1.5em;
+	 width: 3em;
+	 height: 3em;
+	 animation: form-spin .6s linear;
+	 animation-iteration-count: infinite;
+	 border-radius: 500rem;
+	 border-color: #767676 rgba(0,0,0,.1) rgba(0,0,0,.1);
+	 border-style: solid;
+	 border-width: .2em;
+	 box-shadow: 0 0 0 1px transparent;
+	 visibility: visible;
+	 z-index: 101;
+	}
+}

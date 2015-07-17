@@ -1,3 +1,4 @@
-{{app-header isLoggedIn=session.isAuthenticated userEmail='justtal@gmail.com'}}
+
+{{app-header isLoggedIn=session.isAuthenticated userEmail=session.email}}
 <div class="app-content">{{outlet}}</div>
 {{app-footer}}
