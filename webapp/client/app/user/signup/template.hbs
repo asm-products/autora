@@ -1,27 +1,56 @@
+{{#create-project-modal containerClassNames="login-modal signup-modal" close="transitionBack"}}
+<img src="images/logo.png" alt="">
+<h2>Create your Autora account</h2>
+
 {{#if alert}}
 	<div class="alert alert-{{alert.type}}">{{alert.message}}</div>
 {{/if}}
-<form class="form" {{action 'sendSignUpForm' on="submit"}}>
-	
-	<div class="form-group">
-		<label class="control-label">Email address:</label>
-		{{input class="form-control" type="email" value=email}}
-	</div>
+<form class="form {{if isLoading 'loading'}}" {{action 'sendSignUpForm' on="submit"}}>
+		<div class="email">
+			{{input type="email" value=email placeholder="Email address"}}
 
-	<div class="form-group">
-		<label class="control-label">Password:</label>
-		{{input class="form-control" type="password" value=password}}
-	</div>
-	<div class="from-group {{if passwordsDontMatch 'has-error'}}">
-		<label class="control-label">Password again:</label>
-		{{input class="form-control" type="password" value=password2}}
-	</div>
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="14px" viewBox="0 0 21 14" version="1.1" data-ember-extension="1" >
 
-	<div class="form-group">
-		<label class="control-label">Username:</label>
-		{{input class="form-control" value=name}}
-	</div>
-	<br>
-	<input type="submit" class="btn btn-primary" value="Sign up">
+			<g id="Welcome"  fill="none" fill-rule="evenodd">
+			<g id="Sign-Up" class="icon" fill="#FFC153">
+			<g id="ios7-email-outline">
+			<path d="M0,0 L0,13.3333333 L20,13.3333333 L20,0 L0,0 L0,0 Z M10,7.28645833 L1.52083333,0.833333333 L18.4791667,0.833333333 L10,7.28645833 L10,7.28645833 Z M0.833333333,12.5 L0.833333333,1.359375 L6.828125,5.921875 L3.28125,9.94791667 L3.38541667,10.0520833 L7.49479167,6.42708333 L10,8.33333333 L12.5052083,6.42708333 L16.6145833,10.0520833 L16.71875,9.94791667 L13.171875,5.91666667 L19.1666667,1.359375 L19.1666667,12.5 L0.833333333,12.5 L0.833333333,12.5 Z" id="Shape"/> </g>
+			</g>
+			</g>
+		</svg>
+		</div>
+		<div class="username">
+			{{input minlength=3 maxLength=50 value=name placeholder="Username"}}
+
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="21px" viewBox="0 0 21 21" version="1.1" data-ember-extension="1">
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Sign-Up" fill="#FFC153">
+            <g>
+                <path d="M10,0 C4.47596154,0 0,4.47596154 0,10 C0,15.5240385 4.47596154,20 10,20 C15.5240385,20 20,15.5240385 20,10 C20,4.47596154 15.5240385,0 10,0 L10,0 Z M10,0.831730769 C15.0528846,0.831730769 19.1682692,4.94230769 19.1682692,10 C19.1682692,12.2355769 18.3653846,14.2836538 17.0336538,15.875 C16.0721154,15.4807692 13.8653846,14.7163462 12.5673077,14.3317308 C12.4519231,14.2980769 12.4375,14.2884615 12.4375,13.8173077 C12.4375,13.4278846 12.5961538,13.0336538 12.7548077,12.6971154 C12.9278846,12.3365385 13.125,11.7259615 13.1971154,11.1778846 C13.3990385,10.9423077 13.6778846,10.4807692 13.8509615,9.59615385 C14.0048077,8.81730769 13.9326923,8.53365385 13.8317308,8.26923077 C13.8221154,8.24038462 13.8076923,8.21153846 13.8028846,8.1875 C13.7644231,8.00480769 13.8173077,7.05769231 13.9519231,6.32211538 C14.0432692,5.81730769 13.9278846,4.74519231 13.2355769,3.85576923 C12.7980769,3.29326923 11.9567308,2.60576923 10.4230769,2.50961538 L9.58173077,2.50961538 C8.07211538,2.60576923 7.23557692,3.29326923 6.79326923,3.85576923 C6.09615385,4.74519231 5.98076923,5.81730769 6.07211538,6.32211538 C6.20673077,7.05769231 6.25961538,8.00480769 6.22115385,8.1875 C6.21153846,8.22115385 6.20192308,8.24519231 6.19230769,8.27403846 C6.09134615,8.53846154 6.01442308,8.82211538 6.17307692,9.60096154 C6.35096154,10.4855769 6.625,10.9471154 6.82692308,11.1826923 C6.89903846,11.7307692 7.10096154,12.3365385 7.26923077,12.7019231 C7.39423077,12.9663462 7.45192308,13.3269231 7.45192308,13.8365385 C7.45192308,14.3125 7.43269231,14.3173077 7.32692308,14.3509615 C5.97596154,14.75 3.83653846,15.5192308 2.98076923,15.8894231 C1.63942308,14.2932692 0.831730769,12.2403846 0.831730769,10 C0.831730769,4.94711538 4.94711538,0.831730769 10,0.831730769 L10,0.831730769 Z"/>
+            </g>
+        </g>
+    </g></svg>
+		</div>
+		<div class="password">
+			{{input type="password" minlength=4 value=password placeholder="Password"}}
+
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="24px"  viewBox="0 0 18 24" version="1.1" data-ember-extension="1">
+			    <g id="Welcome"  fill="none" fill-rule="evenodd">
+			        <g id="Sign-Up" fill="#FFC153">
+			            <g>
+			                <g id="Group">
+			                    <path d="M14.85,10.1538462 L14.85,6 C14.85,2.68846154 12.22875,0 9,0 C5.765625,0 3.15,2.68846154 3.15,6 L3.15,10.1538462 L0,10.1538462 L0,24 L18,24 L18,10.1538462 L14.85,10.1538462 L14.85,10.1538462 Z M4.05,6 C4.05,3.20192308 6.271875,0.923076923 9,0.923076923 C11.728125,0.923076923 13.95,3.20192308 13.95,6 L13.95,10.1538462 L4.05,10.1538462 L4.05,6 L4.05,6 Z M17.1,23.0769231 L0.9,23.0769231 L0.9,11.0769231 L17.1,11.0769231 L17.1,23.0769231 L17.1,23.0769231 Z" id="Shape"/>
+			                    <path d="M10.6,15.8461538 C10.6,14.825 9.795625,14 8.8,14 C7.804375,14 7,14.825 7,15.8461538 C7,16.7057692 7.57375,17.4269231 8.35,17.6346154 L8.35,20 C8.35,20.2538462 8.5525,20.4615385 8.8,20.4615385 C9.0475,20.4615385 9.25,20.2538462 9.25,20 L9.25,17.6346154 C10.02625,17.4269231 10.6,16.7057692 10.6,15.8461538 L10.6,15.8461538 Z M8.8,16.7692308 C8.305,16.7692308 7.9,16.3538462 7.9,15.8461538 C7.9,15.3384615 8.305,14.9230769 8.8,14.9230769 C9.295,14.9230769 9.7,15.3384615 9.7,15.8461538 C9.7,16.3538462 9.295,16.7692308 8.8,16.7692308 L8.8,16.7692308 Z" id="Shape2"/>
+			                </g>
+			            </g>
+			        </g>
+			    </g>
+		    </svg>
+		</div>
+	<input type="submit" class="big orange bordered rounded button" value="Sign up">
+	Already have an account? {{#link-to 'user.login'}}Sign in{{/link-to}}
 </form>
 {{outlet}}
+{{/create-project-modal}}
+
+
