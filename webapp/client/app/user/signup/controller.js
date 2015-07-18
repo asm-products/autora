@@ -8,39 +8,82 @@ export default Ember.Controller.extend({
 	password2: '',
 	name: '',
 	alert: '',
+	isLoading: false,
 
-	passwordsDontMatch: Ember.computed('password', 'password2', function(){
-		return (this.get('password') !== this.get('password2') && this.get('password2') !== ''); 
+	isReadyToSend: Ember.computed('name','password', function(){
+		var name = this.get('name');
+		var isNOTEmpty = name !== '';
+		var isAlphanumeric = /^[\w]+$/i.test(name);
+
+		var password = this.get('password');
+		var isPasswordLongEnough = password.length > 3;
+
+		if(!isAlphanumeric) this.set('alert', {type: 'danger', message: 'Username can contain letters and numbers only!'});
+		if(!isPasswordLongEnough) this.set('alert', {type: 'danger', message: 'Password is too short. Make it at least 4 characters!'});
+		if(!isNOTEmpty) this.set('alert', {type: 'danger', message: 'Username can\'t be empty!'});
+
+		//Basicly checking only name here, password and email is checked on the server by firebase
+		return isNOTEmpty && isAlphanumeric && isPasswordLongEnough;
 	}),
 
 	actions: {
 		sendSignUpForm: function(){
-			var self = this;
-			var ref = new Firebase(config.firebase);
-			ref.createUser({
-			  email    : this.get('email'),
-			  password : this.get('password')
-			}, function(error, userData) {
-			  if (error) {
-			    console.log("Error creating user:", error);
-			    self.set('alert', {
-			    	type: 'danger',
-			    	message: error
-			    });
-			  } else {
-			    console.log("Successfully created user account with uid:", userData.uid);
-			    //ToDO: Create new profile and save it
-			    var newUserData = self.getProperties('email', 'password', 'name');
-			    newUserData.id = userData.uid;
-			    self.store.createRecord('user',newUserData).save().then(function(){
+			if(this.get('isReadyToSend')){
+
+				var self = this;
+				var ref = new Firebase(config.firebase);
+				self.set('isLoading', true);
+
+				var email = this.get('email');
+				var password = this.get('password');
+
+				ref.createUser({
+				  email    : email,
+				  password : password
+				}, function(error, userData) {
+				  if (error) {
+					self.set('isLoading', false);
+				    console.log("Error creating user:", error);
 				    self.set('alert', {
-				    	type: 'success',
-				    	message: 'You have a profile now! Congratz!'
+				    	type: 'danger',
+				    	message: error
 				    });
-			    });
-			    // store.createRecord({});
-			  }
-			});
-		}
+				  } else {
+
+				    var newUserData = self.getProperties('email', 'password', 'name');
+				    newUserData.id = userData.uid;
+				    self.store.createRecord('user',newUserData).save().then(function(){
+					    // self.transitionToRoute('index');
+
+					    self.setProperties({
+					    	name: '',
+					    	password: '',
+					    	email: '',
+					    	alert: {
+					    		type: 'success',
+					    		message: 'Your account has been created successfuly.'
+					    	}
+					    });
+
+					    //Lets login the user after sign up
+					    self.get('session').authenticate('authenticator:firebase', {
+			                'email': email,
+			                'password': password
+			            }).then(function(){
+			            	// self.set('isLoading')
+			            });
+
+
+
+				    });
+				    // store.createRecord({});
+				  }
+				});
+			}
+		},
+
+		transitionBack: function(){
+            window.history.back();
+        }
 	}
 });

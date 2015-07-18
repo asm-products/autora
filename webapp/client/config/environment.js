@@ -33,6 +33,10 @@ module.exports = function(environment) {
   // ENV['simple-auth'] = {
   //     authorizer: 'simple-auth-authorizer:firebase'
   //   };
+  ENV['simple-auth'] = {
+  // store: 'simple-auth-session-store:local-storage',
+  session: 'session:custom' 
+}
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
