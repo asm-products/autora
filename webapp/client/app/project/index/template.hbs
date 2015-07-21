@@ -2,7 +2,8 @@
 <div class="big centered bordered project box">
 	<div class="head">
 		<h2>{{model.name}}</h2>
-		{{gravatar-image class="circular profile" email=model.author.email size=40}}
+		{{log model}}
+		|{{model.createdAt}}| {{gravatar-image class="circular profile" email=model.author.email size=40}}
 		<p>{{model.description}}</p>
 	</div>
 	<div class="body">

@@ -4,14 +4,17 @@ export default Ember.Controller.extend({
 	create: false,
 	queryParams: ['create'],
 
-	newProjectDefaults: {
-		languageForm: 'prose',
-		inputType: 'word',
-		inputLength: 1,
-		tags: [],
-		name: '',
-		description: ''
-	},
+	newProjectDefaults: function(){
+		return {
+			languageForm: 'prose',
+			inputType: 'word',
+			inputLength: 1,
+			tags: [],
+			name: '',
+			description: '',
+			author: this.get('session.user')
+		}
+	}.property(),
 
 	showErrors: false,
 	isLoading: false,

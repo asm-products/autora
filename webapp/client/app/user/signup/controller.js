@@ -6,14 +6,14 @@ export default Ember.Controller.extend({
 	email: '',
 	password: '',
 	password2: '',
-	name: '',
+	username: '',
 	alert: '',
 	isLoading: false,
 
-	isReadyToSend: Ember.computed('name','password', function(){
-		var name = this.get('name');
-		var isNOTEmpty = name !== '';
-		var isAlphanumeric = /^[\w]+$/i.test(name);
+	isReadyToSend: Ember.computed('username','password', function(){
+		var username = this.get('username');
+		var isNOTEmpty = username !== '';
+		var isAlphanumeric = /^[\w]+$/i.test(username);
 
 		var password = this.get('password');
 		var isPasswordLongEnough = password.length > 3;
@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
 		if(!isPasswordLongEnough) this.set('alert', {type: 'danger', message: 'Password is too short. Make it at least 4 characters!'});
 		if(!isNOTEmpty) this.set('alert', {type: 'danger', message: 'Username can\'t be empty!'});
 
-		//Basicly checking only name here, password and email is checked on the server by firebase
+		//Basicly checking only username here, password and email is checked on the server by firebase
 		return isNOTEmpty && isAlphanumeric && isPasswordLongEnough;
 	}),
 
@@ -50,13 +50,13 @@ export default Ember.Controller.extend({
 				    });
 				  } else {
 
-				    var newUserData = self.getProperties('email', 'password', 'name');
+				    var newUserData = self.getProperties('email', 'username');
 				    newUserData.id = userData.uid;
 				    self.store.createRecord('user',newUserData).save().then(function(){
 					    // self.transitionToRoute('index');
 
 					    self.setProperties({
-					    	name: '',
+					    	username: '',
 					    	password: '',
 					    	email: '',
 					    	alert: {
