@@ -27,3 +27,11 @@ table{
 .inline-block {
 	display: inline-block;
 }
+
+.circular.profile {
+	overflow: hidden;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid $border-color;
+}

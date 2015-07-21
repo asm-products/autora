@@ -1,10 +1,17 @@
 {{project-header heading=model.name projectController=project}}
-<h2>{{model.name}}</h2>
-<p>{{model.description}}</p>
+<div class="big centered bordered project box">
+	<div class="head">
+		<h2>{{model.name}}</h2>
+		{{gravatar-image class="circular profile" email=model.author.email size=40}}
+		<p>{{model.description}}</p>
+	</div>
+	<div class="body">
+		{{#each model.entries key="id" as |entry|}}
+			{{successful-entry model=entry}}
+		{{/each}}
+	</div>
+</div>
 
-{{#each model.entries key="id" as |entry|}}
-	{{successful-entry model=entry}}
-{{/each}}
 
 <hr>
 <div {{action "createPile"}} class="btn btn-primary">Create pile</div>

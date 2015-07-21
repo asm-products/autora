@@ -1,0 +1,46 @@
+.box {
+	margin: 1.9em 2.2em; 
+	max-width: 552px;
+
+
+	&.big {
+		font-size:18px;
+	}
+
+	&.centered {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&.bordered {
+		border: 1px solid $border-color2;
+		border-radius: $small-border-radius;
+	}
+
+	.head {
+		font-size:16px;
+		margin-bottom: 1.2em;
+		padding: 1.9em 2.2em;
+	}
+
+	.body {
+		 
+	}
+}
+
+.project.box {
+	border-top: 10px solid $color1;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+
+	&.prosaic {
+		max-width: 650px;
+	}
+
+	h2 {
+		color: $color2;
+		font-size:25px;
+		text-align: center;
+		margin: 0;
+	}
+}

@@ -6,7 +6,7 @@
 
 <h2>Listing entries in pile {{pile.id}}</h2>
 
-{{#each pile.competingEntries key="id" as |entry|}}
-	{{competing-entry model=entry}}
-{{/each}}
+<div class="container">{{#each pile.competingEntries key="id" as |entry|}}
+		{{competing-entry model=entry}}
+	{{/each}}</div>
 {{outlet}}
