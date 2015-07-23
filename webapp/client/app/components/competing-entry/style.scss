@@ -1,0 +1,29 @@
+// Refers to bordered box
+.competing-entry {
+	font-size:15px;
+	margin-left: 0;
+	margin-right: 0;
+
+	.info {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0.8em;
+	}
+
+	.head {
+		padding-right: 30px;
+		margin-bottom: 0;
+	}
+
+	.body {
+		padding:0 16px 18px 16px;
+		color: $heading-color;
+	}
+
+	h3 {
+		font-size: 15px;
+		padding: 0;
+		margin: 0;
+	}
+}

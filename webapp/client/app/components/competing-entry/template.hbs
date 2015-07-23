@@ -1,6 +1,12 @@
-<div class="col-sm-4 col-md-3">
-<div class="well">
-	{{attrs.model.content}}
-</div>
+
+<div class="bordered padded box competing-entry">
+	<div class="head">
+		<h3>Entry subject?</h3>
+	</div>
+	<div class="info">
+		{{gravatar-image class="circular profile" email=attrs.model.author.email size=20}}
+	</div>
+	<div class="body">{{attrs.model.content}}</div>
+	<div {{action 'pick'}} class="small orange bordered button">Pick entry</div>
 </div>
 {{yield}}

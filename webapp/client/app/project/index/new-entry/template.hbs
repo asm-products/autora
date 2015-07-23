@@ -1,6 +1,17 @@
-{{log model}}
-{{outlet}}
-<form {{action "createEntry" on="submit"}}>
-	{{textarea value=newEntry.content}} <br>
-	<input type="submit" value="Add entry" class="btn btn-primary">
-</form>
+{{#create-project-modal containerClassNames="add-entry-modal" close="transitionBack" renderInPlace="true" translucentOverlay=false}}	
+	{{#link-to 'project.index.entries' class="close-modal"}}
+		<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+		 <g>
+		  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
+		  <line id="svg_2" y2="90" x2="10" y1="10" x1="90" stroke-width="20" fill="none"/>
+		 </g>
+		</svg>
+	{{/link-to}}
+	<h3> Add new entry </h3>
+	<form {{action "createEntry" on="submit"}}>
+		{{textarea-with-counter placeholder="Write your new entry" maxlength=140 value=newEntry.content}} <br>
+		<div class="text-right">
+			<input type="submit" value="Submit entry" class="big orange bordered rounded button">
+		</div>
+	</form>
+{{/create-project-modal}}

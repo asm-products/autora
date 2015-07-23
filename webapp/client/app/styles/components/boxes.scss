@@ -1,7 +1,8 @@
 .box {
 	margin: 1.9em 2.2em; 
 	max-width: 552px;
-
+	position: relative;
+	word-wrap: break-word;
 
 	&.big {
 		font-size:18px;
@@ -20,7 +21,7 @@
 	.head {
 		font-size:16px;
 		margin-bottom: 1.2em;
-		padding: 1.9em 2.2em;
+		padding: 1em 1.2em;
 	}
 
 	.body {
