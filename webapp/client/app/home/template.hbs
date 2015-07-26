@@ -1,2 +1,18 @@
-<h2>Home</h2>
+<section class="marketing">
+    <div class="small">Lorem Ipsom</div>
+    <h1>Lorem ipsum dolor sit amet, consectetor adipisicing elit</h1>
+    <div class="small">Lorem ipsum dolor sit amet</div>
+</section>
+<section class="projects row">
+    {{#each model key="id" as |project|}}
+        {{project-item model=project}}
+    {{/each}}
+</section>
+<section class="testimonial">
+    <div class="title">Testimonial By User</div>
+    <div class="description">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."</div>
+</section>
+<section class="social">
+    Social
+</section>
 {{outlet}}

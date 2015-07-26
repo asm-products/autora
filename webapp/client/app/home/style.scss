@@ -1,0 +1,45 @@
+#home {
+    section.marketing {
+        background-image: url("/images/home.png");
+        height: 350px;
+        width: 100%;
+        background-size: cover;
+        background-position: 0 -285px;
+        color: #ffffff;
+        text-align: center;
+        padding-top: 100px;
+
+        h1 {
+            color: #ffffff;
+            max-width: 600px;
+            margin: 10px auto;
+        }
+    }
+
+    section.projects {
+        background-color: #eeeeee;
+        padding: 20px $site-padding 20px $site-padding;
+    }
+
+    section.testimonial {
+        padding: 40px $site-padding 40px $site-padding;
+
+        .title {
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .description {
+            margin-top: 20px;
+            font-size: 12px;
+            padding: 0 200px;
+            text-align: center;
+            font-style: italic;
+        }
+    }
+
+    section.social {
+        background-color: $color1;
+        padding: 20px;
+    }
+}
