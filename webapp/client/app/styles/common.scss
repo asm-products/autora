@@ -1,5 +1,6 @@
 body {
 	font-family: 'Roboto';
+	background: $background-color;
 }
 
 a {
@@ -8,6 +9,10 @@ a {
 	&:hover {
 		color: darken($color1,10%);
 	}
+}
+
+h1,h2,h3,h4 {
+	color: $color2;
 }
 
 
@@ -26,4 +31,16 @@ table{
 
 .inline-block {
 	display: inline-block;
+}
+
+.circular.profile {
+	overflow: hidden;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid $border-color;
+}
+
+.white-bg {
+	background: #fff;
 }

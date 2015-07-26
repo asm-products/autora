@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  creator:  DS.belongsTo('user'),
+  author:  DS.belongsTo('user'),
   type: DS.attr('string'),
   inputLength: DS.attr('number'),
   inputType: DS.attr('string'), //paragraph, word..

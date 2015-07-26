@@ -1,4 +1,4 @@
-{{#create-project-modal containerClassNames="login-modal" close="transitionBack"}}
+{{#modal-prototype containerClassNames="login-modal" close="transitionBack"}}
 <img src="images/logo.png" alt="">
 <h2>Welcome back!</h2>
 <h3>Log in to your account here!</h3>
@@ -48,7 +48,7 @@
 	<input class="big orange bordered rounded button" type="submit" value="Login">
 	Don't have an account? {{#link-to 'user.signup'}}Sign up{{/link-to}}
 </form>
-{{/create-project-modal}}
+{{/modal-prototype}}
 
 
 {{outlet}}

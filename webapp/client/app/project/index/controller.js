@@ -9,6 +9,10 @@ export default Ember.Controller.extend({
 		}
 	}),
 
+	newEntry: Ember.inject.controller('project.index.newEntry'),
+
+
+
 	actions: {
 		createPile: function(){
 			this.store.createRecord('pile', this.get('newPile')).save();

@@ -5,13 +5,13 @@ export default Ember.Controller.extend({
 	queryParams: ['create'],
 
 	newProjectDefaults: {
-		languageForm: 'prose',
-		inputType: 'word',
-		inputLength: 1,
-		tags: [],
-		name: '',
-		description: ''
-	},
+			languageForm: 'prose',
+			inputType: 'word',
+			inputLength: 1,
+			tags: [],
+			name: '',
+			description: '',
+		},
 
 	showErrors: false,
 	isLoading: false,
@@ -48,19 +48,6 @@ export default Ember.Controller.extend({
 		}	
 	}),
 
-	// inputLengthAlert: Ember.computed('newProject.inputLength','showErrors', function(){
-	// 	if(this.get('showErrors')){
-	// 		var inputLength = this.get('newProject.inputLength');
-	// 		var inputLengthAlert = {};
-
-	// 		if(inputLength.length < 1){
-	// 			projectNameAlert.message = 'Please use alphanumeric characters only!';
-	// 			projectNameAlert.type = 'danger';
-	// 		} 
-
-	// 		return inputLengthAlert;
-	// 	}	
-	// }),
 
 	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function(){
 		return ( 
@@ -109,6 +96,8 @@ export default Ember.Controller.extend({
 				if(this.get('isReadyToSend')){
 
 					this.set('isLoading', true);
+					
+					this.set('newProject.author', this.get('session.user')); //set current session as author
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
 					var self = this;
 					

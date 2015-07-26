@@ -1,7 +1,14 @@
 @import "application/style";
 @import "components/app-header/style";
 @import "components/app-footer/style";
-@import "components/create-project-modal/style";
+@import "components/modal-prototype/style";
 @import "components/input-with-counter/style";
 @import "components/textarea-with-counter/style";
 @import "components/project-header/style";
+@import "components/successful-entry/style";
+@import "components/competing-entry/style";
+@import "project/index/entries/style";
+@import "project/index/new-entry/style";
+@import "user/signup/style";
+@import "user/login/style";
+@import "project/index/style";

@@ -1,0 +1,30 @@
+.box {
+	margin: 1.9em 2.2em; 
+	max-width: 552px;
+	position: relative;
+	word-wrap: break-word;
+
+	&.big {
+		font-size:18px;
+	}
+
+	&.centered {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	&.bordered {
+		border: 1px solid $border-color2;
+		border-radius: $small-border-radius;
+	}
+
+	.head {
+		font-size:16px;
+		margin-bottom: 1.2em;
+		padding: 1em 1.2em;
+	}
+
+	.body {
+		 
+	}
+}

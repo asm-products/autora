@@ -1,0 +1,27 @@
+.successful-entry {
+	color: $placeholder-color;
+	padding: 10px 2.2em;
+	position: relative;
+
+	.info {
+		opacity: 0.1;
+		// visibility: hidden;
+		position: absolute;
+		right: -170px;
+		width: 150px;
+		top: 15px;
+		transition: 0.2s opacity;
+	}
+
+	.details-link {
+		line-height: 30px; //height of the gravatar
+		vertical-align: middle;
+	}
+
+	&:hover {
+		background: transparentize(grey, 0.93);
+		.info {
+			opacity: 1;
+		}
+	}
+}
