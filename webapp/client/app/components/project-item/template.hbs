@@ -1,8 +1,25 @@
-<div class="col-sm-4 col-md-3">
-	<div class="well">
-		<h3>{{attrs.model.name}}</h3>
-		<p>{{attrs.model.description}}</p>
-		{{#link-to 'project.index.entries' attrs.model.id}} Open project {{/link-to}}
-	</div>
+<div class="top">
+    {{#link-to 'project.index.entries' attrs.model.id}}
+    <div class="line">
+        <div class="action">Collaborate</div>
+    </div>
+    <div class="image"><img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=70&h=70" /></div>
+    {{/link-to}}
 </div>
-{{yield}}
+<div class="body">
+    {{#link-to 'project.index.entries' attrs.model.id}}
+    <div class="title">{{attrs.model.name}}</div>
+    {{/link-to}}
+    <div class="description">Project description some long text here dummy text</div>
+</div>
+<ul class="tags">
+    <li class="tag">#tag1</li>
+    <li class="tag">#tag2</li>
+    <li class="tag">#tag3</li>
+    <li class="tag">#tag4</li>
+</ul>
+<!--
+<h3>{{attrs.model.name}}</h3>
+<p>{{attrs.model.description}}</p>
+{{#link-to 'project.index.entries' attrs.model.id}} Open project {{/link-to}}
+-->

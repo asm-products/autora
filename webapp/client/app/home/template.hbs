@@ -5,7 +5,9 @@
 </section>
 <section class="projects row">
     {{#each model key="id" as |project|}}
+        <div class="col-sm-4 col-md-3">
         {{project-item model=project}}
+        </div>
     {{/each}}
 </section>
 <section class="testimonial">
