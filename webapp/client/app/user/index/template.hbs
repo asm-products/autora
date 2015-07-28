@@ -1,2 +1,11 @@
-<h2>Profile for User with id {{model}}</h2>
-{{outlet}}
+<div class="container">
+	<div class="user-index">
+		<div class="cover">
+			<div class="inner">
+			{{gravatar-image email=model.email size=100 class="circular profile"}}
+				<h2>{{model.username}}</h2>
+			</div>
+		</div>
+		{{outlet}}
+	</div>
+</div>
