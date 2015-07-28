@@ -3,7 +3,7 @@
 	<div class="head">
 		<h2>{{model.name}}</h2>
 		<div class="meta">
-			|{{model.createdAt}}| {{#link-to 'user.index' model.author.id}}{{gravatar-image class="circular profile" email=model.author.email size=40}}{{/link-to}}
+			|{{model.createdAt}}| {{#link-to 'user.index' model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=40}}{{/link-to}}
 		</div>
 		<p>{{model.description}}</p>
 	</div>

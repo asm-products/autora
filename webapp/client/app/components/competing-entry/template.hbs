@@ -4,7 +4,7 @@
 		<h3>Entry subject?</h3>
 	</div>
 	<div class="info">
-		{{#link-to 'user.index' attrs.model.author.id}}{{gravatar-image class="circular profile" email=attrs.model.author.email size=20}}{{/link-to}}
+		{{#link-to 'user.index' attrs.model.user.id}}{{gravatar-image class="circular profile" email=attrs.model.user.email size=20}}{{/link-to}}
 	</div>
 	<div class="body">{{attrs.model.content}}</div>
 	<div {{action 'pick'}} class="small orange bordered button">Pick entry</div>

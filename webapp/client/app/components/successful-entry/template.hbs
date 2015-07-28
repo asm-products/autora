@@ -2,6 +2,6 @@
 	<p>{{attrs.model.content}}</p>
 	{{yield}}
 	<div class="info">
-		{{#link-to 'user.index' attrs.model.author.id}}{{gravatar-image class="circular profile" email=attrs.model.author.email size=30}}{{/link-to}} <span class="details-link">Details</span>
+		{{#link-to 'user.index' attrs.model.user.id}}{{gravatar-image class="circular profile" email=attrs.model.user.email size=30}}{{/link-to}} <span class="details-link">Details</span>
 	</div>
 </div>
