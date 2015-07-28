@@ -42,15 +42,15 @@ export default Ember.Controller.extend({
 			} else if(!(/^[\w\-\s]+$/i.test(name))){
 				projectNameAlert.message = 'Please use alphanumeric characters only!';
 				projectNameAlert.type = 'danger';
-			} 
+			}
 
 			return projectNameAlert;
-		}	
+		}
 	}),
 
 
 	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function(){
-		return ( 
+		return (
 			this.get('projectNameAlert.type') !== 'danger' &&
 			this.get('descriptionAlert.type') !== 'danger'
 			)
@@ -88,19 +88,19 @@ export default Ember.Controller.extend({
 		if(!isPoetry && (inputType === 'line')) this.set('newProject.inputType', 'word');
 	}),
 	// inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
-	
+
 	actions: {
-			createProject: function(){				
+			createProject: function(){
 				console.log(this.get('newProject'));
 				this.set('showErrors', true);
 				if(this.get('isReadyToSend')){
 
 					this.set('isLoading', true);
-					
+
 					this.set('newProject.author', this.get('session.user')); //set current session as author
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
 					var self = this;
-					
+
 					newProjectRecord.save()
 					.then(function(response){
 
@@ -112,13 +112,13 @@ export default Ember.Controller.extend({
 						self.set('isLoading', false);
 
 					},function(error){
-						
+
 						console.log(error);
 						self.set('serverAlert.message', error);
 						self.set('isLoading', false);
 
 					});
-					
+
 				}
 
 			},

@@ -8,8 +8,9 @@ export default DS.Model.extend({
   languageForm: DS.attr('string'),
   // tags: DS.attr(),
   name: DS.attr('string'),
+  description: DS.attr('string'),
   entries: DS.hasMany('entry'),
-  
+
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date')
 });
