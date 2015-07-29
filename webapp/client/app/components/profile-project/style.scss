@@ -1,0 +1,35 @@
+.profile-project {
+	border-top: 1px solid $border-color;
+
+	.inner {
+		padding: 20px 20px+15px; //To negate -15px margin from row
+	}
+
+	img,h3 {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	h3 {
+		font-size: 20px;
+		margin: 0;
+	}
+
+	.row {
+		height: 45px;
+		>div {
+			height: 45px;
+		}
+	}
+
+	img {
+		margin-right: 16px;
+	}
+
+	.button {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}

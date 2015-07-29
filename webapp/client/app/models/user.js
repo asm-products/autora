@@ -6,7 +6,7 @@ export default DS.Model.extend({
   photo: DS.attr('string'),
   username: DS.attr('string'),
 
-  projects:DS.hasMany('project'), 
+  projects: DS.hasMany('project', {async: true}), 
   
   uid: DS.attr('string'),
   

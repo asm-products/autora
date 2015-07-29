@@ -1,0 +1,55 @@
+// Uses: components/statistics
+
+.user-index {
+	width: 100%;
+	max-width:600px;
+	margin: 40px auto;
+	background:white;
+
+
+	h2 {
+		text-transform: uppercase;
+		color: white;
+		font-size: 24px;
+		padding-bottom: 0;
+		padding-top: 16px;
+		margin: 0;
+		letter-spacing: 0.5px;
+	}
+
+	.cover {
+		text-align: center;
+		position: relative;
+		height: 240px;
+		line-height: 240px;
+		border-bottom: 5px solid $color1;
+		margin-bottom: 15px;
+
+		background:transparent url('https://pbs.twimg.com/profile_banners/2870366753/1422565411/1500x500') left top no-repeat;
+		
+		.inner {
+			// position: relative;
+			line-height: initial;
+			vertical-align: middle;
+			display: inline-block;
+			position: relative;
+			z-index: 2;
+		}
+
+		.circular.profile {
+			border: none;
+		}
+
+		&::before {
+			content: "";
+			display: block;
+
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			background:transparentize($color2, 0.55);
+			z-index: 1;
+
+		}
+	}
+}
