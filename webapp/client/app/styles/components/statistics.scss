@@ -1,0 +1,15 @@
+.statistic {
+	color: $color1;
+	font-size: 30px;
+	text-align: center;
+	padding: 15px 0;
+	width: 100%;
+
+	.label {
+		color: $color2;
+		text-transform: uppercase;
+		font-size: 12px;
+		display: block;
+		font-weight: 400;
+	}
+}

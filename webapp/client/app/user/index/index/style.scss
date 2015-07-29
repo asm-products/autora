@@ -1,0 +1,18 @@
+.user-index-index {
+
+
+	.statistics {
+		padding-bottom: 15px;
+		>div:not(:last-child){
+			border-right: 1px solid $border-color;
+		}
+	}
+
+	.search-bar {
+		padding: 15px 25px;
+		background:$color3;
+		input[type=text] {
+			border-radius: $medium-border-radius;
+		}
+	}
+}

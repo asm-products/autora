@@ -60,7 +60,7 @@
 	}
 
 	input[type=email],input[type=password],input[type=text] {
-		border-radius: 12px;
+		border-radius: $medium-border-radius;
 		padding-left: 50px;
 		height: 48px;
 		border: 1px solid #c4c4c4;

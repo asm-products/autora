@@ -12,7 +12,7 @@
                     {{#link-to 'application'}}Contribute{{/link-to}}
                     {{#link-to 'project.list'}}Read{{/link-to}}
                     {{#link-to 'user.logout'}}Logout{{/link-to}}
-                    <a class="profile-circle">{{gravatar-image email=session.user.email}}</a>
+                    {{#link-to 'user.index' session.user.id class="profile-circle"}}{{gravatar-image email=session.user.email}}{{/link-to}}
                 {{else}}
                     {{#link-to 'home'}}Home{{/link-to}}
                     {{#link-to 'about'}}About{{/link-to}}

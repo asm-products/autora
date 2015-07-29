@@ -96,8 +96,8 @@ export default Ember.Controller.extend({
 				if(this.get('isReadyToSend')){
 
 					this.set('isLoading', true);
-
-					this.set('newProject.author', this.get('session.user')); //set current session as author
+					
+					this.set('newProject.user', this.get('session.user')); //set current session as user
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
 					var self = this;
 

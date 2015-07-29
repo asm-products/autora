@@ -1,0 +1,35 @@
+<div class="user-index-index">
+	<div class="row statistics">
+		<div class="col-xs-4">
+			<div class="statistic">
+				{{projectsCount}}
+				<div class="label">Project created</div>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="statistic">
+				{{openProjectsCount}}
+				<div class="label">Open project</div>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="statistic">
+				{{completedProjectsCount}}
+				<div class="label">Project completed</div>
+			</div>
+		</div>
+	</div>
+	<div class="search-bar">
+		<div class="row">
+			<div class="col-xs-6">{{input value=searchValue placeholder="Search"}}</div>
+			<div class="col-xs-6">
+				<div class="sort">
+					Sort by (Dropdown component)
+				</div>
+			</div>
+		</div>
+	</div>
+	{{#each filteredProjects key="id" as |project|}}
+			{{profile-project model=project}}
+	{{/each}}
+</div>
