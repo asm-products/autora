@@ -8,12 +8,12 @@ export default DS.Model.extend({
   languageForm: DS.attr('string'),
   // tags: DS.attr(),
   name: DS.attr('string'),
+  description: DS.attr('string'),
   entries: DS.hasMany('entry'),
 
   open: DS.attr('boolean', {
     defaultValue: true
   }),
-  
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date')
 });

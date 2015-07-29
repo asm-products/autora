@@ -9,11 +9,14 @@
 @import "components/project-header/style";
 @import "components/successful-entry/style";
 @import "components/competing-entry/style";
+@import "components/project-item/style";
+@import "components/profile-project/style";
+
 @import "project/index/entries/style";
 @import "project/index/new-entry/style";
+@import "project/list/style";
+@import "project/index/style";
 @import "user/signup/style";
 @import "user/login/style";
-@import "project/index/style";
 @import "user/index/style";
 @import "user/index/index/style";
-@import "components/profile-project/style";

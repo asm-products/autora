@@ -1,6 +1,11 @@
-{{project-header heading="WELCOME" projectController=project}}
-<hr>
-{{#each model key="id" as |project|}}
-	{{project-item model=project}}
-{{/each}}
-{{outlet}}
+<div class="project-list">
+    {{project-header heading="WELCOME" projectController=project}}
+    <div class="row projects">
+    {{#each model key="id" as |project|}}
+    	<div class="col-sm-4 col-md-3">
+        {{project-item model=project}}
+        </div>
+    {{/each}}
+    </div>
+    {{outlet}}
+</div>
