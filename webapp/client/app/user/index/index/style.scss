@@ -2,7 +2,8 @@
 
 
 	.statistics {
-		padding-bottom: 15px;
+		padding: 0 15px 15px 15px;
+
 		>div:not(:last-child){
 			border-right: 1px solid $border-color;
 		}
@@ -11,8 +12,22 @@
 	.search-bar {
 		padding: 15px 25px;
 		background:$color3;
+
+		.search {
+			position: relative;
+			svg {
+				top: 18px;
+				left: 18px;
+				position: absolute;
+				width: 18px;
+				height: 18px;
+			}
+		}
+
 		input[type=text] {
 			border-radius: $medium-border-radius;
+			max-width: 230px;
+			padding-left: 50px;
 		}
 	}
 }
