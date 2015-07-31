@@ -25,6 +25,16 @@ export default Ember.Controller.extend({
 			console.log(entry);
 			entry.set('project', project);
 			//ToDO: close Pile
+		},
+
+		likeEntry: function(newLikeData){
+			this.store.createRecord('like', newLikeData);
+			//save()
+		},
+
+		unlikeEntry: function(unlikeData){
+			unlikeData.deleteRecord();
+			//save()
 		}
 	}
 });

@@ -6,6 +6,8 @@ export default DS.Model.extend({
   pile: DS.belongsTo('pile'),
   project: DS.belongsTo('project'),
 
+  likes: DS.hasMany('like'),
+
   order: DS.attr('number'),
   content: DS.attr('string'),
   

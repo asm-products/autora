@@ -26,4 +26,46 @@
 		padding: 0;
 		margin: 0;
 	}
+	$likes-top-offset: 3px;
+	$likes-right-offset: 5px;
+
+	.counter {
+		vertical-align: middle;
+		position: relative;
+		top: $likes-top-offset;
+		right: $likes-right-offset;
+		color: $color2;
+	}
+
+	.heart {
+
+		cursor: pointer;
+		position: relative;
+		top: $likes-top-offset;
+		right: $likes-right-offset;
+		vertical-align: middle;
+
+
+		.fill {
+			fill: transparent;
+			transition: fill 0.2s;
+		}
+		.border {
+			stroke: transparent;
+			transition: stroke 0.2s;
+		}
+
+
+		&.filled {
+			.fill {
+				fill: $color2;
+			}
+		}
+
+		&.empty {
+			.border {
+				stroke: $color2;
+			}
+		}
+	}
 }
