@@ -5,9 +5,9 @@
 {{#if alert}}
 	<div class="alert alert-{{alert.type}}">{{alert.message}}</div>
 {{/if}}
-<form {{action "login" on="submit" }} class="login-form {{if isLoading 'loading'}}">
+<form {{action "login" on="submit" }} class="login-form {{if isLoading 'au-loading'}}">
 	<div class="email">{{input type="email" placeholder="Email address" value=email}}
-		
+
 		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21px" height="14px" viewBox="0 0 21 14" version="1.1" data-ember-extension="1" >
 
 			<g id="Welcome"  fill="none" fill-rule="evenodd">

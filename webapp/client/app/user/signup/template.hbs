@@ -5,7 +5,7 @@
 {{#if alert}}
 	<div class="alert alert-{{alert.type}}">{{alert.message}}</div>
 {{/if}}
-<form class="form {{if isLoading 'loading'}}" {{action 'sendSignUpForm' on="submit"}}>
+<form class="form {{if isLoading 'au-loading'}}" {{action 'sendSignUpForm' on="submit"}}>
 		<div class="email">
 			{{input type="email" value=email placeholder="Email address"}}
 
