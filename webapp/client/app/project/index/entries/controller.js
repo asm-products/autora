@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
 	newPile: Ember.computed('model', function(){
 		return {
 			pile: this.get('model')
-		}
+		};
 	}),
 
 	project: Ember.inject.controller('project.index'),

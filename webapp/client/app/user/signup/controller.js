@@ -19,9 +19,17 @@ export default Ember.Controller.extend({
 		var password = this.get('password');
 		var isPasswordLongEnough = password.length > 3;
 
-		if(!isAlphanumeric) this.set('alert', {type: 'danger', message: 'Username can contain letters and numbers only!'});
-		if(!isPasswordLongEnough) this.set('alert', {type: 'danger', message: 'Password is too short. Make it at least 4 characters!'});
-		if(!isNOTEmpty) this.set('alert', {type: 'danger', message: 'Username can\'t be empty!'});
+		if (!isAlphanumeric) {
+			this.set('alert', {type: 'danger', message: 'Username can contain letters and numbers only!'});
+		}
+
+		if (!isPasswordLongEnough) {
+			this.set('alert', {type: 'danger', message: 'Password is too short. Make it at least 4 characters!'});
+		}
+
+		if (!isNOTEmpty) {
+			this.set('alert', {type: 'danger', message: 'Username can\'t be empty!'});
+		}
 
 		//Basicly checking only username here, password and email is checked on the server by firebase
 		return isNOTEmpty && isAlphanumeric && isPasswordLongEnough;

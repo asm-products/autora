@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
 			// project: this.get('model').get('firstObject').get('project'), //DEV MODE
 			user: this.get('session.user'),
 			content: ''
-		}
+		};
 	}),
 
 	actions: {

@@ -50,11 +50,11 @@ export default Ember.Controller.extend({
 	}),
 
 
-	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function(){
+	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function() {
 		return (
 			this.get('projectNameAlert.type') !== 'danger' &&
 			this.get('descriptionAlert.type') !== 'danger'
-			)
+		);
 	}),
 
 	newProject: function(){
@@ -69,7 +69,6 @@ export default Ember.Controller.extend({
 	inputTypes: Ember.computed('newProject.languageForm', function(){
 
 		var languageForm = this.get('newProject.languageForm');
-		var inputType = this.get('newProject.inputType');
 		var isPoetry = languageForm === 'poetry';
 
 		if(isPoetry) {
@@ -85,8 +84,13 @@ export default Ember.Controller.extend({
 		var inputType = this.get('newProject.inputType');
 		var isPoetry = languageForm === 'poetry';
 
-		if(isPoetry && (inputType === 'sentence' || inputType === 'paragraph')) this.set('newProject.inputType', 'word');
-		if(!isPoetry && (inputType === 'line')) this.set('newProject.inputType', 'word');
+		if (isPoetry && (inputType === 'sentence' || inputType === 'paragraph')) {
+			this.set('newProject.inputType', 'word');
+		}
+
+		if (!isPoetry && (inputType === 'line')) {
+			this.set('newProject.inputType', 'word');
+		}
 	}),
 	// inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
 
@@ -105,21 +109,17 @@ export default Ember.Controller.extend({
 					var self = this;
 
 					newProjectRecord.save()
-					.then(function(response){
-
+					.then(function(){
 						self.toggleProperty('create');
 						self.set('newProject', '');
 						console.log(self.get('newProjectDefaults'));
 						self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
 						self.transitionToRoute('project.index', newProjectRecord);
 						self.set('isLoading', false);
-
 					},function(error){
-
 						console.log(error);
 						self.set('serverAlert.message', error);
 						self.set('isLoading', false);
-
 					});
 
 				}

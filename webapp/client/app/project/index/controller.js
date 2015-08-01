@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
 	newPile: Ember.computed('model', function(){
 		return {
 			project: this.get('model')
-		}
+		};
 	}),
 
 	newEntry: Ember.inject.controller('project.index.newEntry'),
