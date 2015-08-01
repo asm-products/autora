@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
 	create: false,
@@ -10,7 +11,7 @@ export default Ember.Controller.extend({
 			inputLength: 1,
 			tags: [],
 			name: '',
-			description: '',
+			description: ''
 		},
 
 	showErrors: false,
@@ -91,12 +92,14 @@ export default Ember.Controller.extend({
 
 	actions: {
 			createProject: function(){
-				console.log(this.get('newProject'));
+				this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
+				this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
+
 				this.set('showErrors', true);
 				if(this.get('isReadyToSend')){
 
 					this.set('isLoading', true);
-					
+
 					this.set('newProject.user', this.get('session.user')); //set current session as user
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
 					var self = this;

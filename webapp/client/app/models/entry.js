@@ -8,9 +8,9 @@ export default DS.Model.extend({
 
   order: DS.attr('number'),
   content: DS.attr('string'),
-  
-  createdAt: DS.attr('date'),
-  updatedAt: DS.attr('date'),
+
+  createdAt: DS.attr('timestamp'),
+  updatedAt: DS.attr('timestamp')
 
   //+ likes, flags etc.
 });

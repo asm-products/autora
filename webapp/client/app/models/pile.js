@@ -7,7 +7,7 @@ export default DS.Model.extend({
   closingDate: DS.attr('date'),
 
   competingEntries: DS.hasMany('entry'),
-  
-  createdAt: DS.attr('date'),
-  updatedAt: DS.attr('date')
+
+  createdAt: DS.attr('timestamp'),
+  updatedAt: DS.attr('timestamp')
 });

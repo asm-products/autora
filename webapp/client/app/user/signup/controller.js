@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import config from '../../config/environment';
+import Firebase from 'firebase';
 
 
 export default Ember.Controller.extend({
@@ -52,6 +53,10 @@ export default Ember.Controller.extend({
 
 				    var newUserData = self.getProperties('email', 'username');
 				    newUserData.id = userData.uid;
+
+				    newUserData.set('createdAt', Firebase.ServerValue.TIMESTAMP);
+					newUserData.set('updatedAt', Firebase.ServerValue.TIMESTAMP);
+
 				    self.store.createRecord('user',newUserData).save().then(function(){
 					    // self.transitionToRoute('index');
 
