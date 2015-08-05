@@ -2,9 +2,11 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   user: DS.belongsTo('user'),
-  entry: DS.belongsTo('entry'),
+  entry: DS.belongsTo('entry', {async: true}),
+  
+  pile: DS.belongsTo('pile', {async: true}),
 
-  createdAt: DS.attr('date'),
-  updatedAt: DS.attr('date'),
+  createdAt: DS.attr('timestamp'),
+  updatedAt: DS.attr('timestamp'),
 
 });

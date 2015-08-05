@@ -13,7 +13,7 @@
 			        </g>
 			    </g>
 			</svg>
-			<span class="counter">{{model.likes.length}}</span>
+			<span class="counter">{{amountOfLikes}}</span>
 		{{#link-to 'user.index' attrs.model.user.id}}{{gravatar-image class="circular profile" email=attrs.model.user.email size=25}}{{/link-to}}
 	</div>
 	<div class="body">{{attrs.model.content}}</div>

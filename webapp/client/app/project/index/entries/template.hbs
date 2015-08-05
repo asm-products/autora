@@ -1,15 +1,20 @@
 <div class="white-bg project-index-entries">
 	<div class="container">
-	{{#link-to 'project.index.new-entry' class="big orange bordered rounded button"}}+ Add entry{{/link-to}}
-	<h2>Submitted entries</h2>
-	(Listing entries in pile {{pile.id}})
-	<div class="row">
-		{{#each pile.competingEntries key="id" as |entry|}}
-			<div class="col-sm-6 col-md-4 col-lg-3">	
-				{{competing-entry model=entry}}
+		{{#if pile.id}}
+			{{#link-to 'project.index.new-entry' class="big orange bordered rounded button"}}+ Add entry{{/link-to}}
+			<h2>Submitted entries</h2>
+			(Listing entries in pile {{pile.id}})
+			<div class="row clearfix">
+
+				{{#each pile.competingEntries key="id" as |entry|}}
+					<div class="col-sm-6 col-md-4 col-lg-3">	
+						{{competing-entry model=entry}}
+					</div>
+				{{/each}}
 			</div>
-		{{/each}}
+		{{else}}
+		<h2>There's no pile created. Please create one.</h2>
+		{{/if}}
 	</div>
-</div>
-{{outlet}}
+	{{outlet}}
 </div>

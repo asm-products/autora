@@ -3,7 +3,10 @@
 	<div class="head">
 		<h2>{{model.name}}</h2>
 		<div class="meta">
+			{{log model.user}}
+			{{#if model.user.email}}
 			|{{model.createdAt}}| {{#link-to 'user.index' model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=40}}{{/link-to}}
+			{{/if}}
 		</div>
 		<p>{{model.description}}</p>
 	</div>
