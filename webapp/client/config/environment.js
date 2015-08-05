@@ -15,7 +15,8 @@ module.exports = function(environment) {
     // Set or update content security policies
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
-      'style-src': "'self' fonts.googleapis.com"
+      'style-src': "'self' fonts.googleapis.com",
+      'img-src': "'self' www.gravatar.com placeholdit.imgix.net"
     },
     EmberENV: {
       FEATURES: {
@@ -35,7 +36,7 @@ module.exports = function(environment) {
   //   };
   ENV['simple-auth'] = {
   // store: 'simple-auth-session-store:local-storage',
-  session: 'session:custom' 
+  session: 'session:custom'
 }
 
   if (environment === 'development') {

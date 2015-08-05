@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
 	create: false,
@@ -10,7 +11,7 @@ export default Ember.Controller.extend({
 			inputLength: 1,
 			tags: [],
 			name: '',
-			description: '',
+			description: ''
 		},
 
 	showErrors: false,
@@ -49,11 +50,11 @@ export default Ember.Controller.extend({
 	}),
 
 
-	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function(){
+	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function() {
 		return (
 			this.get('projectNameAlert.type') !== 'danger' &&
 			this.get('descriptionAlert.type') !== 'danger'
-			)
+		);
 	}),
 
 	newProject: function(){
@@ -68,7 +69,6 @@ export default Ember.Controller.extend({
 	inputTypes: Ember.computed('newProject.languageForm', function(){
 
 		var languageForm = this.get('newProject.languageForm');
-		var inputType = this.get('newProject.inputType');
 		var isPoetry = languageForm === 'poetry';
 
 		if(isPoetry) {
@@ -84,39 +84,42 @@ export default Ember.Controller.extend({
 		var inputType = this.get('newProject.inputType');
 		var isPoetry = languageForm === 'poetry';
 
-		if(isPoetry && (inputType === 'sentence' || inputType === 'paragraph')) this.set('newProject.inputType', 'word');
-		if(!isPoetry && (inputType === 'line')) this.set('newProject.inputType', 'word');
+		if (isPoetry && (inputType === 'sentence' || inputType === 'paragraph')) {
+			this.set('newProject.inputType', 'word');
+		}
+
+		if (!isPoetry && (inputType === 'line')) {
+			this.set('newProject.inputType', 'word');
+		}
 	}),
 	// inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
 
 	actions: {
 			createProject: function(){
-				console.log(this.get('newProject'));
+				this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
+				this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
+
 				this.set('showErrors', true);
 				if(this.get('isReadyToSend')){
 
 					this.set('isLoading', true);
-					
+
 					this.set('newProject.user', this.get('session.user')); //set current session as user
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
 					var self = this;
 
 					newProjectRecord.save()
-					.then(function(response){
-
+					.then(function(){
 						self.toggleProperty('create');
 						self.set('newProject', '');
 						console.log(self.get('newProjectDefaults'));
 						self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
 						self.transitionToRoute('project.index', newProjectRecord);
 						self.set('isLoading', false);
-
 					},function(error){
-
 						console.log(error);
 						self.set('serverAlert.message', error);
 						self.set('isLoading', false);
-
 					});
 
 				}

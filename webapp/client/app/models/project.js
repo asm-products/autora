@@ -9,13 +9,13 @@ export default DS.Model.extend({
   // tags: DS.attr(),
   name: DS.attr('string'),
   description: DS.attr('string'),
-  
+
   entries: DS.hasMany('entry'),
   piles: DS.hasMany('pile'),
 
   open: DS.attr('boolean', {
     defaultValue: true
   }),
-  createdAt: DS.attr('date'),
-  updatedAt: DS.attr('date')
+  createdAt: DS.attr('timestamp'),
+  updatedAt: DS.attr('timestamp')
 });

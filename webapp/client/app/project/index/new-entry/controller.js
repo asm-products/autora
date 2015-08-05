@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
 	newEntry: Ember.computed('model', function(){
@@ -7,14 +8,14 @@ export default Ember.Controller.extend({
 			// project: this.get('model').get('firstObject').get('project'), //DEV MODE
 			user: this.get('session.user'),
 			content: ''
-		}
+		};
 	}),
 
 	actions: {
 		createEntry: function() {
-			console.log(this.get('newEntry'));
-			console.log(this.get('model').get('firstObject'));
-			this.store.createRecord('entry', this.get('newEntry'));
+			this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
+			this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
+			this.store.createRecord('entry', this.get('newEntry')).save();
 			this.transitionToRoute('project.index.entries');
 		},
 

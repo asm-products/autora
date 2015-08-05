@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import config from '../../config/environment';
+import Firebase from 'firebase';
 
 
 export default Ember.Controller.extend({
@@ -18,9 +19,17 @@ export default Ember.Controller.extend({
 		var password = this.get('password');
 		var isPasswordLongEnough = password.length > 3;
 
-		if(!isAlphanumeric) this.set('alert', {type: 'danger', message: 'Username can contain letters and numbers only!'});
-		if(!isPasswordLongEnough) this.set('alert', {type: 'danger', message: 'Password is too short. Make it at least 4 characters!'});
-		if(!isNOTEmpty) this.set('alert', {type: 'danger', message: 'Username can\'t be empty!'});
+		if (!isAlphanumeric) {
+			this.set('alert', {type: 'danger', message: 'Username can contain letters and numbers only!'});
+		}
+
+		if (!isPasswordLongEnough) {
+			this.set('alert', {type: 'danger', message: 'Password is too short. Make it at least 4 characters!'});
+		}
+
+		if (!isNOTEmpty) {
+			this.set('alert', {type: 'danger', message: 'Username can\'t be empty!'});
+		}
 
 		//Basicly checking only username here, password and email is checked on the server by firebase
 		return isNOTEmpty && isAlphanumeric && isPasswordLongEnough;
@@ -52,6 +61,10 @@ export default Ember.Controller.extend({
 
 				    var newUserData = self.getProperties('email', 'username');
 				    newUserData.id = userData.uid;
+
+				    newUserData.set('createdAt', Firebase.ServerValue.TIMESTAMP);
+					newUserData.set('updatedAt', Firebase.ServerValue.TIMESTAMP);
+
 				    self.store.createRecord('user',newUserData).save().then(function(){
 					    // self.transitionToRoute('index');
 

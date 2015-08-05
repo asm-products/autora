@@ -11,7 +11,7 @@
 		{{#each model.entries key="id" as |entry|}}
 			{{successful-entry model=entry}}
 		{{/each}}
-		
+
 		{{!-- {{#if newEntry.newEntry.showPreview}}
 			<hr>
 			{{successful-entry model=newEntry.newEntry}}
@@ -20,7 +20,5 @@
 </div>
 
 
-{{!-- <hr>
 <div {{action "createPile"}} class="btn btn-primary">Create pile</div>
-<hr> --}}
 {{outlet}}

@@ -6,10 +6,10 @@ export default DS.Model.extend({
   photo: DS.attr('string'),
   username: DS.attr('string'),
 
-  projects: DS.hasMany('project', {async: true}), 
-  
+  projects: DS.hasMany('project', {async: true}),
+
   uid: DS.attr('string'),
-  
-  createdAt: DS.attr('string'),
-  updatedAt: DS.attr('string')
+
+  createdAt: DS.attr('timestamp'),
+  updatedAt: DS.attr('timestamp')
 });
