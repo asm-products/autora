@@ -18,7 +18,9 @@
     "bootstrap-sass": "~3.3.5",
     "emberfire": "~1.4.7",
     "select2": "3.5.2",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "moment": ">= 2.8.0",
+    "moment-timezone": ">= 0.1.0"
   },
   "resolutions": {
     "ember": "2.0.0-beta.1"

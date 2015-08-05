@@ -6,7 +6,6 @@ export default Ember.Component.extend({
 		var likes = this.get('model.likes');
 		var currentUserId = this.get('session.user.id');
 		var likedBy = this.get('likedBy').mapBy('id');
-		console.log(likes);
 		return likedBy.contains(currentUserId);
 	}),
 
@@ -14,7 +13,6 @@ export default Ember.Component.extend({
 	likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0
 
 	amountOfLikes: Ember.computed('likedByFix', function(){
-		console.log(this.get('likedByFix'));
 		return this.get('likedByFix.length');
 	}),
 
@@ -38,7 +36,6 @@ export default Ember.Component.extend({
 					user: this.get('session.user'),
 					entry: model
 				};
-				console.log(this.get('model.likes'));
 				this.sendAction('likeAction', newLikeData, model);
 
 			} else {
@@ -46,7 +43,6 @@ export default Ember.Component.extend({
 				//Unlike
 				//Get the like we want to remove
 				var unlikeData = this.get('model.likes').findBy('user.id', this.get('session.user.id'));
-				console.log(unlikeData);
 				this.sendAction('unlikeAction', unlikeData);
 
 			}
