@@ -46,5 +46,9 @@
     "ember-modal-dialog": "0.7.5",
     "ember-select-2": "1.3.0",
     "emberfire": "^1.5.0"
+  },
+  "devDependencies": {
+    "ember-cli-moment-shim": "0.6.1",
+    "ember-moment": "3.2.1"
   }
 }
