@@ -25,18 +25,17 @@ export default Ember.Controller.extend({
 
 		pickEntry: function(entry){
 			var project = this.get('project.model');
-			console.log(entry);
 			entry.set('project', project);
 			//ToDO: close Pile
 		},
 
-		likeEntry: function(newLikeData, entry){
+		likeEntry: function(newLikeData){
 
 			newLikeData.createdAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.updatedAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.pile = this.get('pile');
 
-			var newLike = this.store.createRecord('like', newLikeData).save(); //Todo: manage response
+			this.store.createRecord('like', newLikeData).save(); //Todo: manage response
 			// var likes = entry.get('likes');
 			// likes.addObject(newLike);
 			// entry.save();

@@ -5,7 +5,7 @@
 		<div class="meta">
 			{{log model.user}}
 			{{#if model.user.email}}
-			|{{model.createdAt}}| {{#link-to 'user.index' model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=40}}{{/link-to}}
+			Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by {{#link-to 'user.index' model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=40}}{{/link-to}}
 			{{/if}}
 		</div>
 		<p>{{model.description}}</p>
