@@ -7,16 +7,17 @@ export default Ember.Controller.extend({
 		return this.get('model.firstObject');
 	}),
 
-	newPile: Ember.computed('model', function(){
-		return {
-			pile: this.get('model')
-		};
-	}),
+	// newPile: Ember.computed('model', function(){
+	// 	return {
+	// 		pile: this.get('model')
+	// 	};
+	// }),
 
 	project: Ember.inject.controller('project.index'),
 
 	actions: {
 		createPile: function() {
+			//Unused code. This is handled at Project.index controller
 			this.set('newPile.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newPile.updatedAt', Firebase.ServerValue.TIMESTAMP);
 			this.store.createRecord('pile', this.get('newPile')).save();
@@ -27,6 +28,30 @@ export default Ember.Controller.extend({
 			console.log(entry);
 			entry.set('project', project);
 			//ToDO: close Pile
+		},
+
+		likeEntry: function(newLikeData, entry){
+
+			newLikeData.createdAt = Firebase.ServerValue.TIMESTAMP;
+			newLikeData.updatedAt = Firebase.ServerValue.TIMESTAMP;
+			newLikeData.pile = this.get('pile');
+
+			var newLike = this.store.createRecord('like', newLikeData).save(); //Todo: manage response
+			// var likes = entry.get('likes');
+			// likes.addObject(newLike);
+			// entry.save();
+			 //entry needs to be saved instrad of like because of Embedded relationship
+
+			//save()
+		},
+
+		unlikeEntry: function(unlikeData){
+			unlikeData.deleteRecord().save(); //Todo: manage response
+			//save()
+		},
+
+		checkEntries: function(){
+			this.get('model');
 		}
 	}
 });

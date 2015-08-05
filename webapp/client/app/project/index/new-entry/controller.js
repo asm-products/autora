@@ -2,9 +2,14 @@ import Ember from 'ember';
 import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
+
+	pile: Ember.computed('model', function(){
+		return this.get('model.firstObject');
+	}),
+
 	newEntry: Ember.computed('model', function(){
 		return {
-			pile: this.get('model').get('firstObject'),
+			pile: this.get('pile'),
 			// project: this.get('model').get('firstObject').get('project'), //DEV MODE
 			user: this.get('session.user'),
 			content: ''

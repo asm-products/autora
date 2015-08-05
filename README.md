@@ -36,7 +36,11 @@ Or **just fork the the repo** and see for yourself if there is any way for you t
 
 
 
+# Instructions
 
+* `git clone https://github.com/asm-products/autora` - get this repository
+
+# Running Ember app locally
 
 ## Prerequisites
 
@@ -50,8 +54,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* change into the new directory
+* change into the ember app directory `cd autora/webapp/client/`
 * `npm install`
 * `bower install`
 
@@ -77,3 +80,14 @@ You will need the following things properly installed on your computer.
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+
+#Running the landing page and express server locally
+
+Additional prerequisites: Grunt-cli
+
+* Navigate to root `cd autora`
+* `npm install`
+* `bower install`
+* `npm start` - to start the server
+* `grunt watch` - to compile assets on the go
