@@ -18,9 +18,5 @@
 	</div>
 	<div class="body">{{attrs.model.content}}</div>
 	<div {{action 'pick'}} class="small orange bordered button">Pick entry</div>
-
-	{{#each model.likes key="id" as |like|}}
-		{{like.user.name}}
-	{{/each}}
 </div>
 {{yield}}
