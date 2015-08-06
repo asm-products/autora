@@ -18,8 +18,12 @@
 
     section.projects {
         background-color: #efefef;
-        padding: 20px $site-padding 20px $site-padding;
+        padding: 20px $site-padding 0 $site-padding;
         margin: 0;
+
+        .project-col {
+            margin-bottom: 20px;
+        }
     }
 
     section.testimonial {

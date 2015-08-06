@@ -11,6 +11,10 @@ router.get('/images/*', function(req, res, next) {
     res.sendfile('./webapp/client/dist'+req.path);
 });
 
+router.get('/fonts/*', function(req, res, next) {
+    res.sendfile('./webapp/client/dist'+req.path);
+});
+
 router.get('/*', function(req, res, next) {
     res.sendfile('./webapp/client/dist/index.html');
 });

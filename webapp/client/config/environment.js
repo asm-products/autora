@@ -16,7 +16,8 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
       'style-src': "'self' fonts.googleapis.com",
-      'img-src': "'self' www.gravatar.com placeholdit.imgix.net"
+      'img-src': "'self' www.gravatar.com placeholdit.imgix.net",
+      'default-src': 'none'
     },
     EmberENV: {
       FEATURES: {
