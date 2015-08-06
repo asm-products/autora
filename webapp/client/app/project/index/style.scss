@@ -12,6 +12,16 @@
 		color: $color2;
 		font-size:25px;
 		text-align: center;
-		margin: 0;
+		margin: 15px 0 0 0;
+	}
+
+	.meta {
+		margin: 25px 0;
+		text-align: center;
+		vertical-align: middle;
+		span,a {
+			display: inline-block;
+			vertical-align: middle;
+		}
 	}
 }
