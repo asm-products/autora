@@ -29,13 +29,15 @@ export default Ember.Controller.extend({
 			//ToDO: close Pile
 		},
 
-		likeEntry: function(newLikeData){
+		likeEntry: function(newLikeData, entry){
 
 			newLikeData.createdAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.updatedAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.pile = this.get('pile');
 
-			this.store.createRecord('like', newLikeData).save(); //Todo: manage response
+			this.store.createRecord('like', newLikeData).save().then(function(){
+				entry.save();
+			}); //Todo: manage response
 			// var likes = entry.get('likes');
 			// likes.addObject(newLike);
 			// entry.save();
@@ -44,8 +46,10 @@ export default Ember.Controller.extend({
 			//save()
 		},
 
-		unlikeEntry: function(unlikeData){
-			unlikeData.deleteRecord().save(); //Todo: manage response
+		unlikeEntry: function(unlikeData, entry){
+			unlikeData.destroyRecord().then(function(){
+				entry.save();
+			}); //Todo: manage response
 			//save()
 		},
 
