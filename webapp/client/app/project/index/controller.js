@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
 		};
 	}),
 
-	newEntry: Ember.inject.controller('project.index.newEntry'),
+	newEntry: Ember.inject.controller('project.index.entries.newEntry'),
 
 	actions: {
 		createPile: function(){
