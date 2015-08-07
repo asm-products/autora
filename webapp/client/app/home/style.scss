@@ -9,10 +9,20 @@
         text-align: center;
         padding-top: 100px;
 
+        @include breakpoint(xs) {
+            height: 150px;
+            padding-top: 30px;
+            background-position: 0 -50px;
+        }
+
         h1 {
             color: #ffffff;
             max-width: 600px;
             margin: 10px auto;
+
+            @include breakpoint(xs) {
+                font-size: 20px;
+            }
         }
     }
 
@@ -20,6 +30,14 @@
         background-color: #efefef;
         padding: 20px $site-padding 0 $site-padding;
         margin: 0;
+
+        @include breakpoint(xs) {
+            padding: 20px $site-padding-xs 0 $site-padding-xs;
+        }
+
+        @include breakpoint(sm) {
+            padding: 20px $site-padding-sm 0 $site-padding-sm;
+        }
 
         .project-col {
             margin-bottom: 20px;
@@ -30,17 +48,25 @@
         background-color: #ffffff;
         padding: 40px $site-padding 40px $site-padding;
 
+        @include breakpoint(xs) {
+            padding: 40px $site-padding-xs 40px $site-padding-xs;
+        }
+
+        @include breakpoint(sm) {
+            padding: 40px $site-padding-sm 40px $site-padding-sm;
+        }
+
         .title {
             font-size: 24px;
             text-align: center;
         }
 
         .description {
-            margin-top: 20px;
             font-size: 12px;
-            padding: 0 200px;
             text-align: center;
             font-style: italic;
+            max-width: 500px;
+            margin: 20px auto 0 auto;
         }
     }
 

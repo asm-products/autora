@@ -13,11 +13,22 @@ header.app-header {
     .navbar-left {
         padding: 10px 0;
         margin-left: -15px;
+
+        @include breakpoint(xs) {
+            text-align: center;
+            margin: 0;
+            padding-bottom: 0;
+        }
     }
 
     nav.navbar-right {
         height: 47px;
         padding: 20px 0;
+
+        @include breakpoint(xs) {
+            text-align: center;
+            margin-top: 0;
+        }
 
         a {
             text-transform: uppercase;
