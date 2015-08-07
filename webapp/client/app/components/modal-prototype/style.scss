@@ -1,11 +1,11 @@
 @keyframes modal-appear {
 	0% {
 		opacity: 0;
-		transform: scale(0.93,0.93);
+		transform: scale(0.93,0.93) translate(-50%,-50%);
 	}
 	100% {
 		opacity: 1;
-		transform: scale(1,1);
+		transform: scale(1,1) translate(-50%,-50%);
 	}
 }
 .modal-prototype {
@@ -15,12 +15,11 @@
 	padding: 50px;
 	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
 	animation: 0.6s modal-appear forwards;
-	
-	position: absolute;
-	top: 150px;
-	right: 0;
-	left: 0;
-	margin: 0 auto; 
+
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
 
 	.heading {
 		font-size: 20px;
