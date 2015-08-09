@@ -114,8 +114,14 @@ export default Ember.Controller.extend({
 						self.set('newProject', '');
 						console.log(self.get('newProjectDefaults'));
 						self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
-						self.transitionToRoute('project.index', newProjectRecord);
-						self.set('isLoading', false);
+
+						console.log(self.get('session.user'));
+
+						self.get('session.user.content').save().then(function(){
+							self.transitionToRoute('project.index', newProjectRecord);
+							self.set('isLoading', false);
+							
+						}); // check for errors and delete the project if needed
 					},function(error){
 						console.log(error);
 						self.set('serverAlert.message', error);

@@ -6,7 +6,7 @@
 			(Listing entries in pile {{pile.id}})
 			<div class="row clearfix">
 
-				{{#each pile.competingEntries key="id" as |entry|}}
+				{{#each sortedEntries key="id" as |entry|}}
 					<div class="col-sm-6 col-md-4 col-lg-3">
 						{{competing-entry model=entry}}
 					</div>

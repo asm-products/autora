@@ -13,6 +13,9 @@ export default Ember.Controller.extend({
 	// 	};
 	// }),
 
+	entriesSorting: ['amountOfLikes:desc'],
+	sortedEntries: Ember.computed.sort('pile.competingEntries', 'entriesSorting'),
+
 	project: Ember.inject.controller('project.index'),
 
 	actions: {
