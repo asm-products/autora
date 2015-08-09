@@ -11,7 +11,7 @@ export default Ember.Route.extend({
 
 	afterModel: function(model){
 		//Load users projects
-		var userId = model.get('id');
-		this.store.find('project', {orderBy:'user', startAt:userId, endAt:userId});
+		// var userId = model.get('id');
+		// this.store.find('project', {orderBy:'user', startAt:userId, endAt:userId});
 	}
 });

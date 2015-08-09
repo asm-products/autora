@@ -9,14 +9,14 @@ export default Ember.Route.extend({
 		return model;
 	},
 
-	afterModel: function(model){
+	afterModel: function(){
 
 		//load entries here?
-		var pileId = model.get('firstObject.id');
-		if(pileId !== ""){
-			this.store.find('entry', {orderBy: 'pile', startAt: pileId, endAt: pileId});
-			this.store.find('like', {orderBy: 'pile', startAt: pileId, endAt: pileId});
+		// var pileId = model.get('firstObject.id');
+		// if(pileId !== ""){
+		// 	this.store.find('entry', {orderBy: 'pile', startAt: pileId, endAt: pileId});
+		// 	this.store.find('like', {orderBy: 'pile', startAt: pileId, endAt: pileId});
 
-		}
+		// }
 	}
 });

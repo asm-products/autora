@@ -9,6 +9,10 @@ a {
 	&:hover {
 		color: darken($color1,10%);
 	}
+
+	&.active {
+		// text-decoration: underline;
+	}
 }
 
 h1,h2,h3,h4 {
