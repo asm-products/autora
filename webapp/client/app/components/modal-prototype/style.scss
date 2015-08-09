@@ -1,7 +1,9 @@
+$initial-scale: 0.93;
+$initial-translate: -50%/$initial-scale;
 @keyframes modal-appear {
 	0% {
 		opacity: 0;
-		transform: scale(0.93,0.93) translate(-50%,-50%);
+		transform: scale($initial-scale,$initial-scale) translate($initial-translate,$initial-translate); //-50
 	}
 	100% {
 		opacity: 1;
