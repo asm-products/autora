@@ -1,5 +1,9 @@
 .project-list {
     .projects {
-        padding: 20px 60px;
+        padding: 20px 60px 0 60px;
+
+        .project-col {
+            margin-bottom: 20px;
+        }
     }
 }
