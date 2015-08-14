@@ -1,0 +1,11 @@
+<div class="container">
+	<h2>Feed for tag: {{tag.name}}</h2>
+	<div class="row projects">
+    {{#each tag.projects key="id" as |project|}}
+    	<div class="col-sm-4 col-md-3 project-col">
+        {{project-item model=project}}
+        </div>
+    {{/each}}
+    </div>
+</div>
+{{outlet}}
