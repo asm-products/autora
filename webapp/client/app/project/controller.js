@@ -112,9 +112,10 @@ export default Ember.Controller.extend({
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
 					var tags = this.get('tags');
 					var tagRecords = [];
+					var tagRecord = null;
 					var tagRequests = [];
 
-					tags.forEach(function(tagName, index){
+					tags.forEach(function(tagName){
 						//SAVE TAGS
 						tagRequests.push(self.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
 						.then(function(foundTags){
@@ -125,10 +126,10 @@ export default Ember.Controller.extend({
 								var newTag = {
 									name: tagName,
 								};
-								var tagRecord = self.store.createRecord('tag', newTag);
+								tagRecord = self.store.createRecord('tag', newTag);
 								tagRequests.push(tagRecord.save());
 							} else {
-							var tagRecord = foundTags.get('firstObject');
+							tagRecord = foundTags.get('firstObject');
 							}
 							tagRecords.pushObject(tagRecord);
 						}));
@@ -148,7 +149,7 @@ export default Ember.Controller.extend({
 							var lastRequests = [];
 							//SAVE USER - relationship save
 							lastRequests.push(self.get('session.user.content').save()); // check for errors and delete the project if needed
-							projectRecord.get('tags').forEach(function(tag, index){
+							projectRecord.get('tags').forEach(function(tag){
 								lastRequests.push(tag.save());
 							}); // check for errors and delete the project if needed
 							Ember.RSVP.allSettled(lastRequests).then(function(){
