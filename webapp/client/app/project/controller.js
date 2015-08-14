@@ -9,10 +9,11 @@ export default Ember.Controller.extend({
 			languageForm: 'prose',
 			inputType: 'word',
 			inputLength: 1,
-			tags: [],
 			name: '',
 			description: ''
 		},
+
+	tags: [],
 
 	showErrors: false,
 	isLoading: false,
@@ -102,31 +103,67 @@ export default Ember.Controller.extend({
 				this.set('showErrors', true);
 				if(this.get('isReadyToSend')){
 
+					//start showing spinner
 					this.set('isLoading', true);
 
+					var self = this;
+					// this.set('newProject.tags', null);
 					this.set('newProject.user', this.get('session.user')); //set current session as user
 					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
-					var self = this;
+					var tags = this.get('tags');
+					var tagRecords = [];
+					var tagRequests = [];
 
-					newProjectRecord.save()
-					.then(function(){
-						self.toggleProperty('create');
-						self.set('newProject', '');
-						console.log(self.get('newProjectDefaults'));
-						self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
-
-						console.log(self.get('session.user'));
-
-						self.get('session.user.content').save().then(function(){
-							self.transitionToRoute('project.index', newProjectRecord);
-							self.set('isLoading', false);
-							
-						}); // check for errors and delete the project if needed
-					},function(error){
-						console.log(error);
-						self.set('serverAlert.message', error);
-						self.set('isLoading', false);
+					tags.forEach(function(tagName, index){
+						//SAVE TAGS
+						tagRequests.push(self.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
+						.then(function(foundTags){
+							console.log('tagRecords:');
+							console.log(foundTags);
+							if(foundTags.get('length') === 0) {
+								//there is no tag with this name, lets create one
+								var newTag = {
+									name: tagName,
+								};
+								var tagRecord = self.store.createRecord('tag', newTag);
+								tagRequests.push(tagRecord.save());
+							} else {
+							var tagRecord = foundTags.get('firstObject');
+							}
+							tagRecords.pushObject(tagRecord);
+						}));
 					});
+
+					Ember.RSVP.allSettled(tagRequests).then(function(){
+						newProjectRecord.set('tags', tagRecords);
+						//SAVE PROJECT
+						newProjectRecord.save()
+						.then(function(projectRecord){
+							self.toggleProperty('create');
+							self.set('newProject', '');
+							console.log(self.get('newProjectDefaults'));
+							self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
+							self.set('tags', []);
+
+							var lastRequests = [];
+							//SAVE USER - relationship save
+							lastRequests.push(self.get('session.user.content').save()); // check for errors and delete the project if needed
+							projectRecord.get('tags').forEach(function(tag, index){
+								lastRequests.push(tag.save());
+							}); // check for errors and delete the project if needed
+							Ember.RSVP.allSettled(lastRequests).then(function(){
+								//ALL DONE - everything is set up, redirect...
+								self.set('isLoading', false);
+								self.transitionToRoute('project.index', projectRecord.get('id'));
+							});
+						},function(error){
+							console.log(error);
+							self.set('serverAlert.message', error);
+							self.set('isLoading', false);
+						});
+					});
+
+					
 
 				}
 
