@@ -13,10 +13,9 @@
     <div class="description">Project description some long text here dummy text</div>
 </div>
 <ul class="tags">
-    <li class="tag">#tag1</li>
-    <li class="tag">#tag2</li>
-    <li class="tag">#tag3</li>
-    <li class="tag">#tag4</li>
+    {{#each model.tags key="id" as |tag|}}
+        <li class="tag">{{tag.name}}</li>
+    {{/each}}
 </ul>
 <!--
 <h3>{{attrs.model.name}}</h3>

@@ -22,7 +22,8 @@ Router.map(function() {
     });
   });
 
-  this.route('index'); // ember simple auth needs this for some reason
+  // ember simple auth needs this for some reason
+  this.route('index');
 
   this.route('user', function() {
     this.route('signup');
@@ -36,6 +37,10 @@ Router.map(function() {
     this.route('logout');
   });
 
+  this.route('tag', function() {
+    this.route('index', {path: '/:tag_name'});
+  }); //Might move tag_id to tag.index later
+  
   this.route('dashboard', function() {});
 });
 

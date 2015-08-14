@@ -24,4 +24,15 @@
 			vertical-align: middle;
 		}
 	}
+	//Extends: small.rounded.purple.bordered.button
+	.tags {
+		display: inline-block;
+		max-width: 270px;
+	}
+	.tag {
+		padding: 3px 4px;
+		border-radius: $small-border-radius;
+		border-color: $grey;
+		color: $grey;
+	}
 }
