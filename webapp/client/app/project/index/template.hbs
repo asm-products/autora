@@ -7,7 +7,7 @@
 			{{#if model.user.email}}
 			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to 'user.index' model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=35}}{{/link-to}}
 			{{/if}}
-			| <div class="tags">{{#each model.tags as |tag|}}
+			| <div class="tags">{{#each model.tags key="id" as |tag|}}
 					{{#link-to 'tag' tag.name class="small rounded purple bordered button tag"}}{{tag.name}}{{/link-to}}
 				{{/each}}</div>
 		</div>

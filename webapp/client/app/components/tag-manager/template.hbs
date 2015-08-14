@@ -1,4 +1,4 @@
-{{#each tags as |tag|}}
+{{#each tags key="id" as |tag|}}
 	<span class="small purple rounded bordered button tag">
 		<span {{action 'deleteTag' tag}} class="close-tag">
 			<svg viewBox="0 0 100 100" width="8" height="8" xmlns="http://www.w3.org/2000/svg">

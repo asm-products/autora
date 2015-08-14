@@ -13,7 +13,7 @@
     <div class="description">Project description some long text here dummy text</div>
 </div>
 <ul class="tags">
-    {{#each model.tags as |tag|}}
+    {{#each model.tags key="id" as |tag|}}
         <li class="tag">{{tag.name}}</li>
     {{/each}}
 </ul>
