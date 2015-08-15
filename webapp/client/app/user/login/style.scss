@@ -6,6 +6,11 @@
 	padding-right: 70px;
 	color: $heading-color;
 
+	@include breakpoint('xs'){
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
 	img {
 		max-width: 230px;
 	}
