@@ -1,0 +1,9 @@
+.create-project-modal {
+	@include breakpoint('xs'){
+		animation:none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: none;
+	}
+}
