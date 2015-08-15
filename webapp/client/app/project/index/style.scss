@@ -23,6 +23,12 @@
 			display: inline-block;
 			vertical-align: middle;
 		}
+
+	}
+	.head {
+		p { //description
+			text-align: center;
+		}
 	}
 	//Extends: small.rounded.purple.bordered.button
 	.tags {

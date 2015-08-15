@@ -17,6 +17,7 @@ export default Ember.Controller.extend({
 
 	showErrors: false,
 	isLoading: false,
+	languageForms: [{id: 'prose', text: 'Prose'},{id: 'poetry', text: 'Poetry'}],
 
 	serverAlert: {},
 
@@ -65,7 +66,6 @@ export default Ember.Controller.extend({
 	}.property(),
 
 
-	languageForms: [{id: 'prose', text: 'Prose'},{id: 'poetry', text: 'Poetry'}],
 
 	inputTypes: Ember.computed('newProject.languageForm', function(){
 

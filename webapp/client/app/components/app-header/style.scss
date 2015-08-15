@@ -28,6 +28,13 @@ header.app-header {
         @include breakpoint(xs) {
             text-align: center;
             margin-top: 0;
+            height: auto;
+            max-height: 85px;
+
+            a {
+                display: inline-block;
+                margin-bottom: 10px;
+            }
         }
 
         a {

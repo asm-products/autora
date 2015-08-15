@@ -2,6 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
+	sortBy: 'createdAt:desc',
+	projectSorting: Ember.computed('sortBy', function(){
+		var array = [];
+		array[0] = this.get('sortBy');
+		return array;
+		// return [].push(this.get('sortBy'));
+	}),
+	sortOptions: [{id: 'createdAt:desc', text:'Newest'},
+				  {id: 'createdAt:asc', text:'Oldest'},
+				  {id: 'name:asc', text:'Name'}],
+	// languageForms: [{id: 'prose', text: 'Prose'},{id: 'poetry', text: 'Poetry'}],
+
+
 	projectsCount: Ember.computed('model.projects',function(){
 		console.log('user.index.index model.projects');
 		console.log(this.get('model.projects'));
@@ -27,5 +40,7 @@ export default Ember.Controller.extend({
 		});
 
 
-	})
+	}),
+
+	sortedAndFilteredProjects: Ember.computed.sort('model.projects', 'projectSorting')
 });
