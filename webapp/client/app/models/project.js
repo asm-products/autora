@@ -13,7 +13,7 @@ export default DS.Model.extend({
 
   user:  DS.belongsTo('user', {async: true}),
   tags: DS.hasMany('tag', {async: true}),
-  entries: DS.hasMany('entry'),
+  entries: DS.hasMany('entry', {async: true}),
   piles: DS.hasMany('pile'),
 
   createdAt: DS.attr('timestamp'),
