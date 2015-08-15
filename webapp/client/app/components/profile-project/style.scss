@@ -13,12 +13,13 @@
 	h3 {
 		font-size: 20px;
 		margin: 0;
+		max-width: calc(100% - 70px);
 	}
 
 	.row {
-		height: 45px;
+		min-height: 45px;
 		>div {
-			height: 45px;
+			min-height: 45px;
 		}
 	}
 
@@ -31,5 +32,11 @@
 		right: 0;
 		top: 50%;
 		transform: translateY(-50%);
+
+		@include breakpoint('xs') {
+			position: static;
+			transform: none;
+			margin-top: 20px;
+		}
 	}
 }
