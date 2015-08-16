@@ -9,10 +9,19 @@ export default Ember.Component.extend({
 		return likedBy.contains(currentUserId);
 	}),
 
-	// likedBy: Ember.computed.mapBy('model.likes', 'user'), 
-	// likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0
+	isLoaded: Ember.computed.not('model.isLoading'),
+	ordered: false,
 
-	// amountOfLikes: Ember.alias('likedByFix.length'),
+	likesAreLoaded: Ember.computed('model.likes.isFulfilled','model.isLoading', function(){
+		if(this.get('model.likes.isFulfilled') && !this.get('model.isLoading') && !this.get('ordered')){
+			var self = this;
+			Ember.run.scheduleOnce('afterRender',function(){
+				self.set('ordered', true);
+				self.set('model.initialAmountOfLikes', JSON.parse(JSON.stringify(self.get('model.amountOfLikes'))));	
+			});
+		}
+		return this.get('model.likes.isFulfilled');
+	}),
 
 	pickAction: 'pickEntry',
 	likeAction: 'likeEntry',
