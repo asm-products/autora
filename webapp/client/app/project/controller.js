@@ -34,6 +34,7 @@ export default Ember.Controller.extend({
 			return descriptionAlert;
 		}
 	}),
+
 	projectNameAlert: Ember.computed('newProject.name','showErrors', function(){
 		if(this.get('showErrors')){
 			var name = this.get('newProject.name');
@@ -51,7 +52,6 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-
 	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function() {
 		return (
 			this.get('projectNameAlert.type') !== 'danger' &&
@@ -59,16 +59,14 @@ export default Ember.Controller.extend({
 		);
 	}),
 
-	newProject: function(){
+	newProject: function() {
+
 		//ugly hack to avoid set() changing the Defaults object
 		//Solution? maybe createRecord() right away after visiting this and use Defaults on the model object instead
 		return JSON.parse(JSON.stringify(this.get('newProjectDefaults')));
 	}.property(),
 
-
-
 	inputTypes: Ember.computed('newProject.languageForm', function(){
-
 		var languageForm = this.get('newProject.languageForm');
 		var isPoetry = languageForm === 'poetry';
 
@@ -80,7 +78,6 @@ export default Ember.Controller.extend({
 	}),
 
 	inputObserver: Ember.observer('newProject.inputType', 'newProject.languageForm', function(){
-
 		var languageForm = this.get('newProject.languageForm');
 		var inputType = this.get('newProject.inputType');
 		var isPoetry = languageForm === 'poetry';
@@ -96,83 +93,100 @@ export default Ember.Controller.extend({
 	// inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
 
 	actions: {
-			createProject: function(){
-				this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
-				this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
+		createProject: function(){
+			this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
+			this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
 
-				this.set('showErrors', true);
-				if(this.get('isReadyToSend')){
+			this.set('newProject.image', this.get('filePreviewUrl'));
 
-					//start showing spinner
-					this.set('isLoading', true);
+			this.set('showErrors', true);
+			if(this.get('isReadyToSend')){
 
-					var self = this;
-					// this.set('newProject.tags', null);
-					this.set('newProject.user', this.get('session.user')); //set current session as user
-					var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
-					var tags = this.get('tags');
-					var tagRecords = [];
-					var tagRecord = null;
-					var tagRequests = [];
+				//start showing spinner
+				this.set('isLoading', true);
 
-					tags.forEach(function(tagName){
-						//SAVE TAGS
-						tagRequests.push(self.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
-						.then(function(foundTags){
-							console.log('tagRecords:');
-							console.log(foundTags);
-							if(foundTags.get('length') === 0) {
-								//there is no tag with this name, lets create one
-								var newTag = {
-									name: tagName,
-								};
-								tagRecord = self.store.createRecord('tag', newTag);
-								tagRequests.push(tagRecord.save());
-							} else {
-							tagRecord = foundTags.get('firstObject');
-							}
-							tagRecords.pushObject(tagRecord);
-						}));
-					});
+				var self = this;
+				// this.set('newProject.tags', null);
+				this.set('newProject.user', this.get('session.user')); //set current session as user
+				var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
+				var tags = this.get('tags');
+				var tagRecords = [];
+				var tagRecord = null;
+				var tagRequests = [];
 
-					Ember.RSVP.allSettled(tagRequests).then(function(){
-						newProjectRecord.set('tags', tagRecords);
-						//SAVE PROJECT
-						newProjectRecord.save()
-						.then(function(projectRecord){
-							self.toggleProperty('create');
-							self.set('newProject', '');
-							console.log(self.get('newProjectDefaults'));
-							self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
-							self.set('tags', []);
+				tags.forEach(function(tagName){
+					//SAVE TAGS
+					tagRequests.push(self.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
+					.then(function(foundTags){
+						console.log('tagRecords:');
+						console.log(foundTags);
+						if(foundTags.get('length') === 0) {
+							//there is no tag with this name, lets create one
+							var newTag = {
+								name: tagName,
+							};
+							tagRecord = self.store.createRecord('tag', newTag);
+							tagRequests.push(tagRecord.save());
+						} else {
+						tagRecord = foundTags.get('firstObject');
+						}
+						tagRecords.pushObject(tagRecord);
+					}));
+				});
 
-							var lastRequests = [];
-							//SAVE USER - relationship save
-							lastRequests.push(self.get('session.user.content').save()); // check for errors and delete the project if needed
-							projectRecord.get('tags').forEach(function(tag){
-								lastRequests.push(tag.save());
-							}); // check for errors and delete the project if needed
-							Ember.RSVP.allSettled(lastRequests).then(function(){
-								//ALL DONE - everything is set up, redirect...
-								self.set('isLoading', false);
-								self.transitionToRoute('project.index', projectRecord.get('id'));
-							});
-						},function(error){
-							console.log(error);
-							self.set('serverAlert.message', error);
+				Ember.RSVP.allSettled(tagRequests).then(function(){
+					newProjectRecord.set('tags', tagRecords);
+					//SAVE PROJECT
+					newProjectRecord.save()
+					.then(function(projectRecord){
+						self.toggleProperty('create');
+						self.set('newProject', '');
+						console.log(self.get('newProjectDefaults'));
+						self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
+						self.set('tags', []);
+
+						var lastRequests = [];
+						//SAVE USER - relationship save
+						lastRequests.push(self.get('session.user.content').save()); // check for errors and delete the project if needed
+						projectRecord.get('tags').forEach(function(tag){
+							lastRequests.push(tag.save());
+						}); // check for errors and delete the project if needed
+						Ember.RSVP.allSettled(lastRequests).then(function(){
+							//ALL DONE - everything is set up, redirect...
 							self.set('isLoading', false);
+							self.transitionToRoute('project.index', projectRecord.get('id'));
 						});
+					},function(error){
+						console.log(error);
+						self.set('serverAlert.message', error);
+						self.set('isLoading', false);
 					});
-
-					
-
-				}
-
-			},
-
-			toggleCreateProjectModal: function(){
-				this.set('showErrors', false);
-				this.toggleProperty('create');
+				});
 			}
+		},
+
+		toggleCreateProjectModal: function(){
+			this.set('showErrors', false);
+			this.toggleProperty('create');
+			this.set('filePreviewUrl', null);
+			this.set('showFilePicker', null);
+		},
+
+		showFilePicker: function () {
+			this.set('showFilePicker', true);
+		},
+
+		hideFilePicker: function () {
+			this.set('showFilePicker', false);
+		},
+
+		fileSelected: function (file) {
+			console.log(file);
+			this.set('filePreviewUrl', file.url);
+			/*
+			Ember.$.post('/s3/upload', file).done(function () {
+			}.bind(this));
+			*/
+		}
 	}
 });

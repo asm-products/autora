@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
     firebase: 'https://autora.firebaseio.com/',
+    filepickerKey: 'Aef4kE5lHRcGgWuoUQou9z',
     baseURL: '/',
     locationType: 'auto',
     googleFonts: [
@@ -16,8 +17,9 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
       'style-src': "'self' fonts.googleapis.com",
-      'img-src': "'self' www.gravatar.com placeholdit.imgix.net",
-      'default-src': 'none'
+      'img-src': "'self' www.gravatar.com placeholdit.imgix.net s3.amazonaws.com www.filepicker.io",
+      'default-src': 'none',
+      'frame-src': '*'
     },
     EmberENV: {
       FEATURES: {

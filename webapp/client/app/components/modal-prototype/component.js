@@ -6,5 +6,5 @@ export default ModalDialog.extend({
   // renderInPlace: true,
   alignment: 'none',
   translucentOverlay: true,
-  close: 'toggleCreateProjectModal',
+  close: 'toggleCreateProjectModal'
 });
