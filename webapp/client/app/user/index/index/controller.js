@@ -16,8 +16,7 @@ export default Ember.Controller.extend({
 
 
 	projectsCount: Ember.computed('model.projects',function(){
-		console.log('user.index.index model.projects');
-		console.log(this.get('model.projects'));
+		
 		return this.get('model.projects.length');
 	}),
 	openProjectsCount: Ember.computed('model.projects', function(){

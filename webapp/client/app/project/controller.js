@@ -119,8 +119,6 @@ export default Ember.Controller.extend({
 						//SAVE TAGS
 						tagRequests.push(self.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
 						.then(function(foundTags){
-							console.log('tagRecords:');
-							console.log(foundTags);
 							if(foundTags.get('length') === 0) {
 								//there is no tag with this name, lets create one
 								var newTag = {
@@ -142,7 +140,6 @@ export default Ember.Controller.extend({
 						.then(function(projectRecord){
 							self.toggleProperty('create');
 							self.set('newProject', '');
-							console.log(self.get('newProjectDefaults'));
 							self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
 							self.set('tags', []);
 
