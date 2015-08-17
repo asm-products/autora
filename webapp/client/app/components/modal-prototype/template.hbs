@@ -26,8 +26,15 @@
 			{{/if}}
 			<div class="row">
 				<div class="col-sm-4">
-					<div class="photo-upload">
-						Photo upload not implemented yet.
+					<div class="photo-upload" {{action 'showFilePicker'}}>
+						{{#if filePreviewUrl}}
+							<img src="{{filePreviewUrl}}" />
+						{{else}}
+							Click here to upload image
+						{{/if}}
+						{{#if showFilePicker}}
+							{{ember-filepicker pickerOptions=pickerOptions onSelection='fileSelected' onClose='hideFilePicker' onError='onError'}}
+						{{/if}}
 					</div>
 				</div>
 				<div class="col-sm-8">

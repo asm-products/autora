@@ -3,7 +3,13 @@
     <div class="line">
         <div class="action">Collaborate</div>
     </div>
-    <div class="image"><img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=70&h=70" /></div>
+    <div class="image">
+        {{#if attrs.model.image}}
+            <img src="{{attrs.model.image}}" />
+        {{else}}
+            <img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=70&h=70" />
+        {{/if}}
+    </div>
     {{/link-to}}
 </div>
 <div class="body">

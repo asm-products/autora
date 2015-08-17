@@ -10,6 +10,7 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
+    "buildw": "ember build --watch",
     "test": "ember test",
     "preinstall": "bower install",
     "postinstall": "ember build --environment=production"
@@ -47,8 +48,7 @@
     "ember-select-2": "1.3.0",
     "emberfire": "^1.5.0",
     "ember-cli-moment-shim": "0.6.1",
-    "ember-moment": "3.2.1"
-  },
-  "devDependencies": {
+    "ember-moment": "3.2.1",
+    "ember-cli-filepicker": "0.1.95"
   }
 }

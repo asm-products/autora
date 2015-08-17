@@ -46,6 +46,10 @@ $initial-translate: -50%/$initial-scale;
 		height: 100px;
 		text-align: center;
 		padding: 10px;
+
+		> img {
+			width: 100%;
+		}
 	}
 
 	.close-modal {
