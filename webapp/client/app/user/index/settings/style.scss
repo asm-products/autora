@@ -5,6 +5,11 @@
 			position: relative;
 			top: 33px;
 			height: 36px;
+
+			@include breakpoint('xs'){
+				top: 0;
+				margin-bottom: 15px;
+			}
 		}
 	}
 
