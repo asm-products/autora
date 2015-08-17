@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          'landing-page/public/css/style.min.css' : ['public/css/style.purified.css']
+          'landing-page/public/css/style.min.css' : ['landing-page/public/css/style.purified.css']
         }
       }
     },
