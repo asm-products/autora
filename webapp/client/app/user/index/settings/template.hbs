@@ -1,2 +1,47 @@
-<h3>Users's settings</h3>
+<div class="user-index-settings">
+	<h3>Users's settings</h3>
+	<h4>Change password</h4>
+	{{#if changePasswordAlert.message}}
+		<div class="input-alert {{changePasswordAlert.type}}">
+			{{changePasswordAlert.message}}
+		</div>
+	{{/if}}
+	<form class="{{if changePasswordLoading 'au-loading'}}" {{action "changePassword" on="submit"}}>
+		<div class="row">
+			<div class="col-sm-5">
+				<label>Current password</label>
+				{{input type="password" value=oldPassword}}
+			</div>
+			<div class="col-sm-5">
+				<label>New password</label>
+				{{input type="password" value=newPassword}}
+			</div>
+			<div class="col-sm-2">
+				<button type="submit" class="small orange bordered rounded button">Change</button>
+			</div>
+		</div>
+	</form>
+	<h4>Change email</h4>
+	{{#if changeEmailAlert.message}}
+		<div class="input-alert {{changeEmailAlert.type}}">
+			{{changeEmailAlert.message}}
+		</div>
+	{{/if}}
+	<form class="{{if changeEmailLoading 'au-loading'}}" {{action "changeEmail" on="submit"}}>
+		<div class="row">
+			<div class="col-sm-5">
+				<label>New email</label>
+				{{input type="email" value=newEmail}}
+			</div>
+			<div class="col-sm-5">
+				<label>Current password</label>
+				{{input type="password" value=passwordForEmail}}
+			</div>
+			<div class="col-sm-2">
+				<button type="submit" class="small orange rounded bordered button">Change</button>
+			</div>
+		</div>
+	</form>
+
+</div>
 {{outlet}}

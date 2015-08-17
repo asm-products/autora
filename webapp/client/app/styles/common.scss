@@ -13,6 +13,10 @@ a {
 	&.active {
 		// text-decoration: underline;
 	}
+
+	&.plain {
+		text-decoration: none !important;
+	}
 }
 
 h1,h2,h3,h4 {

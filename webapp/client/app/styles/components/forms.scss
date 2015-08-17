@@ -1,3 +1,7 @@
+form {
+	position: relative;
+}
+
 input {
 	outline: 0 !important;
 }
@@ -48,6 +52,11 @@ input:not([type=submit]):not([type=checkbox]),textarea {
 	&.danger {
 		background: lighten(red, 30%);
 		color: darken(red, 30%);
+	}
+
+	&.success {
+		background: lighten(green, 45%);
+		color: darken(green, 15%);
 	}
 
 	&.top {

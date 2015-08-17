@@ -12,12 +12,23 @@ export default DS.Model.extend({
   order: DS.attr('number'),
   content: DS.attr('string'),
 
+  likedBy: Ember.computed.mapBy('likes', 'user'),
+  amountOfLikes: Ember.computed.alias('likedBy.length'),
+  initialAmountOfLikes: DS.attr('number'),
+  // initialAmountOfLikes: function(){
+  //   var self = this;
+  //   console.log(this.get('content'));
+  //   console.log(this.get('likes.length'));
+  //   console.log(this.get('likedBy.length'));
+  //   Ember.run.scheduleOnce('afterRender',function(){
+  //     self.set('initialAmountOfLikes', self.get('amountOfLikes'));
+  //     console.log(self.get('initialAmountOfLikes'));
+  //   });
+  // }.observes(''),
   createdAt: DS.attr('timestamp'),
   updatedAt: DS.attr('timestamp'),
 
-  likedBy: Ember.computed.mapBy('likes', 'user'),
-  likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0
-  amountOfLikes: Ember.computed.alias('likedByFix.length'),
+  // likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0
 
   //+ likes, flags etc.
 });

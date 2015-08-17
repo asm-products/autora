@@ -2,17 +2,29 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-	isLikedByUser: Ember.computed('model.likes.@each','session.user', function(){
-		// var likes = this.get('model.likes');
-		var currentUserId = this.get('session.user.id');
-		var likedBy = this.get('model.likedBy').mapBy('id');
-		return likedBy.contains(currentUserId);
+	isLikedByUser: Ember.computed('model.likes.@each','session.user','model.likes.isFulfilled', function(){
+		
+		if(this.get('model.likes.isFulfilled')){
+			var currentUserId = this.get('session.user.id');
+			var likedBy = this.get('model.likedBy').mapBy('id');
+			return likedBy.contains(currentUserId);
+		} else {
+			return false;
+		}
 	}),
 
-	// likedBy: Ember.computed.mapBy('model.likes', 'user'), 
-	// likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0
+	// isLoaded: Ember.computed.not('model.isLoading'),
 
-	// amountOfLikes: Ember.alias('likedByFix.length'),
+	ordered: false,
+	likesAreLoaded: function(){
+		if(this.get('model.likes.isFulfilled') && !this.get('model.isLoading') && !this.get('ordered')){
+			var self = this;
+			Ember.run.scheduleOnce('afterRender',function(){
+				self.set('ordered', true);
+				self.set('model.initialAmountOfLikes', JSON.parse(JSON.stringify(self.get('model.amountOfLikes'))));	
+			});
+		}
+	}.observes('model.likes.isFulfilled', 'model.isLoading'),
 
 	pickAction: 'pickEntry',
 	likeAction: 'likeEntry',

@@ -93,6 +93,7 @@ export default Ember.Controller.extend({
 	// inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
 
 	actions: {
+
 		createProject: function(){
 			this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
