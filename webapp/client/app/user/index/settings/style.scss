@@ -1,0 +1,24 @@
+.user-index-settings {
+	padding: 0px 20px;
+	.row {
+		.button {
+			position: relative;
+			top: 33px;
+			height: 36px;
+		}
+	}
+
+	h3 {
+		margin-bottom: 40px;
+	}
+
+	.input-alert {
+		margin-bottom: 15px;
+	}
+
+}
+
+.caret.caret-reversed {
+    border-top-width: 0;
+    border-bottom: 4px solid $color2;
+}

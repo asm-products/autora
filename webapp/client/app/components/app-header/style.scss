@@ -1,10 +1,13 @@
 header.app-header {
     // padding: 0 $site-padding;
     border-bottom: 1px solid $border-color;
-    overflow: hidden;
+    // overflow: hidden;
     font-family: Roboto;
     font-weight: 500;
     letter-spacing: 1px;
+
+    z-index: 2;
+    position: relative;
 
     img.logo {
         height: 40px;
@@ -36,6 +39,72 @@ header.app-header {
                 margin-bottom: 10px;
             }
         }
+        
+        .profile-circle {
+            overflow: hidden;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: top;
+            margin-top: -7px;
+            border: 1px solid #cccccc;
+            width: 35px;
+        }
+
+        .dropdown {
+            $pointer-size: 15px;
+            margin-top: $pointer-size*1.2;
+            width: 200px;
+            position: absolute;
+            z-index: 100;
+            right: 0;
+            background: $background-color;
+            box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+            // border-radius: $small-border-radius;
+
+
+            a {
+                display: block;
+                padding: 8px 10px;
+                width: 100%;
+                border-bottom: 1px solid $border-color2;
+                margin: 0;
+                position: relative;
+                z-index: 3;
+
+                span.username {
+                    max-width: calc(100% - 30px);
+                    display: inline-block;
+                    word-break: break-all;
+                }
+
+                &:hover {
+                    background: $border-color2;
+                    text-decoration: none;
+                }
+
+                i.fa { //to be replaced with SVG?
+                    padding-right: 8px;
+                }
+            }
+            &::before {
+                //pointer
+                content: '';
+                display: block;
+
+                position: absolute;
+                top: -$pointer-size/2;
+                right: 25px;
+                margin-left:-$pointer-size/2;
+
+                transform: rotate(45deg);
+                background: $background-color;
+                z-index: 2;
+                width: $pointer-size;
+                height: $pointer-size;
+                box-shadow: -1px -1px 0px 0px rgba(0,0,0,0.07);
+
+            }
+        }
 
         a {
             text-transform: uppercase;
@@ -47,18 +116,6 @@ header.app-header {
                 color: #ffffff;
             }
 
-            &.profile-circle {
-                overflow: hidden;
-                border-radius: 50%;
-                display: inline-block;
-                vertical-align: top;
-                margin-top: -7px;
-                border: 1px solid #cccccc;
-
-                img {
-                    width: 35px;
-                }
-            }
         }
     }
 }
