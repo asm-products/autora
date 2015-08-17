@@ -279,6 +279,22 @@ body {
             }
         }
 
+        svg,img {
+            max-width:30px;
+            margin: 0 5px;
+            vertical-align: top;
+        }
+        img {
+            max-width: 47px;
+            position: relative;
+            top: -8px;
+            margin-left: -2px;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
         @media only screen and (min-height:1250px){
             position: absolute;
             bottom: 0;

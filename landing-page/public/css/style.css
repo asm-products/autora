@@ -6335,6 +6335,17 @@ body {
       body footer a:visited {
         color: #ffffff;
         text-decoration: none; }
+    body footer svg, body footer img {
+      max-width: 30px;
+      margin: 0 5px;
+      vertical-align: top; }
+    body footer img {
+      max-width: 47px;
+      position: relative;
+      top: -8px;
+      margin-left: -2px; }
+    body footer p {
+      margin-top: 10px; }
     @media only screen and (min-height: 1250px) {
       body footer {
         position: absolute;
