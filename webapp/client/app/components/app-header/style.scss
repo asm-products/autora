@@ -33,11 +33,6 @@ header.app-header {
             margin-top: 0;
             height: auto;
             max-height: 85px;
-
-            a {
-                display: inline-block;
-                margin-bottom: 10px;
-            }
         }
         
         .profile-circle {
@@ -59,6 +54,7 @@ header.app-header {
             right: 0;
             background: $background-color;
             box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+            text-align: left;
             // border-radius: $small-border-radius;
 
 
@@ -111,6 +107,12 @@ header.app-header {
             color: $color2;
             font-size: 12px;
             margin-left: 20px;
+
+            @include breakpoint('xs') {
+                display: inline-block;
+                margin-bottom: 10px;
+                margin-left: 15px;
+            }
 
             &.button-flat {
                 color: #ffffff;
