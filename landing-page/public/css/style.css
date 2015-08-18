@@ -6339,6 +6339,11 @@ body {
       max-width: 30px;
       margin: 0 5px;
       vertical-align: top; }
+    body footer .instagram {
+      padding: 2px;
+      position: relative;
+      top: 0px;
+      left: -6px; }
     body footer img {
       max-width: 47px;
       position: relative;
