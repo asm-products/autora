@@ -1,3 +1,5 @@
-{{app-header isLoggedIn=session.isAuthenticated}}
-<div class="app-content container-fluid">{{outlet}}</div>
+<div class="page-wrapper">
+	{{app-header isLoggedIn=session.isAuthenticated}}
+	<main class="app-content container-fluid">{{outlet}}</main>
+</div>
 {{app-footer}}
