@@ -35,6 +35,7 @@ Router.map(function() {
       this.route('how-it-works');
     });
     this.route('logout');
+    this.route('reset');
   });
 
   this.route('tag', function() {
