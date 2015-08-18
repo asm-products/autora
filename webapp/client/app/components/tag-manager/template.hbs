@@ -11,6 +11,13 @@
 		{{tag}}
 	</span>
 {{/each}}
-{{input value=newTag placeholder="#Tags - press space to submit tag"}}
+<div class="row">
+	<div class="col-xs-10">
+		{{input value=newTag placeholder="Tags - press space to submit tag"}}
+	</div>
+	<div class="col-xs-2">
+		<div {{action "addTag"}} class="small bordered orange rounded button">Add</div>
+	</div>
+</div>
 {{newTagAdd}}
 {{yield}}
