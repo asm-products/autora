@@ -1,0 +1,9 @@
+ <a class="plain toggleDropdown">{{gravatar-image email=session.user.email width=35 class="profile-circle"}} <div class="caret {{if showDropdown "caret-reversed"}}"><b></b></div></a>
+{{#if showDropdown}}
+    <div class="dropdown">
+        {{#link-to 'user.index' session.user.id}}<i class="fa fa-user"></i><span class="username">{{session.user.username}}</span>
+        {{/link-to}}
+        {{#link-to 'user.index.settings' session.user.id}}<i class="fa fa-wrench"></i>Settings{{/link-to}}
+        {{#link-to 'user.logout'}}<i class="fa fa-power-off"></i>Logout{{/link-to}}
+    </div>
+{{/if}}
