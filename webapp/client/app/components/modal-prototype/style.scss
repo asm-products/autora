@@ -68,6 +68,11 @@ $initial-translate: -50%/$initial-scale;
 		}
 	}
 
+	.small.button {
+		margin-top: $vertical-input-margin;
+		// width: 100%;
+	}
+
 	.footer {
 		text-align: right;
 	}

@@ -1,9 +1,22 @@
+$footer-height: 55px;
 #app {
     color: $text-color;
+    height:100%;
 
     .app-content {
         padding: 0;
         position: relative;
         z-index: 1;
+    }
+
+    .page-wrapper {
+    	min-height:100%;
+    	margin-bottom: -$footer-height; //footer height
+
+    	&::after {
+    		content: "";
+    		display: block;
+    		height: $footer-height;
+    	}
     }
 }
