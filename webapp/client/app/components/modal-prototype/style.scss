@@ -39,13 +39,12 @@ $initial-translate: -50%/$initial-scale;
 		height: 100px;
 	}
 
-	.photo-upload {
+	.project-photo {
 		border: 1px solid $border-color2;
 		margin-top: $vertical-input-margin;
 		border-radius: $input-border-radius;
 		height: 100px;
 		text-align: center;
-		padding: 10px;
 
 		> img {
 			width: 100%;

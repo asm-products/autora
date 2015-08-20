@@ -181,9 +181,9 @@ export default Ember.Controller.extend({
 			this.set('showFilePicker', false);
 		},
 
-		fileSelected: function (file) {
+		projectPhotoUploadDone: function (file) {
 			console.log(file);
-			this.set('filePreviewUrl', file.url);
+			this.set('filePreviewUrl', file);
 			/*
 			Ember.$.post('/s3/upload', file).done(function () {
 			}.bind(this));

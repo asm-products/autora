@@ -1,0 +1,8 @@
+<label for="{{uploaderId}}">
+    {{#if filePreviewUrl}}
+        <img src="{{filePreviewUrl}}" />
+    {{else}}
+        Click here
+    {{/if}}
+</label>
+{{file-uploader url=url elementId=uploaderId uploadDone='uploadDone' uploadError='uploadError'}}

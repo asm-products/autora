@@ -1,0 +1,21 @@
+.photo-uploader {
+    height: 100%;
+    width: 100%;
+
+    label {
+        font-weight: normal;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        cursor: pointer;
+
+        > img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    input {
+        display: none;
+    }
+}

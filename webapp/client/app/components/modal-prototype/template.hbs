@@ -26,15 +26,8 @@
 			{{/if}}
 			<div class="row">
 				<div class="col-sm-4">
-					<div class="photo-upload" {{action 'showFilePicker'}}>
-						{{#if filePreviewUrl}}
-							<img src="{{filePreviewUrl}}" />
-						{{else}}
-							Click here to upload image
-						{{/if}}
-						{{#if showFilePicker}}
-							{{ember-filepicker pickerOptions=pickerOptions onSelection='fileSelected' onClose='hideFilePicker' onError='onError'}}
-						{{/if}}
+					<div class="project-photo">
+					    {{photo-uploader uploaderId='project-photo-uploader' uploadSuccess='projectPhotoUploadDone'}}
 					</div>
 				</div>
 				<div class="col-sm-8">
