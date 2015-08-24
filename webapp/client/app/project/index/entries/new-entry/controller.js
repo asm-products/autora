@@ -21,8 +21,12 @@ export default Ember.Controller.extend({
 			this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
 			var pile = this.get('pile');
-			this.store.createRecord('entry', this.get('newEntry')).save().then(function(){
+			var newEntry = this.store.createRecord('entry', this.get('newEntry'));
+			newEntry.save().then(function(){
 				pile.save();
+			}, function(error){
+				console.log(error);
+				newEntry.rollback();
 			});
 			this.transitionToRoute('project.index.entries');
 		},

@@ -8,6 +8,7 @@ export default DS.Model.extend({
 
   competingEntries: DS.hasMany('entry', {async: true}),
 
+
   createdAt: DS.attr('timestamp'),
   updatedAt: DS.attr('timestamp')
 });

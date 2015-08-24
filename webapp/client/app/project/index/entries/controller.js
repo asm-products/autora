@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
 
 		pickEntry: function(entry){
 			var project = this.get('project.model');
-			entry.set('project', project);
+			entry.set('project', project).save(); //added save to test security rules
 			//ToDO: close Pile
 		},
 
