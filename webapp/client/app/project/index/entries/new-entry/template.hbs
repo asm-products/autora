@@ -8,6 +8,13 @@
 		</svg>
 	{{/link-to}}
 	<h3> Add new entry </h3>
+	{{#if showAlerts}}
+		{{#if alert.message}}
+			<div class="input-alert {{alert.type}}">
+				{{alert.message}}
+			</div>
+		{{/if}}
+	{{/if}}
 	<form {{action "createEntry" on="submit"}}>
 		{{textarea-with-counter placeholder="Write your new entry" maxlength=140 value=newEntry.content}} <br>
 		<div class="text-right">
