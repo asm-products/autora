@@ -8,6 +8,24 @@
         color: #ffffff;
         text-align: center;
         padding-top: 100px;
+        text-shadow: 1px 1px 1px #000;
+        position: relative;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background:transparentize($color2,.7);
+        }
+
+        * {
+            position: relative;
+            z-index: 1;
+        }
 
         @include breakpoint(xs) {
             height: 150px;
