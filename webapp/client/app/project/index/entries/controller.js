@@ -41,6 +41,7 @@ export default Ember.Controller.extend({
 			newLikeData.createdAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.updatedAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.pile = this.get('pile');
+			newLikeData.id = "testId";
 
 			this.store.createRecord('like', newLikeData).save().then(function(){
 				entry.save();
