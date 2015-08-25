@@ -3,6 +3,10 @@ import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
 
+	showAlerts: false,
+	hasErrors: false,
+
+
 	pile: Ember.computed('model', function(){
 		return this.get('model.firstObject');
 	}),
@@ -16,19 +20,33 @@ export default Ember.Controller.extend({
 		};
 	}),
 
+
+	isEmpty: Ember.computed.empty('newEntry.content'),
+	alert: Ember.computed('isEmpty', function(){
+		if(this.get('isEmpty')){
+			return {
+				type: 'danger',
+				message: 'The entry content can\'t be empty'
+			}
+		}
+	}),
+
 	actions: {
 		createEntry: function() {
 			this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
-			var pile = this.get('pile');
-			var newEntry = this.store.createRecord('entry', this.get('newEntry'));
-			newEntry.save().then(function(){
-				pile.save();
-			}, function(error){
-				console.log(error);
-				newEntry.rollback();
-			});
-			this.transitionToRoute('project.index.entries');
+			this.set('showAlerts', true);
+			if(!this.get('isEmpty')){
+				var pile = this.get('pile');
+				var newEntry = this.store.createRecord('entry', this.get('newEntry'));
+				newEntry.save().then(function(){
+					pile.save();
+				}, function(error){
+					console.log(error);
+					newEntry.rollback();
+				});
+				this.transitionToRoute('project.index.entries');
+			}
 		},
 
 		transitionBack: function(){
