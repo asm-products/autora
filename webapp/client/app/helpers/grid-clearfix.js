@@ -16,8 +16,8 @@ export function gridClearfix(params, hash) {
 		}
 		// console.log(output);
 	}
-		console.log('Entry n:'+n);
-		console.log(output);
+		// console.log('Entry n:'+n);
+		// console.log(output);
 		return Ember.String.htmlSafe(output);
 }
 
