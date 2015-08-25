@@ -11,8 +11,7 @@ export default Ember.Component.extend({
             }
         },
 
-        uploadError: function (jqXHR, textStatus, errorThrown) {
-            debugger;
+        uploadError: function () {
         }
     }
 });

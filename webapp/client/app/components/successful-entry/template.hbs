@@ -1,5 +1,5 @@
 <div class="successful-entry">
-	<p>{{attrs.model.content}}</p>
+	<p>{{entryContent}}</p>
 	{{yield}}
 	<div class="info">
 		{{#link-to 'user.index' attrs.model.user.id}}{{gravatar-image class="circular profile" email=attrs.model.user.email size=30}}{{/link-to}} <span class="details-link">Details</span>
