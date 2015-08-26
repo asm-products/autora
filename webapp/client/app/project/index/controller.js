@@ -19,6 +19,7 @@ export default Ember.Controller.extend({
 
 			var project = this.get('model');
 			var self = this;
+			console.log(this.get('newPile'));
 			this.store.createRecord('pile', this.get('newPile')).save().then(function(){
 				project.save().then(function(){
 					self.transitionToRoute('project.index.entries');

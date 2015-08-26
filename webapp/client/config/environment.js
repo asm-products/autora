@@ -51,6 +51,7 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy['script-src'] = "'self' 'unsafe-inline' *";
     ENV.contentSecurityPolicy['style-src'] = "'self' 'unsafe-inline' fonts.googleapis.com";
     ENV.contentSecurityPolicy['connect-src'] = "'self' *";
+    ENV.firebase = 'https://autora.firebaseio.com/';
   }
 
   if (environment === 'test') {

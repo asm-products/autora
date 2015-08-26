@@ -155,7 +155,19 @@ export default Ember.Controller.extend({
 						Ember.RSVP.allSettled(lastRequests).then(function(){
 							//ALL DONE - everything is set up, redirect...
 							self.set('isLoading', false);
-							self.transitionToRoute('project.index', projectRecord.get('id'));
+							self.transitionToRoute('project.index.entries', projectRecord.get('id'));
+						});
+
+						var pile = {
+							project: projectRecord,
+							createdAt: Firebase.ServerValue.TIMESTAMP,
+							updatedAt: Firebase.ServerValue.TIMESTAMP
+						};
+
+						console.log(pile);
+
+						self.store.createRecord('pile', pile).save().then(function () {
+							projectRecord.save();
 						});
 					},function(error){
 						console.log(error);
