@@ -43,15 +43,19 @@ export default Ember.Controller.extend({
 			newLikeData.pile = this.get('pile');
 			// newLikeData.id = "testId";
 
-			this.store.createRecord('like', newLikeData).save().then(function(){
-				entry.save();
-			}); //Todo: manage response
-			// var likes = entry.get('likes');
-			// likes.addObject(newLike);
-			// entry.save();
-			 //entry needs to be saved instrad of like because of Embedded relationship
-
-			//save()
+			if(this.get('session.isAuthenticated')){
+				var newLike = this.store.createRecord('like', newLikeData);
+				newLike.save().then(function(){
+					entry.save().then(function(){},function(error){
+						entry.rollbackAttributes();
+					});
+				}, function(error){
+					newLike.rollbackAttributes();
+				});
+			} else {
+				this.transitionToRoute('user.login');
+			}
+		
 		},
 
 		unlikeEntry: function(unlikeData, entry){

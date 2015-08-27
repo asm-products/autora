@@ -17,7 +17,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
       'style-src': "'self' fonts.googleapis.com",
-      'img-src': "'self' www.gravatar.com placeholdit.imgix.net s3.amazonaws.com www.filepicker.io",
+      'img-src': "'self' www.gravatar.com placeholdit.imgix.net www.filepicker.io *.amazonaws.com",
       'default-src': 'none',
       'frame-src': '*'
     },
