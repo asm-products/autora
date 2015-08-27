@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
 	hasErrors: false,
 
 	pile: Ember.computed('model', function(){
-		return this.get('model.firstObject');
+		return this.get('model');
 	}),
 
 	newEntry: Ember.computed('model', function(){
@@ -31,7 +31,8 @@ export default Ember.Controller.extend({
 
 	resetForm: function () {
 		this.set('newEntry.content', '');
-		this.set('isEmpty', false);
+		this.set('hasErrors', false);
+		this.set('showAlerts', false);
 	},
 
 	actions: {

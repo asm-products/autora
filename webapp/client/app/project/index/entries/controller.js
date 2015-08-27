@@ -4,7 +4,7 @@ import Firebase from 'firebase';
 export default Ember.Controller.extend({
 
 	pile: Ember.computed('model', function(){
-		return this.get('model.firstObject');
+		return this.get('model');
 	}),
 
 	// newPile: Ember.computed('model', function(){
@@ -23,16 +23,25 @@ export default Ember.Controller.extend({
 	project: Ember.inject.controller('project.index'),
 
 	actions: {
-		createPile: function() {
-			//Unused code. This is handled at Project.index controller
-			this.set('newPile.createdAt', Firebase.ServerValue.TIMESTAMP);
-			this.set('newPile.updatedAt', Firebase.ServerValue.TIMESTAMP);
-			this.store.createRecord('pile', this.get('newPile')).save();
-		},
-
 		pickEntry: function(entry){
-			var project = this.get('project.model');
-			entry.set('project', project).save(); //added save to test security rules
+			var project = this.get('project.model'),
+				pile = this.get('pile');
+
+			entry.set('project', project).save().then(function () {
+				pile.set('locked', true).save().then(function () {
+					var pile = {
+						project: project,
+						createdAt: Firebase.ServerValue.TIMESTAMP,
+						updatedAt: Firebase.ServerValue.TIMESTAMP
+					};
+
+					this.store.createRecord('pile', pile).save().then(function (pile) {
+						project.save().then(function () {
+							this.set('pile', pile);
+						}.bind(this));
+					}.bind(this));
+				}.bind(this));
+			}.bind(this)); //added save to test security rules
 			//ToDO: close Pile
 		},
 
