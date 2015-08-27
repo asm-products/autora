@@ -25,7 +25,8 @@ export default Ember.Controller.extend({
 	actions: {
 		pickEntry: function(entry){
 			var project = this.get('project.model'),
-				pile = this.get('pile');
+				pile = this.get('pile'),
+				_this = this;
 
 			entry.set('project', project).save().then(function () {
 				pile.set('locked', true).save().then(function () {
@@ -35,14 +36,13 @@ export default Ember.Controller.extend({
 						updatedAt: Firebase.ServerValue.TIMESTAMP
 					};
 
-					this.store.createRecord('pile', pile).save().then(function (pile) {
+					_this.store.createRecord('pile', pile).save().then(function (pile) {
 						project.save().then(function () {
-							this.set('pile', pile);
-						}.bind(this));
-					}.bind(this));
-				}.bind(this));
-			}.bind(this)); //added save to test security rules
-			//ToDO: close Pile
+							_this.set('pile', pile);
+						});
+					});
+				});
+			});
 		},
 
 		likeEntry: function(newLikeData, entry){
