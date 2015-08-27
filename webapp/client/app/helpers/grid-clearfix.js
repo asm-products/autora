@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export function gridClearfix(params, hash) {
+export function gridClearfix(params) {
 	var n = params[0];
 	var output = "";
 

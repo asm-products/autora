@@ -55,16 +55,16 @@ export default Ember.Controller.extend({
 			if(this.get('session.isAuthenticated')){
 				var newLike = this.store.createRecord('like', newLikeData);
 				newLike.save().then(function(){
-					entry.save().then(function(){},function(error){
+					entry.save().then(function(){},function(){
 						entry.rollbackAttributes();
 					});
-				}, function(error){
+				}, function(){
 					newLike.rollbackAttributes();
 				});
 			} else {
 				this.transitionToRoute('user.login');
 			}
-		
+
 		},
 
 		unlikeEntry: function(unlikeData, entry){

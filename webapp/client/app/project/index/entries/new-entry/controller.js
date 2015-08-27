@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
 			return {
 				type: 'danger',
 				message: 'The entry content can\'t be empty'
-			}
+			};
 		}
 	}),
 
