@@ -1,6 +1,10 @@
-{{outlet}}
+<h1>Project</h1>
 {{#if create}}
-	{{#modal-prototype containerClassNames="create-project-modal"}}
-	{{partial 'components/modal-prototype'}}
-	{{/modal-prototype}}
+<b>creating</b>
+{{log 'hello'}}
+	
+	{{!-- {{partial 'components/modal-prototype'}} --}}
+	
 {{/if}}
+
+{{outlet}}
