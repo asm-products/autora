@@ -2,14 +2,13 @@ import Ember from 'ember';
 import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
+	projectIndexEntriesController: Ember.inject.controller('project/index/entries'),
 	showAlerts: false,
 	hasErrors: false,
 
-	pile: Ember.computed('model', function(){
-		return this.get('model');
-	}),
+	pile: Ember.computed.alias('projectIndexEntriesController.model'),
 
-	newEntry: Ember.computed('model', function(){
+	newEntry: Ember.computed('pile', function(){
 		return {
 			pile: this.get('pile'),
 			// project: this.get('model').get('firstObject').get('project'), //DEV MODE
@@ -40,6 +39,7 @@ export default Ember.Controller.extend({
 			this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('showAlerts', true);
+
 			if(!this.get('isEmpty')){
 				var pile = this.get('pile');
 				var newEntry = this.store.createRecord('entry', this.get('newEntry'));
