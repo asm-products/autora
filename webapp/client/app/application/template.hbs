@@ -1,5 +1,6 @@
 <div class="page-wrapper">
 	{{app-header isLoggedIn=session.isAuthenticated}}
 	<main class="app-content container-fluid">{{outlet}}</main>
+	{{outlet 'newProject'}}
 </div>
 {{app-footer}}
