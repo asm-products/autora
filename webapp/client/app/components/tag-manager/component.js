@@ -10,6 +10,7 @@ export default Ember.Component.extend({
 		var newTag = this.get('newTag');
 		var regex = /^.+\ $/;
 		if(regex.test(newTag)){
+			newTag = newTag.substring(0, newTag.length -1); //remove the space at the end
 			this.get('tags').pushObject(newTag);
 			this.set('newTag','');
 		}
