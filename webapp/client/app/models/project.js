@@ -14,7 +14,7 @@ export default DS.Model.extend({
   user:  DS.belongsTo('user', {async: true}),
   tags: DS.hasMany('tag', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
-  piles: DS.hasMany('pile'),
+  piles: DS.hasMany('pile', {async: true}),
 
   image: DS.attr('string'),
 

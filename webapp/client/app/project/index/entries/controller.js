@@ -4,7 +4,7 @@ import Firebase from 'firebase';
 export default Ember.Controller.extend({
 
 	pile: Ember.computed('model', function(){
-		return this.get('model.firstObject');
+		return this.get('model');
 	}),
 
 	// newPile: Ember.computed('model', function(){
@@ -23,17 +23,26 @@ export default Ember.Controller.extend({
 	project: Ember.inject.controller('project.index'),
 
 	actions: {
-		createPile: function() {
-			//Unused code. This is handled at Project.index controller
-			this.set('newPile.createdAt', Firebase.ServerValue.TIMESTAMP);
-			this.set('newPile.updatedAt', Firebase.ServerValue.TIMESTAMP);
-			this.store.createRecord('pile', this.get('newPile')).save();
-		},
-
 		pickEntry: function(entry){
-			var project = this.get('project.model');
-			entry.set('project', project).save(); //added save to test security rules
-			//ToDO: close Pile
+			var project = this.get('project.model'),
+				pile = this.get('pile'),
+				_this = this;
+
+			entry.set('project', project).save().then(function () {
+				pile.set('locked', true).save().then(function () {
+					var pile = {
+						project: project,
+						createdAt: Firebase.ServerValue.TIMESTAMP,
+						updatedAt: Firebase.ServerValue.TIMESTAMP
+					};
+
+					_this.store.createRecord('pile', pile).save().then(function (pile) {
+						project.save().then(function () {
+							_this.set('pile', pile);
+						});
+					});
+				});
+			});
 		},
 
 		likeEntry: function(newLikeData, entry){
@@ -46,16 +55,16 @@ export default Ember.Controller.extend({
 			if(this.get('session.isAuthenticated')){
 				var newLike = this.store.createRecord('like', newLikeData);
 				newLike.save().then(function(){
-					entry.save().then(function(){},function(error){
+					entry.save().then(function(){},function(){
 						entry.rollbackAttributes();
 					});
-				}, function(error){
+				}, function(){
 					newLike.rollbackAttributes();
 				});
 			} else {
 				this.transitionToRoute('user.login');
 			}
-		
+
 		},
 
 		unlikeEntry: function(unlikeData, entry){

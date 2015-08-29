@@ -95,7 +95,7 @@ export default Ember.Controller.extend({
 
 	actions: {
 
-		createProject: function(){
+			createProject: function(){
 			this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
 
@@ -141,6 +141,7 @@ export default Ember.Controller.extend({
 					//SAVE PROJECT
 					newProjectRecord.save()
 					.then(function(projectRecord){
+						console.log('first saving fine');
 						self.toggleProperty('create');
 						self.set('newProject', '');
 						console.log(self.get('newProjectDefaults'));
@@ -155,9 +156,24 @@ export default Ember.Controller.extend({
 						}); // check for errors and delete the project if needed
 						Ember.RSVP.allSettled(lastRequests).then(function(){
 							//ALL DONE - everything is set up, redirect...
-							self.set('isLoading', false);
-							self.transitionToRoute('project.index', projectRecord.get('id'));
+							var pile = {
+								project: projectRecord,
+								createdAt: Firebase.ServerValue.TIMESTAMP,
+								updatedAt: Firebase.ServerValue.TIMESTAMP
+							};
+
+							console.log(pile);
+
+							self.store.createRecord('pile', pile).save().then(function () {
+								console.log('pile created');
+								projectRecord.save().then(function(){
+									
+									self.set('isLoading', false);
+									self.transitionToRoute('project.index.entries', projectRecord.get('id'));
+								});
+							});
 						});
+
 					},function(error){
 						console.log(error);
 						self.set('serverAlert.message', error);

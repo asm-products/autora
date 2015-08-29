@@ -6,7 +6,7 @@ export default Ember.Route.extend({
 	},
 
 	afterModel: function(){
-		
+
 
 	}
 });

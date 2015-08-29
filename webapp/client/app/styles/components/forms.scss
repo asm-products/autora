@@ -2,8 +2,8 @@ form {
 	position: relative;
 }
 
-input {
-	outline: 0 !important;
+input, textarea {
+	outline: none !important;
 }
 
 input:not([type=submit]):not([type=checkbox]),textarea {

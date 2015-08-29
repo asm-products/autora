@@ -17,7 +17,7 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'font-src': "'self' fonts.gstatic.com",
       'style-src': "'self' fonts.googleapis.com",
-      'img-src': "'self' www.gravatar.com placeholdit.imgix.net www.filepicker.io *.amazonaws.com",
+      'img-src': "'self' www.gravatar.com placeholdit.imgix.net *.placehold.it www.filepicker.io *.amazonaws.com",
       'default-src': 'none',
       'frame-src': '*'
     },
@@ -51,6 +51,7 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy['script-src'] = "'self' 'unsafe-inline' *";
     ENV.contentSecurityPolicy['style-src'] = "'self' 'unsafe-inline' fonts.googleapis.com";
     ENV.contentSecurityPolicy['connect-src'] = "'self' *";
+    ENV.firebase = 'https://autora.firebaseio.com/';
   }
 
   if (environment === 'test') {

@@ -2,13 +2,11 @@ import Ember from 'ember';
 import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
-
 	showAlerts: false,
 	hasErrors: false,
 
-
 	pile: Ember.computed('model', function(){
-		return this.get('model.firstObject');
+		return this.get('model');
 	}),
 
 	newEntry: Ember.computed('model', function(){
@@ -27,9 +25,15 @@ export default Ember.Controller.extend({
 			return {
 				type: 'danger',
 				message: 'The entry content can\'t be empty'
-			}
+			};
 		}
 	}),
+
+	resetForm: function () {
+		this.set('newEntry.content', '');
+		this.set('hasErrors', false);
+		this.set('showAlerts', false);
+	},
 
 	actions: {
 		createEntry: function() {
@@ -40,8 +44,10 @@ export default Ember.Controller.extend({
 				var pile = this.get('pile');
 				var newEntry = this.store.createRecord('entry', this.get('newEntry'));
 				newEntry.save().then(function(){
-					pile.save();
-				}, function(error){
+					pile.save().then(function () {
+						this.resetForm();
+					}.bind(this));
+				}.bind(this), function(error){
 					console.log(error);
 					newEntry.rollback();
 				});
