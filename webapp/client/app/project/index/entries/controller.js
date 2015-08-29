@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
 
 					_this.store.createRecord('pile', pile).save().then(function (pile) {
 						project.save().then(function () {
-							_this.set('pile', pile);
+							_this.set('model', pile);
 						});
 					});
 				});
