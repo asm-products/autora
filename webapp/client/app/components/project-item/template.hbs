@@ -1,7 +1,7 @@
 <div class="top">
     {{#link-to 'project.index.entries' attrs.model.id}}
     <div class="line">
-        <div class="action">Collaborate</div>
+        <div class="action">{{if model.open 'Collaborate' 'Read'}}</div>
     </div>
     <div class="image">
         {{#if attrs.model.image}}

@@ -8,6 +8,9 @@ export default Ember.Controller.extend({
 	// 	return this.store.all('project'); //testing purposes
 	// }.property(),
 
-	project: Ember.inject.controller('project')
+	project: Ember.inject.controller('project'),
+	filteredProjects: Ember.computed.filterBy('model', 'open', false)
+
+
 	
 });

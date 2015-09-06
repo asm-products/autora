@@ -12,8 +12,23 @@ export default Ember.Controller.extend({
 
 	newEntry: Ember.inject.controller('project.index.entries.newEntry'),
 
+	showOptions: false,
+	optionsLoading: false,
+	// optionsLoadingClass: Ember.computed('optionsLoading', function(){
+	// 	if(this.get('optionsLoading')){
+	// 		return 'au-loading';
+	// 	} else {
+	// 		return '';
+	// 	}
+	// }),
+	// isCreator: Ember.computed.equal('session.user.id', 'model.user.id'), // buggy?
+
+	isCreator: Ember.computed('session.user.id','model.user.id', function(){
+		return this.get('session.user.id') === this.get('model.user.id');
+	}),
+
 	actions: {
-		createPile: function(){
+		createPile(){
 			this.set('newPile.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newPile.updatedAt', Firebase.ServerValue.TIMESTAMP);
 
@@ -24,6 +39,25 @@ export default Ember.Controller.extend({
 				project.save().then(function(){
 					self.transitionToRoute('project.index.entries');
 				});
+			});
+		},
+		toggleOptions(){
+			this.toggleProperty('showOptions');
+		},
+		toggleOpenClose(){
+			// this.set('model.open', false).save();
+			var model = this.get('model');
+			model.toggleProperty('open');
+			this.set('optionsLoading', true);
+			var self = this;
+			model.save().then(function(){
+				self.set('optionsLoading', false);
+				self.set('showOptions', false);
+				if(self.get('model.open')){
+					self.transitionToRoute('project.index.entries');
+				} else {
+					self.transitionToRoute('project.index');
+				}
 			});
 		}
 	}

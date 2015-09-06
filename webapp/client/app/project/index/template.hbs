@@ -1,16 +1,39 @@
 {{project-header heading=model.name projectController=project}}
-<div class="big centered bordered project box">
+<div class="big centered bordered {{if model.open 'open' 'closed'}} project box">
 	<div class="head">
 		<h2>{{model.name}}</h2>
 		<div class="meta">
-			{{log model.user}}
-			{{#if model.user.email}}
-			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to 'user.index' model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=35}}{{/link-to}}
-			{{/if}}
+			{{!-- {{#if model.user.email}} --}}
+			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to "user.index" model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=35}}{{/link-to}}
+			{{!-- {{/if}} --}}
+
 			| <div class="tags">{{#each model.tags key="id" as |tag|}}
-					{{#link-to 'tag' tag.name class="small rounded purple bordered button tag"}}{{tag.name}}{{/link-to}}
-				{{/each}}</div>
+					{{#link-to "tag" tag.name class="small rounded purple bordered button tag"}}{{tag.name}}{{/link-to}}
+				{{/each}}
+			</div>
 		</div>
+		{{#if isCreator}}
+		<div class="options">
+			<a {{action "toggleOptions"}}>Options</a>
+		</div>
+		{{#if showOptions}}
+			{{#modal-prototype close="toggleOptions"}}
+			<div {{action 'toggleOptions'}} class="close-modal">
+				<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+				 <g>
+				  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
+				  <line id="svg_2" y2="90" x2="10" y1="10" x1="90" stroke-width="20" fill="none"/>
+				 </g>
+				</svg>
+			</div>
+			<div class="spinner-wrap {{if optionsLoading 'au-loading'}}">				
+								<h3>Project options</h3>
+								<div {{action "toggleOpenClose"}} class="small orange bordered rounded button">{{if model.open 'Close project' 'Re-Open project'}}</div>
+			</div>
+
+			{{/modal-prototype}}
+		{{/if}}
+		{{/if}}
 		<p>{{model.description}}</p>
 	</div>
 	<div class="body">

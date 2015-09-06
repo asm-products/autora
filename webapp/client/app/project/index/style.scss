@@ -1,11 +1,18 @@
 
 .project.box {
-	border-top: 10px solid $color1;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 
 	&.prosaic {
 		max-width: 650px;
+	}
+
+	&.open {
+		border-top: 10px solid $color1;
+	}
+
+	&.closed {
+		border-top: 10px solid $color2;		
 	}
 
 	h2 {
@@ -25,6 +32,15 @@
 		}
 
 	}
+
+	.options {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 10px;
+		cursor: pointer;
+	}
+
 	.head {
 		p { //description
 			text-align: center;

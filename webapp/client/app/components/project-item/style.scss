@@ -66,4 +66,12 @@
             font-size: 12px;
         }
     }
+
+    &.closed {
+        .top {
+            .line {
+                background-color: $color2;
+            }
+        }
+    }
 }

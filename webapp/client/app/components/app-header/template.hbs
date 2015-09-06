@@ -2,15 +2,17 @@
     <div class="row">
         <div class="col-sm-4">
             <nav class="nav navbar-nav navbar-left">
+            {{#link-to 'home'}}
                 <img class="logo" src="images/logo.png" />
+            {{/link-to}}
             </nav>
         </div>
         <div class="col-sm-8">
             <nav class="nav navbar-nav navbar-right">
                 {{#if isLoggedIn}}
-                    {{#link-to 'project.list' (query-params create="true")}}Create{{/link-to}}
-                    {{#link-to 'application'}}Contribute{{/link-to}}
-                    {{#link-to 'project.list'}}Read{{/link-to}}
+                    {{#link-to 'project.read' (query-params create="true")}}Create{{/link-to}}
+                    {{#link-to 'project.contribute'}}Contribute{{/link-to}}
+                    {{#link-to 'project.read'}}Read{{/link-to}}
                     {{user-dropdown}}
                 {{else}}
                     {{#link-to 'home'}}Home{{/link-to}}
