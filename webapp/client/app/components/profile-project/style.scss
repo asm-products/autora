@@ -5,15 +5,32 @@
 		padding: 20px 20px+15px; //To negate -15px margin from row
 	}
 
-	img,h3 {
+	img,.content {
 		display: inline-block;
 		vertical-align: middle;
+	}
+
+	.content {
+		max-width: calc(100% - 70px);
 	}
 
 	h3 {
 		font-size: 20px;
 		margin: 0;
-		max-width: calc(100% - 70px);
+		display: inline-block;
+	}
+
+	.tags {
+		// vertical-align: middle;
+		display: inline-block;
+		margin-left: 15px;
+		color: $color1;
+	}
+
+	.details {
+		text-transform: uppercase;	
+		font-size: 12px;
+		
 	}
 
 	.row {

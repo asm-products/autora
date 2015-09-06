@@ -12,7 +12,9 @@ Router.map(function() {
 
   this.route('project', function() {
     this.route('create');
-    this.route('list');
+    
+    this.route('read');
+    this.route('contribute');
 
     this.route('index',{path: '/:project_id'}, function() {
       this.route('entries', function () {
@@ -38,10 +40,11 @@ Router.map(function() {
     this.route('reset');
   });
 
+  //Might move tag_id to tag.index later
   this.route('tag', function() {
     this.route('index', {path: '/:tag_name'});
-  }); //Might move tag_id to tag.index later
-  
+  });
+
   this.route('dashboard', function() {});
 });
 

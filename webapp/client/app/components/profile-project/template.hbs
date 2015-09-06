@@ -4,7 +4,18 @@
 			<div class="col-sm-8">
 				<div class="row">
 						<img src="http://placehold.it/45x45" alt="">
-						<h3>{{model.name}}</h3>
+						<div class="content">
+							<h3>{{model.name}}</h3>
+							<div class="tags">
+								{{#each model.tags key="id" as |tag|}}
+								#{{tag.name}} 
+								{{/each}}
+							</div>
+							<div class="details">
+								Entries
+								{{model.entries.length}}
+							</div>
+						</div>
 				</div>
 			</div>
 			<div class="col-sm-4">
