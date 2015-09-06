@@ -9,11 +9,11 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
 	actions: {
 		transitionToProjectList: function(){
-			this.transitionTo('project.list');
+			this.transitionTo('project.contribute');
 		},
 
 		sessionAuthenticationSucceeded: function(){
-			this.transitionTo('project.list');
+			this.transitionTo('project.contribute');
 		},
 
 		sessionAuthenticationFailed: function(error){
