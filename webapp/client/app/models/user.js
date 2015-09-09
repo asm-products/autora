@@ -4,6 +4,7 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   email: DS.attr('string'),
   photo: DS.attr('string'),
+  cover: DS.attr('string'),
   username: DS.attr('string'),
 
   projects: DS.hasMany('project', {async: true}),

@@ -14,6 +14,14 @@ export default Ember.Controller.extend({
 	changeEmailLoading: false,
 
 	actions: {
+		userPhotoUploadDone(file){
+			this.set('session.user.photo', file)
+			this.get('session.user.content').save();
+		},
+		coverPhotoUploadDone(file){
+			this.set('session.user.cover', file);
+			this.get('session.user.content').save();
+		},
 		changePassword(){
 				var self = this;
 				self.set('changePasswordLoading', true);
@@ -77,7 +85,7 @@ export default Ember.Controller.extend({
 			  	var currentUser = self.get('session.user');
 			  	currentUser.set('email', newEmail);
 			  	self.set('changeEmailLoading', true);
-			  	currentUser.get('content').save().then(function(){		
+			  	currentUser.get('content').save().then(function(){
 			  		self.set('changeEmailLoading',false);
 				    self.set('changeEmailAlert.message', 'User email changed successfully!');
 				    self.set('changeEmailAlert.type', 'success');

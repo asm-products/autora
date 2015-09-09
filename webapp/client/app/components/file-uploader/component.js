@@ -9,6 +9,8 @@ export default EmberUploader.FileField.extend({
             url: uploadUrl
         });
 
+        this.sendAction('uploadStart');
+
         uploader.on('didUpload', function(e) {
             this.sendAction('uploadDone', e);
         }.bind(this));

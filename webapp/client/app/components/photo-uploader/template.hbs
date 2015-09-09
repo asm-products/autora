@@ -1,8 +1,8 @@
-<label for="{{uploaderId}}">
+<label for="{{uploaderId}}" class="{{if loading 'au-loading'}}">
     {{#if filePreviewUrl}}
         <img src="{{filePreviewUrl}}" />
     {{else}}
-        Click here
+        Upload Photo
     {{/if}}
 </label>
-{{file-uploader url=url elementId=uploaderId uploadDone='uploadDone' uploadError='uploadError'}}
+{{file-uploader url=url elementId=uploaderId uploadStart='uploadStart' uploadDone='uploadDone' uploadError='uploadError'}}

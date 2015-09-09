@@ -1,5 +1,22 @@
 <div class="user-index-settings">
 	<h3>Users's settings</h3>
+
+	<h4>Photos</h4>
+	<div class="row photos">
+		<div class="col-sm-5">
+			<label>User</label>
+			<div class="photo-box">
+				{{photo-uploader filePreviewUrl=session.user.photo type='user' uploaderId='user-photo-uploader' uploadSuccess='userPhotoUploadDone'}}
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<label>Cover</label>
+			<div class="photo-box">
+				{{photo-uploader filePreviewUrl=session.user.cover type='cover' uploaderId='cover-photo-uploader' uploadSuccess='coverPhotoUploadDone'}}
+			</div>
+		</div>
+	</div>
+
 	<h4>Change password</h4>
 	{{#if changePasswordAlert.message}}
 		<div class="input-alert {{changePasswordAlert.type}}">
