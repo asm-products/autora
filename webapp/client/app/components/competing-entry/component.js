@@ -13,6 +13,15 @@ export default Ember.Component.extend({
 		}
 	}),
 
+	isAuthor: Ember.computed('model.user','session.user',function(){
+		return this.get('model.user.id') === this.get('session.user.id');
+	}),
+	hasNoLikes: Ember.computed.equal('model.likes.length',0),
+	isEditable: Ember.computed.and('isAuthor','hasNoLikes'), 
+
+
+	isEditing: false,
+
 	// isLoaded: Ember.computed.not('model.isLoading'),
 
 	ordered: false,
@@ -57,6 +66,19 @@ export default Ember.Component.extend({
 				this.sendAction('unlikeAction', unlikeData, this.get('model'));
 
 			}
+		},
+		toggleEditing(){
+			this.toggleProperty('isEditing');
+		},
+		cancelEditing(){
+			this.get('model').rollbackAttributes();
+			this.set('isEditing', false);
+		},
+		updateEntry(){
+			var self = this;
+			this.get('model').save().then(function(){
+				self.set('isEditing', false);
+			});
 		}
 	}
 });
