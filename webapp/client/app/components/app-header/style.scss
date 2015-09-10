@@ -34,15 +34,20 @@ header.app-header {
             height: auto;
             max-height: 85px;
         }
-        
-        .profile-circle {
-            overflow: hidden;
-            border-radius: 50%;
+
+        .user-photo {
             display: inline-block;
-            vertical-align: top;
-            margin-top: -7px;
-            border: 1px solid #cccccc;
-            width: 35px;
+
+            .circular.profile {
+                overflow: hidden;
+                border-radius: 50%;
+                display: inline-block;
+                vertical-align: top;
+                margin-top: -7px;
+                border: 1px solid #cccccc;
+                width: 35px;
+                height: 35px;
+            }
         }
 
         .dropdown {

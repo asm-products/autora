@@ -1,4 +1,4 @@
- <a class="plain toggleDropdown">{{gravatar-image email=session.user.email width=35 class="profile-circle"}} <div class="caret {{if showDropdown "caret-reversed"}}"><b></b></div></a>
+ <a class="plain toggleDropdown">{{user-photo user=session.user}}<div class="caret {{if showDropdown "caret-reversed"}}"><b></b></div></a>
 {{#if showDropdown}}
     <div class="dropdown">
         {{#link-to 'user.index' session.user.id}}<i class="fa fa-user"></i><span class="username">{{session.user.username}}</span>

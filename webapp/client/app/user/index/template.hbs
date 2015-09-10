@@ -2,11 +2,7 @@
 	<div class="user-index">
 		<div class="cover" style="background-image: url('{{coverPhoto}}')">
 			<div class="inner">
-				{{#if model.photo}}
-					<img id="ember745" src="{{model.photo}}" class="circular profile">
-				{{else}}
-					{{gravatar-image email=model.email size=100 class="circular profile"}}
-				{{/if}}
+				{{user-photo user=model}}
 				<h2>{{model.username}}</h2>
 			</div>
 		</div>
