@@ -15,12 +15,11 @@ export default Ember.Route.extend({
 			this.transitionTo('project.index');
 		}
 	},
-	actions: {
-		willTransition(){
-			console.log('transitioning');
-			this.controller.get('model.competingEntries').forEach(function(entry){
-				entry.rollbackAttributes();
-			});
-		}
-	}
+	// actions: {
+	// 	didTransition(){
+	// 		this.controller.get('model.competingEntries').forEach(function(entry){
+	// 			entry.rollbackAttributes();
+	// 		});
+	// 	}
+	// }
 });
