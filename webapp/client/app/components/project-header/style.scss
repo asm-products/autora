@@ -1,4 +1,4 @@
-$height: 100px;
+$height: 80px;
 
 .project-header {
 	background: $color2;
@@ -6,46 +6,65 @@ $height: 100px;
 	position: relative;
 	min-height: $height;
 
-	.heading {
-		font-size: 20px;
-		font-weight: bold;
-		display: inline-block;
-		height: $height;
-		line-height: $height;
-		vertical-align: middle;
-		text-transform: uppercase;
+	.container {
+		padding-left: 0;
+		padding-right: 0;
 
-		@include breakpoint('xs'){
-			font-size: 18px;
-			line-height:initial;
-			height:auto;
-			padding-top: 10px;
-			text-align: center;
-			width: 100%;
+		.heading {
+			font-size: 16px;
+			font-weight: 500;
+			display: inline-block;
+			height: $height;
+			line-height: $height;
+			vertical-align: middle;
+
+			@include breakpoint('xs'){
+				font-size: 18px;
+				line-height:initial;
+				height:auto;
+				padding-top: 10px;
+				text-align: center;
+				width: 100%;
+			}
+
+			.image {
+				float: left;
+				margin-right: 10px;
+				border: 1px solid rgba(255,255,255,0.8);
+				border-radius: 5px;
+				height: 50px;
+				width: 50px;
+				background-size: cover;
+				margin-top: 15px;
+			}
+
+			.title {
+				float: left;
+			}
 		}
-	}
 
-	.right-menu {
-		width: 180px;
-		display: inline-block;
-		text-align: right;
-		float: right;
-		height: $height;
-		line-height: $height;
+		.right-menu {
+			width: 180px;
+			display: inline-block;
+			text-align: right;
+			float: right;
+			height: $height;
+			line-height: $height;
 
-		@include breakpoint('xs'){
-			float: none;
+			@include breakpoint('xs'){
+				float: none;
+				text-align: center;
+				line-height: initial;
+				width: 100%;
+				height: auto;
+				padding: 10px 0;
+			}
+		}
+
+		.button {
+			color: $color1;
 			text-align: center;
 			line-height: initial;
-			width: 100%;
-			height: auto;
-			padding: 10px 0;
 		}
-	}
-
-	.button {
-		color: $color1;
-		text-align: center;
-		line-height: initial;
 	}
 }

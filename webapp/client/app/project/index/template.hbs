@@ -1,4 +1,4 @@
-{{project-header heading=model.name projectController=project}}
+{{project-header heading=model.name image=model.image projectController=project}}
 <div class="big centered bordered {{if model.open 'open' 'closed'}} project box">
 {{#if isEditing}}
 <div class="head">
@@ -12,13 +12,14 @@
 {{else}}
 	<div class="head">
 		<h2>{{model.name}}</h2>
+		<p>{{model.description}}</p>
 		<div class="meta">
 			{{!-- {{#if model.user.email}} --}}
-			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to "user.index" model.user.id}}{{gravatar-image class="circular profile" email=model.user.email size=35}}{{/link-to}}
+			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to "user.index" model.user.id}}{{user-photo user=model.user}}{{/link-to}}
 			{{!-- {{/if}} --}}
 
 			| <div class="tags">{{#each model.tags key="id" as |tag|}}
-					{{#link-to "tag" tag.name class="small rounded purple bordered button tag"}}{{tag.name}}{{/link-to}}
+					{{#link-to "tag" tag.name class="small rounded purple bordered button tag"}}#{{tag.name}}{{/link-to}}
 				{{/each}}
 			</div>
 		</div>
@@ -36,20 +37,19 @@
 				 </g>
 				</svg>
 			</div>
-			<div class="spinner-wrap {{if optionsLoading 'au-loading'}}">				
-								<h3>Project options</h3>
-								<div {{action "toggleOpenClose"}} class="small orange bordered rounded button">{{if model.open 'Close project' 'Re-Open project'}}</div>
-								{{#if isEditable}}
-								<div {{action "toggleEdit"}} class="small orange bordered rounded button">
-									Edit project
-								</div>
-								{{/if}}
+			<div class="spinner-wrap {{if optionsLoading 'au-loading'}}">
+				<h3>Project options</h3>
+				<div {{action "toggleOpenClose"}} class="small orange bordered rounded button">{{if model.open 'Close project' 'Re-Open project'}}</div>
+				{{#if isEditable}}
+				<div {{action "toggleEdit"}} class="small orange bordered rounded button">
+					Edit project
+				</div>
+				{{/if}}
 			</div>
 
 			{{/modal-prototype}}
 		{{/if}}
 		{{/if}}
-		<p>{{model.description}}</p>
 	</div>
 	{{/if}}
 	<div class="body">

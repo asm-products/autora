@@ -1,16 +1,21 @@
 .successful-entry {
 	color: $placeholder-color;
-	padding: 10px 2.2em;
 	position: relative;
+	font-size: 14px;
+	padding: 10px 20px;
+
+	p {
+		margin: 0;
+		font-weight: 300;
+	}
 
 	.info {
 		opacity: 0.1;
-		// visibility: hidden;
-		position: absolute;
-		right: -170px;
-		width: 150px;
-		top: 15px;
-		transition: 0.2s opacity;
+	    position: absolute;
+	    right: -160px;
+	    width: 150px;
+	    top: 5px;
+	    transition: 0.2s opacity;
 	}
 
 	.details-link {

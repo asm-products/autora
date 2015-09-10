@@ -2,6 +2,8 @@
 .project.box {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+	background-color: #ffffff;
+	padding-bottom: 20px;
 
 	&.prosaic {
 		max-width: 650px;
@@ -12,38 +14,54 @@
 	}
 
 	&.closed {
-		border-top: 10px solid $color2;		
+		border-top: 10px solid $color2;
 	}
 
 	h2 {
 		color: $color2;
-		font-size:25px;
+		font-size: 22px;
 		text-align: center;
 		margin: 15px 0 0 0;
+		font-style: italic;
 	}
 
 	.meta {
-		margin: 25px 0;
-		text-align: center;
+		margin: 10px 0;
+		text-align: left;
 		vertical-align: middle;
+		font-size: 12px;
+    	font-weight: 300;
+
 		span,a {
 			display: inline-block;
 			vertical-align: middle;
 		}
 
+		.user-photo {
+			img {
+				width: 35px;
+				height: 35px;
+			}
+		}
 	}
 
 	.options {
 		position: absolute;
 		top: 0;
 		right: 0;
-		padding: 10px;
-		cursor: pointer;
+		padding: 8px;
+	    cursor: pointer;
+	    font-size: 12px;
 	}
 
 	.head {
+		margin-bottom: 0;
+
 		p { //description
 			text-align: center;
+			font-size: 14px;
+			padding: 15px 0;
+			margin-bottom: 0;
 		}
 	}
 	//Extends: small.rounded.purple.bordered.button
@@ -56,5 +74,7 @@
 		border-radius: $small-border-radius;
 		border-color: $grey;
 		color: $grey;
+		font-size: 12px;
+    	font-weight: 300;
 	}
 }
