@@ -30,11 +30,29 @@
 	.details {
 		text-transform: uppercase;	
 		font-size: 12px;
+		text-align: center;
 		
 	}
 
+	.column {
+		display: inline-block;
+		padding: 0 17px;
+		margin: 6px 0;
+		color:$color2;
+		font-size:11px;
+		&:first-child {
+			padding-left: 0;
+			border-right: 1px solid $border-color2;
+		}
+	}
+
+	.value {
+		font-size:10px;
+		color:$grey;
+	}
+
 	.row {
-		min-height: 45px;
+		min-height: 65px;
 		>div {
 			min-height: 45px;
 		}
@@ -46,6 +64,9 @@
 
 	.button {
 		position: absolute;
+		text-align: center;
+		font-size:11px;
+		width: 85px;
 		right: 0;
 		top: 50%;
 		transform: translateY(-50%);
