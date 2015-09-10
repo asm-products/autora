@@ -1,5 +1,15 @@
 {{project-header heading=model.name projectController=project}}
 <div class="big centered bordered {{if model.open 'open' 'closed'}} project box">
+{{#if isEditing}}
+<div class="head">
+	<form class="{{if model.isSaving 'au-loading'}}" {{action "updateProject" on="submit"}}>
+		{{input value=model.name placeholder="Project title"}}
+		{{textarea value=model.description placeholder="Project description"}}
+		<input type="submit" class="orange bordered rounded button" value="Update">
+		<div {{action "cancelEditing"}} class="orange bordered rounded button">Cancel</div>
+	</form>
+</div>
+{{else}}
 	<div class="head">
 		<h2>{{model.name}}</h2>
 		<div class="meta">
@@ -29,6 +39,11 @@
 			<div class="spinner-wrap {{if optionsLoading 'au-loading'}}">				
 								<h3>Project options</h3>
 								<div {{action "toggleOpenClose"}} class="small orange bordered rounded button">{{if model.open 'Close project' 'Re-Open project'}}</div>
+								{{#if isEditable}}
+								<div {{action "toggleEdit"}} class="small orange bordered rounded button">
+									Edit project
+								</div>
+								{{/if}}
 			</div>
 
 			{{/modal-prototype}}
@@ -36,6 +51,7 @@
 		{{/if}}
 		<p>{{model.description}}</p>
 	</div>
+	{{/if}}
 	<div class="body">
 		{{#each model.entries key="id" as |entry|}}
 			{{successful-entry model=entry}}

@@ -1,7 +1,11 @@
 
 <div class="bordered padded box competing-entry">
 	<div class="head">
-		<h3>Debug {{model.initialAmountOfLikes}}</h3>
+	{{#if isEditable}}
+		{{!-- <div class="text-right"> --}}
+			<a {{action "toggleEditing"}}>Edit entry</a>
+		{{!-- </div> --}}
+	{{/if}}
 	</div>
 	<div class="info">
 			<svg {{action 'toggleLike'}} class="heart {{if isLikedByUser "filled" "empty"}}" width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -16,7 +20,18 @@
 			<span class="counter">{{model.amountOfLikes}}</span>
 		{{#link-to 'user.index' attrs.model.user.id}}{{gravatar-image class="circular profile" email=attrs.model.user.email size=25}}{{/link-to}}
 	</div>
-	<div class="body">{{attrs.model.content}}</div>
+	<div class="body">
+	{{#if isEditing}}
+		<form class="{{if model.isSaving 'au-loading'}}" {{action "updateEntry" on="submit"}}>
+			{{textarea-with-counter value=model.content maxlength=140 placeholder="Entry content"}}
+			<input type="submit" value="Update entry" class="small orange bordered rounded button">
+			<div {{action "cancelEditing"}} class="small orange bordered rounded button">Cancel</div>
+		</form>
+	{{else}}
+		{{attrs.model.content}}
+
+	{{/if}}
+	</div>
 	<div {{action 'pick'}} class="small orange bordered button">Pick entry</div>
 </div>
 {{yield}}

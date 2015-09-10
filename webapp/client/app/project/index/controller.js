@@ -14,6 +14,8 @@ export default Ember.Controller.extend({
 
 	showOptions: false,
 	optionsLoading: false,
+	isEditing: false,
+	isEditable: Ember.computed.equal('model.piles.firstObject.competingEntries.length', 0), //untested
 	// optionsLoadingClass: Ember.computed('optionsLoading', function(){
 	// 	if(this.get('optionsLoading')){
 	// 		return 'au-loading';
@@ -58,6 +60,21 @@ export default Ember.Controller.extend({
 				} else {
 					self.transitionToRoute('project.index');
 				}
+			});
+		},
+		toggleEdit(){
+			this.toggleProperty('isEditing');
+			this.set('showOptions', false);
+		},
+		cancelEditing(){
+			this.get('model').rollbackAttributes();
+			this.set('isEditing', false);
+		},
+		updateProject(){
+			// this.set('isLoadingUpdate')
+			var self = this;
+			this.get('model').save().then(function(){
+				self.set('isEditing', false);
 			});
 		}
 	}

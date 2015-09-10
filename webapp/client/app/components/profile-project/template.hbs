@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="row">
-						<img src="http://placehold.it/45x45" alt="">
+						<img src="http://placehold.it/65x65" alt="">
 						<div class="content">
 							<h3>{{model.name}}</h3>
 							<div class="tags">
@@ -12,16 +12,22 @@
 								{{/each}}
 							</div>
 							<div class="details">
-								Entries
-								{{model.entries.length}}
+								<div class="column">
+									<div class="clabel">Last Updated</div>
+									<div class="value">{{moment-from-now model.updatedAt}}</div>
+								</div>
+								<div class="column">
+									<div class="clabel">Accepted Entries</div>
+									<div class="value">{{model.entries.length}}</div>
+								</div>
 							</div>
 						</div>
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="row">{{#link-to 'project.index.entries' model.id}}
-						<div class="small {{if model.open 'orange' 'purple'}} bordered rounded button">
-							{{#if model.open}} Collaborate {{else}} Read {{/if}}
+				<div class="row">{{#link-to "project.index.entries" model.id}}
+						<div class="small {{if model.open "orange" "purple"}} bordered rounded button">
+							{{if model.open "Collaborate" "Read" }}
 						</div>
 					{{/link-to}}</div>
 			</div>
