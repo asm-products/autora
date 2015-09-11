@@ -8,6 +8,7 @@ body {
 
 a {
 	color: darken($color1,10%);
+	cursor: pointer;
 
 	&:hover {
 		color: darken($color1,10%);

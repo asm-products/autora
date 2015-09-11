@@ -10,7 +10,11 @@
         <div class="col-sm-8">
             <nav class="nav navbar-nav navbar-right">
                 {{#if isLoggedIn}}
-                    {{#link-to 'project.read' (query-params create="true")}}Create{{/link-to}}
+                    {{#if isInProjectRoute}}
+                        <a {{action "toggleCreate"}}>Create</a>
+                        {{else}}
+                        {{#link-to 'project.read' (query-params create="true")}}Create{{/link-to}}
+                    {{/if}}
                     {{#link-to 'project.contribute'}}Contribute{{/link-to}}
                     {{#link-to 'project.read'}}Read{{/link-to}}
                     {{user-dropdown}}
