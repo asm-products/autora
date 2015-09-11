@@ -30,7 +30,7 @@
 	.details {
 		text-transform: uppercase;	
 		font-size: 12px;
-		text-align: center;
+		// text-align: center;
 		
 	}
 
@@ -40,6 +40,7 @@
 		margin: 6px 0;
 		color:$color2;
 		font-size:11px;
+		text-align: center;
 		&:first-child {
 			padding-left: 0;
 			border-right: 1px solid $border-color2;

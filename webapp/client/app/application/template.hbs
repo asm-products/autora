@@ -1,5 +1,5 @@
 <div class="page-wrapper">
-	{{app-header isLoggedIn=session.isAuthenticated}}
+	{{app-header isLoggedIn=session.isAuthenticated isInProjectRoute=isInProjectRoute}}
 	<main class="app-content container-fluid">{{outlet}}</main>
 	{{outlet 'newProject'}}
 </div>

@@ -22,6 +22,29 @@ export default Ember.Controller.extend({
 
 	project: Ember.inject.controller('project.index'),
 
+	entriesFromUser: Ember.computed('model.competingEntries.@each','model.competingEntries.isFulfilled','session.user.id', function(){
+		var self = this;
+		var userId = this.get('session.user.id');
+		console.log(this.get('model.competingEntries'));
+		if(this.get('session.user.id') && this.get('model.competingEntries.isFulfilled')){
+			return this.get('model.competingEntries').filter(function(entry){
+				var isAuthor = entry.get('user.id') === self.get('session.user.id');
+				console.log(entry.get('isLoading'));
+				console.log(entry);
+				console.log(isAuthor);
+				console.log(entry.get('user.id'));
+				console.log(userId);
+				console.log(self);
+				return isAuthor;
+			});
+		} else {
+			return 0;
+		}
+		// return this.get('model.competingEntries').filterBy('user', this.get('session.user.id'));
+	}),
+
+	canPostEntry: Ember.computed.lt('entriesFromUser.length', 10),
+
 	actions: {
 		pickEntry: function(entry){
 			var project = this.get('project.model'),

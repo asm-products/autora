@@ -16,7 +16,7 @@
     {{#link-to 'project.index.entries' attrs.model.id}}
     <div class="title">{{attrs.model.name}}</div>
     {{/link-to}}
-    <div class="description">{{attrs.model.description}}</div>
+    <div class="description">{{clip-text model.description 60}}</div>
 </div>
 <ul class="tags">
     {{#each model.tags key="id" as |tag|}}
