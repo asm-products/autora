@@ -14,13 +14,24 @@
 	    position: absolute;
 	    right: -160px;
 	    width: 150px;
-	    top: 5px;
+	    top: 8px;
 	    transition: 0.2s opacity;
-	}
 
-	.details-link {
-		line-height: 30px; //height of the gravatar
-		vertical-align: middle;
+	    .user-photo {
+	    	display: inline-block;
+
+	    	img {
+	    		width: 25px;
+	    		height: 25px;
+	    	}
+	    }
+
+	    .details-link {
+			line-height: 25px; //height of the gravatar
+			vertical-align: sub;
+			font-size: 12px;
+			font-weight: 300;
+		}
 	}
 
 	&:hover {

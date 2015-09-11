@@ -69,12 +69,13 @@
 		display: inline-block;
 		max-width: 270px;
 	}
+
 	.tag {
-		padding: 3px 4px;
+		padding: 2px 3px;
 		border-radius: $small-border-radius;
 		border-color: $grey;
 		color: $grey;
-		font-size: 12px;
+		font-size: 11px;
     	font-weight: 300;
 	}
 }
