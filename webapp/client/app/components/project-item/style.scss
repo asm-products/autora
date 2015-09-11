@@ -39,10 +39,12 @@
         }
     }
 
+
+
     .body {
         padding: 15px;
         margin-top: 15px;
-        word-break: break-word;
+        word-break: break-all;
 
         a {
             &:hover {

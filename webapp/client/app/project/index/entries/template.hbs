@@ -1,7 +1,9 @@
 <div class="white-bg project-index-entries">
 	<div class="container">
 		{{#if pile.id}}
-			{{#link-to 'project.index.entries.new-entry' class="big orange bordered rounded button"}}+ Add entry{{/link-to}}
+			{{#link-to 'project.index.entries.new-entry'}}
+				<div class="big orange bordered rounded {{if canPostEntry '' 'disabled'}} button">+ Add entry</div>
+			{{/link-to}}
 			<h2>Submitted entries</h2>
 			<!-- (Listing entries in pile {{pile.id}}) -->
 			<div class="row clearfix">
