@@ -59,3 +59,11 @@ table{
 .clearfix {
 	clear:both;
 }
+
+.disabled {
+	cursor: default;
+    opacity: .45!important;
+    background-image: none!important;
+    box-shadow: none!important;
+    pointer-events: none;
+}
