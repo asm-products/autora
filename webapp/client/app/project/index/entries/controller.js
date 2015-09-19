@@ -16,6 +16,7 @@ export default Ember.Controller.extend({
 	// entriesSorting: ['amountOfLikes:desc'],
 	entriesSorting: ['initialAmountOfLikes:desc'],
 	sortedEntries: Ember.computed.sort('pile.competingEntries', 'entriesSorting'),
+	lockAlert: {},
 	// sortedEntries: Ember.computed('pile.competingEntries', function(){
 	// 	return this.get('pile.competingEntries').sortBy('amountOfLikes');
 	// }),
@@ -45,27 +46,47 @@ export default Ember.Controller.extend({
 
 	canPostEntry: Ember.computed.lt('entriesFromUser.length', 10),
 
+	isCreatorOfProject: Ember.computed('model.project','session.user.id', function(){
+		return this.get('model.project.user.id') === this.get('session.user.id');
+	}),
+
 	actions: {
-		pickEntry: function(entry){
+		pickEntry: function(){
 			var project = this.get('project.model'),
 				pile = this.get('pile'),
 				_this = this;
 
-			entry.set('project', project).save().then(function () {
-				pile.set('locked', true).save().then(function () {
-					var pile = {
-						project: project,
-						createdAt: Firebase.ServerValue.TIMESTAMP,
-						updatedAt: Firebase.ServerValue.TIMESTAMP
-					};
+			var competingEntries = this.get('model.competingEntries');
+			var sortedEntriesByLikes = competingEntries.sortBy('amountOfLikes');
+			// this.get('model.competingEntries').forEach(function(entry){
+			// 	console.log(entry.get('amountOfLikes'));
+			// });
 
-					_this.store.createRecord('pile', pile).save().then(function (pile) {
-						project.save().then(function () {
-							_this.set('model', pile);
+			var mostLikedEntry = sortedEntriesByLikes.get('lastObject');
+			var secondMostLikedEntry = sortedEntriesByLikes.objectAt(competingEntries.get('length') - 2);
+
+			if(mostLikedEntry.get('likes.length') !== secondMostLikedEntry.get('likes.length')){
+
+				mostLikedEntry.set('project', project).save().then(function () {
+					pile.set('locked', true).save().then(function () {
+						var pile = {
+							project: project,
+							createdAt: Firebase.ServerValue.TIMESTAMP,
+							updatedAt: Firebase.ServerValue.TIMESTAMP
+						};
+
+						_this.store.createRecord('pile', pile).save().then(function (pile) {
+							project.save().then(function () {
+								_this.set('model', pile);
+								_this.set('lockAlert', {});
+							});
 						});
 					});
 				});
-			});
+			} else {
+				this.set('lockAlert.message', 'Can\'t pick an entry at the moment as there\'s multiple entries with the same amount of likes!');
+				this.set('lockAlert.type', 'danger');
+			}	
 		},
 
 		likeEntry: function(newLikeData, entry){

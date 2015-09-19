@@ -4,7 +4,15 @@
 			{{#link-to 'project.index.entries.new-entry'}}
 				<div class="big orange bordered rounded {{if canPostEntry '' 'disabled'}} button">+ Add entry</div>
 			{{/link-to}}
+			{{#if isCreatorOfProject}}
+				 <div {{action "pickEntry"}} class="big orange bordered rounded button">Lock pile</div> 
+			{{/if}}
 			<h2>Submitted entries</h2>
+			{{#if lockAlert.message}}
+				<div class="{{lockAlert.type}} input-alert">
+					{{lockAlert.message}}
+				</div>
+			{{/if}}
 			<!-- (Listing entries in pile {{pile.id}}) -->
 			<div class="row clearfix">
 				{{#each sortedEntries key="id" as |entry index|}}
@@ -13,7 +21,7 @@
 						{{competing-entry model=entry}}
 					</div>
 				{{else}}
-					<div class="no-entries">No entries submitted yet.</div>
+					<div class="no-entries">There are no entries yet. Be first!</div>
 				{{/each}}
 			</div>
 		{{else}}

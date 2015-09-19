@@ -35,17 +35,17 @@ export default Ember.Component.extend({
 		}
 	}.observes('model.likes.isFulfilled', 'model.isLoading'),
 
-	pickAction: 'pickEntry',
+	// pickAction: 'pickEntry',
 	likeAction: 'likeEntry',
 	unlikeAction: 'unlikeEntry',
 
 	actions: {
 
-		pick: function(){
+		// pick: function(){
 
-			this.sendAction('pickAction', this.get('model'));
+		// 	this.sendAction('pickAction', this.get('model'));
 
-		},
+		// },
 
 		toggleLike: function(){
 
