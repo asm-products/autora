@@ -76,4 +76,23 @@
 			}
 		}
 	}
+
+	.options {
+		color: $grey;
+		position: absolute;
+		bottom: 0;
+		right: 30px - 5px;
+	}
+
+	.dropdown {
+		margin-top: 35px;
+		width: 100px;
+		font-size:11px;
+		a {
+			color: $grey;
+			padding:4px 10px;
+		}	
+	}
+
+
 }

@@ -1,9 +1,7 @@
- <a class="plain toggleDropdown">{{user-photo user=session.user}}<div class="caret {{if showDropdown "caret-reversed"}}"><b></b></div></a>
-{{#if showDropdown}}
-    <div class="dropdown">
-        {{#link-to 'user.index' session.user.id}}<i class="fa fa-user"></i><span class="username">{{session.user.username}}</span>
-        {{/link-to}}
-        {{#link-to 'user.index.settings' session.user.id}}<i class="fa fa-wrench"></i>Settings{{/link-to}}
-        {{#link-to 'user.logout'}}<i class="fa fa-power-off"></i>Logout{{/link-to}}
-    </div>
-{{/if}}
+  <a class="plain toggleUserDropdown">{{user-photo user=session.user}}<div class="caret {{if showDropdown "caret-reversed"}}"><b></b></div></a>
+ {{#ui-dropdown showDropdown=showDropdown selectorClass="toggleUserDropdown"}}
+    {{#link-to 'user.index' session.user.id}}<i class="fa fa-user"></i><span class="username">{{session.user.username}}</span>
+    {{/link-to}}
+    {{#link-to 'user.index.settings' session.user.id}}<i class="fa fa-wrench"></i>Settings{{/link-to}}
+    {{#link-to 'user.logout'}}<i class="fa fa-power-off"></i>Logout{{/link-to}}
+ {{/ui-dropdown}}
