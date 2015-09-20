@@ -78,14 +78,14 @@
 	}
 
 	.options {
-		color: $grey;
+		color: transparentize($grey, 0.4);
 		position: absolute;
-		bottom: 0;
-		right: 30px - 5px;
+		bottom: 6px;
+		right: 15px;
 	}
 
 	.dropdown {
-		margin-top: 35px;
+		margin-top: 23px;
 		width: 100px;
 		font-size:11px;
 		a {

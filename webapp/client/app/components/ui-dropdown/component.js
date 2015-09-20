@@ -5,7 +5,10 @@ export default Ember.Component.extend({
     didInsertElement(){
     	var self = this;
     	Ember.$(document).click(function(){
-    		self.set('showDropdown', false);
+            // console.log(self);
+            if(self.isVisible){
+    		  self.set('showDropdown', false);
+            }
     	});
     	Ember.$('.' + this.get('selectorClass')).click(function(e){
     		self.toggleProperty('showDropdown');

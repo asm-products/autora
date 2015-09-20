@@ -1,6 +1,6 @@
         .dropdown {
             $pointer-size: 1em;
-            margin-top: $pointer-size*1.2;
+            margin-top: $pointer-size*2;
             width: 200px;
             position: absolute;
             z-index: 100;
@@ -27,7 +27,7 @@
                 }
 
                 &:hover {
-                    background: lighten($border-color2,10%);
+                    background: lighten($border-color2,5%);
                     text-decoration: none;
                 }
 
@@ -42,7 +42,7 @@
 
                 position: absolute;
                 top: -$pointer-size/2;
-                right: 25px;
+                right: 1.5em;
                 margin-left:-$pointer-size/2;
 
                 transform: rotate(45deg);

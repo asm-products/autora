@@ -79,6 +79,11 @@ export default Ember.Component.extend({
 			this.get('model').save().then(function(){
 				self.set('isEditing', false);
 			});
+		},
+		deleteEntry(){
+			if(confirm("Really destroy?")){
+				this.get('model').destroyRecord();
+			}	
 		}
 	}
 });
