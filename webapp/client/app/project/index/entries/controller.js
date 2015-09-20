@@ -65,7 +65,8 @@ export default Ember.Controller.extend({
 			var mostLikedEntry = sortedEntriesByLikes.get('lastObject');
 			var secondMostLikedEntry = sortedEntriesByLikes.objectAt(competingEntries.get('length') - 2);
 
-			if(mostLikedEntry.get('likes.length') !== secondMostLikedEntry.get('likes.length')){
+			//if secondMostLikedEntry is undefined, there is only one entry so locking pile should be allowed
+			if(typeof secondMostLikedEntry === 'undefined' || (mostLikedEntry.get('likes.length') !== secondMostLikedEntry.get('likes.length'))){
 
 				mostLikedEntry.set('project', project).save().then(function () {
 					pile.set('locked', true).save().then(function () {

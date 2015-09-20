@@ -1,11 +1,6 @@
 
 <div class="bordered padded box competing-entry">
 	<div class="head">
-	{{#if isEditable}}
-		{{!-- <div class="text-right"> --}}
-			<a {{action "toggleEditing"}}>Edit entry</a>
-		{{!-- </div> --}}
-	{{/if}}
 	</div>
 	<div class="info">
 			<svg {{action 'toggleLike'}} class="heart {{if isLikedByUser "filled" "empty"}}" width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -30,6 +25,15 @@
 	{{else}}
 		{{attrs.model.content}}
 
+	{{/if}}
+	{{#if isEditable}}
+		{{!-- <div class="text-right"> --}}
+			<a class=" options toggleEntryDropdown"><i class="fa fa-cog"></i></a>
+			{{#ui-dropdown selectorClass="toggleEntryDropdown"}}
+				<a {{action "toggleEditing"}}><i class="fa fa-edit"></i> Edit</a>
+				<a {{action "deleteEntry"}}><i class="fa fa-trash"></i> Delete</a>
+			{{/ui-dropdown}}
+		{{!-- </div> --}}
 	{{/if}}
 	</div>
 	{{!-- <div {{action 'pick'}} class="small orange bordered button">Pick entry</div> --}}
