@@ -12,23 +12,10 @@
 {{else}}
 	<div class="head">
 		<h2>{{model.name}}</h2>
-		<p>{{model.description}}</p>
-		<div class="meta">
-			{{!-- {{#if model.user.email}} --}}
-			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to "user.index" model.user.id}}{{user-photo user=model.user}}{{/link-to}}
-			{{!-- {{/if}} --}}
-
-			| <div class="tags">{{#each model.tags key="id" as |tag|}}
-					{{#link-to "tag" tag.name class="small rounded purple bordered button tag"}}#{{tag.name}}{{/link-to}}
-				{{/each}}
-			</div>
-		</div>
 		{{#if isCreator}}
 		<div class="options">
-			<a {{action "toggleOptions"}}>Options</a>
-		</div>
-		{{#if showOptions}}
-			{{#modal-prototype close="toggleOptions"}}
+			<a class="toggleProjectDropdown"> <i class="fa fa-cog"></i> </a>
+			{{!-- {{#modal-prototype close="toggleOptions"}}
 			<div {{action 'toggleOptions'}} class="close-modal">
 				<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
 				 <g>
@@ -47,9 +34,28 @@
 				{{/if}}
 			</div>
 
-			{{/modal-prototype}}
+			{{/modal-prototype}} --}}
+			{{#ui-dropdown selectorClass="toggleProjectDropdown"}}
+				<a {{action "toggleOpenClose"}}> {{if model.open 'Close project' 'Re-Open project'}} </a>
+				{{#if isEditable}}
+				<a {{action "toggleEdit"}}> <i class="fa fa-edit"></i> Edit </a>
+				<a> <i class="fa fa-trash"></i> Delete </a>
+				{{/if}}
+			{{/ui-dropdown}}
+		</div>
 		{{/if}}
-		{{/if}}
+		<p>{{model.description}}</p>
+		<div class="meta">
+			{{!-- {{#if model.user.email}} --}}
+			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to "user.index" model.user.id}}{{user-photo user=model.user}}{{/link-to}}
+			{{!-- {{/if}} --}}
+
+			| <div class="tags">{{#each model.tags key="id" as |tag|}}
+					{{#link-to "tag" tag.name class="small rounded purple bordered button tag"}}#{{tag.name}}{{/link-to}}
+				{{/each}}
+			</div>
+		</div>
+		
 	</div>
 	{{/if}}
 	<div class="body">

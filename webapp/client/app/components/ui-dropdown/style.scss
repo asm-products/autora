@@ -1,56 +1,59 @@
-        .dropdown {
-            $pointer-size: 1em;
-            margin-top: $pointer-size*2;
-            width: 200px;
-            position: absolute;
-            z-index: 100;
-            right: 0;
-            background: white;
-            box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
-            text-align: left;
-            // border-radius: $small-border-radius;
+.dropdown-container {
+   // position: relative;
+}
+.dropdown {
+    $pointer-size: 1em;
+    margin-top: $pointer-size*2;
+    width: 200px;
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    background: white;
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+    text-align: left;
+    // border-radius: $small-border-radius;
 
 
-            a {
-                display: block;
-                padding: 8px 10px;
-                width: 100%;
-                border-bottom: 1px solid $border-color2;
-                margin: 0 !important;
-                position: relative;
-                z-index: 3;
+    a {
+        display: block;
+        padding: 0.8em 0.9em;
+        width: 100%;
+        border-bottom: 1px solid $border-color2;
+        margin: 0 !important;
+        position: relative;
+        z-index: 3;
 
-                span.username {
-                    max-width: calc(100% - 30px);
-                    display: inline-block;
-                    word-break: break-all;
-                }
-
-                &:hover {
-                    background: lighten($border-color2,5%);
-                    text-decoration: none;
-                }
-
-                i.fa { //to be replaced with SVG?
-                    padding-right: 8px;
-                }
-            }
-            &::before {
-                //pointer
-                content: '';
-                display: block;
-
-                position: absolute;
-                top: -$pointer-size/2;
-                right: 1.5em;
-                margin-left:-$pointer-size/2;
-
-                transform: rotate(45deg);
-                background: white;
-                z-index: 2;
-                width: $pointer-size;
-                height: $pointer-size;
-                box-shadow: -1px -1px 0px 0px rgba(0,0,0,0.07);
-
-            }
+        span.username {
+            max-width: calc(100% - 30px);
+            display: inline-block;
+            word-break: break-all;
         }
+
+        &:hover {
+            background: lighten($border-color2,5%);
+            text-decoration: none;
+        }
+
+        i.fa { //to be replaced with SVG?
+            padding-right: 8px;
+        }
+    }
+    &::before {
+        //pointer
+        content: '';
+        display: block;
+
+        position: absolute;
+        top: -$pointer-size/2;
+        right: 1.5em;
+        margin-left:-$pointer-size/2;
+
+        transform: rotate(45deg);
+        background: white;
+        z-index: 2;
+        width: $pointer-size;
+        height: $pointer-size;
+        box-shadow: -1px -1px 0px 0px rgba(0,0,0,0.07);
+
+    }
+}

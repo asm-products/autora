@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	classNames: ['inline-block'],
+	classNames: ['inline-block','dropdown-container'],
     didInsertElement(){
     	var self = this;
     	Ember.$(document).click(function(){
