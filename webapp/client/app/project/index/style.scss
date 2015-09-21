@@ -23,6 +23,7 @@
 		text-align: center;
 		margin: 15px 0 0 0;
 		font-style: italic;
+		display: inline-block;
 	}
 
 	.meta {
@@ -46,16 +47,43 @@
 	}
 
 	.options {
-		position: absolute;
-		top: 0;
-		right: 0;
+		$width: 30px;
 		padding: 8px;
 	    cursor: pointer;
-	    font-size: 12px;
+	    font-size: 14px;
+	    display: inline-block;
+	    position: relative;
+	    margin-left: -$width;
+	    left: $width;
+
+	    a {
+	    	color: transparentize($grey, 0.4);
+	    }
+
+	    .toggleProjectDropdown {
+	    	text-decoration: none;
+	    }
+
+	    .dropdown {
+	    	//right: 0;
+	    	left: -82px;
+	    	margin:auto;
+	    	width: 100px;
+	    	top: 14px;
+	    	a { 
+	    		font-size:11px;
+	    		padding: 4px 8px;
+	    	}
+	    }
+
+	    .dropdown-container {
+	    	position:relative;
+	    }
 	}
 
 	.head {
 		margin-bottom: 0;
+		text-align: center;
 
 		p { //description
 			text-align: center;

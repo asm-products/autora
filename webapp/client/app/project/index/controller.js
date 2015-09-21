@@ -76,6 +76,12 @@ export default Ember.Controller.extend({
 			this.get('model').save().then(function(){
 				self.set('isEditing', false);
 			});
+		},
+		deleteProject(){
+			var self = this;
+			this.get('model').destroyRecord().then(function(){
+				self.transitionToRoute('project.contribute');
+			});
 		}
 	}
 });

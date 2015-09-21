@@ -12,6 +12,18 @@
 {{else}}
 	<div class="head">
 		<h2>{{model.name}}</h2>
+		{{#if isCreator}}
+		<div class="options">
+			<a class="toggleProjectDropdown"> <i class="fa fa-cog"></i> </a>
+			{{#ui-dropdown selectorClass="toggleProjectDropdown"}}
+				<a {{action "toggleOpenClose"}}> {{if model.open 'Close project' 'Re-Open project'}} </a>
+				{{#if isEditable}}
+				<a {{action "toggleEdit"}}> <i class="fa fa-edit"></i> Edit </a>
+				<a {{action "deleteProject"}}> <i class="fa fa-trash"></i> Delete </a>
+				{{/if}}
+			{{/ui-dropdown}}
+		</div>
+		{{/if}}
 		<p>{{model.description}}</p>
 		<div class="meta">
 			{{!-- {{#if model.user.email}} --}}
@@ -23,33 +35,7 @@
 				{{/each}}
 			</div>
 		</div>
-		{{#if isCreator}}
-		<div class="options">
-			<a {{action "toggleOptions"}}>Options</a>
-		</div>
-		{{#if showOptions}}
-			{{#modal-prototype close="toggleOptions"}}
-			<div {{action 'toggleOptions'}} class="close-modal">
-				<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-				 <g>
-				  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
-				  <line id="svg_2" y2="90" x2="10" y1="10" x1="90" stroke-width="20" fill="none"/>
-				 </g>
-				</svg>
-			</div>
-			<div class="spinner-wrap {{if optionsLoading 'au-loading'}}">
-				<h3>Project options</h3>
-				<div {{action "toggleOpenClose"}} class="small orange bordered rounded button">{{if model.open 'Close project' 'Re-Open project'}}</div>
-				{{#if isEditable}}
-				<div {{action "toggleEdit"}} class="small orange bordered rounded button">
-					Edit project
-				</div>
-				{{/if}}
-			</div>
-
-			{{/modal-prototype}}
-		{{/if}}
-		{{/if}}
+		
 	</div>
 	{{/if}}
 	<div class="body">
