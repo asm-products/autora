@@ -87,28 +87,4 @@
             margin: 20px auto 0 auto;
         }
     }
-
-    section.social {
-        background-color: $color1;
-        padding: 20px;
-        text-align: center;
-
-        a {
-            display: inline-block;
-            background-color: #ffffff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 14%;
-            padding: 16px 14px;
-
-            &:last-of-type {
-                margin-right: 0;
-            }
-
-            i {
-                font-size: 28px;
-            }
-        }
-    }
 }

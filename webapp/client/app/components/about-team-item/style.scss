@@ -1,0 +1,36 @@
+.about-team-item {
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 30px;
+
+    .photo-circle {
+        img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 50%;
+            padding: 10px;
+            border: 1px solid $color1;
+        }
+    }
+
+    .name {
+        margin-top: 20px;
+        color: $color1;
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .title {
+        margin-top: 2px;
+        font-weight: 300;
+        font-size: 12px;
+        font-style: italic;
+    }
+
+    .description {
+        margin-top: 8px;
+        font-weight: 300;
+        font-size: 14px;
+    }
+}
