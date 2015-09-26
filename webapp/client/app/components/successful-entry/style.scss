@@ -42,17 +42,22 @@
 	}
 	/* ------- INLINE MODE ----- */
 	&.inline {
-		display: inline-block;
+		//display: inline-block;
+		display: inline;
 		padding: 5px 2px;
 		margin-right: -4px;
 		z-index: 1;
+
+		p {
+			display: inline;
+		}
 
 
 		.info {
 			right: 0;
 			left: 0;
-			top: auto;
-			bottom: -30px;
+			top: -30px;
+			//bottom: -30px;
 			padding-top: 10px;
 			opacity: 0;
 			visibility: hidden;
