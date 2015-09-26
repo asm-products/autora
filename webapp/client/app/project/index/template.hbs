@@ -24,7 +24,7 @@
 			{{/ui-dropdown}}
 		</div>
 		{{/if}}
-		<p>{{model.description}}</p>
+		<p>{{nl-br model.description}}</p>
 		<div class="meta">
 			{{!-- {{#if model.user.email}} --}}
 			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to "user.index" model.user.id}}{{user-photo user=model.user}}{{/link-to}}
@@ -38,9 +38,9 @@
 		
 	</div>
 	{{/if}}
-	<div class="body">
+	<div class="body {{if inlineMode 'inline'}}">
 		{{#each model.entries key="id" as |entry|}}
-			{{successful-entry model=entry}}
+			{{successful-entry inline=inlineMode model=entry}}
 		{{/each}}
 
 		{{!-- {{#if newEntry.newEntry.showPreview}}

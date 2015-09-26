@@ -37,6 +37,21 @@ export default Ember.Controller.extend({
 		}
 	}),
 
+	max: Ember.computed('newProject.inputType', function(){
+		var inputType = this.get('newProject.inputType');
+
+		var max;
+
+		switch(inputType){
+			case 'word' : max = 10; break;
+			case 'line' : max = 4; break;
+			case 'sentence' : max = 4; break;
+			case 'paragraph' : max = 2; break;
+		}
+
+		return max;
+	}),
+
 	projectNameAlert: Ember.computed('newProject.name','showErrors', function(){
 		if(this.get('showErrors')){
 			var name = this.get('newProject.name');
@@ -90,6 +105,12 @@ export default Ember.Controller.extend({
 
 		if (!isPoetry && (inputType === 'line')) {
 			this.set('newProject.inputType', 'word');
+		}
+
+		//reset the input length if necessary
+
+		if(this.get('newProject.inputLength') > this.get('max')) {
+			this.set('newProject.inputLength', 1);
 		}
 	}),
 

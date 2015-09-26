@@ -25,6 +25,8 @@ export default Ember.Controller.extend({
 	// }),
 	// isCreator: Ember.computed.equal('session.user.id', 'model.user.id'), // buggy?
 
+	inlineMode: Ember.computed.equal('model.inputType', 'word'),
+
 	isCreator: Ember.computed('session.user.id','model.user.id', function(){
 		return this.get('session.user.id') === this.get('model.user.id');
 	}),

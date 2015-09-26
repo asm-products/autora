@@ -21,6 +21,20 @@ export default Ember.Controller.extend({
 	// 	return this.get('pile.competingEntries').sortBy('amountOfLikes');
 	// }),
 
+	gridClass: Ember.computed('pile.project.inputType', function(){
+		var inputType = this.get('pile.project.inputType');
+		var gridClass = "";
+
+		switch(inputType){
+			case 'word' : gridClass = "col-sm-6 col-md-4 col-lg-3"; break;
+			case 'line' : gridClass = "col-sm-6 col-md-6 col-lg-4"; break;
+			case 'sentence' : gridClass = "col-sm-6 col-md-6 col-lg-4"; break;
+			case 'paragraph' : gridClass = "col-lg-6"; break;
+		}
+
+		return gridClass;
+	}),
+
 	project: Ember.inject.controller('project.index'),
 
 	entriesFromUser: Ember.computed('model.competingEntries.@each','model.competingEntries.isFulfilled','session.user.id', function(){

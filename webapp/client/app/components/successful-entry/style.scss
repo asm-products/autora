@@ -40,4 +40,32 @@
 			opacity: 1;
 		}
 	}
+	/* ------- INLINE MODE ----- */
+	&.inline {
+		display: inline-block;
+		padding: 5px 2px;
+		margin-right: -4px;
+		z-index: 1;
+
+
+		.info {
+			right: 0;
+			left: 0;
+			top: auto;
+			bottom: -30px;
+			padding-top: 10px;
+			opacity: 0;
+			visibility: hidden;
+			width: 80px;
+		}
+
+		&:hover {
+			z-index: 2;
+			.info {
+				opacity: 1;
+				background: transparentize(white, 0.2);
+				visibility: visible;
+			}
+		}
+	}
 }
