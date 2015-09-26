@@ -16,7 +16,7 @@
 			<!-- (Listing entries in pile {{pile.id}}) -->
 			<div class="row clearfix">
 				{{#each sortedEntries key="id" as |entry index|}}
-					{{grid-clearfix index}}
+					{{grid-clearfix index pile.project.inputType}}
 					<div class="{{gridClass}}">
 						{{competing-entry model=entry}}
 					</div>
