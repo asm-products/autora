@@ -61,7 +61,7 @@
 					<label>Set entry length</label>
 				</div>
 				<div class="col-sm-3">
-					{{input type="number" min="1" value=newProject.inputLength}}
+					{{input type="number" min="1" max=max value=newProject.inputLength}}
 				</div>
 				<div class="col-sm-5">
 					{{select-2 searchEnabled=false optionValuePath="id" value=newProject.inputType content=inputTypes}}
