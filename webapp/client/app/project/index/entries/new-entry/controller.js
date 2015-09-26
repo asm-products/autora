@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-	maxLength2: Ember.computed('pile.project.inputType','pile.project.inputLength', function(){
+	maxlength: Ember.computed('pile.project.inputType','pile.project.inputLength', function(){
 		var inputType = this.get('pile.project.inputType');
 		var inputLength = this.get('pile.project.inputLength');
 

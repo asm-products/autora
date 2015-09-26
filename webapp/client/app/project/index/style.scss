@@ -92,6 +92,12 @@
 			margin-bottom: 0;
 		}
 	}
+
+	.body {
+		&.inline {
+			padding: 0 18px;
+		}
+	}
 	//Extends: small.rounded.purple.bordered.button
 	.tags {
 		display: inline-block;
