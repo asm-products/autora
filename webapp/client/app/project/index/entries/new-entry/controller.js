@@ -28,6 +28,22 @@ export default Ember.Controller.extend({
 		}
 	}),
 
+	maxLength2: Ember.computed('pile.project.inputType','pile.project.inputLength', function(){
+		var inputType = this.get('pile.project.inputType');
+		var inputLength = this.get('pile.project.inputLength');
+
+		var baseLength = 0;
+
+		switch(inputType){
+			case 'word' : baseLength = 30; break;
+			case 'line' : baseLength = 200; break;
+			case 'sentence' : baseLength = 200; break;
+			case 'paragraph' : baseLength = 600; break;
+		}
+
+		return parseInt(baseLength * inputLength);
+	}),
+
 	resetForm: function () {
 		this.set('newEntry.content', '');
 		this.set('hasErrors', false);

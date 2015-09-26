@@ -40,7 +40,7 @@
 	{{/if}}
 	<div class="body">
 		{{#each model.entries key="id" as |entry|}}
-			{{successful-entry model=entry}}
+			{{successful-entry inline=inlineMode model=entry}}
 		{{/each}}
 
 		{{!-- {{#if newEntry.newEntry.showPreview}}
