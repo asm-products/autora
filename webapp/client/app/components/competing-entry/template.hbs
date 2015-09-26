@@ -23,7 +23,7 @@
 			<div {{action "cancelEditing"}} class="small orange bordered rounded button">Cancel</div>
 		</form>
 	{{else}}
-		{{attrs.model.content}}
+		{{nl-br attrs.model.content}}
 
 	{{/if}}
 	{{#if isEditable}}
