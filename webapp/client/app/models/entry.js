@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default DS.Model.extend({
   user: DS.belongsTo('user', {async: true}),
 
-  pile: DS.belongsTo('pile'),
+  pile: DS.belongsTo('pile', {async: true}),
   project: DS.belongsTo('project'),
 
   likes: DS.hasMany('like', {async: true}), //async false for embedded likes

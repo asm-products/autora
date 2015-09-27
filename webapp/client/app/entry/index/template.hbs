@@ -1,1 +1,18 @@
 {{outlet}}
+
+<div class="index">
+	<div class="container">
+		<h2>Entry detail</h2>
+		<p>Posted {{moment-from-now model.pile.updatedAt}} in {{#link-to 'project.index' model.pile.project.id}}{{model.pile.project.name}}{{/link-to}}</p>
+		{{competing-entry model=model}}
+		<h3>Competed with</h3>
+		{{#each sortedEntries key="id" as |entry|}}
+		{{grid-clearfix index model.pile.project.inputType}}
+			<div class="col-lg-6">
+				{{competing-entry model=entry}}
+			</div>
+		{{else}}
+			<div class="no-entries">Competed without any other entries.</div>
+		{{/each}}
+	</div>	
+</div>
