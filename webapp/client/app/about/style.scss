@@ -1,14 +1,12 @@
-#about {
-    > header {
-        background-color: $color2;
-        background-image: url('/images/about-header.png');
-        overflow: hidden;
-        text-align: center;
-        padding: 100px 0 100px 0;
-        background-repeat: no-repeat;
-        background-position: 50%;
+#about >header, .how-it-works >header {
+    background-color: $color2;
+    overflow: hidden;
+    text-align: center;
+    padding: 100px 0 100px 0;
+    background-repeat: no-repeat;
+    background-position: 50%;
 
-        h1 {
+      h1 {
             color: #ffffff;
             text-transform: uppercase;
             font-size: 60px;
@@ -21,6 +19,10 @@
             font-weight: 300;
             margin: 0;
         }
+}
+#about {
+    > header {
+        background-image: url('/images/about-header.png');
     }
 
     .story {

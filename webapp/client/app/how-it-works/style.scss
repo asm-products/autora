@@ -1,0 +1,25 @@
+/* Uses header from about/style.scss */
+.how-it-works {
+	section {
+		h2 {
+			font-weight: 300;
+			font-size: 44px;
+		}
+
+		.number {
+			font-size:410px;
+			font-weight: bold;
+			color: white;
+			position: absolute;
+			text-align: center;
+		}
+
+		&:nth-child(odd){
+			background: white;
+
+			.number {
+				color: $background-color;
+			}
+		}
+	}
+}
