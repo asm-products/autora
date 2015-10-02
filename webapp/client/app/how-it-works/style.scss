@@ -1,17 +1,34 @@
 /* Uses header from about/style.scss */
 .how-it-works {
+	.container {
+		padding: 0 9%;
+	}
 	section {
+		padding-top: 70px;
+		position: relative;
 		h2 {
 			font-weight: 300;
 			font-size: 44px;
+			text-align: center;
+			line-height: 400px;
+			height: 280px;
+			vertical-align: middle;
+			span {
+				line-height: initial;
+				display: inline-block;
+			}
 		}
 
 		.number {
 			font-size:410px;
+			line-height: 255px;
 			font-weight: bold;
 			color: white;
 			position: absolute;
 			text-align: center;
+			bottom: 0;
+			left: 29%;
+			transform: translate(-50%,0);
 		}
 
 		&:nth-child(odd){
@@ -20,6 +37,23 @@
 			.number {
 				color: $background-color;
 			}
+		}
+
+		.illustration {
+			position: relative;
+			top: 40px;
+			text-align: right;
+			svg {
+				display: inline-block;
+			}
+		}
+
+		&.idea {
+			z-index: 5;
+		}
+
+		&.new-entry {
+			z-index: 4;
 		}
 	}
 }
