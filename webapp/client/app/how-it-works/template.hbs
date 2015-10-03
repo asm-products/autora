@@ -3,63 +3,23 @@
 		<h1>How it works</h1>
 		<h2>How an idea becomes literature</h2>
 	</header>
-	<section class="idea">
-		<div class="container">
-			<div class="left">
-				<div class="number">1</div>
-				<h2><span>Your brilliant idea starts a project</span></h2>
-			</div>
-			<div class="right">
-				<div class="illustration">{{partial "svg/lightbulb"}}</div>
-			</div>
 
-		</div>
-	</section>
-	<section class="new-entry">
-		<div class="container">
-			<div class="left">
-				<div class="illustration">{{partial "svg/book-empty"}}</div>
-			</div>
-			<div class="right">
-				<div class="number">2</div>
-				<h2><span>A new entry opens</span></h2>
-			</div>
-		</div>
-	</section>
-	<section class="anyone">
-		<div class="container">
-			<div class="left">
-				<div class="number">3</div>
-				<h2><span>Anyone can submit and vote on entries</span></h2>
-			</div>
-			<div class="right">
-				<div class="illustration">{{partial "svg/book-hearts"}}</div>
-			</div>
-		</div>
-	</section>
-	<section class="locked">
-		<div class="container">
-			<div class="left">
-				<div class="illustration">{{partial "svg/book-story"}}</div>
-			</div>
-			<div class="right">
-				<div class="number">4</div>
-				<h2><span>An entry is locked in and the story grows</span></h2>
-			</div>
-		</div>
-	</section>
-	<section class="complete">
-		<div class="container">
-			<div class="left">
-				<div class="number">5</div>
-				<img src="" alt="" class="number">
-				<h2><span>Until you decide it&nbsp;is&nbsp;complete</span></h2>
-			</div>
-			<div class="right">
-				<div class="illustration">{{partial "svg/book-finished"}}</div>
-			</div>
-		</div>
-	</section>
+	{{#story-section name="idea" svg="lightbulb" number="1"}}
+		Your brilliant idea starts a project
+	{{/story-section}}
+	{{#story-section name="new-entry" svg="book-empty" number="2"}}
+		A new entry opens
+	{{/story-section}}
+	{{#story-section name="anyone" svg="book-hearts" number="3"}}
+		Anyone can submit and vote on entries
+	{{/story-section}}
+	{{#story-section name="locked" svg="book-story" number="4"}}
+		An entry is locked in and the story grows
+	{{/story-section}}
+	{{#story-section name="complete" svg="book-finished" number="5"}}
+		Until you decide it&nbsp;is&nbsp;complete
+	{{/story-section}}
+
 	<section class="try">
 		<div class="container">
 			<h2>Want to try it out?</h2>
@@ -67,4 +27,5 @@
 		</div>
 	</section>
 </div>
+{{social-row}}
 {{outlet}}

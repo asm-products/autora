@@ -69,6 +69,7 @@
 			svg {
 				display: inline-block;
 				max-width:90%;
+				opacity: 0;
 			}
 		}
 
@@ -174,6 +175,7 @@
 	100% {transform: translate(0%,0%); opacity: 1;}
 }
 
+section.animate{
 svg {
 	/* LightBulb */
 	.ray {
@@ -199,25 +201,25 @@ svg {
 			animation-delay: $increment;
 		}
 		&.third {
-			animation-delay: $increment*2 + random()/3;
+			animation-delay: $increment*2 + random()/6;
 		}
 		&.fourth {
-			animation-delay: $increment*3 + random()/3;
+			animation-delay: $increment*3 + random()/6;
 		}
 		&.fifth {
-			animation-delay: $increment*4 + random()/3;
+			animation-delay: $increment*4 + random()/6;
 		}
 		&.sixth {
-			animation-delay: $increment*5 + random()/3;
+			animation-delay: $increment*5 + random()/6;
 		}
 		&.seventh {
-			animation-delay: $increment*6 + random()/3;
+			animation-delay: $increment*6 + random()/6;
 		}
 		&.eighth {
-			animation-delay: $increment*7 + random()/3;
+			animation-delay: $increment*7 + random()/6;
 		}
 		&.nineth {
-			animation-delay: $increment*8 + random()/3;
+			animation-delay: $increment*8 + random()/6;
 		}
 	}
 
@@ -237,11 +239,12 @@ svg {
 	}
 }
 
-.left svg {
-	animation: 1.5s land-in-left forwards;
-	opacity: 0;
-}
-.right svg {
-	animation: 1.5s land-in-right forwards;
-	opacity: 0;
+	.left svg {
+		animation: 1.5s land-in-left forwards;
+		opacity: 0;
+	}
+	.right svg {
+		animation: 1.5s land-in-right forwards;
+		opacity: 0;
+	}
 }

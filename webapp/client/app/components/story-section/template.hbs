@@ -1,0 +1,20 @@
+<div class="container">
+	{{#if isOdd}}
+		<div class="left">
+			<div class="number">{{number}}</div>
+			<h2><span>{{yield}}</span></h2>
+		</div>
+		<div class="right">
+			<div class="illustration">{{partial svgPath}}</div>
+		</div>
+	{{else}}
+		<div class="left">
+			<div class="illustration">{{partial svgPath}}</div>
+		</div>
+		<div class="right">
+			<div class="number">{{number}}</div>
+			<h2><span>{{yield}}</span></h2>
+		</div>		
+	{{/if}}
+
+</div>
