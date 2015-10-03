@@ -24,6 +24,7 @@
 		</form>
 	{{else}}
 		{{nl-br attrs.model.content}}
+		{{if endsWithLineBreak '↵'}}
 
 	{{/if}}
 	{{#if isEditable}}

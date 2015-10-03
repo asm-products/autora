@@ -39,6 +39,14 @@ export default Ember.Component.extend({
 	likeAction: 'likeEntry',
 	unlikeAction: 'unlikeEntry',
 
+	endsWithLineBreak: Ember.computed('model.content', function(){
+		var content = this.get('model.content');
+		if(content){
+			//console.log();
+			return content.substr(content.length - 1,1).match(/\n/);
+		}
+	}),
+
 	actions: {
 
 		// pick: function(){
