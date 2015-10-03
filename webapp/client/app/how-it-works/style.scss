@@ -1,0 +1,250 @@
+/* Uses header from about/style.scss */
+.how-it-works {
+	.container {
+		//padding: 0 4%;
+		max-width: 1050px;
+		text-align: center;
+	}
+	section {
+		padding-top: 70px;
+		position: relative;
+		h2 {
+			height: 280px;
+			vertical-align: middle;
+			line-height: 280px;
+			text-align: center;
+			position: relative;
+			font-weight: 300;
+			z-index: 1;
+			font-size:42px;	
+			margin: 0;
+
+			span {
+				line-height: initial;
+				display: inline-block;
+				width:430px;
+				max-width:100%;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 370px;
+				transform: translate(-50%,-50%);
+			}
+		}
+
+		.left,.right {
+			display: inline-block;
+			vertical-align: bottom;
+			width: 50%;
+			min-width:290px;
+			margin-right: -4px;
+			position: relative;
+		}
+
+		.number {
+			font-size:410px;
+			line-height: 255px;
+			font-weight: bold;
+			color: white;
+			text-align: center;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			z-index: 0;
+			transform: translate(-50%,0);
+		}
+
+		&:nth-child(odd){
+			background: white;
+
+			.number {
+				color: $background-color;
+			}
+		}
+
+		.illustration {
+			position: relative;
+			top: 40px;
+			text-align: center;
+			svg {
+				display: inline-block;
+				max-width:90%;
+				opacity: 0;
+			}
+		}
+
+		$top: 6;
+		&.idea {
+			z-index: $top;
+		}
+
+		&.new-entry {
+			z-index: $top - 1;
+		}
+
+		&.anyone {
+			z-index: $top - 2;
+		}
+
+		&.locked {
+			z-index: $top - 3;
+		}
+		&.complete {
+			z-index: $top - 4;
+
+			h2 {
+				text-transform: uppercase;
+			}
+		}
+		&.try {
+			z-index: $top - 5;
+			padding: 135px 0;
+
+			h2 {
+				height: auto;
+				line-height: initial;
+				text-transform: uppercase;
+				font-weight: 500;
+			}
+
+			.button {
+				text-transform: uppercase;
+				font-weight: 500;
+				font-size:48px;
+				border-radius: 1em;
+				margin-top: 55px;
+				padding: 18px 60px;
+			}
+		}
+
+		@media all and (max-width:619px){
+			height: 700px;
+
+			.left,.right {
+				width: 100%;
+				position: absolute;
+				left: 0;
+			}
+
+			&:nth-child(odd){
+				.left {
+					top: 0;
+				}
+				.right {
+					bottom: 0;
+				}
+			}
+			&:nth-child(even){
+				.left {
+					bottom: 0;
+				}
+				.right {
+					top: 0;
+				}
+			}
+		}
+	}
+}
+
+@keyframes fill-appear {
+	0% { fill: transparent; }
+	100% { fill: $color1; }
+}
+
+@keyframes light-up {
+	0% {fill: white;}
+	100% {fill: $color1;}
+}
+
+@keyframes red-appear {
+	0% {fill: transparent;}
+	100% {fill: $red;}
+}
+
+@keyframes grow {
+	0% {transform: scale(0.5,1); opacity: 0;}
+	100% {transform: scale(1,1); opacity: 1;}
+}
+
+@keyframes land-in-right {
+	0% {transform: translate(5%,-5%); opacity: 0;}
+	100% {transform: translate(0%,0%); opacity: 1;}
+}
+@keyframes land-in-left {
+	0% {transform: translate(5%,5%); opacity: 0;}
+	100% {transform: translate(0%,0%); opacity: 1;}
+}
+
+section.animate{
+svg {
+	/* LightBulb */
+	.ray {
+		fill: transparent;
+		animation: 4s fill-appear forwards;
+		animation-delay: 0.5s;
+	}
+
+	.glass {
+		animation: 4s light-up forwards;
+		fill: transparent; 
+	}
+
+	/* Hearts */
+
+	.heart {
+		fill: transparent;
+		animation: 0.5s red-appear forwards;
+
+		$increment: .25s;
+
+		&.second {
+			animation-delay: $increment;
+		}
+		&.third {
+			animation-delay: $increment*2 + random()/6;
+		}
+		&.fourth {
+			animation-delay: $increment*3 + random()/6;
+		}
+		&.fifth {
+			animation-delay: $increment*4 + random()/6;
+		}
+		&.sixth {
+			animation-delay: $increment*5 + random()/6;
+		}
+		&.seventh {
+			animation-delay: $increment*6 + random()/6;
+		}
+		&.eighth {
+			animation-delay: $increment*7 + random()/6;
+		}
+		&.nineth {
+			animation-delay: $increment*8 + random()/6;
+		}
+	}
+
+	/* Lines */
+
+	.line {
+		animation: 0.8s grow forwards;
+		transform-origin: 50% 50%;
+		transform: scale(0.5,1);
+		opacity: 0;
+
+		@for $i from 1 through 40{
+		  &:nth-of-type(#{$i}){ 
+		    animation-delay:#{$i/5 - 2}s; 
+		  }
+		}
+	}
+}
+
+	.left svg {
+		animation: 1.5s land-in-left forwards;
+		opacity: 0;
+	}
+	.right svg {
+		animation: 1.5s land-in-right forwards;
+		opacity: 0;
+	}
+}

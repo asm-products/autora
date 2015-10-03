@@ -20,10 +20,12 @@ Router.map(function() {
       this.route('entries', function () {
         this.route('new-entry');
       });
-      this.route('entry',{path: '/:entry_id'}, function() {});
     });
   });
 
+  this.route('entry', function() {
+    this.route('index', {path: '/:entry_id'});
+  });
   // ember simple auth needs this for some reason
   this.route('index');
 

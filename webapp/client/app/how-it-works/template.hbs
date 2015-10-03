@@ -1,2 +1,31 @@
-<h2>How it works</h2>
+<div class="how-it-works">
+	<header>
+		<h1>How it works</h1>
+		<h2>How an idea becomes literature</h2>
+	</header>
+
+	{{#story-section name="idea" svg="lightbulb" number="1"}}
+		Your brilliant idea starts a project
+	{{/story-section}}
+	{{#story-section name="new-entry" svg="book-empty" number="2"}}
+		A new entry opens
+	{{/story-section}}
+	{{#story-section name="anyone" svg="book-hearts" number="3"}}
+		Anyone can submit and vote on entries
+	{{/story-section}}
+	{{#story-section name="locked" svg="book-story" number="4"}}
+		An entry is locked in and the story grows
+	{{/story-section}}
+	{{#story-section name="complete" svg="book-finished" number="5"}}
+		Until you decide it&nbsp;is&nbsp;complete
+	{{/story-section}}
+
+	<section class="try">
+		<div class="container">
+			<h2>Want to try it out?</h2>
+			<div class="big orange rounded filled button">Sign up</div>
+		</div>
+	</section>
+</div>
+{{social-row}}
 {{outlet}}
