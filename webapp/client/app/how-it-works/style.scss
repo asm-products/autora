@@ -1,22 +1,44 @@
 /* Uses header from about/style.scss */
 .how-it-works {
 	.container {
-		padding: 0 9%;
+		//padding: 0 4%;
+		max-width: 1050px;
+		text-align: center;
 	}
 	section {
 		padding-top: 70px;
 		position: relative;
 		h2 {
-			font-weight: 300;
-			font-size: 44px;
-			text-align: center;
-			line-height: 400px;
 			height: 280px;
 			vertical-align: middle;
+			line-height: 280px;
+			text-align: center;
+			position: relative;
+			font-weight: 300;
+			z-index: 1;
+			font-size:42px;	
+			margin: 0;
+
 			span {
 				line-height: initial;
 				display: inline-block;
+				width:430px;
+				max-width:100%;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 370px;
+				transform: translate(-50%,-50%);
 			}
+		}
+
+		.left,.right {
+			display: inline-block;
+			vertical-align: bottom;
+			width: 50%;
+			min-width:290px;
+			margin-right: -4px;
+			position: relative;
 		}
 
 		.number {
@@ -24,10 +46,11 @@
 			line-height: 255px;
 			font-weight: bold;
 			color: white;
-			position: absolute;
 			text-align: center;
+			position: absolute;
 			bottom: 0;
-			left: 29%;
+			left: 50%;
+			z-index: 0;
 			transform: translate(-50%,0);
 		}
 
@@ -42,18 +65,55 @@
 		.illustration {
 			position: relative;
 			top: 40px;
-			text-align: right;
+			text-align: center;
 			svg {
 				display: inline-block;
+				max-width:100%;
 			}
 		}
 
+		$top: 6;
 		&.idea {
-			z-index: 5;
+			z-index: $top;
 		}
 
 		&.new-entry {
-			z-index: 4;
+			z-index: $top - 1;
+		}
+
+		&.anyone {
+			z-index: $top - 2;
+		}
+
+		&.locked {
+			z-index: $top - 3;
+		}
+		&.complete {
+			z-index: $top - 4;
+
+			h2 {
+				text-transform: uppercase;
+			}
+		}
+		&.try {
+			z-index: $top - 5;
+			padding: 135px 0;
+
+			h2 {
+				height: auto;
+				line-height: initial;
+				text-transform: uppercase;
+				font-weight: 500;
+			}
+
+			.button {
+				text-transform: uppercase;
+				font-weight: 500;
+				font-size:48px;
+				border-radius: 1em;
+				margin-top: 55px;
+				padding: 18px 60px;
+			}
 		}
 	}
 }
