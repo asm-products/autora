@@ -11,11 +11,9 @@ Router.reopen({
       return;
     }
 
-    var url = window.location.href;
-
-    return ga('send', 'pageview', {
-        'page': location.pathname
-      });
+    return window.ga('send', 'pageview', {
+      'page': location.pathname
+    });
   }.on('didTransition')
 });
 
