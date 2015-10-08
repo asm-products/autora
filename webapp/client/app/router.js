@@ -6,7 +6,11 @@ var Router = Ember.Router.extend({
 });
 
 Router.reopen({
-  notifyGoogleAnalytics: function(u) {
+  notifyGoogleAnalytics: function () {
+    if (config.environment === 'development') {
+      return;
+    }
+
     var url = window.location.href;
 
     return ga('send', 'pageview', {
