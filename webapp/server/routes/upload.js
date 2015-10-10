@@ -7,6 +7,7 @@ var gm = require('gm').subClass({imageMagick: true});
 var shortid = require('shortid');
 
 exports.s3 = function (req, res, next) {
+
     var file = req.files.file;
     var client = s3.createClient({
         maxAsyncS3: 20,     // this is the default
@@ -24,41 +25,65 @@ exports.s3 = function (req, res, next) {
     var fileName = shortid.generate() + '.' + ext;
     var type = req.params.type;
 
-    /*
-    gm(file.path)
-    .resize(400, 400)
-    .noProfile()
-    .write(file.path, function (err) {
-    */
-        var params = {
-            localFile: file.path,
+    function resizeAndSend (size, callback){
 
-            s3Params: {
-                Bucket: 'autora',
-                Key: type + '/' + fileName
-            },
-        };
+        gm(file.path)
+        .resize(size, size)
+        .noProfile()
+        .write(file.path, function (err) {
+            
+            if(err) throw err;
+        
+            var key = type + '/' + '.w' + size + '.' + fileName;
+            console.log(key);
+            var params = {
+                localFile: file.path,
 
-        var uploader = client.uploadFile(params);
-
-        uploader.on('error', function(err) {
-            return res.json({success: false});
-            console.error("unable to upload:", err.stack);
-        });
-
-        uploader.on('progress', function() {
-            console.log("progress", uploader.progressMd5Amount,
-                    uploader.progressAmount, uploader.progressTotal);
-        });
-
-        uploader.on('end', function() {
-            var ret = {
-                success: true,
-                filePath: 'https://s3-us-west-2.amazonaws.com/autora/' + type + '/' + fileName
+                s3Params: {
+                    Bucket: 'autora',
+                    Key: key
+                },
             };
 
-            return res.json(ret);
-            console.log("done uploading");
+            var uploader = client.uploadFile(params);
+
+            uploader.on('error', function(err) {
+                return res.json({success: false});
+                console.error("unable to upload:", err.stack);
+            });
+
+            uploader.on('progress', function() {
+
+                console.log("progress on " + key, uploader.progressMd5Amount,
+                        uploader.progressAmount, uploader.progressTotal);
+            });
+
+            uploader.on('end', function() {
+                console.log('end?');
+                callback(fileName);
+
+            });
         });
-    /*});*/
+    }
+
+    // resizeAndSend(1600, resizeAndSend(1024, resizeAndSend(400, function(){
+        resizeAndSend(1600, function(){
+            resizeAndSend(1024, function(){
+                resizeAndSend(400, function(fileName){
+                    //TODO: maybe add 200 size here
+                    var ret = {
+                        success: true,
+                        // filePath: 'https://s3-us-west-2.amazonaws.com/autora/' + fileName
+                        fileName: fileName
+                    };
+                    res.json(ret);
+                   // return res.json(ret);
+                    console.log("done uploading");
+                    
+                })
+            })
+        });
+
+
+    // })))
 };

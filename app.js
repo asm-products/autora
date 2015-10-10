@@ -33,8 +33,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'landing-page/public')));
 
-app.use(subdomain('app', webappRoutes));
-app.use('/', landingPageRoutes);
+//app.use(subdomain('app', webappRoutes));
+//app.use('/', landingPageRoutes);
+app.use('/', webappRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

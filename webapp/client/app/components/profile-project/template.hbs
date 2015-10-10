@@ -3,7 +3,11 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="row">
-						<img src="http://placehold.it/65x65" alt="">
+						{{#if model.image}}
+				            <img src="{{imageUrl}}" />
+				        {{else}}
+				            <img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=70&h=70" />
+				        {{/if}}
 						<div class="content">
 							<h3>{{model.name}}</h3>
 							<div class="tags">
