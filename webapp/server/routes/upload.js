@@ -34,7 +34,7 @@ exports.s3 = function (req, res, next) {
             
             if(err) throw err;
         
-            var key = type + '/' + '.w' + size + '.' + fileName;
+            var key = type + '/' + 'w' + size + '.' + fileName;
             console.log(key);
             var params = {
                 localFile: file.path,
