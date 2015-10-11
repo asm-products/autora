@@ -33,9 +33,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'landing-page/public')));
 
-//app.use(subdomain('app', webappRoutes));
-//app.use('/', landingPageRoutes);
-app.use('/', webappRoutes);
+app.use(subdomain('app', webappRoutes));
+app.use('/', landingPageRoutes);
+
+
+//app.use('/', webappRoutes); // I switch this on localhost because subdomains dont work for me
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
