@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
 
 	actions: {
 		userPhotoUploadDone(file){
-			this.set('session.user.photo', file)
+			this.set('session.user.photo', file);
 			this.get('session.user.content').save();
 		},
 		coverPhotoUploadDone(file){

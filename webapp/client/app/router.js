@@ -5,6 +5,18 @@ var Router = Ember.Router.extend({
   location: config.locationType
 });
 
+Router.reopen({
+  notifyGoogleAnalytics: function () {
+    if (config.environment === 'development') {
+      return;
+    }
+
+    return window.ga('send', 'pageview', {
+      'page': location.pathname
+    });
+  }.on('didTransition')
+});
+
 Router.map(function() {
   this.route('home', {path: '/'});
   this.route('about');
