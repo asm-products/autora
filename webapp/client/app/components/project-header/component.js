@@ -1,8 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-	backgroundImageStyle: Ember.computed('model.image', function(){
-		return 'background-image: url("' + this.get('imageHost') + 'project/.w400.' + this.get('image') + '")';
+
+	imageService: Ember.inject.service('image'),
+
+	backgroundImageStyle: Ember.computed('image', function(){
+
+		return `background-image: url('${this.get('imageService').generateImagePath(this.get('image'),'project',400,this.get('imageHost'))}')`;
 	}),
 	actions: {
 		toggleCreateProjectModal: function(){
