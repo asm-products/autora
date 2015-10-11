@@ -6,13 +6,13 @@
 		<div class="col-sm-5">
 			<label>User</label>
 			<div class="photo-box">
-				{{photo-uploader filePreviewUrl=session.user.photo type='user' uploaderId='user-photo-uploader' uploadSuccess='userPhotoUploadDone'}}
+				{{photo-uploader fileName=session.user.photo type='user' uploaderId='user-photo-uploader' uploadSuccess='userPhotoUploadDone'}}
 			</div>
 		</div>
 		<div class="col-sm-5">
 			<label>Cover</label>
 			<div class="photo-box">
-				{{photo-uploader filePreviewUrl=session.user.cover type='cover' uploaderId='cover-photo-uploader' uploadSuccess='coverPhotoUploadDone'}}
+				{{photo-uploader fileName=session.user.cover type='cover' uploaderId='cover-photo-uploader' uploadSuccess='coverPhotoUploadDone'}}
 			</div>
 		</div>
 	</div>

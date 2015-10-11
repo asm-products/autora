@@ -7,6 +7,10 @@ export default Ember.Component.extend({
         return '/upload/s3/' + this.get('type');
     }),
     classNames: ['photo-uploader'],
+    imageService: Ember.inject.service('image'),
+    filePreviewUrl: Ember.computed('fileName', function(){
+        return this.get('imageService').generatePath(this.get('fileName'),this.get('type'));
+    }),
     actions: {
         uploadStart: function () {
             this.set('loading', true);
@@ -17,7 +21,7 @@ export default Ember.Component.extend({
 
             if (data.success) {
                 // this.set('filePreviewUrl', data.filePath);
-                this.set('filePreviewUrl', config.s3Url + 'project/.w400.' + data.fileName);
+                this.set('fileName', data.fileName);
                 this.sendAction('uploadSuccess', data.fileName);
             }
         },

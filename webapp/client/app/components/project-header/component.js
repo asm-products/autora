@@ -6,7 +6,7 @@ export default Ember.Component.extend({
 
 	backgroundImageStyle: Ember.computed('image', function(){
 
-		return `background-image: url('${this.get('imageService').generateImagePath(this.get('image'),'project',400,this.get('imageHost'))}')`;
+		return `background-image: url('${this.get('imageService').generatePath(this.get('image'),'project',400,this.get('imageHost'))}')`;
 	}),
 	actions: {
 		toggleCreateProjectModal: function(){
