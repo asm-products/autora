@@ -17,6 +17,7 @@ export default DS.Model.extend({
   piles: DS.hasMany('pile', {async: true}),
 
   image: DS.attr('string'),
+  imageHost: DS.attr('string'),
 
   createdAt: DS.attr('timestamp'),
   updatedAt: DS.attr('timestamp')

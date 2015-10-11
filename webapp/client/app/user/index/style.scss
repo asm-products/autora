@@ -25,7 +25,8 @@
 		border-bottom: 5px solid $color1;
 		margin-bottom: 15px;
 
-		background:transparent left top no-repeat;
+		background:transparent center center no-repeat;
+		background-size:cover;
 
 		.inner {
 			// position: relative;

@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import Firebase from 'firebase';
+import config from 'client/config/environment';
 
 export default Ember.Controller.extend({
 	project: Ember.inject.controller('project'),
@@ -120,7 +121,8 @@ export default Ember.Controller.extend({
 			this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
 
-			this.set('newProject.image', this.get('filePreviewUrl'));
+			this.set('newProject.image', this.get('fileName'));
+			this.set('newProject.imageHost', config.s3Url);
 
 			this.set('showErrors', true);
 			if(this.get('isReadyToSend')){
@@ -221,9 +223,10 @@ export default Ember.Controller.extend({
 			this.set('showFilePicker', false);
 		},
 
-		projectPhotoUploadDone: function (file) {
-			console.log(file);
-			this.set('filePreviewUrl', file);
+		projectPhotoUploadDone: function (fileName) {
+			//console.log(file);
+			this.set('fileName',fileName);
+
 			/*
 			Ember.$.post('/s3/upload', file).done(function () {
 			}.bind(this));
