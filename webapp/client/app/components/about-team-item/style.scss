@@ -4,16 +4,36 @@
     padding-bottom: 30px;
 
     .photo-circle {
-        img {
+        border-radius: 50%;
+        border: 1px solid $color1;
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        padding: 10px;
+
+        .padding {
+            position: relative;
+            height: 100%;
             width: 100%;
-            max-width: 150px;
-            border-radius: 50%;
-            padding: 10px;
-            border: 1px solid $color1;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+            }
+
+            .funny {
+                transition: opacity 0.2s;
+                opacity: 0;
+            }
         }
     }
 
     .name {
+        height: 26px;
         margin-top: 20px;
         color: $color1;
         font-weight: 600;
@@ -32,5 +52,17 @@
         margin-top: 8px;
         font-weight: 300;
         font-size: 14px;
+    }
+
+    &:hover {
+        .photo-circle {
+            .funny {
+                opacity: 1;
+            }
+        }
+
+        .name {
+            font-size: 20px;
+        }
     }
 }
