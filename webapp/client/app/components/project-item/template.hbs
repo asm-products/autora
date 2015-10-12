@@ -4,8 +4,8 @@
         <div class="action">{{if model.open 'Collaborate' 'Read'}}</div>
     </div>
     <div class="image">
-        {{#if attrs.model.image}}
-            <img src="{{attrs.model.image}}" />
+        {{#if model.image}}
+            <img src="{{imageUrl}}" />
         {{else}}
             <img src="https://placeholdit.imgix.net/~text?txtsize=20&txt=Image&w=70&h=70" />
         {{/if}}

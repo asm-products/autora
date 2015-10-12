@@ -1,5 +1,5 @@
 {{#if user.photo}}
-    <img id="ember745" src="{{user.photo}}" class="circular profile">
+    <img id="ember745" src="{{imageUrl}}" class="circular profile">
 {{else}}
     {{gravatar-image email=user.email size=100 class="circular profile"}}
 {{/if}}

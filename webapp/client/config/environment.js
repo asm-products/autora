@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     contentSecurityPolicy: { 'connect-src': "'self' wss://*.firebaseio.com" },
     firebase: 'https://autora.firebaseio.com/',
+    s3Url: 'https://s3-us-west-2.amazonaws.com/autora/',
     filepickerKey: 'Aef4kE5lHRcGgWuoUQou9z',
     baseURL: '/',
     locationType: 'auto',
