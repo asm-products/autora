@@ -5,6 +5,12 @@
 	background-color: #ffffff;
 	padding-bottom: 20px;
 
+	.share-button {
+		text-align: right;
+		margin-top: -10px;
+    	margin-right: -10px;
+	}
+
 	&.prosaic {
 		max-width: 650px;
 	}
