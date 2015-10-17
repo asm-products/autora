@@ -16,8 +16,8 @@ exports.s3 = function (req, res, next) {
         multipartUploadThreshold: 20971520, // this is the default (20 MB)
         multipartUploadSize: 15728640, // this is the default (15 MB)
         s3Options: {
-            accessKeyId: 'AKIAJ3RM2VE37FA2SHGQ',
-            secretAccessKey: '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'
+            accessKeyId: process.env.S3KEYID,
+            secretAccessKey: process.env.S3SECRETACCESSKEY
         },
     });
 
