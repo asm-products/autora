@@ -1,0 +1,19 @@
+.loading-quote {
+	position: absolute;
+	top: 5%;
+	text-align: center;
+	z-index: 102;
+	width: 100%;
+	.content {
+		//max-width:500px;
+		margin: 0 auto;
+	}
+
+	p {
+		margin-top: 10px;
+	}
+
+	img {
+		max-width:90%;
+	}
+}
