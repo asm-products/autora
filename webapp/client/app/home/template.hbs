@@ -4,10 +4,14 @@
     <div class="small">Lorem ipsum dolor sit amet</div>
 </section>
 <section class="projects row">
+
     {{#each model key="id" as |project|}}
         <div class="col-sm-4 col-md-3 project-col">
         {{project-item model=project}}
         </div>
+        {{else}}
+        {{!-- Display spinner if the projects arent loaded yet --}}
+        <div style="height:200px;" class="ui container au-loading"></div>
     {{/each}}
 </section>
 <section class="testimonial">
