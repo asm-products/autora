@@ -1,8 +1,10 @@
-<section class="marketing">
-    <div class="small">Lorem Ipsom</div>
-    <h1>Lorem ipsum dolor sit amet, consectetor adipisicing elit</h1>
-    <div class="small">Lorem ipsum dolor sit amet</div>
-</section>
+{{#unless session.isAuthenticated}}
+    <section class="marketing">
+        {{!-- <div class="small"></div> --}}
+        <h1>Writing Just Got Collective</h1>
+        <div class="small">Welcome to Autora! Let's play with words together.</div>
+    </section>
+{{/unless}}
 <section class="projects row">
 
     {{#each model key="id" as |project|}}
