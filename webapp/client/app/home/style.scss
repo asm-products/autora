@@ -29,9 +29,9 @@
         }
 
         @include breakpoint(xs) {
-            height: 150px;
-            padding-top: 30px;
-            background-position: 0 -50px;
+            height: 200px;
+            padding-top: 65px;
+            //background-position: 0 -50px;
         }
 
         h1 {
