@@ -58,11 +58,15 @@ export default Ember.Controller.extend({
 		// return this.get('model.competingEntries').filterBy('user', this.get('session.user.id'));
 	}),
 
-	canPostEntry: Ember.computed.lt('entriesFromUser.length', 10),
+	canPostEntry: Ember.computed.lt('entriesFromUser.length', 10), //there's less then 10 entries from user
 
 	isCreatorOfProject: Ember.computed('model.project','session.user.id', function(){
 		return this.get('model.project.user.id') === this.get('session.user.id');
 	}),
+
+	displayLockedPileNotification: Ember.computed.and('model.locked','session.isAuthenticated'),
+	isProjectClosed: Ember.computed.not('model.project.open'),
+	displayClosedProjectNotification: Ember.computed.and('isProjectClosed'),
 
 	actions: {
 		pickEntry: function(){
@@ -135,6 +139,14 @@ export default Ember.Controller.extend({
 
 		checkEntries: function(){
 			this.get('model');
+		},
+
+		refreshPile(){
+			this.send('refreshModel');
+		},
+
+		redirectToParent(){
+			this.transitionToRoute('project.index');
 		}
 	}
 });
