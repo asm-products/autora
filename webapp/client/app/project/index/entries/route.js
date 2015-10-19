@@ -15,6 +15,11 @@ export default Ember.Route.extend({
 			this.transitionTo('project.index');
 		}
 	},
+	actions : {
+		refreshModel(){
+			this.refresh();
+		}
+	}
 	// actions: {
 	// 	didTransition(){
 	// 		this.controller.get('model.competingEntries').forEach(function(entry){

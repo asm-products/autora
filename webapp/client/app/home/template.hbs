@@ -13,7 +13,32 @@
         </div>
         {{else}}
         {{!-- Display spinner if the projects arent loaded yet --}}
-        <div style="height:70px" class="ui container au-loading"></div>
+        {{!-- <div style="height:70px" class="ui container au-loading"></div> --}}
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        <div class="col-sm-4 col-md-3 project-col">
+            {{project-item model=blankProject classNames="shadowed"}}
+        </div>
+        
     {{/each}}
 </section>
 <section class="testimonial">

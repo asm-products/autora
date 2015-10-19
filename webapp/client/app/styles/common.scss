@@ -68,3 +68,25 @@ table{
     box-shadow: none!important;
     pointer-events: none;
 }
+
+/*
+@keyframes fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 0.2;}
+}
+*/
+
+.shadowed {
+	opacity: 0.2;
+	//animation: 0.3s fadeIn forwards;
+	&::after {
+		display: block;
+		content: "";
+		width: 100%;
+		top: 0;
+		left: 0;
+		height: 100%;
+		position: absolute;
+		background: transparentize(white, 0.8);
+	}
+}
