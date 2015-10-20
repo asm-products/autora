@@ -2,6 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+	// isLoaded: Ember.computed.not('model.isLoading'),
+	ordered: false,
+	// pickAction: 'pickEntry',
+	likeAction: 'likeEntry',
+	unlikeAction: 'unlikeEntry',
+	dropdownClass: Ember.computed('model.id', function(){
+		return `toggleEntryDropdown${this.get('model.id')}`;
+	}),
+
+	isEditing: false,
+
 	isLikedByUser: Ember.computed('model.likes.@each','session.user','model.likes.isFulfilled', function(){
 		
 		if(this.get('model.likes.isFulfilled')){
@@ -12,19 +23,19 @@ export default Ember.Component.extend({
 			return false;
 		}
 	}),
-
 	isAuthor: Ember.computed('model.user','session.user',function(){
 		return this.get('model.user.id') === this.get('session.user.id');
 	}),
 	hasNoLikes: Ember.computed.equal('model.likes.length',0),
 	isEditable: Ember.computed.and('isAuthor','hasNoLikes'), 
+	endsWithLineBreak: Ember.computed('model.content', function(){
+		var content = this.get('model.content');
+		if(content){
+			//console.log();
+			return content.substr(content.length - 1,1).match(/\n/);
+		}
+	}),
 
-
-	isEditing: false,
-
-	// isLoaded: Ember.computed.not('model.isLoading'),
-
-	ordered: false,
 	likesAreLoaded: function(){
 		if(this.get('model.likes.isFulfilled') && !this.get('model.isLoading') && !this.get('ordered')){
 			var self = this;
@@ -34,18 +45,6 @@ export default Ember.Component.extend({
 			});
 		}
 	}.observes('model.likes.isFulfilled', 'model.isLoading'),
-
-	// pickAction: 'pickEntry',
-	likeAction: 'likeEntry',
-	unlikeAction: 'unlikeEntry',
-
-	endsWithLineBreak: Ember.computed('model.content', function(){
-		var content = this.get('model.content');
-		if(content){
-			//console.log();
-			return content.substr(content.length - 1,1).match(/\n/);
-		}
-	}),
 
 	actions: {
 

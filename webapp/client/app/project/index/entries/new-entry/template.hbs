@@ -1,26 +1,28 @@
-{{#modal-prototype containerClassNames="add-entry-modal" close="transitionBack"}}
-	{{#link-to 'project.index.entries' class="close-modal"}}
-		<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
-		 <g>
-		  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
-		  <line id="svg_2" y2="90" x2="10" y1="10" x1="90" stroke-width="20" fill="none"/>
-		 </g>
-		</svg>
-	{{/link-to}}
-	{{!-- {{maxLength}} --}}
-	<h3> Add new entry </h3>
-	Entry rules: use up to {{pile.project.inputLength}} {{pile.project.inputType}}s
-	{{#if showAlerts}}
-		{{#if alert.message}}
-			<div class="input-alert {{alert.type}}">
-				{{alert.message}}
-			</div>
+{{#modal-prototype translucentOverlay=false containerClassNames="add-entry-modal" close="transitionBack"}}
+	<div class="project index entries new-entry">
+		{{#link-to 'project.index.entries' class="close-modal"}}
+			<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+			 <g>
+			  <line id="svg_1" y2="90" x2="90" y1="10" x1="10" stroke-width="20" fill="none"/>
+			  <line id="svg_2" y2="90" x2="10" y1="10" x1="90" stroke-width="20" fill="none"/>
+			 </g>
+			</svg>
+		{{/link-to}}
+		{{!-- {{maxLength}} --}}
+		<h3> Add new entry </h3>
+		Entry rules: use up to {{pile.project.inputLength}} {{pile.project.inputType}}s
+		{{#if showAlerts}}
+			{{#if alert.message}}
+				<div class="input-alert {{alert.type}}">
+					{{alert.message}}
+				</div>
+			{{/if}}
 		{{/if}}
-	{{/if}}
-	<form {{action "createEntry" on="submit"}}>
-		{{textarea-with-counter placeholder="Write your new entry" focus=true maxlength=maxlength value=newEntry.content}} <br>
-		<div class="text-right">
-			<input type="submit" value="Submit entry" class="big orange bordered rounded button">
-		</div>
-	</form>
+		<form {{action "createEntry" on="submit"}}>
+			{{textarea-with-counter placeholder="Write your new entry" focus=true maxlength=maxlength value=newEntry.content}} <br>
+			<div class="text-right">
+				<input type="submit" value="Submit entry" class="big orange bordered rounded button">
+			</div>
+		</form>
+	</div>
 {{/modal-prototype}}

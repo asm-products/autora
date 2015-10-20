@@ -1,8 +1,35 @@
 .add-entry-modal {
+	
+	width: 100vw;
+	max-width:100vw;
+	position: fixed;
+	bottom: 0;
+	top:initial;
+	left:initial;
+	transform:none;
+	animation: none;
+	background:transparentize(white, 0.1);
+
 	// width: 560px;
 	// max-width: 100%;
 
 	// @media only screen and (max-width:500px){
 	// 	width: 320px;
 	// }
+
+	/*top: 0;
+	left: 0;
+	transform: none;
+	animation: none;*/
+
 }
+
+/*.project.index.entries.new-entry {
+	margin: 0 auto;
+	width: 560px;
+	max-width:100%;
+
+	h3 {
+		margin-top: 0;
+	}
+}*/

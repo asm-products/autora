@@ -8,6 +8,7 @@
 				 <div {{action "pickEntry"}} class="big orange bordered rounded button">Lock pile</div> 
 			{{/if}}
 			<h2>Submitted entries</h2>
+			{{outlet}}
 			{{#if displayLockedPileNotification}}
 			  <div class="input-alert danger">Pile has been locked! Entries can't be added anymore. <div class="small orange rounded filled button" {{action "refreshPile"}}>Open the new pile</div></div>
 			  <p></p>
@@ -38,5 +39,4 @@
 		<h2>There's no pile created. Please create one.</h2>
 		{{/if}}
 	</div>
-	{{outlet}}
 </div>
