@@ -2,11 +2,13 @@ import Ember from 'ember';
 import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
-	projectIndexEntriesController: Ember.inject.controller('project/index/entries'),
+	projectIndexEntriesController: Ember.inject.controller('project.index.entries'),
+	projectIndexController: Ember.inject.controller('project.index'),
 	showAlerts: false,
 	hasErrors: false,
 
 	pile: Ember.computed.alias('projectIndexEntriesController.model'),
+	maxlength: Ember.computed.alias('projectIndexController.maxEntryLength'),
 
 	newEntry: Ember.computed('pile', function(){
 		return {
@@ -28,21 +30,6 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-	maxlength: Ember.computed('pile.project.inputType','pile.project.inputLength', function(){
-		var inputType = this.get('pile.project.inputType');
-		var inputLength = this.get('pile.project.inputLength');
-
-		var baseLength = 0;
-
-		switch(inputType){
-			case 'word' : baseLength = 30; break;
-			case 'line' : baseLength = 200; break;
-			case 'sentence' : baseLength = 200; break;
-			case 'paragraph' : baseLength = 600; break;
-		}
-
-		return parseInt(baseLength * inputLength);
-	}),
 
 	resetForm: function () {
 		this.set('newEntry.content', '');

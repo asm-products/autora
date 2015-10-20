@@ -16,19 +16,29 @@ export default Ember.Controller.extend({
 	optionsLoading: false,
 	isEditing: false,
 	isEditable: Ember.computed.equal('model.piles.firstObject.competingEntries.length', 0), //untested
-	// optionsLoadingClass: Ember.computed('optionsLoading', function(){
-	// 	if(this.get('optionsLoading')){
-	// 		return 'au-loading';
-	// 	} else {
-	// 		return '';
-	// 	}
-	// }),
-	// isCreator: Ember.computed.equal('session.user.id', 'model.user.id'), // buggy?
+	
 
 	inlineMode: Ember.computed.equal('model.inputType', 'word'),
 
 	isCreator: Ember.computed('session.user.id','model.user.id', function(){
 		return this.get('session.user.id') === this.get('model.user.id');
+	}),
+
+	maxEntryLength: Ember.computed('model.inputType','model.inputLength', function(){
+		console.log('project.index.maxeEntryLength');
+		var inputType = this.get('model.inputType');
+		var inputLength = this.get('model.inputLength');
+
+		var baseLength = 0;
+
+		switch(inputType){
+			case 'word' : baseLength = 30; break;
+			case 'line' : baseLength = 200; break;
+			case 'sentence' : baseLength = 200; break;
+			case 'paragraph' : baseLength = 600; break;
+		}
+
+		return parseInt(baseLength * inputLength);
 	}),
 
 	actions: {

@@ -18,7 +18,7 @@
 	<div class="body">
 	{{#if isEditing}}
 		<form class="{{if model.isSaving 'au-loading'}}" {{action "updateEntry" on="submit"}}>
-			{{textarea-with-counter value=model.content maxlength=140 placeholder="Entry content"}}
+			{{textarea-with-counter value=model.content maxlength=maxlength placeholder="Entry content"}}
 			<input type="submit" value="Update entry" class="small orange bordered rounded button">
 			<div {{action "cancelEditing"}} class="small orange bordered rounded button">Cancel</div>
 		</form>
