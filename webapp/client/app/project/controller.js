@@ -8,6 +8,8 @@ export default Ember.Controller.extend({
 	
 	// inputTypes: [{id: 'word', text: 'Words'},{id: 'sentence', text: 'Sentences'},{id: 'paragraph', text: 'Paragraphs'}],
 
+	
+
 	actions: {
 
 		toggleCreateProjectModal: function(){

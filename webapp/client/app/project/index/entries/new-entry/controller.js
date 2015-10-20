@@ -2,11 +2,13 @@ import Ember from 'ember';
 import Firebase from 'firebase';
 
 export default Ember.Controller.extend({
-	projectIndexEntriesController: Ember.inject.controller('project/index/entries'),
+	projectIndexEntriesController: Ember.inject.controller('project.index.entries'),
+	projectIndexController: Ember.inject.controller('project.index'),
 	showAlerts: false,
 	hasErrors: false,
 
 	pile: Ember.computed.alias('projectIndexEntriesController.model'),
+	maxlength: Ember.computed.alias('projectIndexController.maxEntryLength'),
 
 	newEntry: Ember.computed('pile', function(){
 		return {
@@ -16,6 +18,7 @@ export default Ember.Controller.extend({
 			content: ''
 		};
 	}),
+
 
 
 	isEmpty: Ember.computed.empty('newEntry.content'),
@@ -28,27 +31,28 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-	maxlength: Ember.computed('pile.project.inputType','pile.project.inputLength', function(){
-		var inputType = this.get('pile.project.inputType');
-		var inputLength = this.get('pile.project.inputLength');
-
-		var baseLength = 0;
-
-		switch(inputType){
-			case 'word' : baseLength = 30; break;
-			case 'line' : baseLength = 200; break;
-			case 'sentence' : baseLength = 200; break;
-			case 'paragraph' : baseLength = 600; break;
-		}
-
-		return parseInt(baseLength * inputLength);
-	}),
 
 	resetForm: function () {
 		this.set('newEntry.content', '');
 		this.set('hasErrors', false);
 		this.set('showAlerts', false);
 	},
+
+	spacerHeight: Ember.computed(function(){
+		var self = this;
+		//self setting computed property
+		Ember.run.schedule('afterRender', function(){
+			var offset = 50;
+			var animationTime = 400; //ms
+			setTimeout(function(){
+
+				var addEntryModalHeight = Ember.$('.add-entry-modal').height() + offset;
+				console.log(addEntryModalHeight);
+				self.set('spacerHeight', addEntryModalHeight);
+				
+			}, animationTime);
+		});
+	}),
 
 	actions: {
 		createEntry: function() {
