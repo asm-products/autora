@@ -1,4 +1,4 @@
-{{#modal-prototype translucentOverlay=false containerClassNames="add-entry-modal" close="transitionBack"}}
+{{#modal-prototype hasOverlay=false containerClassNames="add-entry-modal" close="transitionBack"}}
 	<div class="project index entries new-entry">
 		{{#link-to 'project.index.entries' class="close-modal"}}
 			<svg viewBox="0 0 100 100" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
@@ -9,7 +9,7 @@
 			</svg>
 		{{/link-to}}
 		{{!-- {{maxLength}} --}}
-		<h3> Add new entry </h3>
+		{{!-- <h3> Add new entry </h3> --}}
 		Entry rules: use up to {{pile.project.inputLength}} {{pile.project.inputType}}s
 		{{#if showAlerts}}
 			{{#if alert.message}}
@@ -26,3 +26,4 @@
 		</form>
 	</div>
 {{/modal-prototype}}
+<div class="new-entry-spacer" style="height:{{spacerHeight}}px"></div>

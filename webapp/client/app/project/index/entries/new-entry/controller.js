@@ -20,6 +20,7 @@ export default Ember.Controller.extend({
 	}),
 
 
+
 	isEmpty: Ember.computed.empty('newEntry.content'),
 	alert: Ember.computed('isEmpty', function(){
 		if(this.get('isEmpty')){
@@ -36,6 +37,22 @@ export default Ember.Controller.extend({
 		this.set('hasErrors', false);
 		this.set('showAlerts', false);
 	},
+
+	spacerHeight: Ember.computed(function(){
+		var self = this;
+		//self setting computed property
+		Ember.run.schedule('afterRender', function(){
+			var offset = 50;
+			var animationTime = 400; //ms
+			setTimeout(function(){
+
+				var addEntryModalHeight = Ember.$('.add-entry-modal').height() + offset;
+				console.log(addEntryModalHeight);
+				self.set('spacerHeight', addEntryModalHeight);
+				
+			}, animationTime);
+		});
+	}),
 
 	actions: {
 		createEntry: function() {
