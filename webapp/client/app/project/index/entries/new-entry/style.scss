@@ -10,7 +10,13 @@
 	position: fixed;
 	bottom: 0;
 	top:initial;
-	left:initial;
+	//left:initial;
+
+	left: 0;
+	right: 0;
+	margin:auto;
+	max-width:560px;
+
 	transform:none;
 	max-height:0;
 	opacity: 0.5;
