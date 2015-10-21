@@ -32,12 +32,12 @@
 			{{!-- {{#if model.user.email}} --}}
 			<span> Started {{!-- moment-format model.createdAt 'MM/DD/YYYY' --}} {{moment-from-now model.createdAt}} by </span> {{#link-to "user.index" model.user.id}}{{user-photo user=model.user}}{{/link-to}}
 			{{!-- {{/if}} --}}
-
 			| <div class="tags">{{#each model.tags key="id" as |tag|}}
 					{{#link-to "tag" tag.name class="small rounded purple bordered button tag"}}#{{tag.name}}{{/link-to}}
 				{{/each}}
 			</div>
 		</div>
+		<div class="rules">Entry rules: up to {{model.inputLength}} {{model.inputType}}s</div>
 	</div>
 	{{/if}}
 	<div class="body {{if inlineMode 'inline'}}">
