@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+	//classNameBindings: ['animate:animate'],
+
 	// isLoaded: Ember.computed.not('model.isLoading'),
 	ordered: false,
 	// pickAction: 'pickEntry',

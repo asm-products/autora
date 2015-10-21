@@ -1,6 +1,7 @@
 
-<div class="bordered padded box competing-entry">
+<div class="bordered padded box competing-entry {{if 'animate' 'animate'}}">
 	<div class="head">
+	{{animate}}
 	</div>
 	<div class="info">
 			<svg {{action 'toggleLike'}} class="heart {{if isLikedByUser "filled" "empty"}}" width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -16,6 +17,8 @@
 		{{#link-to 'user.index' attrs.model.user.id}}{{user-photo user=model.user class="circular profile" size=25}}{{/link-to}}
 	</div>
 	<div class="body">
+	{{!-- isLoaded: {{model.isLoaded}} <br>
+	isLoading: {{model.isLoading}} --}}
 	{{#if isEditing}}
 		<form class="{{if model.isSaving 'au-loading'}}" {{action "updateEntry" on="submit"}}>
 			{{textarea-with-counter value=model.content maxlength=maxlength placeholder="Entry content"}}

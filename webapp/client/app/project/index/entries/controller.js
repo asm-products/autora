@@ -7,6 +7,19 @@ export default Ember.Controller.extend({
 		return this.get('model');
 	}),
 
+	animateEntries: false,
+
+	initialLoadHappened: Ember.observer('model.competingEntries.isFulfilled', function(){
+		if(this.get('model.competingEntries.isFulfilled')){
+			var self = this;
+			Ember.run.scheduleOnce('afterRender',function(){
+				setTimeout(function(){
+					self.set('animateEntries', true);
+				}, 200);
+			})
+		}
+	}),
+
 	// newPile: Ember.computed('model', function(){
 	// 	return {
 	// 		pile: this.get('model')
