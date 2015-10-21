@@ -28,7 +28,7 @@
 				{{#each sortedEntries key="id" as |entry index|}}
 					{{grid-clearfix index pile.project.inputType}}
 					<div class="{{gridClass}}">
-						{{competing-entry model=entry animate=animateEntries maxlength=project.maxEntryLength}}
+						{{competing-entry model=entry initialLoadHappened=initialLoadHappened maxlength=project.maxEntryLength}}
 					</div>
 				{{else}}
 					<div class="no-entries">There are no entries yet. Be first!</div>

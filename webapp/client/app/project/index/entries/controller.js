@@ -7,15 +7,15 @@ export default Ember.Controller.extend({
 		return this.get('model');
 	}),
 
-	animateEntries: false,
 
-	initialLoadHappened: Ember.observer('model.competingEntries.isFulfilled', function(){
+	initialLoadHappened: Ember.computed('model.competingEntries.isFulfilled', function(){
 		if(this.get('model.competingEntries.isFulfilled')){
 			var self = this;
-			Ember.run.scheduleOnce('afterRender',function(){
+			Ember.run.schedule('afterRender',function(){
+				self.set('initialLoadHappened', false);
 				setTimeout(function(){
-					self.set('animateEntries', true);
-				}, 200);
+					self.set('initialLoadHappened', true);
+				}, 4000);
 			})
 		}
 	}),
@@ -57,12 +57,6 @@ export default Ember.Controller.extend({
 		if(this.get('session.user.id') && this.get('model.competingEntries.isFulfilled')){
 			return this.get('model.competingEntries').filter(function(entry){
 				var isAuthor = entry.get('user.id') === self.get('session.user.id');
-				console.log(entry.get('isLoading'));
-				console.log(entry);
-				console.log(isAuthor);
-				console.log(entry.get('user.id'));
-				console.log(userId);
-				console.log(self);
 				return isAuthor;
 			});
 		} else {

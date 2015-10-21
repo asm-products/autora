@@ -12,12 +12,17 @@ export default Ember.Component.extend({
 	dropdownClass: Ember.computed('model.id', function(){
 		return `toggleEntryDropdown${this.get('model.id')}`;
 	}),
-	shouldAnimate: true,
 
+	didAnimate: false,
+	shouldAnimate: Ember.computed('didAnimate','initialLoadHappened', function(){
+		console.log(this.get('initialLoadHappened'));
+		console.log('initialLoadHappened?');
+		return !this.get('didAnimate') && this.get('initialLoadHappened');
+	}),
 	loadingObserver: Ember.observer('model.isLoaded', function(){
 		var self = this;
 		setTimeout(function(){
-			self.set('shouldAnimate', false);
+			self.set('didAnimate', true);
 		}, 1500);
 	}),
 
