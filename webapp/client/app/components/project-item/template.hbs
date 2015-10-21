@@ -18,11 +18,16 @@
     {{/link-to}}
     <div class="description">{{clip-text model.description 60}}</div>
 </div>
-<ul class="tags">
-    {{#each model.tags key="id" as |tag|}}
-        <li class="tag">{{tag.name}}</li>
-    {{/each}}
-</ul>
+<div class="bottom">
+    <div class="rules">
+        Rules: {{model.inputLength}} {{model.inputType}}s
+    </div>
+    <ul class="tags">
+        {{#each model.tags key="id" as |tag|}}
+            <li class="tag">#{{tag.name}}</li>
+        {{/each}}
+    </ul>
+</div>
 <!--
 <h3>{{attrs.model.name}}</h3>
 <p>{{attrs.model.description}}</p>

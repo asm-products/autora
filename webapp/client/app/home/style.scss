@@ -76,16 +76,17 @@
         }
 
         .title {
-            font-size: 24px;
             text-align: center;
+            font-size: 12px;
         }
 
         .description {
-            font-size: 12px;
+            font-size: 20px;
             text-align: center;
             font-style: italic;
             max-width: 500px;
             margin: 20px auto 0 auto;
+            margin-bottom: 10px;
         }
     }
 }
