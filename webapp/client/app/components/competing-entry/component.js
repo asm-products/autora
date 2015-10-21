@@ -12,6 +12,14 @@ export default Ember.Component.extend({
 	dropdownClass: Ember.computed('model.id', function(){
 		return `toggleEntryDropdown${this.get('model.id')}`;
 	}),
+	shouldAnimate: true,
+
+	loadingObserver: Ember.observer('model.isLoaded', function(){
+		var self = this;
+		setTimeout(function(){
+			self.set('shouldAnimate', false);
+		}, 1500);
+	}),
 
 	isEditing: false,
 
