@@ -15,8 +15,8 @@ export default Ember.Component.extend({
 
 	didAnimate: false,
 	shouldAnimate: Ember.computed('didAnimate','initialLoadHappened', function(){
-		console.log(this.get('initialLoadHappened'));
-		console.log('initialLoadHappened?');
+		//console.log(this.get('initialLoadHappened'));
+		//console.log('initialLoadHappened?');
 		return !this.get('didAnimate') && this.get('initialLoadHappened');
 	}),
 	loadingObserver: Ember.observer('model.isLoaded', function(){

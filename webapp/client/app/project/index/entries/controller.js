@@ -8,7 +8,10 @@ export default Ember.Controller.extend({
 	}),
 
 
-	initialLoadHappened: Ember.computed('model.competingEntries.isFulfilled', function(){
+	didTransition: false,
+	initialLoadHappened: Ember.computed('model.competingEntries.isFulfilled','didTransition', function(){
+		console.log('initialLoadHappened');
+		console.log(this.get('didTransition'));
 		if(this.get('model.competingEntries.isFulfilled')){
 			var self = this;
 			Ember.run.schedule('afterRender',function(){

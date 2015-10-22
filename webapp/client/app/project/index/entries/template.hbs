@@ -24,6 +24,7 @@
 				</div>
 			{{/if}}
 			<!-- (Listing entries in pile {{pile.id}}) -->
+			{{initialLoadHappened}}
 			<div class="row clearfix">
 				{{#each sortedEntries key="id" as |entry index|}}
 					{{grid-clearfix index pile.project.inputType}}
