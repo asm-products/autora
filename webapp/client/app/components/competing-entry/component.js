@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+	//classNameBindings: ['animate:animate'],
+
 	// isLoaded: Ember.computed.not('model.isLoading'),
 	ordered: false,
 	// pickAction: 'pickEntry',
@@ -9,6 +11,17 @@ export default Ember.Component.extend({
 	unlikeAction: 'unlikeEntry',
 	dropdownClass: Ember.computed('model.id', function(){
 		return `toggleEntryDropdown${this.get('model.id')}`;
+	}),
+
+	didAnimate: false,
+	shouldAnimate: Ember.computed('didAnimate','initialLoadHappened', function(){
+		return !this.get('didAnimate') && this.get('initialLoadHappened');
+	}),
+	loadingObserver: Ember.observer('model.isLoaded', function(){
+		var self = this;
+		setTimeout(function(){
+			self.set('didAnimate', true);
+		}, 1500);
 	}),
 
 	isEditing: false,
@@ -31,7 +44,6 @@ export default Ember.Component.extend({
 	endsWithLineBreak: Ember.computed('model.content', function(){
 		var content = this.get('model.content');
 		if(content){
-			//console.log();
 			return content.substr(content.length - 1,1).match(/\n/);
 		}
 	}),
@@ -69,7 +81,6 @@ export default Ember.Component.extend({
 				//Unlike
 				//Get the like we want to remove
 				var unlikeData = this.get('model.likes').findBy('user.id', this.get('session.user.id'));
-				console.log(unlikeData);
 				this.sendAction('unlikeAction', unlikeData, this.get('model'));
 
 			}

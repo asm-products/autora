@@ -1,5 +1,5 @@
 
-<div class="bordered padded box competing-entry">
+<div class="bordered padded box competing-entry {{if shouldAnimate 'animate'}}">
 	<div class="head">
 	</div>
 	<div class="info">
@@ -16,6 +16,8 @@
 		{{#link-to 'user.index' attrs.model.user.id}}{{user-photo user=model.user class="circular profile" size=25}}{{/link-to}}
 	</div>
 	<div class="body">
+	{{!-- isLoaded: {{model.isLoaded}} <br>
+	isLoading: {{model.isLoading}} --}}
 	{{#if isEditing}}
 		<form class="{{if model.isSaving 'au-loading'}}" {{action "updateEntry" on="submit"}}>
 			{{textarea-with-counter value=model.content maxlength=maxlength placeholder="Entry content"}}

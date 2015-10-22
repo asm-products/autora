@@ -7,6 +7,10 @@ export default Ember.Controller.extend({
 		return this.get('model');
 	}),
 
+
+	didTransition: false,
+	initialLoadHappened: false,
+
 	// newPile: Ember.computed('model', function(){
 	// 	return {
 	// 		pile: this.get('model')
@@ -44,12 +48,6 @@ export default Ember.Controller.extend({
 		if(this.get('session.user.id') && this.get('model.competingEntries.isFulfilled')){
 			return this.get('model.competingEntries').filter(function(entry){
 				var isAuthor = entry.get('user.id') === self.get('session.user.id');
-				console.log(entry.get('isLoading'));
-				console.log(entry);
-				console.log(isAuthor);
-				console.log(entry.get('user.id'));
-				console.log(userId);
-				console.log(self);
 				return isAuthor;
 			});
 		} else {

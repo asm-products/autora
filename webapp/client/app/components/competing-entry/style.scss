@@ -1,3 +1,8 @@
+@keyframes redFadeIn {
+	0% {opacity: 0;border:1px solid transparent;transform:translateY(25%)}
+	//50% {opacity: 0.5;border:1px solid red;}
+	100% {opacity: 1;border:1px solid $border-color2;transform:translateY(0)}
+}
 // Refers to bordered box
 .competing-entry {
 	font-size: 15px;
@@ -96,6 +101,11 @@
 			color: $grey;
 			padding:4px 10px;
 		}	
+	}
+
+	&.animate {
+		opacity: 0;
+		animation: 1.5s redFadeIn forwards;
 	}
 
 
