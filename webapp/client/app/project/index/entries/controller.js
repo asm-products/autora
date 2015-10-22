@@ -9,19 +9,7 @@ export default Ember.Controller.extend({
 
 
 	didTransition: false,
-	initialLoadHappened: Ember.computed('model.competingEntries.isFulfilled','didTransition', function(){
-		console.log('initialLoadHappened');
-		console.log(this.get('didTransition'));
-		if(this.get('model.competingEntries.isFulfilled')){
-			var self = this;
-			Ember.run.schedule('afterRender',function(){
-				self.set('initialLoadHappened', false);
-				setTimeout(function(){
-					self.set('initialLoadHappened', true);
-				}, 4000);
-			})
-		}
-	}),
+	initialLoadHappened: false,
 
 	// newPile: Ember.computed('model', function(){
 	// 	return {

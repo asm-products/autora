@@ -15,8 +15,6 @@ export default Ember.Component.extend({
 
 	didAnimate: false,
 	shouldAnimate: Ember.computed('didAnimate','initialLoadHappened', function(){
-		//console.log(this.get('initialLoadHappened'));
-		//console.log('initialLoadHappened?');
 		return !this.get('didAnimate') && this.get('initialLoadHappened');
 	}),
 	loadingObserver: Ember.observer('model.isLoaded', function(){
@@ -46,7 +44,6 @@ export default Ember.Component.extend({
 	endsWithLineBreak: Ember.computed('model.content', function(){
 		var content = this.get('model.content');
 		if(content){
-			//console.log();
 			return content.substr(content.length - 1,1).match(/\n/);
 		}
 	}),
@@ -84,7 +81,6 @@ export default Ember.Component.extend({
 				//Unlike
 				//Get the like we want to remove
 				var unlikeData = this.get('model.likes').findBy('user.id', this.get('session.user.id'));
-				console.log(unlikeData);
 				this.sendAction('unlikeAction', unlikeData, this.get('model'));
 
 			}
