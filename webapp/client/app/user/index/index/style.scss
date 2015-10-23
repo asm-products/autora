@@ -48,4 +48,10 @@
 			font-weight: 500;
 		}
 	}
+
+	.sort-by {
+		@include breakpoint('xs'){
+			display: none;
+		}
+	}
 }
