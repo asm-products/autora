@@ -9,6 +9,8 @@
 	@include breakpoint('xs'){
 		padding-left: 10px;
 		padding-right: 10px;
+		position: absolute;
+		top: 280px;
 	}
 
 	img {
