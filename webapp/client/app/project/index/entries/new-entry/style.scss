@@ -35,6 +35,14 @@
 	transform: none;
 	animation: none;*/
 
+	@include breakpoint('xs'){
+		padding: 25px 25px 10px 25px;
+
+		.button {
+			margin-top: -15px;
+		}
+	}
+
 }
 
 /*.project.index.entries.new-entry {
