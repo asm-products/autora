@@ -14,16 +14,18 @@ export default Ember.Component.extend(InViewportMixin, {
 		return parseInt(this.get('number'))%2 !== 0;
 	}),
 
-	// didEnterViewPort(){
-	// 	this.set('isInViewPort', true);
-	// 	console.log('here we go');
-	// },
+	didEnterViewport(){
+		this.set('isInViewPort', true);
+		console.log('here we go');
+	},
 
 	viewportOptionsOverride: Ember.on('didInsertElement', function() {
+		console.log('overriding viewport');
     Ember.setProperties(this, {
-      viewportTolerance: {
-        top    : -250,
-      }
+      //viewportSpy: true,
+      // viewportTolerance: {
+      //   top    : -250,
+      // }
     });
   })
 });

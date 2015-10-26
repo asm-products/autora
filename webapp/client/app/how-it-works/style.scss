@@ -8,6 +8,7 @@
 	section {
 		padding-top: 70px;
 		position: relative;
+		//height: 400px;
 		h2 {
 			height: 280px;
 			vertical-align: middle;
@@ -70,10 +71,16 @@
 				display: inline-block;
 				max-width:90%;
 				opacity: 0;
+
+				@include breakpoint(xs){
+					opacity: 1 !important;
+					animation: none !important;
+				}
 			}
 		}
 
 		$top: 6;
+		
 		&.idea {
 			z-index: $top;
 		}
@@ -96,6 +103,7 @@
 				text-transform: uppercase;
 			}
 		}
+		
 		&.try {
 			z-index: $top - 5;
 			padding: 135px 0;
@@ -174,6 +182,14 @@
 	0% {transform: translate(5%,5%); opacity: 0;}
 	100% {transform: translate(0%,0%); opacity: 1;}
 }
+@-webkit-keyframes land-in-right {
+	0% {transform: translate(5%,-5%); opacity: 0;}
+	100% {transform: translate(0%,0%); opacity: 1;}
+}
+@-webkit-keyframes land-in-left {
+	0% {transform: translate(5%,5%); opacity: 0;}
+	100% {transform: translate(0%,0%); opacity: 1;}
+}
 
 section.animate{
 svg {
@@ -241,10 +257,12 @@ svg {
 
 	.left svg {
 		animation: 1.5s land-in-left forwards;
+		-webkit-animation: 1.5s land-in-left forwards;
 		opacity: 0;
 	}
 	.right svg {
 		animation: 1.5s land-in-right forwards;
+		-webkit-animation: 1.5s land-in-right forwards;
 		opacity: 0;
 	}
 }
