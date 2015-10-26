@@ -1,5 +1,16 @@
 /* Uses header from about/style.scss */
 .how-it-works {
+	header {
+		position: relative;
+		.background {
+			position: absolute;
+			bottom: -5px;
+			margin: auto;
+			right: 0;
+			left: 0;
+			opacity: 0.1;
+		}
+	}
 	.container {
 		//padding: 0 4%;
 		max-width: 1050px;
