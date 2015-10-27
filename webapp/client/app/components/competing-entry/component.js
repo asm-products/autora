@@ -40,7 +40,8 @@ export default Ember.Component.extend({
 		return this.get('model.user.id') === this.get('session.user.id');
 	}),
 	hasNoLikes: Ember.computed.equal('model.likes.length',0),
-	isEditable: Ember.computed.and('isAuthor','hasNoLikes'), 
+	isPileUnlocked: Ember.computed.equal('model.pile.locked', false),
+	isEditable: Ember.computed.and('isAuthor','hasNoLikes','isPileUnlocked'), 
 	endsWithLineBreak: Ember.computed('model.content', function(){
 		var content = this.get('model.content');
 		if(content){
