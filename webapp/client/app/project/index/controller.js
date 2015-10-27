@@ -18,7 +18,11 @@ export default Ember.Controller.extend({
 	isEditable: Ember.computed.equal('model.piles.firstObject.competingEntries.length', 0), //untested
 	
 
-	inlineMode: Ember.computed.equal('model.inputType', 'word'),
+	// inlineMode: Ember.computed.equal('model.inputType', 'word'),
+	inlineMode: Ember.computed('model.inputType', function(){
+		var inputType = this.get('model.inputType');
+		return inputType === 'word' || inputType === 'sentence'; 
+	}),
 
 	isCreator: Ember.computed('session.user.id','model.user.id', function(){
 		return this.get('session.user.id') === this.get('model.user.id');
