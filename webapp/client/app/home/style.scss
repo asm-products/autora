@@ -43,6 +43,18 @@
                 font-size: 20px;
             }
         }
+
+        h2 {
+            color: #ffffff;
+            max-width: 600px;
+            margin: 10px auto;
+            font-size: 18px;
+            font-weight: 300;
+
+            @include breakpoint(xs) {
+                font-size: 14px;
+            }
+        }
     }
 
     section.projects {
