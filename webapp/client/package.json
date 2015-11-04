@@ -11,9 +11,7 @@
     "start": "ember server",
     "build": "ember build",
     "buildw": "ember build --watch",
-    "test": "ember test",
-    "preinstall": "rm -rf node_modules; bower install",
-    "postinstall": "ember build --environment=production"
+    "test": "ember test"
   },
   "repository": "",
   "engines": {
