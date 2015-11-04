@@ -1,4 +1,5 @@
 #!/bin/bash
 
 cd webapp/client
-npm install
+ember build --environment=production
+#npm install
