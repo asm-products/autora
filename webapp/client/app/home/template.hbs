@@ -1,12 +1,9 @@
-{{#unless session.isAuthenticated}}
-    <section class="marketing">
-        {{!-- <div class="small"></div> --}}
-        <h1>Writing Just Got Collective</h1>
-        <h2>Welcome to Autora! Let's play with words together.</h2>
-    </section>
-{{/unless}}
+<section class="marketing">
+    {{!-- <div class="small"></div> --}}
+    <h1>Writing Just Got Collective</h1>
+    <h2>Welcome to Autora! Let's play with words together.</h2>
+</section>
 <section class="projects row">
-
     {{#each model key="id" as |project|}}
         <div class="col-sm-6 col-md-3 project-col">
         {{project-item model=project}}
