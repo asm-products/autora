@@ -2,6 +2,7 @@
 <div class="bordered padded box competing-entry {{if shouldAnimate 'animate'}}">
 	<div class="head">
 	</div>
+	{{moment-format model.updatedAt}}
 	<div class="info">
 			<svg {{action 'toggleLike'}} class="heart {{if isLikedByUser "filled" "empty"}}" width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
 			    <g class="fill" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

@@ -26,7 +26,7 @@ export default DS.Model.extend({
   //   });
   // }.observes(''),
   createdAt: DS.attr('timestamp'),
-  updatedAt: DS.attr('timestamp'),
+  updatedAt: DS.attr('firebase-timestamp'),
 
   // likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0
 
