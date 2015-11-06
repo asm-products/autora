@@ -12,4 +12,5 @@ export default DS.Transform.extend({
     deserialize: function(serialized) {
     return serialized;
   },
+
 });
