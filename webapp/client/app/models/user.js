@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Firebase from 'firebase';
 
 export default DS.Model.extend({
   description: DS.attr('string'),
@@ -11,6 +12,8 @@ export default DS.Model.extend({
 
   uid: DS.attr('string'),
 
-  createdAt: DS.attr('timestamp'),
-  updatedAt: DS.attr('timestamp')
+  createdAt: DS.attr('string', {defaultValue: function(){
+    return Firebase.ServerValue.TIMESTAMP;
+  }}),
+  updatedAt: DS.attr('firebase-timestamp'),
 });

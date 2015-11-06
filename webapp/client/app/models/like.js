@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Firebase from 'firebase';
 
 export default DS.Model.extend({
   user: DS.belongsTo('user', {async: true}),
@@ -6,7 +7,9 @@ export default DS.Model.extend({
   
   // pile: DS.belongsTo('pile', {async: true}),
 
-  createdAt: DS.attr('timestamp'),
-  updatedAt: DS.attr('timestamp'),
+  createdAt: DS.attr('string', {defaultValue: function(){
+    return Firebase.ServerValue.TIMESTAMP;
+  }}),
+  updatedAt: DS.attr('firebase-timestamp'),
 
 });
