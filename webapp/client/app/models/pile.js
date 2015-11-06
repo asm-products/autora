@@ -10,7 +10,7 @@ export default DS.Model.extend({
   competingEntries: DS.hasMany('entry', {async: true}),
 
 
-  createdAt: DS.attr('string', {defaultValue: function(){
+  createdAt: DS.attr('timestamp', {defaultValue: function(){
     return Firebase.ServerValue.TIMESTAMP;
   }}),
   updatedAt: DS.attr('firebase-timestamp'),

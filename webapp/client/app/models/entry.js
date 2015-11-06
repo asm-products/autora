@@ -26,7 +26,7 @@ export default DS.Model.extend({
   //     console.log(self.get('initialAmountOfLikes'));
   //   });
   // }.observes(''),
-  createdAt: DS.attr('string', {defaultValue: function(){
+  createdAt: DS.attr('timestamp', {defaultValue: function(){
     return Firebase.ServerValue.TIMESTAMP;
   }}),
   updatedAt: DS.attr('firebase-timestamp'),

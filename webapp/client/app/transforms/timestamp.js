@@ -3,13 +3,12 @@ import Firebase from 'firebase';
 
 export default DS.Transform.extend({
     serialize: function(date) {
-        // if (date === Firebase.ServerValue.TIMESTAMP){
-        //     return date;
-        // }
-
+    	console.log(date);
         return date;
     },
     deserialize: function(serialized) {
+   	console.log('serialized');
+   	console.log(serialized);
     return serialized;
   },
 

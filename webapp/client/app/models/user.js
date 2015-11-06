@@ -12,7 +12,7 @@ export default DS.Model.extend({
 
   uid: DS.attr('string'),
 
-  createdAt: DS.attr('string', {defaultValue: function(){
+  createdAt: DS.attr('timestamp', {defaultValue: function(){
     return Firebase.ServerValue.TIMESTAMP;
   }}),
   updatedAt: DS.attr('firebase-timestamp'),
