@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Firebase from 'firebase';
 
 export default DS.Model.extend({
   type: DS.attr('string'),
@@ -19,6 +20,8 @@ export default DS.Model.extend({
   image: DS.attr('string'),
   imageHost: DS.attr('string'),
 
-  createdAt: DS.attr('timestamp'),
-  updatedAt: DS.attr('timestamp')
+  createdAt: DS.attr('string', {defaultValue: function(){
+    return Firebase.ServerValue.TIMESTAMP;
+  }}),
+  updatedAt: DS.attr('firebase-timestamp'),
 });

@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import Firebase from 'firebase';
 
 export default DS.Model.extend({
   user: DS.belongsTo('user', {async: true}),
@@ -25,7 +26,9 @@ export default DS.Model.extend({
   //     console.log(self.get('initialAmountOfLikes'));
   //   });
   // }.observes(''),
-  createdAt: DS.attr('timestamp'),
+  createdAt: DS.attr('string', {defaultValue: function(){
+    return Firebase.ServerValue.TIMESTAMP;
+  }}),
   updatedAt: DS.attr('firebase-timestamp'),
 
   // likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0

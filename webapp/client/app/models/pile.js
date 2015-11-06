@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Firebase from 'firebase';
 
 export default DS.Model.extend({
   project: DS.belongsTo('project', {async: true}),
@@ -9,6 +10,8 @@ export default DS.Model.extend({
   competingEntries: DS.hasMany('entry', {async: true}),
 
 
-  createdAt: DS.attr('timestamp'),
-  updatedAt: DS.attr('timestamp')
+  createdAt: DS.attr('string', {defaultValue: function(){
+    return Firebase.ServerValue.TIMESTAMP;
+  }}),
+  updatedAt: DS.attr('firebase-timestamp'),
 });
