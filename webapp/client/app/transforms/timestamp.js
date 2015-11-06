@@ -9,7 +9,7 @@ export default DS.Transform.extend({
     deserialize: function(serialized) {
    	// console.log('deserialize:');
    	// console.log(serialized);
-    return parseInt(serialized);
+    return serialized;
   },
 
 });
