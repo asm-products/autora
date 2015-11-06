@@ -61,7 +61,8 @@ export default Ember.Controller.extend({
 		return this.get('model.project.user.id') === this.get('session.user.id');
 	}),
 
-	displayLockedPileNotification: Ember.computed.and('model.locked','session.isAuthenticated'),
+	isNotCreator: Ember.computed.not('isCreatorOfProject'),
+	displayLockedPileNotification: Ember.computed.and('model.locked','session.isAuthenticated','isNotCreator'),
 	isProjectClosed: Ember.computed.not('model.project.open'),
 	displayClosedProjectNotification: Ember.computed.and('isProjectClosed'),
 
