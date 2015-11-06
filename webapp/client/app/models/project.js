@@ -20,7 +20,7 @@ export default DS.Model.extend({
   image: DS.attr('string'),
   imageHost: DS.attr('string'),
 
-  createdAt: DS.attr('string', {defaultValue: function(){
+  createdAt: DS.attr('timestamp', {defaultValue: function(){
     return Firebase.ServerValue.TIMESTAMP;
   }}),
   updatedAt: DS.attr('firebase-timestamp'),

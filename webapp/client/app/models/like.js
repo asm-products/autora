@@ -7,7 +7,7 @@ export default DS.Model.extend({
   
   // pile: DS.belongsTo('pile', {async: true}),
 
-  createdAt: DS.attr('string', {defaultValue: function(){
+  createdAt: DS.attr('timestamp', {defaultValue: function(){
     return Firebase.ServerValue.TIMESTAMP;
   }}),
   updatedAt: DS.attr('firebase-timestamp'),

@@ -56,8 +56,8 @@ export default Ember.Controller.extend({
 
 	actions: {
 		createEntry: function() {
-			this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
-			this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
+			// this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
+			// this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
 			this.set('showAlerts', true);
 
 			if(!this.get('isEmpty')){
