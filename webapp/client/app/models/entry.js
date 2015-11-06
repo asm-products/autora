@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 import Ember from 'ember';
-import Firebase from 'firebase';
+import TimestampSupport from 'client/mixins/timestamp-support';
 
-export default DS.Model.extend({
+export default DS.Model.extend(TimestampSupport, {
   user: DS.belongsTo('user', {async: true}),
 
   pile: DS.belongsTo('pile', {async: true}),
@@ -16,22 +16,5 @@ export default DS.Model.extend({
   likedBy: Ember.computed.mapBy('likes', 'user'),
   amountOfLikes: Ember.computed.alias('likedBy.length'),
   initialAmountOfLikes: DS.attr('number'),
-  // initialAmountOfLikes: function(){
-  //   var self = this;
-  //   console.log(this.get('content'));
-  //   console.log(this.get('likes.length'));
-  //   console.log(this.get('likedBy.length'));
-  //   Ember.run.scheduleOnce('afterRender',function(){
-  //     self.set('initialAmountOfLikes', self.get('amountOfLikes'));
-  //     console.log(self.get('initialAmountOfLikes'));
-  //   });
-  // }.observes(''),
-  createdAt: DS.attr('timestamp', {defaultValue: function(){
-    return Firebase.ServerValue.TIMESTAMP;
-  }}),
-  updatedAt: DS.attr('firebase-timestamp'),
-
-  // likedByFix: Ember.computed.uniq('likedBy'),  //bugFix, might becuase EmberFire does not officialy support Ember 2.0
-
-  //+ likes, flags etc.
+ 
 });

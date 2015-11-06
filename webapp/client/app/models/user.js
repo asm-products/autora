@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 import Firebase from 'firebase';
+import TimestampSupport from 'client/mixins/timestamp-support';
 
-export default DS.Model.extend({
+export default DS.Model.extend(TimestampSupport, {
   description: DS.attr('string'),
   email: DS.attr('string'),
   photo: DS.attr('string'),
@@ -12,8 +13,5 @@ export default DS.Model.extend({
 
   uid: DS.attr('string'),
 
-  createdAt: DS.attr('timestamp', {defaultValue: function(){
-    return Firebase.ServerValue.TIMESTAMP;
-  }}),
-  updatedAt: DS.attr('firebase-timestamp'),
+
 });
