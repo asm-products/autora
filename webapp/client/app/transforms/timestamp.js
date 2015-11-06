@@ -8,6 +8,7 @@ export default DS.DateTransform.extend({
         }
 
         // to timestamp
-        return new Date(date).getTime();
+        //return new Date(date).getTime();
+        return this._super(date);
     }
 });
