@@ -8,6 +8,7 @@ export default DS.Model.extend(TimestampSupport, {
   photo: DS.attr('string'),
   cover: DS.attr('string'),
   username: DS.attr('string'),
+  admin: DS.attr('boolean', {defaultValue: false}),
 
   projects: DS.hasMany('project', {async: true}),
 
