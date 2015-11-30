@@ -58,7 +58,8 @@ export default Ember.Controller.extend({
 	canPostEntry: Ember.computed.lt('entriesFromUser.length', 10), //there's less then 10 entries from user
 
 	isCreatorOfProject: Ember.computed('model.project','session.user.id', function(){
-		return this.get('model.project.user.id') === this.get('session.user.id');
+		// OR IS ADMIN!
+		return this.get('model.project.user.id') === this.get('session.user.id') || this.get('session.user.admin');
 	}),
 
 	isNotCreator: Ember.computed.not('isCreatorOfProject'),
