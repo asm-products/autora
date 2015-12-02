@@ -4,7 +4,7 @@
     <h2>Welcome to Autora! Let's play with words together.</h2>
 </section>
 <section class="projects row">
-    {{#each model key="id" as |project|}}
+    {{#each sortedProjects key="id" as |project|}}
         <div class="col-sm-6 col-md-3 project-col">
         {{project-item model=project}}
         </div>
