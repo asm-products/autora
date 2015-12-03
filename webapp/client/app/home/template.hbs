@@ -3,7 +3,9 @@
     <h1>Writing Just Got Collective</h1>
     <h2>Welcome to Autora! Let's play with words together.</h2>
 </section>
-<section class="projects row">
+<section class="projects">
+    <div class="container projects-container">
+    <div class="row">
     {{#each model key="id" as |project|}}
         <div class="col-sm-6 col-md-3 project-col">
         {{project-item model=project}}
@@ -35,8 +37,9 @@
         <div class="col-sm-6 col-md-3 project-col">
             {{project-item model=blankProject classNames="shadowed"}}
         </div>
-        
     {{/each}}
+    </div>
+    </div>
 </section>
 <section class="testimonial">
     <div class="description">"Writers aren’t people exactly. Or, if they’re any good, they’re a whole lot of people trying so hard to be one person."</div>

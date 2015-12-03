@@ -59,15 +59,18 @@
 
     section.projects {
         background-color: #efefef;
-        padding: 20px $site-padding 0 $site-padding;
+        padding: 20px 0 0 0;
         margin: 0;
+        margin-left: -15px;
+        margin-right: -15px;
 
-        @include breakpoint(xs) {
-            padding: 20px $site-padding-xs 0 $site-padding-xs;
-        }
+        .projects-container {
+            padding: 0;
 
-        @include breakpoint(sm) {
-            padding: 20px $site-padding-sm 0 $site-padding-sm;
+            .row div[class^="col-"] {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
         }
 
         .project-col {
