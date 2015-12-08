@@ -88,6 +88,11 @@ body {
             @include diff(margin-left, 160px, 160px, 160px, 50px);
         }
 
+        iframe {
+            margin: 84px auto;
+            display: block;
+        }
+
         @media only screen and (min-width: $large-breakpoint){
             display: inline-block;
             min-width: 590px;
@@ -109,13 +114,15 @@ body {
 
     section.subscribe {
         color: $color2;
-        padding: 30px;
+        padding: 60px 30px;
         -webkit-transition: max-height 0.5s;
         max-height: 500px;
 
         h3 {
-            margin: 0;
+            margin: 0 0 40px 0;
             text-align: center;
+            font-weight: 900;
+            font-size: 30px;
         }
 
         .form {
@@ -264,6 +271,7 @@ body {
         background-color: $color1;
         text-align: center;
         padding: 30px;
+        height: 94px;
 
         a {
             color: #ffffff;
@@ -305,6 +313,16 @@ body {
             position: absolute;
             bottom: 0;
             width: 100%;
+        }
+
+        .copy {
+            text-align: left;
+        }
+
+        .social {
+            text-align: right;
+            height: 28px;
+            margin-top: 8px;
         }
     }
 

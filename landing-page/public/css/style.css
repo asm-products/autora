@@ -6147,6 +6147,9 @@ body {
       @media all and (max-width: 767px) {
         body section.book img {
           margin-left: 50px; } }
+    body section.book iframe {
+      margin: 84px auto;
+      display: block; }
     @media only screen and (min-width: 1112px) {
       body section.book {
         display: inline-block;
@@ -6161,12 +6164,14 @@ body {
           margin-left: 60px; } }
   body section.subscribe {
     color: #FFC153;
-    padding: 30px;
+    padding: 60px 30px;
     -webkit-transition: max-height 0.5s;
     max-height: 500px; }
     body section.subscribe h3 {
-      margin: 0;
-      text-align: center; }
+      margin: 0 0 40px 0;
+      text-align: center;
+      font-weight: 900;
+      font-size: 30px; }
     body section.subscribe .form {
       color: #ffffff;
       text-align: center;
@@ -6326,7 +6331,8 @@ body {
     font-weight: 300;
     background-color: #5F495F;
     text-align: center;
-    padding: 30px; }
+    padding: 30px;
+    height: 94px; }
     body footer a {
       color: #ffffff; }
       body footer a:hover {
@@ -6356,5 +6362,11 @@ body {
         position: absolute;
         bottom: 0;
         width: 100%; } }
+    body footer .copy {
+      text-align: left; }
+    body footer .social {
+      text-align: right;
+      height: 28px;
+      margin-top: 8px; }
   body .subscribers_page {
     color: #000000; }
