@@ -23,7 +23,7 @@ body {
     .sections-wrapper {
         background: $color2;
         text-align: center;
-        overflow-x:hidden;
+        overflow:hidden;
     }
 
     section.title {
@@ -312,7 +312,7 @@ body {
             margin-top: 10px;
         }
 
-        @media only screen and (min-height:1250px){
+        @media only screen and (min-height:900px) and (min-width:1600px){
             position: absolute;
             bottom: 0;
             width: 100%;
