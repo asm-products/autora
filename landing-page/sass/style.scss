@@ -89,8 +89,11 @@ body {
         }
 
         iframe {
-            margin: 84px auto;
             display: block;
+
+            @include diff(margin, 84px auto, 84px auto, 84px auto, 34px auto);
+            @include diff(width, 509px, 509px, 509px, 300px);
+            @include diff(height, 281px, 281px, 281px, 178px);
         }
 
         @media only screen and (min-width: $large-breakpoint){
