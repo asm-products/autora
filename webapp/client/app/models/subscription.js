@@ -27,9 +27,9 @@ export default DS.Model.extend(TimestampSupport, {
   cachedEntryTimestamp: attr('', {defaultValue: Date.now()}),
 
 
-  likeCount: computed.alias('entry.likes.count'),
-  competingEntriesCount: computed.alias('pile.competingEntries.count'),
-  successfulEntriesCount: computed.alias('project.entries.count'),
+  likeCount: computed.alias('entry.likes.length'),
+  competingEntriesCount: computed.alias('pile.competingEntries.length'),
+  successfulEntriesCount: computed.alias('project.entries.length'),
 
   // childCountingAttr: computed('type', function(){
   // 	var type = this.get('type');
