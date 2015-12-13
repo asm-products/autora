@@ -35,13 +35,6 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-
-	resetForm: function () {
-		this.set('newEntry.content', '');
-		this.set('hasErrors', false);
-		this.set('showAlerts', false);
-	},
-
 	spacerHeight: computed(function(){
 		//self setting computed property
 
@@ -51,12 +44,27 @@ export default Ember.Controller.extend({
 			setTimeout(() => {
 
 				var addEntryModalHeight = $('.add-entry-modal').height() + offset;
-				console.log(addEntryModalHeight);
 				this.set('spacerHeight', addEntryModalHeight);
 				
 			}, animationTime);
 		});
 	}),
+
+	resetForm() {
+		this.set('newEntry.content', '');
+		this.set('hasErrors', false);
+		this.set('showAlerts', false);
+	},
+
+	addSubscription(entry){
+		var subscriptionData = {
+			type: 'entry',
+			user: this.get('session.user'),
+			entry: entry
+		};
+		this.store.createRecord('subscription', subscriptionData);
+	},
+
 
 	actions: {
 		createEntry() {
@@ -68,7 +76,10 @@ export default Ember.Controller.extend({
 				var newEntry = this.store.createRecord('entry', this.get('newEntry'));
 				newEntry.save().then(function(){
 					pile.save().then(function () {
+
 						this.resetForm();
+						this.addSubscription(newEntry);
+
 					}.bind(this));
 				}.bind(this), function(error){
 					newEntry.rollback();
