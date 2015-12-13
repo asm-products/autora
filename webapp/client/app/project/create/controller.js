@@ -2,29 +2,28 @@ import Ember from 'ember';
 import Firebase from 'firebase';
 import config from 'client/config/environment';
 
+const {inject, computed, observer} = Ember;
+
 export default Ember.Controller.extend({
-	project: Ember.inject.controller('project'),
-
-	create: Ember.computed.alias('project.create'),
-
-
-	newProjectDefaults: {
-			languageForm: 'prose',
-			inputType: 'word',
-			inputLength: 1,
-			name: '',
-			description: ''
-		},
-
-	tags: [],
 
 	showErrors: false,
 	isLoading: false,
-	languageForms: [{id: 'prose', text: 'Prose'},{id: 'poetry', text: 'Poetry'}],
-
+	tags: [],
 	serverAlert: {},
+	languageForms: [{id: 'prose', text: 'Prose'},{id: 'poetry', text: 'Poetry'}],
+	
+	newProjectDefaults: {
+		languageForm: 'prose',
+		inputType: 'word',
+		inputLength: 1,
+		name: '',
+		description: ''
+	},
 
-	descriptionAlert: Ember.computed('newProject.description','showErrors',function(){
+	project: inject.controller('project'),
+	create: computed.alias('project.create'),
+
+	descriptionAlert: computed('newProject.description','showErrors',function(){
 		if(this.get('showErrors')){
 			var description = this.get('newProject.description');
 			var descriptionAlert = {};
@@ -38,7 +37,7 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-	max: Ember.computed('newProject.inputType', function(){
+	max: computed('newProject.inputType', function(){
 		var inputType = this.get('newProject.inputType');
 
 		var max;
@@ -53,7 +52,7 @@ export default Ember.Controller.extend({
 		return max;
 	}),
 
-	projectNameAlert: Ember.computed('newProject.name','showErrors', function(){
+	projectNameAlert: computed('newProject.name','showErrors', function(){
 		if(this.get('showErrors')){
 			var name = this.get('newProject.name');
 			var projectNameAlert = {};
@@ -70,21 +69,23 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-	isReadyToSend: Ember.computed('projectNameAlert.type','descriptionAlert.type',function() {
+	isReadyToSend: computed('projectNameAlert.type','descriptionAlert.type',function() {
+
 		return (
 			this.get('projectNameAlert.type') !== 'danger' &&
 			this.get('descriptionAlert.type') !== 'danger'
 		);
 	}),
 
-	newProject: function() {
+	newProject: computed(function(){
 
 		//ugly hack to avoid set() changing the Defaults object
 		//Solution? maybe createRecord() right away after visiting this and use Defaults on the model object instead
 		return JSON.parse(JSON.stringify(this.get('newProjectDefaults')));
-	}.property(),
+	}),
 
-	inputTypes: Ember.computed('newProject.languageForm', function(){
+	inputTypes: computed('newProject.languageForm', function(){
+
 		var languageForm = this.get('newProject.languageForm');
 		var isPoetry = languageForm === 'poetry';
 
@@ -95,7 +96,8 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-	inputObserver: Ember.observer('newProject.inputType', 'newProject.languageForm', function(){
+	inputObserver: observer('newProject.inputType', 'newProject.languageForm', function(){
+
 		var languageForm = this.get('newProject.languageForm');
 		var inputType = this.get('newProject.inputType');
 		var isPoetry = languageForm === 'poetry';
@@ -115,22 +117,21 @@ export default Ember.Controller.extend({
 		}
 	}),
 
+
+
 	actions: {
 
-			createProject: function(){
-			this.set('newProject.createdAt', Firebase.ServerValue.TIMESTAMP);
-			this.set('newProject.updatedAt', Firebase.ServerValue.TIMESTAMP);
+			createProject(){
 
 			this.set('newProject.image', this.get('fileName'));
 			this.set('newProject.imageHost', config.s3Url);
-
 			this.set('showErrors', true);
+
 			if(this.get('isReadyToSend')){
 
 				//start showing spinner
 				this.set('isLoading', true);
 
-				var self = this;
 				// this.set('newProject.tags', null);
 				this.set('newProject.user', this.get('session.user')); //set current session as user
 				var newProjectRecord = this.store.createRecord('project', this.get('newProject'));
@@ -139,18 +140,17 @@ export default Ember.Controller.extend({
 				var tagRecord = null;
 				var tagRequests = [];
 
-				tags.forEach(function(tagName){
+				tags.forEach(tagName => {
 					//SAVE TAGS
-					tagRequests.push(self.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
-					.then(function(foundTags){
-						console.log('tagRecords:');
-						console.log(foundTags);
+					tagRequests.push(this.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
+					.then(foundTags => {
+
 						if(foundTags.get('length') === 0) {
 							//there is no tag with this name, lets create one
 							var newTag = {
 								name: tagName,
 							};
-							tagRecord = self.store.createRecord('tag', newTag);
+							tagRecord = this.store.createRecord('tag', newTag);
 							tagRequests.push(tagRecord.save());
 						} else {
 						tagRecord = foundTags.get('firstObject');
@@ -159,25 +159,27 @@ export default Ember.Controller.extend({
 					}));
 				});
 
-				Ember.RSVP.allSettled(tagRequests).then(function(){
+				Ember.RSVP.allSettled(tagRequests).then(() => {
+
 					newProjectRecord.set('tags', tagRecords);
 					//SAVE PROJECT
-					newProjectRecord.save()
-					.then(function(projectRecord){
-						console.log('first saving fine');
-						self.toggleProperty('create');
-						self.set('newProject', '');
-						console.log(self.get('newProjectDefaults'));
-						self.set('newProject', JSON.parse(JSON.stringify(self.get('newProjectDefaults'))));
-						self.set('tags', []);
+					newProjectRecord.save().then(projectRecord => {
 
 						var lastRequests = [];
+
+						this.toggleProperty('create');
+						this.set('newProject', '');
+						this.set('newProject', JSON.parse(JSON.stringify(this.get('newProjectDefaults'))));
+						this.set('tags', []);
+
 						//SAVE USER - relationship save
-						lastRequests.push(self.get('session.user.content').save()); // check for errors and delete the project if needed
-						projectRecord.get('tags').forEach(function(tag){
+						lastRequests.push(this.get('session.user.content').save());
+						 // check for errors and delete the project if needed
+						projectRecord.get('tags').forEach(tag => {
 							lastRequests.push(tag.save());
 						}); // check for errors and delete the project if needed
-						Ember.RSVP.allSettled(lastRequests).then(function(){
+
+						Ember.RSVP.allSettled(lastRequests).then(() => {
 							//ALL DONE - everything is set up, redirect...
 							var pile = {
 								project: projectRecord,
@@ -185,46 +187,40 @@ export default Ember.Controller.extend({
 								updatedAt: Firebase.ServerValue.TIMESTAMP
 							};
 
-							console.log(pile);
-
-							self.store.createRecord('pile', pile).save().then(function () {
-								console.log('pile created');
-								projectRecord.save().then(function(){
+							this.store.createRecord('pile', pile).save().then(() => {
+								projectRecord.save().then(() => {
 									
-									self.set('isLoading', false);
-									self.transitionToRoute('project.index.entries', projectRecord.get('id'));
+									this.set('isLoading', false);
+									this.transitionToRoute('project.index.entries', projectRecord.get('id'));
 								});
 							});
 						});
 
-					},function(error){
-						console.log(error);
-						self.set('serverAlert.message', error);
-						self.set('isLoading', false);
+					}, error => {
+						this.set('serverAlert.message', error);
+						this.set('isLoading', false);
 					});
 				});
 			}
 		},
 
-		toggleCreateProjectModal: function(){
+		toggleCreateProjectModal(){
+
 			this.set('showErrors', false);
 			this.set('filePreviewUrl', null);
 			this.set('showFilePicker', null);
-
 			this.toggleProperty('create');
-			// return true;
 		},
 
-		showFilePicker: function () {
+		showFilePicker() {
 			this.set('showFilePicker', true);
 		},
 
-		hideFilePicker: function () {
+		hideFilePicker() {
 			this.set('showFilePicker', false);
 		},
 
-		projectPhotoUploadDone: function (fileName) {
-			//console.log(file);
+		projectPhotoUploadDone(fileName) {
 			this.set('fileName',fileName);
 
 			/*

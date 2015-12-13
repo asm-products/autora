@@ -1,31 +1,29 @@
 import Ember from 'ember';
 import Firebase from 'firebase';
 
+const {computed, inject} = Ember;
+
 export default Ember.Controller.extend({
-
-	pile: Ember.computed('model', function(){
-		return this.get('model');
-	}),
-
 
 	didTransition: false,
 	initialLoadHappened: false,
-
-	// newPile: Ember.computed('model', function(){
-	// 	return {
-	// 		pile: this.get('model')
-	// 	};
-	// }),
-
-	// entriesSorting: ['amountOfLikes:desc'],
-	entriesSorting: ['initialAmountOfLikes:desc'],
-	sortedEntries: Ember.computed.sort('pile.competingEntries', 'entriesSorting'),
 	lockAlert: {},
-	// sortedEntries: Ember.computed('pile.competingEntries', function(){
-	// 	return this.get('pile.competingEntries').sortBy('amountOfLikes');
-	// }),
 
-	gridClass: Ember.computed('pile.project.inputType', function(){
+	entriesSorting: ['initialAmountOfLikes:desc'],
+	sortedEntries: computed.sort('pile.competingEntries', 'entriesSorting'),
+	canPostEntry: computed.lt('entriesFromUser.length', 10), //there's less then 10 entries from user
+	isNotCreator: computed.not('isCreatorOfProject'),
+	displayLockedPileNotification: computed.and('model.locked','session.isAuthenticated','isNotCreator'),
+	isProjectClosed: computed.not('model.project.open'),
+	displayClosedProjectNotification: computed.and('isProjectClosed'),
+	
+	project: inject.controller('project.index'),
+
+	pile: computed('model', function(){
+		return this.get('model');
+	}),
+
+	gridClass: computed('pile.project.inputType', function(){
 		var inputType = this.get('pile.project.inputType');
 		var gridClass = "";
 
@@ -39,39 +37,29 @@ export default Ember.Controller.extend({
 		return gridClass;
 	}),
 
-	project: Ember.inject.controller('project.index'),
 
-	entriesFromUser: Ember.computed('model.competingEntries.@each','model.competingEntries.isFulfilled','session.user.id', function(){
-		var self = this;
-		console.log(this.get('model.competingEntries'));
+	entriesFromUser: computed('model.competingEntries.@each','model.competingEntries.isFulfilled','session.user.id', function(){
+		
 		if(this.get('session.user.id') && this.get('model.competingEntries.isFulfilled')){
-			return this.get('model.competingEntries').filter(function(entry){
-				var isAuthor = entry.get('user.id') === self.get('session.user.id');
+			return this.get('model.competingEntries').filter(entry => {
+				var isAuthor = entry.get('user.id') === this.get('session.user.id');
 				return isAuthor;
 			});
 		} else {
 			return 0;
 		}
-		// return this.get('model.competingEntries').filterBy('user', this.get('session.user.id'));
 	}),
 
-	canPostEntry: Ember.computed.lt('entriesFromUser.length', 10), //there's less then 10 entries from user
-
-	isCreatorOfProject: Ember.computed('model.project','session.user.id', function(){
+	isCreatorOfProject: computed('model.project','session.user.id', function(){
 		// OR IS ADMIN!
 		return this.get('model.project.user.id') === this.get('session.user.id') || this.get('session.user.admin');
 	}),
 
-	isNotCreator: Ember.computed.not('isCreatorOfProject'),
-	displayLockedPileNotification: Ember.computed.and('model.locked','session.isAuthenticated','isNotCreator'),
-	isProjectClosed: Ember.computed.not('model.project.open'),
-	displayClosedProjectNotification: Ember.computed.and('isProjectClosed'),
 
 	actions: {
-		pickEntry: function(){
+		pickEntry(){
 			var project = this.get('project.model'),
-				pile = this.get('pile'),
-				_this = this;
+				pile = this.get('pile');
 
 			var competingEntries = this.get('model.competingEntries');
 			var sortedEntriesByLikes = competingEntries.sortBy('amountOfLikes');
@@ -85,18 +73,18 @@ export default Ember.Controller.extend({
 			//if secondMostLikedEntry is undefined, there is only one entry so locking pile should be allowed
 			if(typeof secondMostLikedEntry === 'undefined' || (mostLikedEntry.get('likes.length') !== secondMostLikedEntry.get('likes.length'))){
 
-				mostLikedEntry.set('project', project).save().then(function () {
-					pile.set('locked', true).save().then(function () {
+				mostLikedEntry.set('project', project).save().then(() => {
+					pile.set('locked', true).save().then(() => {
 						var pile = {
 							project: project,
 							createdAt: Firebase.ServerValue.TIMESTAMP,
 							updatedAt: Firebase.ServerValue.TIMESTAMP
 						};
 
-						_this.store.createRecord('pile', pile).save().then(function (pile) {
-							project.save().then(function () {
-								_this.set('model', pile);
-								_this.set('lockAlert', {});
+						this.store.createRecord('pile', pile).save().then(pile => {
+							project.save().then(() => {
+								this.set('model', pile);
+								this.set('lockAlert', {});
 							});
 						});
 					});
@@ -107,14 +95,14 @@ export default Ember.Controller.extend({
 			}	
 		},
 
-		likeEntry: function(newLikeData, entry){
+		likeEntry(newLikeData, entry){
 
 			newLikeData.createdAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.updatedAt = Firebase.ServerValue.TIMESTAMP;
 			newLikeData.pile = this.get('pile');
-			// newLikeData.id = "testId";
 
 			if(this.get('session.isAuthenticated')){
+
 				var newLike = this.store.createRecord('like', newLikeData);
 				newLike.save().then(function(){
 					entry.save().then(function(){},function(){
@@ -123,20 +111,21 @@ export default Ember.Controller.extend({
 				}, function(){
 					newLike.rollbackAttributes();
 				});
+
 			} else {
 				this.transitionToRoute('user.login');
 			}
 
 		},
 
-		unlikeEntry: function(unlikeData, entry){
+		unlikeEntry(unlikeData, entry){
 			unlikeData.destroyRecord().then(function(){
 				entry.save();
 			}); //Todo: manage response
 			//save()
 		},
 
-		checkEntries: function(){
+		checkEntries(){
 			this.get('model');
 		},
 

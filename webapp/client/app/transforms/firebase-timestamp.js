@@ -2,11 +2,12 @@ import DS from 'ember-data';
 import Firebase from 'firebase';
 
 export default DS.Transform.extend({
-  deserialize: function(serialized) {
+	
+  deserialize(serialized) {
     return serialized;
   },
 
-  serialize: function(deserialized) {
+  serialize(deserialized) {
     return Firebase.ServerValue.TIMESTAMP;
   }
 });

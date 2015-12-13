@@ -1,8 +1,11 @@
 import Ember from 'ember';
 import EmberUploader from 'ember-uploader';
 
+const {isEmpty} = Ember;
+
 export default EmberUploader.FileField.extend({
-    filesDidChange: function(files) {
+
+    filesDidChange(files) {
         var uploadUrl = this.get('url');
 
         var uploader = EmberUploader.Uploader.create({
@@ -19,7 +22,7 @@ export default EmberUploader.FileField.extend({
             this.sendAction('uploadError', e);
         }.bind(this));
 
-        if (!Ember.isEmpty(files)) {
+        if (!isEmpty(files)) {
             uploader.upload(files[0]);
         }
     }

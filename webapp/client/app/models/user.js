@@ -2,17 +2,20 @@ import DS from 'ember-data';
 import Firebase from 'firebase';
 import TimestampSupport from 'client/mixins/timestamp-support';
 
+const {hasMany, attr} = DS;
+
+
 export default DS.Model.extend(TimestampSupport, {
-  description: DS.attr('string'),
-  email: DS.attr('string'),
-  photo: DS.attr('string'),
-  cover: DS.attr('string'),
-  username: DS.attr('string'),
-  admin: DS.attr('boolean', {defaultValue: false}),
+  description: attr('string'),
+  email: attr('string'),
+  photo: attr('string'),
+  cover: attr('string'),
+  username: attr('string'),
+  admin: attr('boolean', {defaultValue: false}),
 
-  projects: DS.hasMany('project', {async: true}),
+  projects: hasMany('project', {async: true}),
 
-  uid: DS.attr('string'),
+  uid: attr('string'), //unusued?
 
 
 });

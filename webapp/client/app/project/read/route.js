@@ -4,7 +4,8 @@ import Ember from 'ember';
 // Features: list and filter projects
 
 export default Ember.Route.extend({
-	model: function(){
+	
+	model(){
 		return this.store.findAll('project');
 	}
 });

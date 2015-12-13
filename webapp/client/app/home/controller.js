@@ -1,10 +1,13 @@
 import Ember from 'ember';
 
+const {computed} = Ember;
+
 export default Ember.Controller.extend({
-	projectsSorting: ['updatedAt:desc'],
-	sortedProjects: Ember.computed.sort('model','projectsSorting'),
+
 	blankProject: {
 		description: '',
 		name: ''
-	}
+	},
+	projectsSorting: ['updatedAt:desc'],
+	sortedProjects: computed.sort('model','projectsSorting')
 });

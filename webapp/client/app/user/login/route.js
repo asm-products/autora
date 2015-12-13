@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	model: function() {
+
+	model() {
 		return null;
 	},
 
 	actions: {
-		didTransition: function() {
+		didTransition() {
 			this.controller.setProperties({'alert': '', 'email' : '', 'password' : ''});
 		}
 	}

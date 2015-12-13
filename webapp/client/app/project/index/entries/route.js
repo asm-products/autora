@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-	model: function(){
+
+	model(){
 		var parentModel = this.modelFor('project.index');
 		if(parentModel.get('open')){
 			return parentModel.get('piles').reload().then(function (piles) {
@@ -20,10 +21,10 @@ export default Ember.Route.extend({
 			this.refresh();
 		},
 		didTransition(){
-			var self = this;
-			Ember.run.schedule('afterRender', function(){
+
+			Ember.run.schedule('afterRender',() => {
 				setTimeout(function(){
-					self.controller.set('initialLoadHappened', true);
+					this.controller.set('initialLoadHappened', true);
 					
 				},1500);
 			});
@@ -34,11 +35,4 @@ export default Ember.Route.extend({
 			}
 		}
 	}
-	// actions: {
-	// 	didTransition(){
-	// 		this.controller.get('model.competingEntries').forEach(function(entry){
-	// 			entry.rollbackAttributes();
-	// 		});
-	// 	}
-	// }
 });

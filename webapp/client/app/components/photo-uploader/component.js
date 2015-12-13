@@ -1,22 +1,29 @@
 import Ember from 'ember';
 
+const {inject, computed} = Ember;
+
 export default Ember.Component.extend({
-    url: Ember.computed('type', function () {
+
+    classNames: ['photo-uploader'],
+    imageService: inject.service('image'),
+
+    url: computed('type', function () {
         return '/upload/s3/' + this.get('type');
     }),
-    classNames: ['photo-uploader'],
-    imageService: Ember.inject.service('image'),
-    filePreviewUrl: Ember.computed('fileName', function(){
+
+    filePreviewUrl: computed('fileName', function(){
         return this.get('imageService').generatePath(this.get('fileName'),this.get('type'));
     }),
+
     actions: {
-        uploadStart: function () {
+        uploadStart() {
+
             this.set('loading', true);
         },
 
-        uploadDone: function (data) {
-            this.set('loading', false);
+        uploadDone(data) {
 
+            this.set('loading', false);
             if (data.success) {
                 // this.set('filePreviewUrl', data.filePath);
                 this.set('fileName', data.fileName);
@@ -24,7 +31,8 @@ export default Ember.Component.extend({
             }
         },
 
-        uploadError: function () {
+        uploadError() {
+            
         }
     }
 });

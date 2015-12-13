@@ -1,12 +1,16 @@
 import Ember from 'ember';
 
+const {computed} = Ember;
+
 export default Ember.Component.extend({
-	//Tags
+
 	tags: [],
-	// rightColSize: Ember.computed('tags.length', function(){
-	// 	return 'col-sm-'+parseInt(12 - 3*this.get('tags.length')); 
-	// }),
-	newTagAdd: Ember.computed('newTag','canAddTags', function(){
+	noTagsAdded: computed.equal('tags.length', 0),
+	newTag: '',
+	canAddTags: computed.lt('tags.length', 5),
+	
+	newTagAdd: computed('newTag','canAddTags', function(){
+		
 		var newTag = this.get('newTag');
 		var regex = /^.+\ $/;
 		if(this.get('spacelessTag') !== '' && this.get('canAddTags')){
@@ -17,14 +21,13 @@ export default Ember.Component.extend({
 			}
 		}
 	}),
-	noTagsAdded: Ember.computed.equal('tags.length', 0),
-	newTag: '',
-	spacelessTag: Ember.computed('newTag', function(){
+
+	spacelessTag: computed('newTag', function(){
 		return this.get('newTag').replace(/ /g,'');
 	}),
-	canAddTags: Ember.computed.lt('tags.length', 5),
 
 	actions: {
+
 		deleteTag(tag){
 			this.get('tags').removeObject(tag);
 		},

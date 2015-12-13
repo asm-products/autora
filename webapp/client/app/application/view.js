@@ -1,9 +1,11 @@
 import Ember from 'ember';
 
+const {$} = Ember;
+
 export default Ember.View.extend({
     elementId: 'app',
     didInsertElement(){
-    	Ember.$('body').removeClass('au-loading');
-    	Ember.$('.loading-quote').remove();
+    	$('body').removeClass('au-loading');
+    	$('.loading-quote').remove();
     }
 });

@@ -2,12 +2,14 @@ import DS from 'ember-data';
 import Firebase from 'firebase';
 import TimestampSupport from 'client/mixins/timestamp-support';
 
-export default DS.Model.extend(TimestampSupport, {
-  project: DS.belongsTo('project', {async: true}),
-  // successfulEntry: DS.belongsTo('entry'),
-  locked: DS.attr('boolean'),
-  closingDate: DS.attr('date'),
+const {belongsTo, hasMany, attr} = DS;
 
-  competingEntries: DS.hasMany('entry', {async: true}),
+export default DS.Model.extend(TimestampSupport, {
+	
+  locked: attr('boolean'),
+  closingDate: attr('date'),
+
+  project: belongsTo('project', {async: true}),
+  competingEntries: hasMany('entry', {async: true}),
 
 });

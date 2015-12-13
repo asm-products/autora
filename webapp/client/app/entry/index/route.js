@@ -5,7 +5,8 @@ import Ember from 'ember';
 // Delete, edit actions
 
 export default Ember.Route.extend({
-	model: function(params){
+	
+	model(params){
 		return this.store.find('entry', params.entry_id);
 	}
 });

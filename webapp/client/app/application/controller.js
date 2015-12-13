@@ -1,14 +1,15 @@
 import Ember from 'ember';
 
+const {inject, computed} = Ember;
+
 export default Ember.Controller.extend({
-	project: Ember.inject.controller('project'),
-	isInProjectRoute: Ember.computed('currentRouteName', function(){
+	project: inject.controller('project'),
+	isInProjectRoute: computed('currentRouteName', function(){
 		return this.get('currentRouteName').substring(0, 7) === 'project';
 	}), 
 
 	actions: {
 		toggleCreate(){
-			console.log('toggleCreate in application controller');
 			this.toggleProperty('project.create');
 		}
 	}

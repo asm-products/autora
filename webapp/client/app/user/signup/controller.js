@@ -2,6 +2,8 @@ import Ember from 'ember';
 import config from '../../config/environment';
 import Firebase from 'firebase';
 
+const {computed} = Ember;
+
 
 export default Ember.Controller.extend({
 	email: '',
@@ -11,7 +13,7 @@ export default Ember.Controller.extend({
 	alert: '',
 	isLoading: false,
 
-	isReadyToSend: Ember.computed('username','password', function(){
+	isReadyToSend: computed('username','password', function(){
 		var username = this.get('username');
 		var isNOTEmpty = username !== '';
 		var isAlphanumeric = /^[\w]+$/i.test(username);
@@ -36,12 +38,12 @@ export default Ember.Controller.extend({
 	}),
 
 	actions: {
-		sendSignUpForm: function(){
-			if(this.get('isReadyToSend')){
+		sendSignUpForm(){
 
-				var self = this;
+			if(this.get('isReadyToSend')){
+				this.set('isLoading', true);
+
 				var ref = new Firebase(config.firebase);
-				self.set('isLoading', true);
 
 				var email = this.get('email');
 				var password = this.get('password');
@@ -49,26 +51,26 @@ export default Ember.Controller.extend({
 				ref.createUser({
 				  email    : email,
 				  password : password
-				}, function(error, userData) {
+				}, (error, userData) => {
 				  if (error) {
-					self.set('isLoading', false);
+					this.set('isLoading', false);
 				    console.log("Error creating user:", error);
-				    self.set('alert', {
+				    this.set('alert', {
 				    	type: 'danger',
 				    	message: error
 				    });
 				  } else {
 
-				    var newUserData = self.getProperties('email', 'username');
+				    var newUserData = this.getProperties('email', 'username');
 				    newUserData.id = userData.uid;
 
 				    newUserData.createdAt = Firebase.ServerValue.TIMESTAMP;
 					newUserData.updatedAt = Firebase.ServerValue.TIMESTAMP;
 
-				    self.store.createRecord('user',newUserData).save().then(function(){
-					    // self.transitionToRoute('index');
+				    this.store.createRecord('user',newUserData).save().then(() => {
+					    // this.transitionToRoute('index');
 
-					    self.setProperties({
+					    this.setProperties({
 					    	username: '',
 					    	password: '',
 					    	email: '',
@@ -79,11 +81,11 @@ export default Ember.Controller.extend({
 					    });
 
 					    //Lets login the user after sign up
-					    self.get('session').authenticate('authenticator:firebase', {
+					    this.get('session').authenticate('authenticator:firebase', {
 			                'email': email,
 			                'password': password
 			            }).then(function(){
-			            	// self.set('isLoading')
+			            	// this.set('isLoading')
 			            });
 
 
@@ -95,7 +97,7 @@ export default Ember.Controller.extend({
 			}
 		},
 
-		transitionBack: function(){
+		transitionBack(){
             window.history.back();
         }
 	}
