@@ -2,19 +2,22 @@ import DS from 'ember-data';
 import Ember from 'ember';
 import TimestampSupport from 'client/mixins/timestamp-support';
 
+const {belongsTo, hasMany, attr} = DS;
+const {computed} = Ember;
+
 export default DS.Model.extend(TimestampSupport, {
-  user: DS.belongsTo('user', {async: true}),
 
-  pile: DS.belongsTo('pile', {async: true}),
-  project: DS.belongsTo('project'),
+  order: attr('number'),
+  content: attr('string'),
+  initialAmountOfLikes: attr('number'),
 
-  likes: DS.hasMany('like', {async: true}), //async false for embedded likes
+  user: belongsTo('user', {async: true}),
+  project: belongsTo('project', {async: true}),
+  pile: belongsTo('pile', {async: true}),
+  likes: hasMany('like', {async: true}), //async false for embedded likes
 
-  order: DS.attr('number'),
-  content: DS.attr('string'),
 
-  likedBy: Ember.computed.mapBy('likes', 'user'),
-  amountOfLikes: Ember.computed.alias('likedBy.length'),
-  initialAmountOfLikes: DS.attr('number'),
+  likedBy: computed.mapBy('likes', 'user'),
+  amountOfLikes: computed.alias('likedBy.length'),
  
 });

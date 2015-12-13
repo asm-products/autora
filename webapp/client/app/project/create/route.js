@@ -7,7 +7,6 @@ export default Ember.Route.extend(AuthOnly,{
 
 	actions: {
 		createProjectModal(){
-			console.log('closing modal in project.create route');
 			return true;
 		}
 	}

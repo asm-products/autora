@@ -1,34 +1,34 @@
 import Ember from 'ember';
 import Firebase from 'firebase';
 
-export default Ember.Controller.extend({
-	project: Ember.inject.controller('project'),
+const {inject, computed} = Ember;
 
-	newPile: Ember.computed('model', function(){
+export default Ember.Controller.extend({
+	showOptions: false,
+	optionsLoading: false,
+	isEditing: false,
+
+	project: inject.controller('project'),
+
+	newEntry: inject.controller('project.index.entries.newEntry'),
+	isEditable: computed.equal('model.piles.firstObject.competingEntries.length', 0),
+	 //untested
+	newPile: computed('model', function(){
 		return {
 			project: this.get('model')
 		};
 	}),
 
-	newEntry: Ember.inject.controller('project.index.entries.newEntry'),
-
-	showOptions: false,
-	optionsLoading: false,
-	isEditing: false,
-	isEditable: Ember.computed.equal('model.piles.firstObject.competingEntries.length', 0), //untested
-	
-
-	// inlineMode: Ember.computed.equal('model.inputType', 'word'),
-	inlineMode: Ember.computed('model.inputType', function(){
+	inlineMode: computed('model.inputType', function(){
 		var inputType = this.get('model.inputType');
 		return inputType === 'word' || inputType === 'sentence'; 
 	}),
 
-	isCreator: Ember.computed('session.user.id','model.user.id', function(){
+	isCreator: computed('session.user.id','model.user.id', function(){
 		return this.get('session.user.id') === this.get('model.user.id');
 	}),
 
-	maxEntryLength: Ember.computed('model.inputType','model.inputLength', function(){
+	maxEntryLength: computed('model.inputType','model.inputLength', function(){
 		console.log('project.index.maxeEntryLength');
 		var inputType = this.get('model.inputType');
 		var inputLength = this.get('model.inputLength');
@@ -46,16 +46,12 @@ export default Ember.Controller.extend({
 	}),
 
 	actions: {
+		
 		createPile(){
-			this.set('newPile.createdAt', Firebase.ServerValue.TIMESTAMP);
-			this.set('newPile.updatedAt', Firebase.ServerValue.TIMESTAMP);
-
 			var project = this.get('model');
-			var self = this;
-			console.log(this.get('newPile'));
-			this.store.createRecord('pile', this.get('newPile')).save().then(function(){
+			this.store.createRecord('pile', this.get('newPile')).save().then(() => {
 				project.save().then(function(){
-					self.transitionToRoute('project.index.entries');
+					this.transitionToRoute('project.index.entries');
 				});
 			});
 		},
@@ -63,18 +59,18 @@ export default Ember.Controller.extend({
 			this.toggleProperty('showOptions');
 		},
 		toggleOpenClose(){
-			// this.set('model.open', false).save();
+
 			var model = this.get('model');
-			model.toggleProperty('open');
 			this.set('optionsLoading', true);
-			var self = this;
-			model.save().then(function(){
-				self.set('optionsLoading', false);
-				self.set('showOptions', false);
-				if(self.get('model.open')){
-					self.transitionToRoute('project.index.entries');
+			model.toggleProperty('open');
+
+			model.save().then(() => {
+				this.set('optionsLoading', false);
+				this.set('showOptions', false);
+				if(this.get('model.open')){
+					this.transitionToRoute('project.index.entries');
 				} else {
-					self.transitionToRoute('project.index');
+					this.transitionToRoute('project.index');
 				}
 			});
 		},
@@ -87,16 +83,13 @@ export default Ember.Controller.extend({
 			this.set('isEditing', false);
 		},
 		updateProject(){
-			// this.set('isLoadingUpdate')
-			var self = this;
-			this.get('model').save().then(function(){
-				self.set('isEditing', false);
+			this.get('model').save().then(() => {
+				this.set('isEditing', false);
 			});
 		},
 		deleteProject(){
-			var self = this;
-			this.get('model').destroyRecord().then(function(){
-				self.transitionToRoute('project.contribute');
+			this.get('model').destroyRecord().then(() => {
+				this.transitionToRoute('project.contribute');
 			});
 		}
 	}

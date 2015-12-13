@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
     isLoading: false,
 
 	actions: {
-        login: function() {
+        login() {
             // var self = this;
             this.set('isLoading', true);
             this.get('session').authenticate('authenticator:firebase', {
@@ -20,13 +20,13 @@ export default Ember.Controller.extend({
             }, function(){});
             
         },
-        logout: function() {
+        logout() {
             this.get('session').invalidate().then(function() {
                 this.transitionToRoute('user.login');
             }.bind(this));
         },
 
-        transitionBack: function(){
+        transitionBack(){
             window.history.back();
         }
     }

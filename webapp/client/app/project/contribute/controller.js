@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
+const {inject, computed} = Ember;
+
 export default Ember.Controller.extend({
-	project: Ember.inject.controller('project'),
-	filteredProjects: Ember.computed.filterBy('model', 'open', true)
+	project: inject.controller('project'),
+	filteredProjects: computed.filterBy('model', 'open', true)
 });

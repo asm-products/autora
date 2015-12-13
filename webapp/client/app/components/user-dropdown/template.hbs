@@ -1,4 +1,5 @@
   <a class="plain toggleUserDropdown">{{user-photo user=session.user}}<div class="caret {{if showDropdown "caret-reversed"}}"><b></b></div></a>
+  
  {{#ui-dropdown showDropdown=showDropdown selectorClass="toggleUserDropdown"}}
     {{#link-to 'user.index' session.user.id}}<i class="fa fa-user"></i><span class="username">{{session.user.username}}</span>
     {{/link-to}}

@@ -1,16 +1,21 @@
 import Ember from 'ember';
 import Firebase from 'firebase';
 
+const {inject, computed, run, $} = Ember;
+
 export default Ember.Controller.extend({
-	projectIndexEntriesController: Ember.inject.controller('project.index.entries'),
-	projectIndexController: Ember.inject.controller('project.index'),
+
 	showAlerts: false,
 	hasErrors: false,
 
-	pile: Ember.computed.alias('projectIndexEntriesController.model'),
-	maxlength: Ember.computed.alias('projectIndexController.maxEntryLength'),
+	projectIndexEntriesController: inject.controller('project.index.entries'),
+	projectIndexController: inject.controller('project.index'),
 
-	newEntry: Ember.computed('pile', function(){
+	pile: computed.alias('projectIndexEntriesController.model'),
+	maxlength: computed.alias('projectIndexController.maxEntryLength'),
+	isEmpty: computed.empty('newEntry.content'),
+
+	newEntry: computed('pile', function(){
 		return {
 			pile: this.get('pile'),
 			// project: this.get('model').get('firstObject').get('project'), //DEV MODE
@@ -21,8 +26,7 @@ export default Ember.Controller.extend({
 
 
 
-	isEmpty: Ember.computed.empty('newEntry.content'),
-	alert: Ember.computed('isEmpty', function(){
+	alert: computed('isEmpty', function(){
 		if(this.get('isEmpty')){
 			return {
 				type: 'danger',
@@ -38,26 +42,25 @@ export default Ember.Controller.extend({
 		this.set('showAlerts', false);
 	},
 
-	spacerHeight: Ember.computed(function(){
-		var self = this;
+	spacerHeight: computed(function(){
 		//self setting computed property
-		Ember.run.schedule('afterRender', function(){
+
+		run.schedule('afterRender', () => {
 			var offset = 50;
 			var animationTime = 400; //ms
-			setTimeout(function(){
+			setTimeout(() => {
 
-				var addEntryModalHeight = Ember.$('.add-entry-modal').height() + offset;
+				var addEntryModalHeight = $('.add-entry-modal').height() + offset;
 				console.log(addEntryModalHeight);
-				self.set('spacerHeight', addEntryModalHeight);
+				this.set('spacerHeight', addEntryModalHeight);
 				
 			}, animationTime);
 		});
 	}),
 
 	actions: {
-		createEntry: function() {
-			// this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
-			// this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
+		createEntry() {
+			
 			this.set('showAlerts', true);
 
 			if(!this.get('isEmpty')){
@@ -68,14 +71,13 @@ export default Ember.Controller.extend({
 						this.resetForm();
 					}.bind(this));
 				}.bind(this), function(error){
-					console.log(error);
 					newEntry.rollback();
 				});
 				this.transitionToRoute('project.index.entries');
 			}
 		},
 
-		transitionBack: function(){
+		transitionBack(){
             window.history.back();
 		}
 	}

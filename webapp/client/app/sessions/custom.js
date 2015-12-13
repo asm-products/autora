@@ -2,13 +2,14 @@
 import Ember from 'ember';
 import Session from 'simple-auth/session';
 
+const {computed, isEmpty} = Ember;
+
 export default Session.extend({
-  user: function() {
+
+  user: computed('secure.user.uid', function(){
     var uid = this.get('secure.auth.uid');
-    console.log('uid:');
-    console.log(uid);
-    if (!Ember.isEmpty(uid)) {
+    if (!isEmpty(uid)) {
       return this.container.lookup('store:main').find('user', uid);
     }
-  }.property('secure.user.uid')
+  })
 });
