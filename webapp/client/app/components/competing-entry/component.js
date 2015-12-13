@@ -103,10 +103,9 @@ export default Ember.Component.extend({
 
 		deleteEntry(){
 			if(confirm("Really destroy?")){
-				var pile = this.get('model.pile');
-				this.get('model').destroyRecord().then(function(){
-					pile.save();
-				});
+
+				//there's probably no need to save pile afterwards
+				this.get('model').destroyRecord();
 			}	
 		}
 	}

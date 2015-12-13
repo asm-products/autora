@@ -63,9 +63,6 @@ export default Ember.Controller.extend({
 
 			var competingEntries = this.get('model.competingEntries');
 			var sortedEntriesByLikes = competingEntries.sortBy('amountOfLikes');
-			// this.get('model.competingEntries').forEach(function(entry){
-			// 	console.log(entry.get('amountOfLikes'));
-			// });
 
 			var mostLikedEntry = sortedEntriesByLikes.get('lastObject');
 			var secondMostLikedEntry = sortedEntriesByLikes.objectAt(competingEntries.get('length') - 2);

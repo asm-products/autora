@@ -23,7 +23,7 @@ export default Ember.Route.extend({
 		didTransition(){
 
 			Ember.run.schedule('afterRender',() => {
-				setTimeout(function(){
+				setTimeout(() => {
 					this.controller.set('initialLoadHappened', true);
 					
 				},1500);

@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
 		run.schedule('afterRender', () => {
 			var offset = 50;
 			var animationTime = 400; //ms
-			setTimeout(function(){
+			setTimeout(() => {
 
 				var addEntryModalHeight = $('.add-entry-modal').height() + offset;
 				console.log(addEntryModalHeight);
@@ -60,8 +60,7 @@ export default Ember.Controller.extend({
 
 	actions: {
 		createEntry() {
-			// this.set('newEntry.createdAt', Firebase.ServerValue.TIMESTAMP);
-			// this.set('newEntry.updatedAt', Firebase.ServerValue.TIMESTAMP);
+			
 			this.set('showAlerts', true);
 
 			if(!this.get('isEmpty')){

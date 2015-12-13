@@ -12,7 +12,7 @@ export default DS.Model.extend(TimestampSupport, {
   initialAmountOfLikes: attr('number'),
 
   user: belongsTo('user', {async: true}),
-  project: belongsTo('project'),
+  project: belongsTo('project', {async: true}),
   pile: belongsTo('pile', {async: true}),
   likes: hasMany('like', {async: true}), //async false for embedded likes
 
