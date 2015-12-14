@@ -10,6 +10,7 @@
         <div class="col-sm-8">
             <nav class="nav navbar-nav navbar-right">
                 {{#if isLoggedIn}}
+                    {{notification-box model=subscriptions selectorClass="toggleNotificationBox"}}
                     {{#if isInProjectRoute}}
                         <a {{action "toggleCreate"}}>Create</a>
                         {{else}}

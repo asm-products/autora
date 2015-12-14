@@ -1,0 +1,27 @@
+.notifications {
+	position: relative;
+	display: inline-block;
+	.content {
+		position: absolute;
+		// bottom: -3px;
+		top:30px;
+		left: 0;
+	    border: 2px solid $color1;
+	    z-index: 1000;
+	    width: 250px;
+	    padding: 10px;
+	    background: white;
+	    max-height:300px;
+	    overflow: scroll;
+
+	    a {
+	    	margin: 0 !important;
+	    }
+	}
+
+	.badge {
+		background-color: #DC1E1E;
+		border: 0;
+		outline: 0 !important;
+	}
+}

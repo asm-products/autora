@@ -11,12 +11,15 @@ export default DS.Model.extend(TimestampSupport, {
 
   type: attr('string'),
 
-  user: belongsTo('user'),
+  isSeen: attr('boolean', {defaultValue: false}),
+  isRead: attr('boolean', {defaultValue: false}),
+
+  user: belongsTo('user', {async: true}),
   // notification: belongsTo('notification'),
 
-  project: belongsTo('project'), // 
-  entry: belongsTo('entry'),
-  pile: belongsTo('pile'),
+  project: belongsTo('project', {async: true}), // 
+  entry: belongsTo('entry', {async: true}),
+  pile: belongsTo('pile', {async: true}),
 
   cachedPileCount: attr('number', {defaultValue: 0}),
   cachedEntryCount: attr('number', {defaultValue: 0}),
@@ -30,6 +33,14 @@ export default DS.Model.extend(TimestampSupport, {
   likeCount: computed.alias('entry.likes.length'),
   competingEntriesCount: computed.alias('pile.competingEntries.length'),
   successfulEntriesCount: computed.alias('project.entries.length'),
+
+  likeNotification: computed('likeCount','cachedLikeCount', function(){
+    let newLikesCount = this.get('likeCount') - this.get('cachedLikeCount');
+    if(newLikesCount > 0){
+
+      return `${newLikesCount} new ${newLikesCount === 1 ? 'like' : 'likes'}`;
+    }
+  }),
 
   // childCountingAttr: computed('type', function(){
   // 	var type = this.get('type');

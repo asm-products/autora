@@ -62,7 +62,7 @@ export default Ember.Controller.extend({
 			user: this.get('session.user'),
 			entry: entry
 		};
-		this.store.createRecord('subscription', subscriptionData);
+		this.store.createRecord('subscription', subscriptionData).save();
 	},
 
 
