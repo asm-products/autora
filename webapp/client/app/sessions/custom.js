@@ -25,14 +25,14 @@ export default Session.extend({
 
 	}),
 
-	notifications: computed.mapBy('subscriptions', 'notification')
-  	// var subscriptions = this.get('subscriptions');
+	unseenSubscriptions: computed('subscriptions.[]', function(){
 
-  	// subscriptions.forEach(subscription => {
+		var subscriptions = this.get('subscriptions');
+		if(subscriptions.get('isFulfilled')){
+			return subscriptions.filterBy('isSeen', false);
+		}
+	}),
 
-  	// 	var type = subscription.get('type');
-  	// 	var targetModel = subscription.get(type);
-
-
-  	// 	});
+	// notifications: computed.mapBy('subscriptions', 'notification')
+  
 });
