@@ -67,9 +67,19 @@
         .projects-container {
             padding: 0;
 
-            .row div[class^="col-"] {
-                padding-left: 10px;
-                padding-right: 10px;
+            .row {
+                margin-left: -10px;
+                margin-right: -10px;
+
+                div[class^="col-"] {
+                    padding-left: 10px;
+                    padding-right: 10px;
+
+                    @include breakpoint(xs) {
+                        padding-left: 40px;
+                        padding-right: 40px;
+                    }
+                }
             }
         }
 

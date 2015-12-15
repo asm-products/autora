@@ -11,11 +11,11 @@ header.app-header {
     position: relative;
 
     img.logo {
-        height: 40px;
+        height: 52px;
     }
 
     .navbar-left {
-        padding: 10px 0;
+        padding: 14px 0;
         margin-left: -15px;
 
         @include breakpoint(xs) {
@@ -30,8 +30,9 @@ header.app-header {
     }
 
     nav.navbar-right {
-        height: 47px;
-        padding: 20px 0;
+        height: 80px;
+        padding: 30px 0;
+        line-height: 22px;
 
         @include breakpoint(xs) {
             text-align: center;
@@ -58,8 +59,9 @@ header.app-header {
         a {
             text-transform: uppercase;
             color: $color2;
-            font-size: 12px;
-            margin-left: 20px;
+            font-size: 14px;
+            margin-left: 35px;
+            letter-spacing: 2px;
 
             @include breakpoint('xs') {
                 display: inline-block;
