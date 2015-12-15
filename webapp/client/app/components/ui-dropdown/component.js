@@ -15,6 +15,8 @@ export default Ember.Component.extend({
     	Ember.$(document).click(() => {
             if(this.isVisible){
     		  this.set('showDropdown', false);
+              this.dropdownToggled();
+
             }
     	});
 

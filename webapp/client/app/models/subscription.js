@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 
 
-const {computed} = Ember;
+const {computed, isNone} = Ember;
 const {attr, belongsTo} = DS;
 
 export default DS.Model.extend(TimestampSupport, {
@@ -25,6 +25,8 @@ export default DS.Model.extend(TimestampSupport, {
   },
   
   type: attr('string'),
+
+  isReady: false,
 
   isSeen: attr('boolean', {defaultValue: false}),
   isRead: attr('boolean', {defaultValue: false}),
@@ -49,6 +51,16 @@ export default DS.Model.extend(TimestampSupport, {
   competingEntryCount: computed.alias('pile.competingEntries.length'),
   pileCount: computed.alias('project.piles.length'),
 
+  hasUnseenNotification: computed('isSeen','notification', function(){
+    // return !this.get('isSeen') && (this.get('notification') !== false);
+  }),
+
+  // didLoadAll: computed('type','project','entry','pile', function(){
+  //   var type = this.get('type');
+  //   console.log(type+'.isFulfilled');
+  //   return this.get(type+'.isFulfilled');
+  // }),
+
 
   notification: computed('likeCount','competingEntriesCount','successfulEntriesCount', function(){
     const type = this.get('type');
@@ -58,9 +70,9 @@ export default DS.Model.extend(TimestampSupport, {
     const currentCount = this.get(childName + 'Count');
     const newChildCount = currentCount - cachedCount;
     if(newChildCount > 0){
-      this.set('isSeen', true);
-      this.cacheSubscription();
       return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
+    } else {
+      return false;
     }
 
   }),
@@ -68,6 +80,14 @@ export default DS.Model.extend(TimestampSupport, {
   didUpdate(){
     console.log('didUpdate');
   },
+
+  // ready(){
+  //   var type = this.get('type');
+  //   var relationship = this.get(type);
+  //   relationship.then(() => {
+  //     this.set('isReady', true);
+  //   });
+  // },
 
   // childCountingAttr: computed('type', function(){
   // 	var type = this.get('type');
