@@ -25,13 +25,15 @@ export default Session.extend({
 
 	}),
 
-	unseenSubscriptions: computed('subscriptions.[]', function(){
-
-		var subscriptions = this.get('subscriptions');
-		if(subscriptions.get('isFulfilled')){
-			return subscriptions.filterBy('isSeen', false);
-		}
-	}),
+	addSubscription(record,type,store){
+		
+		var subscriptionData = {
+			type: type,
+			user: this.get('user')
+		};
+		subscriptionData[type] = record;
+		store.createRecord('subscription', subscriptionData).save();
+	}
 
 	// notifications: computed.mapBy('subscriptions', 'notification')
   

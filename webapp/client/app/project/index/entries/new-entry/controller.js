@@ -57,12 +57,8 @@ export default Ember.Controller.extend({
 	},
 
 	addSubscription(entry){
-		var subscriptionData = {
-			type: 'entry',
-			user: this.get('session.user'),
-			entry: entry
-		};
-		this.store.createRecord('subscription', subscriptionData).save();
+		this.get('session').addSubscription(entry,'entry',this.store);
+		this.get('session').addSubscription(this.get('pile'),'pile',this.store);
 	},
 
 

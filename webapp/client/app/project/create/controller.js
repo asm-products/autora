@@ -117,7 +117,9 @@ export default Ember.Controller.extend({
 		}
 	}),
 
-
+	addSubscription(project){
+		this.get('session').addSubscription(project, 'project', this.store);
+	},
 
 	actions: {
 
@@ -189,6 +191,8 @@ export default Ember.Controller.extend({
 
 							this.store.createRecord('pile', pile).save().then(() => {
 								projectRecord.save().then(() => {
+
+									this.addSubscription(newProjectRecord);
 									
 									this.set('isLoading', false);
 									this.transitionToRoute('project.index.entries', projectRecord.get('id'));
