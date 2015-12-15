@@ -25,13 +25,18 @@ export default Session.extend({
 
 	}),
 
-	addSubscription(record,type,store){
+	addSubscription(record, type, store, project){
 		
+
+
 		var subscriptionData = {
 			type: type,
-			user: this.get('user')
+			user: this.get('user'),
 		};
 		subscriptionData[type] = record;
+		if(type !== 'project'){
+			subscriptionData.project = project;
+		}
 		store.createRecord('subscription', subscriptionData).save();
 	}
 
