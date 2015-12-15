@@ -9,6 +9,21 @@ const {attr, belongsTo} = DS;
 
 export default DS.Model.extend(TimestampSupport, {
 
+  subscriptionTypes: {
+    entry: {
+      childName: 'like',
+      childPlural: 'likes'
+    },
+    pile: {
+      childName: 'competingEntry',
+      childPlural: 'entries'
+    },
+    project: {
+      childName: 'pile',
+      childPlural: 'piles'
+    }
+  },
+  
   type: attr('string'),
 
   isSeen: attr('boolean', {defaultValue: false}),
@@ -22,7 +37,7 @@ export default DS.Model.extend(TimestampSupport, {
   pile: belongsTo('pile', {async: true}),
 
   cachedPileCount: attr('number', {defaultValue: 0}),
-  cachedEntryCount: attr('number', {defaultValue: 0}),
+  cachedCompetingEntryCount: attr('number', {defaultValue: 0}),
   cachedLikeCount: attr('number', {defaultValue: 0}),
 
   cachedProjectTimestamp: attr('', {defaultValue: Date.now()}),
@@ -31,16 +46,28 @@ export default DS.Model.extend(TimestampSupport, {
 
 
   likeCount: computed.alias('entry.likes.length'),
-  competingEntriesCount: computed.alias('pile.competingEntries.length'),
-  successfulEntriesCount: computed.alias('project.entries.length'),
+  competingEntryCount: computed.alias('pile.competingEntries.length'),
+  pileCount: computed.alias('project.piles.length'),
 
-  likeNotification: computed('likeCount','cachedLikeCount', function(){
-    let newLikesCount = this.get('likeCount') - this.get('cachedLikeCount');
-    if(newLikesCount > 0){
 
-      return `${newLikesCount} new ${newLikesCount === 1 ? 'like' : 'likes'}`;
+  notification: computed('likeCount','competingEntriesCount','successfulEntriesCount', function(){
+    const type = this.get('type');
+    const childName = this.subscriptionTypes[type].childName;
+    const childNameCap = childName.capitalize();
+    const cachedCount = this.get('cached' + childNameCap + 'Count');
+    const currentCount = this.get(childName + 'Count');
+    const newChildCount = currentCount - cachedCount;
+    if(newChildCount > 0){
+      this.set('isSeen', true);
+      this.cacheSubscription();
+      return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
     }
+
   }),
+
+  didUpdate(){
+    console.log('didUpdate');
+  },
 
   // childCountingAttr: computed('type', function(){
   // 	var type = this.get('type');
@@ -63,7 +90,11 @@ export default DS.Model.extend(TimestampSupport, {
   // }),
 
   cacheSubscription(){
-
+    console.log('cache subscription');
+    this.set('cachedLikeCount', this.get('likeCount'));
+    this.set('cachedEntryCount', this.get('entryCount'));
+    this.set('cachedPileCount', this.get('pileCount'));
+    this.set('isSeen', false);
   }
 
 });

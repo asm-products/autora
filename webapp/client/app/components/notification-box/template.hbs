@@ -1,11 +1,11 @@
-<button {{action 'toggleBox'}} class="badge toggleNotificationBox">{{session.unseenSubscriptions.length}}</button>
+<button {{action 'toggleBox'}} class="badge toggleNotificationBox">{{unseenSubscriptions.length}}</button>
 {{#if showDropdown}}
 <div class="content">
 	{{#each session.subscriptions as |subscription|}}
 		<div class="notification">
-			{{#if subscription.likeNotification}}
+			{{#if subscription.notification}}
 			Entry in {{link-to subscription.entry.pile.project.name 'project.index.entries' subscription.entry.pile.project}}:
-			{{subscription.likeNotification}}
+			{{subscription.notification}}
 			{{/if}}
 		</div>
 	{{/each}}

@@ -5,17 +5,22 @@ const {$} = Ember;
 export default Ember.Component.extend({
 
 	classNames: ['inline-block','dropdown-container'],
+
+    dropdownToggled(){
+
+    },
+
     didInsertElement(){
-    	var self = this;
         
-    	Ember.$(document).click(function(){
-            if(self.isVisible){
-    		  self.set('showDropdown', false);
+    	Ember.$(document).click(() => {
+            if(this.isVisible){
+    		  this.set('showDropdown', false);
             }
     	});
 
-    	$('.' + this.get('selectorClass')).click(function(e){
-    		self.toggleProperty('showDropdown');
+    	$('.' + this.get('selectorClass')).click(e => {
+    		this.toggleProperty('showDropdown');
+            this.dropdownToggled();
     		e.stopPropagation();
     	});
     },
