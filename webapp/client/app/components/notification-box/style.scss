@@ -1,6 +1,7 @@
 .notifications {
 	position: relative;
 	display: inline-block;
+
 	.content {
 		position: absolute;
 		// bottom: -3px;
@@ -17,6 +18,10 @@
 	    a {
 	    	margin: 0 !important;
 	    }
+
+	    &.hidden {
+	    	visibility: hidden;
+	    }
 	}
 
 	.badge {
@@ -24,4 +29,5 @@
 		border: 0;
 		outline: 0 !important;
 	}
+
 }

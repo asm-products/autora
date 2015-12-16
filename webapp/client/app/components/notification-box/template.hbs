@@ -1,8 +1,7 @@
 {{allSubscriptionsReady}}
 <button {{action 'toggleBox'}} class="badge toggleNotificationBox">{{unseenSubscriptions.length}}</button>
-{{#if showDropdown}}
-<div class="content">
-	{{#each session.subscriptions as |subscription|}}
+<div class="content {{if showDropdown '' 'hidden'}}">
+	{{#each sortedSubscriptions as |subscription|}}
 		<div class="notification">
 			{{#if subscription.notification}}
 			{{subscription.type}} in {{link-to subscription.project.name 'project.index.entries' subscription.entry.pile.project}}:
@@ -11,4 +10,3 @@
 		</div>
 	{{/each}}
 </div>
-{{/if}}

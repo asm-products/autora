@@ -13,6 +13,8 @@ export default UIDropdown.extend({
 	// 		return subscription.get('didLoadAll');
 	// 	})
 	// }),
+	subscriptionSorting: ['notificationTime:desc'],
+	sortedSubscriptions: computed.sort('subscriptions','subscriptionSorting'),
 
 
 	unseenSubscriptions: computed('subscriptions','subscriptions.@each.isSeen','subscriptions.@each.notification', function(){

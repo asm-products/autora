@@ -32,9 +32,6 @@ export default Session.extend({
 	}),
 
 	addSubscription(record, type, store, project){
-		
-
-
 		var subscriptionData = {
 			type: type,
 			user: this.get('user'),
@@ -43,6 +40,16 @@ export default Session.extend({
 		if(type !== 'project'){
 			subscriptionData.project = project;
 		}
+
+		if(type === 'pile'){
+			console.log(this.get('subscriptions'));
+			console.log(this.get('subscriptions').mapBy('pile.id'));
+			// console.log(this.get('subscriptions').mapBy('pile'));
+			let alreadyHasThisPileSubscription = this.get('subscriptions').mapBy('pile.id').contains(record.get('id'));
+			console.log(alreadyHasThisPileSubscription);
+			if(alreadyHasThisPileSubscription) return true;
+		}
+
 		var user = this.get('user');
 		subscriptionData.user = user;
 		store.createRecord('subscription', subscriptionData).save().then(() => {
