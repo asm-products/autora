@@ -19,10 +19,16 @@ export default Session.extend({
 	}),
 
 
-	subscriptions: computed('user', function(){
-		var store = this.container.lookup('service:store');
-		return store.findAll('subscription');
+	subscriptions: computed('user.subscriptions.[]', function(){
+		// var store = this.container.lookup('service:store');
+		// return store.findAll('subscription');
+		console.log('');
+		var subscriptions = this.get('user.subscriptions');
+		if(!subscriptions){
+			subscriptions = [];
+		}
 
+		return subscriptions;
 	}),
 
 	addSubscription(record, type, store, project){
@@ -37,7 +43,12 @@ export default Session.extend({
 		if(type !== 'project'){
 			subscriptionData.project = project;
 		}
-		store.createRecord('subscription', subscriptionData).save();
+		var user = this.get('user');
+		subscriptionData.user = user;
+		store.createRecord('subscription', subscriptionData).save().then(() => {
+			// user.save();
+			store.peekRecord('user', user.get('id')).save();
+		});
 	}
 
 	// notifications: computed.mapBy('subscriptions', 'notification')
