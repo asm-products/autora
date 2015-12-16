@@ -1,6 +1,6 @@
 // app/initializers/custom-session.js
 import Ember from 'ember';
-import Session from 'simple-auth/session';
+import Session from 'ember-simple-auth/session';
 
 const {computed, isEmpty, inject} = Ember;
 

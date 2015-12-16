@@ -27,7 +27,7 @@ export default Ember.Component.extend({
 		return this.get('model.user.id') === this.get('session.user.id');
 	}),
 
-	isLikedByUser: computed('model.likes.@each','session.user','model.likes.isFulfilled', function(){
+	isLikedByUser: computed('model.likes.[]','session.user','model.likes.isFulfilled', function(){
 		
 		if(this.get('model.likes.isFulfilled')){
 			var currentUserId = this.get('session.user.id');

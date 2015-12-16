@@ -13,7 +13,7 @@ export default UIDropdown.extend({
 	sortedSubscriptions: computed.sort('subscriptions','subscriptionSorting'),
 
 
-	unseenSubscriptions: computed('subscriptions','subscriptions.@each.notificationTime','subscriptions.@each.cachedNotificationTime', function(){
+	unseenSubscriptions: computed('subscriptions','subscriptions.[].notificationTime','subscriptions.[].cachedNotificationTime', function(){
 
 		console.log(this.get('subscriptions'));
 		var subscriptions = this.get('subscriptions').toArray();
