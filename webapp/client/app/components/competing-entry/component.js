@@ -27,7 +27,7 @@ export default Ember.Component.extend({
 		return this.get('model.user.id') === this.get('session.user.id');
 	}),
 
-	isLikedByUser: computed('model.likes.@each','session.user','model.likes.isFulfilled', function(){
+	isLikedByUser: computed('model.likes.[]','session.user','model.likes.isFulfilled', function(){
 		
 		if(this.get('model.likes.isFulfilled')){
 			var currentUserId = this.get('session.user.id');
@@ -105,7 +105,9 @@ export default Ember.Component.extend({
 			if(confirm("Really destroy?")){
 
 				//there's probably no need to save pile afterwards
-				this.get('model').destroyRecord();
+				var model = this.get('model');
+				this.get('session').deleteSubscriptionForModel('entry',model,this.store);
+				model.destroyRecord();
 			}	
 		}
 	}

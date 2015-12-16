@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
 	}),
 
 
-	entriesFromUser: computed('model.competingEntries.@each','model.competingEntries.isFulfilled','session.user.id', function(){
+	entriesFromUser: computed('model.competingEntries.[]','model.competingEntries.isFulfilled','session.user.id', function(){
 		
 		if(this.get('session.user.id') && this.get('model.competingEntries.isFulfilled')){
 			return this.get('model.competingEntries').filter(entry => {

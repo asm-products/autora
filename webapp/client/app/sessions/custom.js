@@ -1,12 +1,13 @@
 // app/initializers/custom-session.js
 import Ember from 'ember';
-import Session from 'simple-auth/session';
+import Session from 'ember-simple-auth/session';
 
 const {computed, isEmpty, inject} = Ember;
 
 export default Session.extend({
 
-	// store: inject.service('store'),
+	// sser: inject.service('subscription'),
+	// store: computed.alias('sser.store'),
 
 	user: computed('secure.user.uid', function(){
 		var uid = this.get('secure.auth.uid');
@@ -14,9 +15,12 @@ export default Session.extend({
 		if (!isEmpty(uid)) {
 
 			var store = this.container.lookup('service:store');
+			// this.set('store', store);
 			return store.find('user', uid);
 		}
 	}),
+
+	// store: null,
 
 
 	subscriptions: computed('user.subscriptions.[]', function(){
@@ -56,6 +60,12 @@ export default Session.extend({
 			// user.save();
 			store.peekRecord('user', user.get('id')).save();
 		});
+	},
+
+	deleteSubscriptionForModel(type,model,store){
+		var id = model.get('id');
+		store = this.get('store');
+		store.peekRecord(type, id).destroyRecord();
 	}
 
 	// notifications: computed.mapBy('subscriptions', 'notification')
