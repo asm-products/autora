@@ -42,7 +42,6 @@
     "ember-cli-qunit": "^1.0.0",
     "ember-cli-sass": "^5.2.1",
     "ember-cli-sass-pods": "^1.2.0",
-    "ember-cli-simple-auth-firebase": "1.0.5",
     "ember-cli-uglify": "^1.2.0",
     "ember-cli-uploader": "^0.3.9",
     "ember-data": "^2.2.1",
@@ -50,13 +49,14 @@
     "ember-export-application-global": "^1.0.3",
     "ember-in-viewport": "2.0.0",
     "ember-modal-dialog": "0.8.2",
-    "ember-moment": "3.2.1",
+    "ember-moment": "^4.2.1",
     "ember-select-2": "1.3.0",
     "ember-simple-auth": "^1.0.1",
     "ember-social": "0.2.0"
   },
   "devDependencies": {
     "ember-cli": "^2.2.0-beta.1",
+    "ember-cli-simple-auth-firebase": "git://github.com/martinmalinda/ember-cli-simple-auth-firebase.git#4d80a28743a4679c3fe6069ceab9e81b4851e8ae",
     "ember-resolver": "2.0.3",
     "emberfire": "git://github.com/firebase/emberfire.git#bb375ab80c9bc0a1ef2eb3eed7626c967490038c"
   }
