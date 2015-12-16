@@ -15,8 +15,9 @@ export default UIDropdown.extend({
 	// }),
 
 
-	unseenSubscriptions: computed('subscriptions.[]','subscriptions.@each.isSeen','subscriptions.@each.notification', function(){
+	unseenSubscriptions: computed('subscriptions','subscriptions.@each.isSeen','subscriptions.@each.notification', function(){
 
+		console.log(this.get('subscriptions'));
 		var subscriptions = this.get('subscriptions').toArray();
 		let filterPromise = Ember.RSVP.filter(subscriptions, subscription => {
 				var type = subscription.get('type');

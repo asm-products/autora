@@ -14,6 +14,7 @@ export default DS.Model.extend(TimestampSupport, {
   admin: attr('boolean', {defaultValue: false}),
 
   projects: hasMany('project', {async: true}),
+  subscriptions: hasMany('subscription', {async:true}),
 
   uid: attr('string'), //unusued?
 

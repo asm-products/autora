@@ -69,6 +69,7 @@ export default DS.Model.extend(TimestampSupport, {
     const cachedCount = this.get('cached' + childNameCap + 'Count');
     const currentCount = this.get(childName + 'Count');
     const newChildCount = currentCount - cachedCount;
+    // this.set('isSeen', false);
     if(newChildCount > 0){
       return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
     } else {
