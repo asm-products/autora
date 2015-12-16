@@ -52,6 +52,7 @@ export default DS.Model.extend(TimestampSupport, {
   pileCount: computed.alias('project.piles.length'),
 
   notificationTime: attr('', {defaultValue: Date.now()}),
+  cachedNotificationTime: attr('', {defaultValue: Date.now()}),
 
   notification: computed('likeCount','competingEntryCount','pileCount', function(){
     const type = this.get('type');
@@ -62,10 +63,11 @@ export default DS.Model.extend(TimestampSupport, {
       const currentCount = this.get(childName + 'Count');
       const newChildCount = currentCount - cachedCount;
       this.set('isSeen', false);
-      this.set('notificationTime', Date.now());
       if(newChildCount > 0){
+        this.set('notificationTime', Date.now());
         return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
       } else {
+        console.log('not enough new records to notify:', newChildCount);
         return false;
       }
     }

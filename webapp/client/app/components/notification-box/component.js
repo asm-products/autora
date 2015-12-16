@@ -8,16 +8,12 @@ export default UIDropdown.extend({
 
 	subscriptions: computed.alias('session.subscriptions'),
 
-	// allSubscriptionsReady: computed('subscriptions.[]', function(){
-	// 	return this.get('subscriptions').every(subscription => {
-	// 		return subscription.get('didLoadAll');
-	// 	})
-	// }),
+	
 	subscriptionSorting: ['notificationTime:desc'],
 	sortedSubscriptions: computed.sort('subscriptions','subscriptionSorting'),
 
 
-	unseenSubscriptions: computed('subscriptions','subscriptions.@each.isSeen','subscriptions.@each.notification', function(){
+	unseenSubscriptions: computed('subscriptions','subscriptions.@each.notificationTime','subscriptions.@each.cachedNotificationTime', function(){
 
 		console.log(this.get('subscriptions'));
 		var subscriptions = this.get('subscriptions').toArray();
@@ -26,7 +22,8 @@ export default UIDropdown.extend({
 				return subscription.get(type).then(() => {
 
 					// return subscription.get('hasUnseenNotification');
-					return !subscription.get('isSeen') && (subscription.get('notification') !== false);
+					// return !subscription.get('isSeen') && (subscription.get('notification') !== false);
+					return subscription.get('notificationTime') > subscription.get('cachedNotificationTime');
 				});
 		});
 
@@ -38,7 +35,8 @@ export default UIDropdown.extend({
 	dropdownToggled(){
 		if(this.get('showDropdown')){
 			this.get('subscriptions').forEach(subscription => {
-				subscription.set('isSeen', true);
+				// subscription.set('isSeen', true);
+				subscription.set('cachedNotificationTime', subscription.set('notificationTime'));
 			});
 		}
 	},

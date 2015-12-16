@@ -105,7 +105,9 @@ export default Ember.Component.extend({
 			if(confirm("Really destroy?")){
 
 				//there's probably no need to save pile afterwards
-				this.get('model').destroyRecord();
+				var model = this.get('model');
+				this.get('session').deleteSubscriptionForModel('entry',model,this.store);
+				model.destroyRecord();
 			}	
 		}
 	}
