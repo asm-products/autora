@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
 	showAlerts: false,
 	hasErrors: false,
 
+	session: inject.service('session'),
 	projectIndexEntriesController: inject.controller('project.index.entries'),
 	projectIndexController: inject.controller('project.index'),
 

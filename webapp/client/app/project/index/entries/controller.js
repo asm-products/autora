@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
 	displayClosedProjectNotification: computed.and('isProjectClosed'),
 	
 	project: inject.controller('project.index'),
+	session: inject.service('session'),
+	
 
 	pile: computed('model', function(){
 		return this.get('model');

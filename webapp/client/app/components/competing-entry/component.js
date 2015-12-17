@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed, observer} = Ember;
+const {computed, observer, inject} = Ember;
 
 export default Ember.Component.extend({
 
@@ -10,6 +10,9 @@ export default Ember.Component.extend({
 	isEditing: false,
 	ordered: false,
 	didAnimate: false,
+
+	session: inject.service('session'),
+	
 
 	hasNoLikes: computed.equal('model.likes.length',0),
 	isPileUnlocked: computed.equal('model.pile.locked', false),

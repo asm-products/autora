@@ -2,6 +2,8 @@ import Ember from 'ember';
 import config from '../../../config/environment';
 import Firebase from 'firebase';
 
+const {inject} = Ember;
+
 export default Ember.Controller.extend({
 
 	oldPassword: '',
@@ -13,6 +15,9 @@ export default Ember.Controller.extend({
 	passwordForEmail: '',
 	changeEmailAlert: {},
 	changeEmailLoading: false,
+
+	session: inject.service('session'),
+
 
 	actions: {
 		userPhotoUploadDone(file){

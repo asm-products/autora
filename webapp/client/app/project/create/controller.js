@@ -20,8 +20,9 @@ export default Ember.Controller.extend({
 		description: ''
 	},
 
-	project: inject.controller('project'),
 	create: computed.alias('project.create'),
+	project: inject.controller('project'),
+	session: inject.service('session'),
 
 	descriptionAlert: computed('newProject.description','showErrors',function(){
 		if(this.get('showErrors')){

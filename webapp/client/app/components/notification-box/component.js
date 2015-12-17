@@ -1,17 +1,17 @@
 import Ember from 'ember';
 import UIDropdown from '../ui-dropdown/component';
 
-const {computed} = Ember;
+const {computed, inject} = Ember;
 
 export default UIDropdown.extend({
 	classNames: ['notifications'],
 
-	subscriptions: computed.alias('session.subscriptions'),
+	session: inject.service('session'),
 
+	subscriptions: computed.alias('session.subscriptions'),
 	
 	subscriptionSorting: ['notificationTime:desc'],
 	sortedSubscriptions: computed.sort('subscriptions','subscriptionSorting'),
-
 
 	unseenSubscriptions: computed('subscriptions','subscriptions.[].notificationTime','subscriptions.[].cachedNotificationTime', function(){
 

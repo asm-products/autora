@@ -2,7 +2,7 @@ import Ember from 'ember';
 import config from '../../config/environment';
 import Firebase from 'firebase';
 
-const {computed} = Ember;
+const {computed, inject} = Ember;
 
 
 export default Ember.Controller.extend({
@@ -12,6 +12,8 @@ export default Ember.Controller.extend({
 	username: '',
 	alert: '',
 	isLoading: false,
+
+	session: inject.service('session'),
 
 	isReadyToSend: computed('username','password', function(){
 		var username = this.get('username');

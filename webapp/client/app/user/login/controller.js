@@ -1,12 +1,17 @@
 import Ember from 'ember';
 // import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 
+const {inject} = Ember;
+
 export default Ember.Controller.extend({
 
 	email: '',
 	password: '',
     alert: '',
     isLoading: false,
+
+    session: inject.service('session'),
+
 
 	actions: {
         login() {
