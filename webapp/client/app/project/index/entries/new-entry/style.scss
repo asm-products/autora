@@ -8,14 +8,14 @@
 	width: 100vw;
 	max-width:100vw;
 	position: fixed;
-	bottom: 0 !important;
+	bottom: 0;
 	top:initial;
 	//left:initial;
 
 
-	left: 0 !important;
-	right: 0 !important;
-	margin:auto !important; //ugly fix
+	left: 0;
+	right: 0;
+	margin:auto; //ugly fix
 	max-width:560px;
 
 	transform:none;
