@@ -8,8 +8,8 @@ export default SessionService.extend({
 
 	dataStore: inject.service('store'),
 
-	user: computed('session.secure.user.uid', function(){
-		var uid = this.get('session.secure.auth.uid');
+	user: computed('data.authenticated.auth.uid', function(){
+		var uid = this.get('data.authenticated.auth.uid');
 		if (!isEmpty(uid)) {
 
 			var store = this.get('dataStore');

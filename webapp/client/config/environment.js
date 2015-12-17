@@ -39,8 +39,7 @@ module.exports = function(environment) {
   //     authorizer: 'simple-auth-authorizer:firebase'
   //   };
   ENV['simple-auth'] = {
-  // store: 'simple-auth-session-store:local-storage',
-  session: 'session:custom'
+    routeAfterAuthentication: 'home'
 }
 
   if (environment === 'development') {
