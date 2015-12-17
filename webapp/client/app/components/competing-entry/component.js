@@ -109,7 +109,8 @@ export default Ember.Component.extend({
 
 				//there's probably no need to save pile afterwards
 				var model = this.get('model');
-				this.get('session').deleteSubscriptionForModel('entry',model,this.store);
+				console.log(model);
+				this.get('session').deleteSubscriptionForModel('entry',model);
 				model.destroyRecord();
 			}	
 		}

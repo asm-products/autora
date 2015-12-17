@@ -2,7 +2,9 @@ import DS from 'ember-data';
 import TimestampSupport from 'client/mixins/timestamp-support';
 import Ember from 'ember';
 
-
+function now(){
+  return Date.now();
+}
 
 const {computed, isNone} = Ember;
 const {attr, belongsTo} = DS;
@@ -42,17 +44,18 @@ export default DS.Model.extend(TimestampSupport, {
   cachedCompetingEntryCount: attr('number', {defaultValue: 1}),
   cachedLikeCount: attr('number', {defaultValue: 0}),
 
-  cachedProjectTimestamp: attr('', {defaultValue: Date.now()}),
-  cachedPileTimestamp: attr('', {defaultValue: Date.now()}),
-  cachedEntryTimestamp: attr('', {defaultValue: Date.now()}),
+  cachedProjectTimestamp: attr('', {defaultValue: now}),
+  cachedPileTimestamp: attr('', {defaultValue: now}),
+  cachedEntryTimestamp: attr('', {defaultValue: now}),
 
+  notificationTime: attr('', {defaultValue: now}),
+  cachedNotificationTime: attr('', {defaultValue: now}),
+  cachedNotification: attr('string'),
 
   likeCount: computed.alias('entry.likes.length'),
   competingEntryCount: computed.alias('pile.competingEntries.length'),
   pileCount: computed.alias('project.piles.length'),
 
-  notificationTime: attr('', {defaultValue: Date.now()}),
-  cachedNotificationTime: attr('', {defaultValue: Date.now()}),
 
   notification: computed('likeCount','competingEntryCount','pileCount', function(){
     const type = this.get('type');
@@ -62,12 +65,11 @@ export default DS.Model.extend(TimestampSupport, {
       const cachedCount = this.get('cached' + childNameCap + 'Count');
       const currentCount = this.get(childName + 'Count');
       const newChildCount = currentCount - cachedCount;
-      this.set('isSeen', false);
       if(newChildCount > 0){
-        this.set('notificationTime', Date.now());
+        // this.set('notificationTime', Date.now());
+        // console.log('should update notification Time');
         return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
       } else {
-        console.log('not enough new records to notify:', newChildCount);
         return false;
       }
     }
@@ -79,6 +81,10 @@ export default DS.Model.extend(TimestampSupport, {
     this.set('cachedEntryCount', this.get('entryCount'));
     this.set('cachedPileCount', this.get('pileCount'));
     this.set('isSeen', false);
+  },
+
+  didCreate(){
+
   }
 
 });
