@@ -49,7 +49,8 @@ export default SessionService.extend({
 
 		var user = this.get('user');
 		subscriptionData.user = user;
-		store.createRecord('subscription', subscriptionData).save().then(() => {
+		var subscription = store.createRecord('subscription', subscriptionData);
+		subscription.save().then(() => {
 			store.peekRecord('user', user.get('id')).save();
 		});
 	},

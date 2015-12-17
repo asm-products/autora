@@ -6,7 +6,7 @@ function now(){
   return Date.now();
 }
 
-const {computed, isNone} = Ember;
+const {computed, isNone, on} = Ember;
 const {attr, belongsTo} = DS;
 
 export default DS.Model.extend(TimestampSupport, {
@@ -27,9 +27,7 @@ export default DS.Model.extend(TimestampSupport, {
   },
   
   type: attr('string'),
-
-  isReady: false,
-
+  
   isSeen: attr('boolean', {defaultValue: false}),
   isRead: attr('boolean', {defaultValue: false}),
 
@@ -50,7 +48,7 @@ export default DS.Model.extend(TimestampSupport, {
 
   notificationTime: attr('', {defaultValue: now}),
   cachedNotificationTime: attr('', {defaultValue: now}),
-  cachedNotification: attr('string'),
+  cachedNotification: attr('', {defaultValue: ''}),
 
   likeCount: computed.alias('entry.likes.length'),
   competingEntryCount: computed.alias('pile.competingEntries.length'),
@@ -59,19 +57,22 @@ export default DS.Model.extend(TimestampSupport, {
 
   notification: computed('likeCount','competingEntryCount','pileCount', function(){
     const type = this.get('type');
+    console.log('notification', type);
     if(type){
+      this.set('notificationTime', Date.now());
       const childName = this.subscriptionTypes[type].childName;
       const childNameCap = childName.capitalize();
       const cachedCount = this.get('cached' + childNameCap + 'Count');
       const currentCount = this.get(childName + 'Count');
       const newChildCount = currentCount - cachedCount;
-      if(newChildCount > 0){
+      // if(newChildCount > 0){
         // this.set('notificationTime', Date.now());
         // console.log('should update notification Time');
-        return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
-      } else {
-        return false;
-      }
+        // return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
+      // } else {
+      //   return false;
+      // }
+      return `${currentCount} ${currentCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
     }
   }),
 
@@ -83,8 +84,12 @@ export default DS.Model.extend(TimestampSupport, {
     this.set('isSeen', false);
   },
 
-  didCreate(){
+  didCreate2: on('didCreate', function(){
 
-  }
+    console.log('didCreate');
+    // this.set('notification', null);
+    this.notifyPropertyChange('notification');
+    
+  })
 
 });

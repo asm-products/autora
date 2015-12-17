@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {$} = Ember;
+const {$, run} = Ember;
 
 export default Ember.Component.extend({
 
@@ -11,20 +11,21 @@ export default Ember.Component.extend({
     },
 
     didInsertElement(){
-        
-    	Ember.$(document).click(() => {
-            if(this.isVisible){
+	   $(document).click(() => {
+            if(this.get('showDropdown')){
     		  this.set('showDropdown', false);
+
               this.dropdownToggled();
 
             }
-    	});
-
+        });
     	$('.' + this.get('selectorClass')).click(e => {
-    		this.toggleProperty('showDropdown');
             this.dropdownToggled();
+            console.log('click');
+            this.toggleProperty('showDropdown');
     		e.stopPropagation();
     	});
+            
     },
     actions: {
 
