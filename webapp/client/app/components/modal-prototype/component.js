@@ -4,8 +4,8 @@ export default ModalDialog.extend({
   containerClassNames: "modal-prototype",
   hasOverlay: true,
   // renderInPlace: true,
-  // alignment: 'none',
-  // attachement: 'nonr',
+  alignment: 'none',
+  attachement: 'none',
   targetAttachement: 'none',
   translucentOverlay: true,
   close: 'toggleCreateProjectModal'

@@ -8,13 +8,14 @@
 	width: 100vw;
 	max-width:100vw;
 	position: fixed;
-	bottom: 0;
+	bottom: 0 !important;
 	top:initial;
 	//left:initial;
 
-	left: 0;
-	right: 0;
-	margin:auto;
+
+	left: 0 !important;
+	right: 0 !important;
+	margin:auto !important; //ugly fix
 	max-width:560px;
 
 	transform:none;
@@ -44,16 +45,6 @@
 	}
 
 }
-
-/*.project.index.entries.new-entry {
-	margin: 0 auto;
-	width: 560px;
-	max-width:100%;
-
-	h3 {
-		margin-top: 0;
-	}
-}*/
 
 .new-entry-spacer {
 	width: 100%;

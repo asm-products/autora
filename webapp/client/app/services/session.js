@@ -1,17 +1,22 @@
 import Ember from 'ember';
-import SessionService from 'ember-simple-auth/servics/session';
+import SessionService from 'ember-simple-auth/services/session';
+
+const {computed, isEmpty, inject} = Ember;
 
 export default SessionService.extend({
-	// sser: inject.service('subscription'),
-	// store: computed.alias('sser.store'),
 
-	user: computed('secure.user.uid', function(){
-		var uid = this.get('secure.auth.uid');
-		console.log(this.get('store'));
+	// session: inject.service('session'),
+
+	dataStore: inject.service('store'),
+
+	user: computed('session.secure.user.uid', function(){
+		var uid = this.get('session.secure.auth.uid');
+		console.log(this.get('dataStore'));
 		if (!isEmpty(uid)) {
 
-			var store = this.container.lookup('service:store');
+			// var store = this.container.lookup('service:store');
 			// this.set('store', store);
+			var store = this.get('dataStore');
 			return store.find('user', uid);
 		}
 	}),
