@@ -5,6 +5,7 @@
 		<div class="notification">
 			{{#if subscription.notification}}
 			{{subscription.type}} in {{link-to subscription.project.name 'project.index.entries' subscription.entry.pile.project}}:
+			{{subscription.entry.likes.lastObject.user.username}}
 			{{subscription.notification}}
 			{{/if}}
 		</div>

@@ -73,7 +73,8 @@ export default Ember.Controller.extend({
 			if(typeof secondMostLikedEntry === 'undefined' || (mostLikedEntry.get('likes.length') !== secondMostLikedEntry.get('likes.length'))){
 
 				mostLikedEntry.set('project', project).save().then(() => {
-					pile.set('locked', true).save().then(() => {
+					pile.set('locked', true);
+					pile.save().then(() => {
 						var pile = {
 							project: project,
 							createdAt: Firebase.ServerValue.TIMESTAMP,

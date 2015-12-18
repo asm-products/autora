@@ -21,8 +21,7 @@ export default UIDropdown.extend({
 				var type = subscription.get('type');
 				if(type){
 				return subscription.get(type).then(() => {
-						// var subscription1 = 
-						console.log(subscription.get('notification'), '!=', subscription.get('cachedNotification'));
+					console.log(subscription);
 					return  (subscription.get('notification') != subscription.get('cachedNotification'));
 				});
 				}
@@ -36,7 +35,6 @@ export default UIDropdown.extend({
 	dropdownToggled(){
 		if(!this.get('showDropdown')){
 			this.get('subscriptions').forEach(subscription => {
-				console.log('toggled?');
 				subscription.set('isSeen', true);
 				subscription.set('cachedNotification', subscription.get('notification'));
 				subscription.save();

@@ -43,7 +43,6 @@ export default SessionService.extend({
 
 		if(type === 'pile'){
 			let alreadyHasThisPileSubscription = this.get('subscriptions').mapBy('pile.id').contains(record.get('id'));
-			console.log(alreadyHasThisPileSubscription);
 			if(alreadyHasThisPileSubscription) return true;
 		}
 
