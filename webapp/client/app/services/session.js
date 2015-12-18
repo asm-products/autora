@@ -7,6 +7,8 @@ export default SessionService.extend({
 
 
 	dataStore: inject.service('store'),
+	subscriptionSorting: ['subModelLastCreatedAt:desc'],
+	sortedSubscriptions: computed.sort('subscriptions','subscriptionSorting'),
 
 	user: computed('data.authenticated.auth.uid', function(){
 		var uid = this.get('data.authenticated.auth.uid');
@@ -17,7 +19,23 @@ export default SessionService.extend({
 		}
 	}),
 
+	unseenSubscriptions: computed('subscriptions','subscriptions.@each.subModelLastCreatedAt','subscriptions.@each.cachedSubModelLastCreatedAt', function(){
 
+		var subscriptions = this.get('subscriptions').toArray();
+		let filterPromise = Ember.RSVP.filter(subscriptions, subscription => {
+				var type = subscription.get('type');
+				if(type){
+				return subscription.get(type).then(() => {
+					// return  (subscription.get('notification') != subscription.get('cachedNotification'));
+					return  (subscription.get('subModelLastCreatedAt') != subscription.get('cachedSubModelLastCreatedAt'));
+				});
+				}
+		});
+
+		return DS.PromiseArray.create({
+			promise: filterPromise
+		});
+	}),
 
 	subscriptions: computed('user.subscriptions.[]', function(){
 		var subscriptions = this.get('user.subscriptions');

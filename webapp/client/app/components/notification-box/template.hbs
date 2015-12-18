@@ -1,13 +1,14 @@
-{{allSubscriptionsReady}}
-<button {{action 'toggleBox'}} class="badge toggleNotificationBox">{{unseenSubscriptions.length}}</button>
-<div class="content {{if showDropdown '' 'hidden'}}">
-	{{#each sortedSubscriptions as |subscription|}}
-		<div class="notification">
-			{{#if subscription.notification}}
-			{{subscription.type}} in {{link-to subscription.project.name 'project.index.entries' subscription.entry.pile.project}}:
-			{{subscription.entry.likes.lastObject.user.username}}
-			{{subscription.notification}}
+{{#each session.sortedSubscriptions as |subscription|}}
+	<div class="notification">
+		{{#if subscription.notification}}
+
+			{{#if subscription.entry}}
+				{{subscription.entry.likes.lastObject.user.username}} and {{subscription.entry.likes.length}} liked your {{link-to 'entry' 'project.index.entries' subscription.project.id}}
 			{{/if}}
-		</div>
-	{{/each}}
-</div>
+
+			{{#if subscription.pile}}
+				{{subscription.pile.competingEntries.lastObject.user.username}} and {{subscription.pile.competingEntries.length}} others put submission in {{link-to subscription.project.name 'project.index.entries' subscription.project.id}}
+			{{/if}}
+		{{/if}}
+	</div>
+{{/each}}

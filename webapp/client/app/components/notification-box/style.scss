@@ -1,33 +1,19 @@
-.notifications {
-	position: relative;
-	display: inline-block;
+.notification.box {
+	position: absolute;
+	right: -$notification-width;
+    border: 2px solid $color1;
+    z-index: 1000;
+    width: $notification-width;
+    padding: 10px;
+    background: white;
+    height:100vh;
+    overflow: scroll;
 
-	.content {
-		position: absolute;
-		// bottom: -3px;
-		top:30px;
-		left: 0;
-	    border: 2px solid $color1;
-	    z-index: 1000;
-	    width: 250px;
-	    padding: 10px;
-	    background: white;
-	    max-height:300px;
-	    overflow: scroll;
+    a {
+    	margin: 0 !important;
+    }
 
-	    a {
-	    	margin: 0 !important;
-	    }
-
-	    &.hidden {
-	    	visibility: hidden;
-	    }
-	}
-
-	.badge {
-		background-color: #DC1E1E;
-		border: 0;
-		outline: 0 !important;
-	}
-
+    &.hidden {
+    	visibility: hidden;
+    }
 }

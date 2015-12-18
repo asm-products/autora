@@ -1,5 +1,7 @@
+{{notification-box model=subscriptions selectorClass="toggleNotificationBox" showNotifications=showNotifications}}
+
 <div class="page-wrapper">
-	{{app-header isLoggedIn=session.isAuthenticated isInProjectRoute=isInProjectRoute}}
+	{{app-header isLoggedIn=session.isAuthenticated isInProjectRoute=isInProjectRoute showNotifications=showNotifications}}
 	<main class="app-content container-fluid">{{outlet}}</main>
 	{{outlet 'newProject'}}
 </div>
