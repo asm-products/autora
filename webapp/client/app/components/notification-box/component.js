@@ -21,8 +21,8 @@ export default UIDropdown.extend({
 				var type = subscription.get('type');
 				if(type){
 				return subscription.get(type).then(() => {
-					console.log(subscription);
-					return  (subscription.get('notification') != subscription.get('cachedNotification'));
+					// return  (subscription.get('notification') != subscription.get('cachedNotification'));
+					return  (subscription.get('subModelLastCreatedAt') != subscription.get('cachedSubModelLastCreatedAt'));
 				});
 				}
 		});
@@ -36,7 +36,8 @@ export default UIDropdown.extend({
 		if(!this.get('showDropdown')){
 			this.get('subscriptions').forEach(subscription => {
 				subscription.set('isSeen', true);
-				subscription.set('cachedNotification', subscription.get('notification'));
+				// subscription.set('cachedNotification', subscription.get('notification'));
+				subscription.set('cachedSubModelLastCreatedAt', subscription.get('subModelLastCreatedAt'));
 				subscription.save();
 			});
 		}

@@ -53,64 +53,34 @@ export default DS.Model.extend(TimestampSupport, {
   cachedNotificationTime: attr('', {defaultValue: now}),
   cachedNotification: attr('', {defaultValue: ''}),
 
-  // likeCount: computed.alias('entry.likes.length'),
-  // competingEntryCount: computed.alias('pile.competingEntries.length'),
-  // pileCount: computed.alias('project.piles.length'),
+  cachedSubModelLastCreatedAt: attr('', {defaultValue: ''}),
 
   subModelChildren: computed('project.piles.[]', 'entry.likes.[]', 'pile.competingEntries.[]', function(){
     let type = this.get('type');
-    // console.log(type, 'type');
-    let childPlural = this.subscriptionTypes[type].childPlural;
-    return this.get(type);
-    // this.get(type).then(model => {
-    //   this.set('subModelChildren', model);
-    // });
+    if(type) {
+      let childPlural = this.subscriptionTypes[type].childPlural;
+      return this.get(type + '.' + childPlural);
+  }
 
   }),
 
-  subscriptionModelChildLength: computed('subModelChildren.[]', function(){
+  subModelLastCreatedAt: computed('subModelChildren.[]', function(){
     let type = this.get('type');
-    console.log('type', type);
-    let childPlural = this.subscriptionTypes[type].childPlural;
-    this.get('subModelChildren.' + childPlural + '.length');
-    return this.get('subModelChildren.length');
-  }),
-
-  subscriptionModelLastChildCreatedAt: computed('subModelChildren.[]', function(){
-    let type = this.get('type');
-    console.log('type', type);
-    let childPlural = this.subscriptionTypes[type].childPlural;
-    console.log('createdAt', this.get('subModelChildren.' + childPlural + '.lastObject.createdt'));
-    return this.get('subModelChildren.' + childPlural + '.lastObject.createdt')
+    return this.get('subModelChildren.lastObject.createdAt') ? this.get('subModelChildren.lastObject.createdAt') : null;
   }),
 
 
-  notification: computed('subscriptionModelChildLength', function(){
+  notification: computed('subModelChildren.length', function(){
     let type = this.get('type');
-    console.log(this.get('subModelChildren.isFulfilled'));
+    console.log('notifying');
+
     if(type && this.get('subModelChildren.isFulfilled')){
-      this.set('notificationTime', Date.now());
+
       const childName = this.subscriptionTypes[type].childName;
+      const currentCount = this.get('subModelChildren.length');
 
-      // const childNameCap = childName.capitalize();
-      // const cachedCount = this.get('cached' + childNameCap + 'Count');
-
-      // const currentCount = this.get(childName + 'Count');
-      // const newChildCount = currentCount - cachedCount;
-
-      const currentCount = this.get('subscriptionModelChildLength');
-      console.log(currentCount);
-
-      // if(newChildCount > 0){
-        // this.set('notificationTime', Date.now());
-        // console.log('should update notification Time');
-        // return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPluralLabel}`;
-      // } else {
-      //   return false;
-      // }
       return `${currentCount} ${currentCount === 1 ? childName : this.subscriptionTypes[type].childPluralLabel}`;
     } else {
-      console.log('type', type);
       return '';
     }
   }),
@@ -123,7 +93,7 @@ export default DS.Model.extend(TimestampSupport, {
     this.set('isSeen', false);
   },
 
-  didCreate2: on('didCreate', function(){
+  didCreate2: on('ready', function(){
 
     this.notifyPropertyChange('notification');
     
