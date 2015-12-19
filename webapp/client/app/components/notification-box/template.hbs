@@ -1,7 +1,6 @@
 {{#each session.sortedSubscriptions as |subscription|}}
 	<div class="notification">
-		{{#if subscription.notification}}
-
+		{{#if subscription.showNotification}}
 			{{#if subscription.entry}}
 				{{subscription.entry.likes.lastObject.user.username}} and {{subscription.entry.likes.length}} liked your {{link-to 'entry' 'project.index.entries' subscription.project.id}}
 			{{/if}}

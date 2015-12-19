@@ -6,7 +6,7 @@ function now(){
   return Date.now();
 }
 
-const {computed, isNone, on} = Ember;
+const {computed, isNone, on, inject} = Ember;
 const {attr, belongsTo} = DS;
 
 export default DS.Model.extend(TimestampSupport, {
@@ -45,6 +45,8 @@ export default DS.Model.extend(TimestampSupport, {
   // cachedCompetingEntryCount: attr('number', {defaultValue: 1}),
   // cachedLikeCount: attr('number', {defaultValue: 0}),
 
+  session: inject.service('session'),
+
   cachedProjectTimestamp: attr('', {defaultValue: now}),
   cachedPileTimestamp: attr('', {defaultValue: now}),
   cachedEntryTimestamp: attr('', {defaultValue: now}),
@@ -53,7 +55,9 @@ export default DS.Model.extend(TimestampSupport, {
   cachedNotificationTime: attr('', {defaultValue: now}),
   cachedNotification: attr('', {defaultValue: ''}),
 
-  cachedSubModelLastCreatedAt: attr('', {defaultValue: ''}),
+  cachedLastChildModelCreatedAt: attr('', {defaultValue: ''}),
+
+  lastChildModel: computed.alias('subModelChildren.lastObject'),
 
   subModelChildren: computed('project.piles.[]', 'entry.likes.[]', 'pile.competingEntries.[]', function(){
     let type = this.get('type');
@@ -64,26 +68,35 @@ export default DS.Model.extend(TimestampSupport, {
 
   }),
 
-  subModelLastCreatedAt: computed('subModelChildren.[]', function(){
-    let type = this.get('type');
-    return this.get('subModelChildren.lastObject.createdAt') ? this.get('subModelChildren.lastObject.createdAt') : null;
+
+
+  lastChildModelCreatedAt: computed('lastChildModel.createdAt', function(){
+    // return this.get('lastChildModel.createdAt') ? this.get('lastChildModel.createdAt') : null;
+    return this.getWithDefault('lastChildModel.createdAt', 0);
   }),
 
-
-  notification: computed('subModelChildren.length', function(){
-    let type = this.get('type');
-    console.log('notifying');
-
-    if(type && this.get('subModelChildren.isFulfilled')){
-
-      const childName = this.subscriptionTypes[type].childName;
-      const currentCount = this.get('subModelChildren.length');
-
-      return `${currentCount} ${currentCount === 1 ? childName : this.subscriptionTypes[type].childPluralLabel}`;
-    } else {
-      return '';
-    }
+  showNotification: computed('lastChildModel.user', function(){
+    const modelCreator = this.get('lastChildModel.user');
+    const currentUser = this.get('session.user');
+    console.log('modelCreator', modelCreator);
+    console.log('currentUser', currentUser);
+    return !isNone(modelCreator) && (modelCreator.get('id') !== currentUser.get('id'));
   }),
+
+  // notification: computed('subModelChildren.length', function(){
+  //   let type = this.get('type');
+  //   console.log('notifying');
+
+  //   if(type && this.get('subModelChildren.isFulfilled')){
+
+  //     const childName = this.subscriptionTypes[type].childName;
+  //     const currentCount = this.get('subModelChildren.length');
+
+  //     return `${currentCount} ${currentCount === 1 ? childName : this.subscriptionTypes[type].childPluralLabel}`;
+  //   } else {
+  //     return '';
+  //   }
+  // }),
 
   cacheSubscription(){
     console.log('cache subscription');

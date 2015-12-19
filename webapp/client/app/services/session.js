@@ -19,7 +19,7 @@ export default SessionService.extend({
 		}
 	}),
 
-	unseenSubscriptions: computed('subscriptions','subscriptions.@each.subModelLastCreatedAt','subscriptions.@each.cachedSubModelLastCreatedAt', function(){
+	unseenSubscriptions: computed('subscriptions','subscriptions.@each.lastChildModelCreatedAt','subscriptions.@each.lastChildModelCreatedAt', function(){
 
 		var subscriptions = this.get('subscriptions').toArray();
 		let filterPromise = Ember.RSVP.filter(subscriptions, subscription => {
@@ -27,7 +27,7 @@ export default SessionService.extend({
 				if(type){
 				return subscription.get(type).then(() => {
 					// return  (subscription.get('notification') != subscription.get('cachedNotification'));
-					return  (subscription.get('subModelLastCreatedAt') != subscription.get('cachedSubModelLastCreatedAt'));
+					return  (subscription.get('lastChildModelCreatedAt') != subscription.get('cachedLastChildModelCreatedAt'));
 				});
 				}
 		});

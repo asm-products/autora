@@ -1,5 +1,5 @@
-.notification.box {
-	position: absolute;
+.notification-box {
+	position: fixed;
 	right: -$notification-width;
     border: 2px solid $color1;
     z-index: 1000;

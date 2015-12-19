@@ -3,7 +3,7 @@ import Ember from 'ember';
 const {computed, inject} = Ember;
 
 export default Ember.Component.extend({
-	classNames: ['notification','box'],
+	classNames: ['notification-box'],
 	classNameBindings: ['hideNotifications:hidden'],
 
 	hideNotifications: computed.not('showNotifications'),

@@ -22,7 +22,7 @@ export default Ember.Component.extend({
 			this.get('subscriptions').forEach(subscription => {
 				subscription.set('isSeen', true);
 				// subscription.set('cachedNotification', subscription.get('notification'));
-				subscription.set('cachedSubModelLastCreatedAt', subscription.get('subModelLastCreatedAt'));
+				subscription.set('cachedLastChildModelCreatedAt', subscription.get('lastChildModelCreatedAt'));
 				subscription.save();
 			});
 
