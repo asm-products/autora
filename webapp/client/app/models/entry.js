@@ -15,7 +15,7 @@ export default DS.Model.extend(TimestampSupport, {
   project: belongsTo('project', {async: true}),
   pile: belongsTo('pile', {async: true}),
   likes: hasMany('like', {async: true}), //async false for embedded likes
-  subscription: belongsTo('subscription', {async: true}),
+  // subscription: belongsTo('subscription', {async: true}),
 
 
   likedBy: computed.mapBy('likes', 'user'),

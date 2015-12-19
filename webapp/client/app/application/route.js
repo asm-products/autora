@@ -10,16 +10,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 	title: 'Autora.ink | Writing Just Got Collective.',
 
 	actions: {
-		transitionToProjectList: function(){
+		transitionToProjectList(){
 			this.transitionTo('project.contribute');
 		},
 
-		sessionInvalidated: function(){
+		sessionInvalidated(){
 			this.transitionTo('project.contribute');
 		},
 
-		sessionAuthenticationFailed: function(error){
+		sessionAuthenticationFailed(error){
 			
+		},
+
+		didTransition(){
+		},
+		willTransition(){
+			this.controller.set('showNotifications', false);
 		}
 	}
 });

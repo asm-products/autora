@@ -1,15 +1,16 @@
 {{#each session.sortedSubscriptions as |subscription|}}
-	<div class="notification">
-		{{#if subscription.showNotification}}
+	{{#if subscription.showNotification}}
+		<div class="notification">
 			{{#if subscription.entry}}
-				{{subscription.lastChildModel.user.username}} and {{subscription.subModelChildren.length}} liked your {{link-to 'entry' 'project.index.entries' subscription.project.id}}
+				{{user-photo user=subscription.lastChildModel.user class="inline-block"}}
+				<span class="name">{{subscription.lastChildModel.user.username}}</span> and {{subscription.subModelChildren.length}} liked your {{link-to 'entry' 'project.index.entries' subscription.project}}
 			{{/if}}
 
 			{{#if subscription.pile}}
-				{{subscription.lastChildModel.user.username}} and {{subscription.subModelChildren.length}} others put submission in {{link-to subscription.project.name 'project.index.entries' subscription.project.id}}
+				{{subscription.lastChildModel.user.username}} and {{subscription.subModelChildren.length}} others put submission in {{link-to subscription.project.name 'project.index.entries' subscription.project}}
 			{{/if}}
-		<br>
-		{{moment-from-now subscription.lastChildModelCreatedAt}}
-		{{/if}}
-	</div>
+			<br>
+			<span class="time">{{moment-from-now subscription.lastChildModelCreatedAt}}</span>
+		</div>
+	{{/if}}
 {{/each}}

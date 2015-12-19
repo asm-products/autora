@@ -7,7 +7,6 @@ export default Ember.Controller.extend({
 	subscription: inject.service('subscription'),
 	project: inject.controller('project'),
 	isInProjectRoute: computed('currentRouteName', function(){
-		console.log(this.get('subscription.store').peekAll('user'));
 		return this.get('currentRouteName').substring(0, 7) === 'project';
 	}), 
 

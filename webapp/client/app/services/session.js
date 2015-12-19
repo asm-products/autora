@@ -7,7 +7,7 @@ export default SessionService.extend({
 
 
 	dataStore: inject.service('store'),
-	subscriptionSorting: ['subModelLastCreatedAt:desc'],
+	subscriptionSorting: ['lastChildModelCreatedAt:desc'],
 	sortedSubscriptions: computed.sort('subscriptions','subscriptionSorting'),
 
 	user: computed('data.authenticated.auth.uid', function(){
@@ -54,6 +54,7 @@ export default SessionService.extend({
 			type: type,
 			user: this.get('user'),
 		};
+		record = store.peekRecord(type, record.id);
 		subscriptionData[type] = record;
 		if(type !== 'project'){
 			subscriptionData.project = project;

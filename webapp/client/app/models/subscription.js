@@ -63,14 +63,21 @@ export default DS.Model.extend(TimestampSupport, {
     let type = this.get('type');
     if(type) {
       let childPlural = this.subscriptionTypes[type].childPlural;
+      let childName = this.subscriptionTypes[type].childName;
       var childArray = this.get(type + '.' + childPlural);
      if(childArray){
         const currentUserId = this.get('session.user.id');
         return childArray.filter(record => {
-          console.log(record.get('user.id'), '!==', currentUserId);
           return record.get('user.id') !== currentUserId;
         });
       } else {
+        console.log('===');
+        console.log('childArray',childArray);
+        console.log('childPlural',childPlural);
+        console.log('type',type);
+        console.log('type + . + childPlural',type + '.' + childPlural);
+        console.log('===');
+
         return false;
       }
   }
