@@ -1,48 +1,13 @@
 import Ember from 'ember';
-import UIDropdown from '../ui-dropdown/component';
 
-const {computed} = Ember;
+const {computed, inject} = Ember;
 
-export default UIDropdown.extend({
-	classNames: ['notifications'],
+export default Ember.Component.extend({
+	classNames: ['notification-box'],
+	classNameBindings: ['hideNotifications:hidden-animated'],
 
-	subscriptions: computed.alias('session.subscriptions'),
+	hideNotifications: computed.not('showNotifications'),
+	session: inject.service('session'),
 
-	
-	subscriptionSorting: ['notificationTime:desc'],
-	sortedSubscriptions: computed.sort('subscriptions','subscriptionSorting'),
-
-
-	unseenSubscriptions: computed('subscriptions','subscriptions.[].notificationTime','subscriptions.[].cachedNotificationTime', function(){
-
-		console.log(this.get('subscriptions'));
-		var subscriptions = this.get('subscriptions').toArray();
-		let filterPromise = Ember.RSVP.filter(subscriptions, subscription => {
-				var type = subscription.get('type');
-				return subscription.get(type).then(() => {
-
-					// return subscription.get('hasUnseenNotification');
-					// return !subscription.get('isSeen') && (subscription.get('notification') !== false);
-					return subscription.get('notificationTime') > subscription.get('cachedNotificationTime');
-				});
-		});
-
-		return DS.PromiseArray.create({
-			promise: filterPromise
-		});
-	}),
-
-	dropdownToggled(){
-		if(this.get('showDropdown')){
-			this.get('subscriptions').forEach(subscription => {
-				// subscription.set('isSeen', true);
-				subscription.set('cachedNotificationTime', subscription.set('notificationTime'));
-			});
-		}
-	},
-	actions: {
-		toggleBox(){
-			this.toggleProperty('isOpen');
-		}
-	}
+	subscriptions: computed.alias('session.sortedSubscriptions')
 });

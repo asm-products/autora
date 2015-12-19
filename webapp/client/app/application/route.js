@@ -4,37 +4,28 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 export default Ember.Route.extend(ApplicationRouteMixin, {
 	init: function(){
 		// this.get('session').restore();
+		this._super(...arguments);
 	},
 
 	title: 'Autora.ink | Writing Just Got Collective.',
 
 	actions: {
-		transitionToProjectList: function(){
+		transitionToProjectList(){
 			this.transitionTo('project.contribute');
 		},
 
-		sessionAuthenticationSucceeded: function(){
+		sessionInvalidated(){
 			this.transitionTo('project.contribute');
 		},
 
-		sessionAuthenticationFailed: function(error){
-			var alert = {};
-			alert.type = 'danger';
-			switch (error.code) {
-		      case 'INVALID_EMAIL':
-		        alert.message = 'The specified user account email is invalid.';
-		        break;
-		      case 'INVALID_PASSWORD':
-		        alert.message = 'The specified user account password is incorrect.';
-		        break;
-		      case 'INVALID_USER':
-		        alert.message = 'The specified user account does not exist.';
-		        break;
-		      default:
-		        alert.message = 'Error logging user in: ' + error;
-		    }
-			this.controllerFor('user.login').set('alert', alert);
-			this.controllerFor('user.login').set('isLoading', false);
+		sessionAuthenticationFailed(error){
+			
+		},
+
+		didTransition(){
+		},
+		willTransition(){
+			this.controller.set('showNotifications', false);
 		}
 	}
 });

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {computed, observer} = Ember;
+const {computed, observer, inject} = Ember;
 
 export default Ember.Component.extend({
 
@@ -10,6 +10,9 @@ export default Ember.Component.extend({
 	isEditing: false,
 	ordered: false,
 	didAnimate: false,
+
+	session: inject.service('session'),
+	
 
 	hasNoLikes: computed.equal('model.likes.length',0),
 	isPileUnlocked: computed.equal('model.pile.locked', false),
@@ -106,7 +109,8 @@ export default Ember.Component.extend({
 
 				//there's probably no need to save pile afterwards
 				var model = this.get('model');
-				this.get('session').deleteSubscriptionForModel('entry',model,this.store);
+				console.log(model);
+				this.get('session').deleteSubscriptionForModel('entry',model);
 				model.destroyRecord();
 			}	
 		}

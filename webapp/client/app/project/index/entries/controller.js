@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
 	displayClosedProjectNotification: computed.and('isProjectClosed'),
 	
 	project: inject.controller('project.index'),
+	session: inject.service('session'),
+	
 
 	pile: computed('model', function(){
 		return this.get('model');
@@ -71,7 +73,8 @@ export default Ember.Controller.extend({
 			if(typeof secondMostLikedEntry === 'undefined' || (mostLikedEntry.get('likes.length') !== secondMostLikedEntry.get('likes.length'))){
 
 				mostLikedEntry.set('project', project).save().then(() => {
-					pile.set('locked', true).save().then(() => {
+					pile.set('locked', true);
+					pile.save().then(() => {
 						var pile = {
 							project: project,
 							createdAt: Firebase.ServerValue.TIMESTAMP,

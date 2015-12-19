@@ -9,6 +9,8 @@ export default Ember.Controller.extend({
 	isEditing: false,
 
 	project: inject.controller('project'),
+	session: inject.service('session'),
+
 
 	newEntry: inject.controller('project.index.entries.newEntry'),
 	isEditable: computed.equal('model.piles.firstObject.competingEntries.length', 0),

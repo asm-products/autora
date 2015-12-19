@@ -1,12 +1,16 @@
-{{allSubscriptionsReady}}
-<button {{action 'toggleBox'}} class="badge toggleNotificationBox">{{unseenSubscriptions.length}}</button>
-<div class="content {{if showDropdown '' 'hidden'}}">
-	{{#each sortedSubscriptions as |subscription|}}
+{{#each session.sortedSubscriptions as |subscription|}}
+	{{#if subscription.showNotification}}
 		<div class="notification">
-			{{#if subscription.notification}}
-			{{subscription.type}} in {{link-to subscription.project.name 'project.index.entries' subscription.entry.pile.project}}:
-			{{subscription.notification}}
+			{{#if subscription.entry}}
+				{{user-photo user=subscription.lastChildModel.user class="inline-block"}}
+				<span class="name">{{subscription.lastChildModel.user.username}}</span> and {{subscription.subModelChildren.length}} liked your {{link-to 'entry' 'project.index.entries' subscription.project}}
 			{{/if}}
+
+			{{#if subscription.pile}}
+				{{subscription.lastChildModel.user.username}} and {{subscription.subModelChildren.length}} others put submission in {{link-to subscription.project.name 'project.index.entries' subscription.project}}
+			{{/if}}
+			<br>
+			<span class="time">{{moment-from-now subscription.lastChildModelCreatedAt}}</span>
 		</div>
-	{{/each}}
-</div>
+	{{/if}}
+{{/each}}

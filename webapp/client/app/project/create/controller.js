@@ -20,8 +20,9 @@ export default Ember.Controller.extend({
 		description: ''
 	},
 
-	project: inject.controller('project'),
 	create: computed.alias('project.create'),
+	project: inject.controller('project'),
+	session: inject.service('session'),
 
 	descriptionAlert: computed('newProject.description','showErrors',function(){
 		if(this.get('showErrors')){
@@ -118,7 +119,7 @@ export default Ember.Controller.extend({
 	}),
 
 	addSubscription(project){
-		this.get('session').addSubscription(project, 'project', this.store);
+		this.get('session').addSubscription(project, 'project');
 	},
 
 	actions: {
@@ -144,7 +145,7 @@ export default Ember.Controller.extend({
 
 				tags.forEach(tagName => {
 					//SAVE TAGS
-					tagRequests.push(this.store.find('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
+					tagRequests.push(this.store.query('tag', {orderBy: 'name', startAt: tagName, endAt:tagName})
 					.then(foundTags => {
 
 						if(foundTags.get('length') === 0) {

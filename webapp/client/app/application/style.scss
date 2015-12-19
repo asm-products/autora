@@ -2,6 +2,9 @@ $footer-height: 55px;
 #app {
     color: $text-color;
     height:100%;
+    transition: 0.4s transform;
+    transform: translateX(0);
+    
 
     .app-content {
         padding: 0;
@@ -18,5 +21,10 @@ $footer-height: 55px;
     		display: block;
     		height: $footer-height;
     	}
+    }
+
+    &.pushed {
+        transform: translateX(-$notification-width);
+
     }
 }

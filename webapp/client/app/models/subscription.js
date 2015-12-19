@@ -2,9 +2,11 @@ import DS from 'ember-data';
 import TimestampSupport from 'client/mixins/timestamp-support';
 import Ember from 'ember';
 
+function now(){
+  return Date.now();
+}
 
-
-const {computed, isNone} = Ember;
+const {computed, isNone, on, inject} = Ember;
 const {attr, belongsTo} = DS;
 
 export default DS.Model.extend(TimestampSupport, {
@@ -12,22 +14,23 @@ export default DS.Model.extend(TimestampSupport, {
   subscriptionTypes: {
     entry: {
       childName: 'like',
-      childPlural: 'likes'
+      childPlural: 'likes',
+      childPluralLabel: 'likes'
     },
     pile: {
       childName: 'competingEntry',
-      childPlural: 'entries'
+      childPlural: 'competingEntries',
+      childPluralLabel: 'entries'
     },
     project: {
       childName: 'pile',
-      childPlural: 'piles'
+      childPlural: 'piles',
+      childPluralLabel: 'piles'
     }
   },
   
   type: attr('string'),
-
-  isReady: false,
-
+  
   isSeen: attr('boolean', {defaultValue: false}),
   isRead: attr('boolean', {defaultValue: false}),
 
@@ -38,40 +41,75 @@ export default DS.Model.extend(TimestampSupport, {
   entry: belongsTo('entry', {async: true}),
   pile: belongsTo('pile', {async: true}),
 
-  cachedPileCount: attr('number', {defaultValue: 1}),
-  cachedCompetingEntryCount: attr('number', {defaultValue: 1}),
-  cachedLikeCount: attr('number', {defaultValue: 0}),
+  // cachedPileCount: attr('number', {defaultValue: 1}),
+  // cachedCompetingEntryCount: attr('number', {defaultValue: 1}),
+  // cachedLikeCount: attr('number', {defaultValue: 0}),
 
-  cachedProjectTimestamp: attr('', {defaultValue: Date.now()}),
-  cachedPileTimestamp: attr('', {defaultValue: Date.now()}),
-  cachedEntryTimestamp: attr('', {defaultValue: Date.now()}),
+  session: inject.service('session'),
 
+  cachedProjectTimestamp: attr('', {defaultValue: now}),
+  cachedPileTimestamp: attr('', {defaultValue: now}),
+  cachedEntryTimestamp: attr('', {defaultValue: now}),
 
-  likeCount: computed.alias('entry.likes.length'),
-  competingEntryCount: computed.alias('pile.competingEntries.length'),
-  pileCount: computed.alias('project.piles.length'),
+  notificationTime: attr('', {defaultValue: now}),
+  cachedNotificationTime: attr('', {defaultValue: now}),
+  cachedNotification: attr('', {defaultValue: ''}),
 
-  notificationTime: attr('', {defaultValue: Date.now()}),
-  cachedNotificationTime: attr('', {defaultValue: Date.now()}),
+  cachedLastChildModelCreatedAt: attr('', {defaultValue: ''}),
 
-  notification: computed('likeCount','competingEntryCount','pileCount', function(){
-    const type = this.get('type');
-    if(type){
-      const childName = this.subscriptionTypes[type].childName;
-      const childNameCap = childName.capitalize();
-      const cachedCount = this.get('cached' + childNameCap + 'Count');
-      const currentCount = this.get(childName + 'Count');
-      const newChildCount = currentCount - cachedCount;
-      this.set('isSeen', false);
-      if(newChildCount > 0){
-        this.set('notificationTime', Date.now());
-        return `${newChildCount} new ${newChildCount === 1 ? childName : this.subscriptionTypes[type].childPlural}`;
+  lastChildModel: computed.alias('subModelChildren.lastObject'),
+
+  subModelChildren: computed('project.piles.[]', 'entry.likes.[]', 'pile.competingEntries.[]', function(){
+    let type = this.get('type');
+    if(type) {
+      let childPlural = this.subscriptionTypes[type].childPlural;
+      let childName = this.subscriptionTypes[type].childName;
+      var childArray = this.get(type + '.' + childPlural);
+     if(childArray){
+        const currentUserId = this.get('session.user.id');
+        return childArray.filter(record => {
+          return record.get('user.id') !== currentUserId;
+        });
       } else {
-        console.log('not enough new records to notify:', newChildCount);
+        console.log('===');
+        console.log('childArray',childArray);
+        console.log('childPlural',childPlural);
+        console.log('type',type);
+        console.log('type + . + childPlural',type + '.' + childPlural);
+        console.log('===');
+
         return false;
       }
-    }
+  }
+
   }),
+
+
+
+  lastChildModelCreatedAt: computed('lastChildModel.createdAt', function(){
+    // return this.get('lastChildModel.createdAt') ? this.get('lastChildModel.createdAt') : null;
+    return this.getWithDefault('lastChildModel.createdAt', false);
+  }),
+
+  showNotification: computed('lastChildModel.user', function(){
+    const modelCreator = this.get('lastChildModel.user');
+    return !isNone(modelCreator);
+  }),
+
+  // notification: computed('subModelChildren.length', function(){
+  //   let type = this.get('type');
+  //   console.log('notifying');
+
+  //   if(type && this.get('subModelChildren.isFulfilled')){
+
+  //     const childName = this.subscriptionTypes[type].childName;
+  //     const currentCount = this.get('subModelChildren.length');
+
+  //     return `${currentCount} ${currentCount === 1 ? childName : this.subscriptionTypes[type].childPluralLabel}`;
+  //   } else {
+  //     return '';
+  //   }
+  // }),
 
   cacheSubscription(){
     console.log('cache subscription');
@@ -79,6 +117,12 @@ export default DS.Model.extend(TimestampSupport, {
     this.set('cachedEntryCount', this.get('entryCount'));
     this.set('cachedPileCount', this.get('pileCount'));
     this.set('isSeen', false);
-  }
+  },
+
+  didCreate2: on('ready', function(){
+
+    this.notifyPropertyChange('notification');
+    
+  })
 
 });

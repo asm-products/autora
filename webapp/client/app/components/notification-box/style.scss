@@ -1,33 +1,48 @@
-.notifications {
-	position: relative;
-	display: inline-block;
+@keyframes hide {
+    0%{opacity: 1;display:block;}
+    99%{opacity: 0;display:block;}
+    100%{opacity: 0;display:none;}
+}
 
-	.content {
-		position: absolute;
-		// bottom: -3px;
-		top:30px;
-		left: 0;
-	    border: 2px solid $color1;
-	    z-index: 1000;
-	    width: 250px;
-	    padding: 10px;
-	    background: white;
-	    max-height:300px;
-	    overflow: scroll;
+.notification-box {
+	position: fixed;
+	right: -$notification-width;
+    border: 2px solid $color1;
+    z-index: 1000;
+    width: $notification-width;
+    padding: 10px;
+    background: white;
+    height:100vh;
+    overflow: scroll;
 
-	    a {
-	    	margin: 0 !important;
-	    }
+    a {
+    	margin: 0 !important;
+    }
 
-	    &.hidden {
-	    	visibility: hidden;
-	    }
-	}
+    &.hidden-animated {
+    	// visibility: hidden;
+        animation: 0.8s hide forwards;
+    }
 
-	.badge {
-		background-color: #DC1E1E;
-		border: 0;
-		outline: 0 !important;
-	}
+    .notification {
+        border: 2px solid #E3E2E3;
+        min-height: 80px;
+        font-size: 16px;
+        padding: 15px 10px 35px 10px;
+        margin: 15px 0;
+        color: #5F495F;
+        position: relative;
+        border-radius: 5px;
 
+        .time {
+            color: #848484;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+
+        .name {
+            text-transform: uppercase;
+        }
+    }
 }

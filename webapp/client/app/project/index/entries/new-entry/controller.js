@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
 	showAlerts: false,
 	hasErrors: false,
 
+	session: inject.service('session'),
 	projectIndexEntriesController: inject.controller('project.index.entries'),
 	projectIndexController: inject.controller('project.index'),
 
@@ -58,8 +59,9 @@ export default Ember.Controller.extend({
 
 	addSubscription(entry){
 		var project = this.get('pile.project');
-		this.get('session').addSubscription(entry,'entry',this.store, project);
-		this.get('session').addSubscription(this.get('pile'),'pile',this.store, project);
+		console.log('addSubscription');
+		this.get('session').addSubscription(entry,'entry', project);
+		this.get('session').addSubscription(this.get('pile'),'pile', project);
 	},
 
 

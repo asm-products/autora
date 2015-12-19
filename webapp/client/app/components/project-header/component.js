@@ -5,6 +5,7 @@ const {inject, computed} = Ember;
 export default Ember.Component.extend({
 
 	imageService: inject.service('image'),
+	
 
 	backgroundImageStyle: computed('image', function(){
 
