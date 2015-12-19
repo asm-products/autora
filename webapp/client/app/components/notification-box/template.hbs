@@ -2,12 +2,14 @@
 	<div class="notification">
 		{{#if subscription.showNotification}}
 			{{#if subscription.entry}}
-				{{subscription.entry.likes.lastObject.user.username}} and {{subscription.entry.likes.length}} liked your {{link-to 'entry' 'project.index.entries' subscription.project.id}}
+				{{subscription.lastChildModel.user.username}} and {{subscription.subModelChildren.length}} liked your {{link-to 'entry' 'project.index.entries' subscription.project.id}}
 			{{/if}}
 
 			{{#if subscription.pile}}
-				{{subscription.pile.competingEntries.lastObject.user.username}} and {{subscription.pile.competingEntries.length}} others put submission in {{link-to subscription.project.name 'project.index.entries' subscription.project.id}}
+				{{subscription.lastChildModel.user.username}} and {{subscription.subModelChildren.length}} others put submission in {{link-to subscription.project.name 'project.index.entries' subscription.project.id}}
 			{{/if}}
+		<br>
+		{{moment-from-now subscription.lastChildModelCreatedAt}}
 		{{/if}}
 	</div>
 {{/each}}

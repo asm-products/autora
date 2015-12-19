@@ -19,7 +19,7 @@ export default SessionService.extend({
 		}
 	}),
 
-	unseenSubscriptions: computed('subscriptions','subscriptions.@each.lastChildModelCreatedAt','subscriptions.@each.lastChildModelCreatedAt', function(){
+	unseenSubscriptions: computed('subscriptions','subscriptions.@each.lastChildModelCreatedAt','subscriptions.@each.cachedLastChildModelCreatedAt', function(){
 
 		var subscriptions = this.get('subscriptions').toArray();
 		let filterPromise = Ember.RSVP.filter(subscriptions, subscription => {

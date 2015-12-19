@@ -63,7 +63,16 @@ export default DS.Model.extend(TimestampSupport, {
     let type = this.get('type');
     if(type) {
       let childPlural = this.subscriptionTypes[type].childPlural;
-      return this.get(type + '.' + childPlural);
+      var childArray = this.get(type + '.' + childPlural);
+     if(childArray){
+        const currentUserId = this.get('session.user.id');
+        return childArray.filter(record => {
+          console.log(record.get('user.id'), '!==', currentUserId);
+          return record.get('user.id') !== currentUserId;
+        });
+      } else {
+        return false;
+      }
   }
 
   }),
@@ -72,15 +81,12 @@ export default DS.Model.extend(TimestampSupport, {
 
   lastChildModelCreatedAt: computed('lastChildModel.createdAt', function(){
     // return this.get('lastChildModel.createdAt') ? this.get('lastChildModel.createdAt') : null;
-    return this.getWithDefault('lastChildModel.createdAt', 0);
+    return this.getWithDefault('lastChildModel.createdAt', false);
   }),
 
   showNotification: computed('lastChildModel.user', function(){
     const modelCreator = this.get('lastChildModel.user');
-    const currentUser = this.get('session.user');
-    console.log('modelCreator', modelCreator);
-    console.log('currentUser', currentUser);
-    return !isNone(modelCreator) && (modelCreator.get('id') !== currentUser.get('id'));
+    return !isNone(modelCreator);
   }),
 
   // notification: computed('subModelChildren.length', function(){
