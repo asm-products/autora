@@ -1,10 +1,8 @@
 import Ember from 'ember';
-import Firebase from 'firebase';
 
 const {inject, computed, run, $} = Ember;
 
 export default Ember.Controller.extend({
-
 	showAlerts: false,
 	hasErrors: false,
 
@@ -24,8 +22,6 @@ export default Ember.Controller.extend({
 		};
 	}),
 
-
-
 	alert: computed('isEmpty', function(){
 		if(this.get('isEmpty')){
 			return {
@@ -34,7 +30,6 @@ export default Ember.Controller.extend({
 			};
 		}
 	}),
-
 
 	resetForm: function () {
 		this.set('newEntry.content', '');
@@ -53,14 +48,13 @@ export default Ember.Controller.extend({
 				var addEntryModalHeight = $('.add-entry-modal').height() + offset;
 				console.log(addEntryModalHeight);
 				this.set('spacerHeight', addEntryModalHeight);
-				
+
 			}, animationTime);
 		});
 	}),
 
 	actions: {
 		createEntry() {
-			
 			this.set('showAlerts', true);
 
 			if(!this.get('isEmpty')){
@@ -70,7 +64,7 @@ export default Ember.Controller.extend({
 					pile.save().then(function () {
 						this.resetForm();
 					}.bind(this));
-				}.bind(this), function(error){
+				}.bind(this), function(){
 					newEntry.rollback();
 				});
 				this.transitionToRoute('project.index.entries');
@@ -81,5 +75,4 @@ export default Ember.Controller.extend({
             window.history.back();
 		}
 	}
-
 });

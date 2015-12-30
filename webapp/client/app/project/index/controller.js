@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import Firebase from 'firebase';
 
 const {inject, computed} = Ember;
 
@@ -21,7 +20,7 @@ export default Ember.Controller.extend({
 
 	inlineMode: computed('model.inputType', function(){
 		var inputType = this.get('model.inputType');
-		return inputType === 'word' || inputType === 'sentence'; 
+		return inputType === 'word' || inputType === 'sentence';
 	}),
 
 	isCreator: computed('session.user.id','model.user.id', function(){
@@ -46,7 +45,7 @@ export default Ember.Controller.extend({
 	}),
 
 	actions: {
-		
+
 		createPile(){
 			var project = this.get('model');
 			this.store.createRecord('pile', this.get('newPile')).save().then(() => {
